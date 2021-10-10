@@ -40,4 +40,10 @@ git push origin "branch-name" //DON'T USE QUOTES
 
 Once you've pushed, double check on Github to make sure it was successful. Don't push directly to main unless you've gotten the OK from the rest of the group.
 
+When you need to download the latest repository, checkout to main and run:
+
+git fetch
+git pull
+
+
 
