@@ -39,7 +39,9 @@ Don't use capital letters in your branch and use dashes as spaces.
 When you need to commit, either use the Git features in VSC or enter the following commands into terminal:
 
 git add *
+
 git commit -m "enter your commit message here" //USE QUOTES
+
 git push origin "branch-name" //DON'T USE QUOTES
 
 Once you've pushed, double check on Github to make sure it was successful. Don't push directly to main unless you've gotten the OK from the rest of the group.
