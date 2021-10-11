@@ -10,7 +10,11 @@ yarn add styled-components
 
 yarn add lottie-react-native
 
-yarn add react-native-vector-icons
+yarn add react-native-magnus
+
+//Please familiarize yourself with Magnus UI. https://magnus-ui.com/docs/getting-started/
+
+yarn add color react-native-animatable react-native-modal react-native-vector-icons deepmerge validate-color
 
 Once all the dependencies are installed, use "expo start" to run the app.
 
