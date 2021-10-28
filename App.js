@@ -21,8 +21,6 @@ export default function App() {
     <ThemeProvider theme={ffTheme}>
       <Div style={styles.container}>
         <Text fontSize='6xl' fontWeight='600' color='periwinkle'>Welcome to Frefurnish.</Text>
-        <ItemIcon itemText='Kitchenware'/>
-        <UploadImage uploadText='Upload Image'/>
       </Div>
     </ThemeProvider>
   );
