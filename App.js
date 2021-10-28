@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import LottieView from 'lottie-react-native';
 import ButtonUI from './comps/MainButton/index';
 import { ThemeProvider, Text, Div, Button, Icon } from 'react-native-magnus';
+import ItemIcon from './comps/ItemIcon';
 
 
 const ffTheme = {
@@ -19,6 +20,7 @@ export default function App() {
     <ThemeProvider theme={ffTheme}>
       <Div style={styles.container}>
         <Text fontSize='6xl' fontWeight='600' color='periwinkle'>Welcome to Frefurnish.</Text>
+        <ItemIcon itemText='Kitchenware'/>
       </Div>
     </ThemeProvider>
   );
