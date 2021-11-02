@@ -5,7 +5,7 @@ import { Div, Text } from "react-native-magnus";
 import styled from 'styled-components';
 import LottieView from 'lottie-react-native';
 
-export default function BigPost({
+export default function SmallPost({
     headerText = "Office Chair",
     locationText = "Langley - 30 km"
 }) 
