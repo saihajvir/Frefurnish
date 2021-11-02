@@ -15,58 +15,67 @@ export default function BottomNav({
         >
             <Button
                 h={70}
-                w={70}
-                flexDir='column'             
+                w={90}
+                bg='white'
+                flexDir='column'
+                underlayColor='lightgrey'
             >
                 <Icon
                     name='ios-home'
                     fontFamily='Ionicons'
-                    fontSize={36}
+                    fontSize={28}
                     color='grey'
+                    mb={5}
                 />
                     <Text>Home</Text>
             </Button>
       
             <Button
                 h={70}
-                w={70}
+                w={90}
+                bg='white'
                 flexDir='column'             
             >
                 <Icon
-                    name='ios-home'
-                    fontFamily='Ionicons'
-                    fontSize={36}
+                    name='shopping-bag'
+                    fontFamily='FontAwesome5'
+                    fontSize={28}
                     color='grey'
+                    mb={5}
                 />
-                    <Text>Home</Text>
+                    <Text>Listings</Text>
             </Button>
 
             <Button
                 h={70}
-                w={70}
+                w={90}
+                bg='white'
                 flexDir='column'             
             >
                 <Icon
-                    name='ios-home'
+                    name='md-chatbubbles'
                     fontFamily='Ionicons'
-                    fontSize={36}
+                    fontSize={28}
                     color='grey'
+                    mb={5}
                 />
-                    <Text>Home</Text>
+                    <Text>Messages</Text>
             </Button>
 
             <Button
                 h={70}
-                w={70}
+                w={90}
+                bg='white'
                 flexDir='column'             
             >
                 <Icon
-                    name='ios-home'
-                    fontFamily='Ionicons'
-                    fontSize={36}
+                    name='user-circle'
+                    fontFamily='FontAwesome5'
+                    fontSize={28}
                     color='grey'
+                    mb={5}
                 />
-                    <Text>Home</Text>
+                    <Text>Profile</Text>
             </Button>
 
 
