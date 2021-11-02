@@ -12,6 +12,8 @@ import MainButton from './comps/MainButton/index';
 import BottomNav from './comps/BottomNavBar';
 import Landing from './pages';
 import Intro from './pages/intro';
+import Whomepage from './pages/workerhomepage';
+import AllListing from './pages/listings';
 
 
 const ffTheme = {
@@ -25,6 +27,7 @@ const ffTheme = {
 
 const Stack = createNativeStackNavigator();
 
+
 export default function App() {
 
   return (
@@ -33,6 +36,8 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Landing" component={Landing} options={{headerShown: false}}/>
         <Stack.Screen name="Intro" component={Intro} />
+        <Stack.Screen name="Whomepage" component={Whomepage} />
+        <Stack.Screen name="AllListing" component={AllListing} />
       </Stack.Navigator>
     </ThemeProvider>
     </NavigationContainer>
