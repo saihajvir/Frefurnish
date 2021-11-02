@@ -8,15 +8,18 @@ import LottieView from 'lottie-react-native';
 export default function MainButton({
     buttonText = "default text",
     iconName = "ios-arrow-forward-circle",
-    iconFamily = "Ionicons"
+    iconFamily = "Ionicons",
+    onPress,
+    bg='periwinkle',
+    textColor='white'
 }) 
 {
     return (
         <Button
-            bg='periwinkle'
+            bg={bg}
             block
-            color='white'
-            rounded={20}
+            color={textColor}
+            rounded={10}
             h={50}
             fontSize={18}
             fontWeight='500'
@@ -30,6 +33,7 @@ export default function MainButton({
                  fontSize={24}
                 />
             }
+            onPress={onPress}
         >
             {buttonText}
         </Button>
