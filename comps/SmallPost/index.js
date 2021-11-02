@@ -15,7 +15,7 @@ export default function SmallPost({
         <Div>
             <Div
             rounded="xl"
-            h={250}
+            h={185}
             w={185}
             bgImg={{
                 uri:
