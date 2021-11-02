@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import LottieView from 'lottie-react-native';
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv } from 'react-native-magnus';
 import MainButton from './comps/MainButton/index';
-import BigPost from './comps/BigPost';
+
 
 
 const ffTheme = {
@@ -23,9 +23,8 @@ export default function App() {
     <ThemeProvider theme={ffTheme}>
       <Div style={styles.container}>
         <Text fontSize='6xl' fontWeight='600' color='periwinkle'>Welcome to Frefurnish.</Text>
-        <MainButton buttonText='Next'/>
-        <BigPost/>
       </Div>
+      <BottomNav/>
     </ThemeProvider>
   );
 }
