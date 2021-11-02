@@ -5,34 +5,35 @@ import { Button, Div, Icon, Text } from 'react-native-magnus'
 import styled from 'styled-components';
 import LottieView from 'lottie-react-native';
 
-export default function ItemIcon ({
-    itemText = "default",
-    iconFamily = "MaterialIcons",
-    iconName = "kitchen",
+export default function UploadImage ({
+    uploadText = "default",
+    iconFamily = "Feather",
+    iconName = "upload",
 })
 {
     return (
         <Div
             justifyContent="center"
             alignItems="center"
-            bg='periwinkle'
+            bg='lightgrey'
             rounded={20}
-            h={100}
-            w={100}
+            h={230}
+            w={295}
         >
+            <Text
+                color="black"
+                fontWeight="700"
+            >
+                {uploadText}
+            </Text>
+
              <Icon
             name={iconName}
             fontFamily={iconFamily}
-            color='white'
-            fontSize={50}
+            color='black'
+            fontSize={34}
             />
-            <Text
-                color="white"
-                fontWeight="500"
-            >
-                {itemText}
-            </Text>
-            
+
         </Div>
     )
 }
