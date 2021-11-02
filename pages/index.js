@@ -7,6 +7,7 @@ import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv } from 'react-native-
 
 import MainButton from '../comps/MainButton/index';
 import BottomNav from '../comps/BottomNavBar';
+import ItemIcon from "../comps/ItemIcon";
 
 const ffTheme = {
     colors: {
