@@ -8,6 +8,7 @@ import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv } from 'react-native-
 import MainButton from '../comps/MainButton/index';
 import BottomNav from '../comps/BottomNavBar';
 import ItemIcon from "../comps/ItemIcon";
+import UserCard from "../comps/UserCard";
 
 const ffTheme = {
     colors: {
@@ -37,7 +38,8 @@ export default function Landing({navigation})
         <ThemeProvider theme={ffTheme}>
             <Wrapper>
             <Container>
-                <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {navigation.navigate("Intro")}}/>
+                {/* <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {navigation.navigate("Intro")}}/> */}
+                <UserCard/>
             </Container>
             </Wrapper>
         </ThemeProvider>
