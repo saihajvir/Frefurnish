@@ -148,7 +148,6 @@ export default function Landing({
             <Container>
                 <Image source={ChairIcon} w={160} h={220}/>
             </Container>
-            
             </Wrapper>
         </ThemeProvider>
         )
