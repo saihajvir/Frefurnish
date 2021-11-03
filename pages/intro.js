@@ -22,6 +22,7 @@ export default function Intro({route, navigation})
         <ThemeProvider theme={ffTheme}>
         <Div>
             <Text>Intro page</Text>
+            <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {navigation.navigate("donorhome")}}/>
         </Div>
         </ThemeProvider>
     )

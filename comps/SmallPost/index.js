@@ -11,12 +11,12 @@ export default function SmallPost({
 }) 
 {
     return (
-    <Div m="xl">
+    <Div m="md">
         <Div>
             <Div
             rounded="xl"
-            h={185}
-            w={185}
+            h={115}
+            w={115}
             bgImg={{
                 uri:
                 "http://placekitten.com/200/300",
