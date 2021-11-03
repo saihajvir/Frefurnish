@@ -17,6 +17,7 @@ export default function BigPost({
             rounded="xl"
             h={250}
             w={185}
+            m={-10}
             bgImg={{
                 uri:
                 "http://placekitten.com/200/300",

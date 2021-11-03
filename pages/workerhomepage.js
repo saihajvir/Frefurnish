@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { ScrollView, View, TouchableOpacity} from "react-native";
+import { ScrollView, View, TouchableOpacity, ImageBackground} from "react-native";
 
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv } from 'react-native-magnus';
 
@@ -63,7 +63,7 @@ export default function Whomepage({route, navigation})
             <NewListing>
                 <Text fontWeight="bold" fontSize={50} pt={20}>New Listings</Text>
             </NewListing>
-            <Container>
+            <Container >
                 <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
                 <BigPost />
                 </TouchableOpacity>

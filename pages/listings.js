@@ -60,50 +60,50 @@ export default function Market({route, navigation})
             
             <Container>
             <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost />
+                <SmallPost imgSrc="http://placeimg.com/640/480/tech" />
             </TouchableOpacity>
             <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost />
-            </TouchableOpacity>
-            </Container>
-            <Container>
-            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost />
+                <SmallPost imgSrc="https://picsum.photos/200/300"/>
             </TouchableOpacity>
             </Container>
             <Container>
             <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost />
+                <SmallPost imgSrc="https://picsum.photos/200/500"/>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost />
+                <SmallPost imgSrc="https://picsum.photos/200/400"/>
+            </TouchableOpacity>
+            </Container>
+            <Container>
+            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
+                <SmallPost imgSrc="https://picsum.photos/200/600"/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
+                <SmallPost imgSrc="https://picsum.photos/400/300"/>
             </TouchableOpacity>
             </Container>
             <Container >
             <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost />
+                <SmallPost imgSrc="https://picsum.photos/600/300"/>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost />
-            </TouchableOpacity>
-            </Container>
-            <Container>
-            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost />
+                <SmallPost imgSrc="https://picsum.photos/800/300"/>
             </TouchableOpacity>
             </Container>
             <Container>
             <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost />
+                <SmallPost imgSrc="https://picsum.photos/100/900"/>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost />
+                <SmallPost imgSrc="https://picsum.photos/700/300"/>
+            </TouchableOpacity>
+            </Container>
+            <Container>
+            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
+                <SmallPost imgSrc="https://picsum.photos/100/100"/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
+                <SmallPost imgSrc="https://picsum.photos/900/900"/>
             </TouchableOpacity>
             </Container>
             </ScrollView>
