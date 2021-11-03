@@ -3,7 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { ScrollView, View, TouchableOpacity, ImageBackground} from "react-native";
 
-import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv } from 'react-native-magnus';
+import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image } from 'react-native-magnus';
 
 import MainButton from '../comps/MainButton/index';
 import BottomNav from '../comps/BottomNavBar';
@@ -23,13 +23,13 @@ const ffTheme = {
   }
 
   const Header = styled.View`
-  flex:0.4;
+  flex:0.6;
   justify-content: center;
   align-items: center;
   background-color: #FFFFFF;
 `
 const NewListing = styled.View`
-  flex:0.5;
+  flex: 2;
   background-color: #FFFFFF;
 `
 const Wrapper = styled.View`
@@ -40,40 +40,43 @@ const Wrapper = styled.View`
     background-color: #FFFFFF;
 `
 const Container = styled.View`
-    flex:2;
+    flex:5;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: #FFFFFF;
+    background-color: grey;
 `
 const Navbar = styled.View`
-    flex:0.3;
+    flex:1;
     justify-content: center;
     align-items: center;
     background-color: #FFFFFF;
 `
 
-export default function Whomepage({route, navigation})
+export default function Donorrequest({navigation})
 {
     return (
         <ThemeProvider theme={ffTheme}>
             <Header>
-                <Header1 />
+                <Header1 headerText="Request"/>
             </Header>
             <NewListing>
-                <Text fontWeight="bold" fontSize={50} pt={20}>New Listings</Text>
+            <Image
+                h={100}
+                w={100}
+                m={10}
+                alignSelf="center"
+                rounded="circle"
+                source={{
+                    uri:
+                    "https://images.unsplash.com/photo-1593642532400-2682810df593?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+                }}
+                />
+                <Text fontWeight="bold" fontSize={40} pt={20} textAlign="center">John Wick</Text>
             </NewListing>
             <Container >
-                <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <BigPost imgSrc="http://placeimg.com/640/480/tech"/>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <BigPost imgSrc="http://placeimg.com/640/450/tech"/>
-                </TouchableOpacity>
+          
             </Container>
-            <Wrapper>
-            <MainButton buttonText={'See all Listings'} bg="periwinkle" textColor='white' onPress={() => {navigation.navigate("Market")}}/>
-            </Wrapper>
             <Navbar>
                 <BottomNav />
             </Navbar>

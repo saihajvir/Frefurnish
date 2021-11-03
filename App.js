@@ -16,6 +16,7 @@ import Whomepage from './pages/workerhomepage';
 import AllListing from './pages/listings';
 import Viewlisting from './pages/viewlisting';
 import Market from './pages/listings';
+import Donorrequest from './pages/donorrequest';
 
 
 const ffTheme = {
@@ -41,6 +42,7 @@ export default function App() {
         <Stack.Screen name="Whomepage" component={Whomepage} />
         <Stack.Screen name="Market" component={Market} />
         <Stack.Screen name="Viewlisting" component={Viewlisting} />
+        <Stack.Screen name="Donorrequest" component={Donorrequest} />
       </Stack.Navigator>
     </ThemeProvider>
     </NavigationContainer>

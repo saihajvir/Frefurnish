@@ -18,6 +18,7 @@ export default function SmallPost({
   h={185}
   w={185}
   m={-10}
+  rounded={10}
   source={{
     uri:imgSrc
   }}/>

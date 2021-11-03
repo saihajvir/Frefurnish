@@ -69,7 +69,7 @@ export default function Viewlisting({route, navigation})
             <Text>Just an old office chair we don't use anymore. Prefer pickup! Thanks!</Text>
         </NewListing>
         <Wrapper>
-            <MainButton buttonText="Contact Donor"/> 
+            <MainButton buttonText="Contact Donor" onPress={() => {navigation.navigate("Donorrequest")}}/> 
         </Wrapper>
 
         <Navbar>
