@@ -3,12 +3,14 @@ import axios from "axios";
 import styled from "styled-components";
 import { ScrollView, View } from "react-native";
 
-import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv } from 'react-native-magnus';
+import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image } from 'react-native-magnus';
 
 import MainButton from '../comps/MainButton/index';
 import BottomNav from '../comps/BottomNavBar';
 import ItemIcon from "../comps/ItemIcon";
 import UserCard from "../comps/UserCard";
+
+import ChairIcon from '../assets/Frefurnish-plain.png'
 
 const ffTheme = {
     colors: {
@@ -26,10 +28,23 @@ const Wrapper = styled.View`
     background-color: #92A8F8;
 `
 const Container = styled.View`
-    height: 100%;
-    width: 100%;
+    flex: 1;
     justify-content: center;
     align-items: center;
+`
+
+const BottomContainer = styled.View`
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 10%;
+`
+
+const Heading = styled.Text`
+    font-size: 36;
+    font-weight: 600;
+    color: white;
 `
 
 export default function Landing({navigation})
@@ -38,9 +53,16 @@ export default function Landing({navigation})
         <ThemeProvider theme={ffTheme}>
             <Wrapper>
             <Container>
-                {/* <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {navigation.navigate("Intro")}}/> */}
-                <UserCard/>
+                <Heading>
+                    Welcome to Frefurnish.
+                </Heading>
             </Container>
+            <Container>
+                <Image source={ChairIcon} w={160} h={220}/>
+            </Container>
+            <BottomContainer>
+                <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {navigation.navigate("Intro")}}/>
+            </BottomContainer>
             </Wrapper>
         </ThemeProvider>
     )
