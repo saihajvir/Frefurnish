@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { ScrollView, View } from "react-native";
+import { ScrollView, View, TouchableOpacity } from "react-native";
 
-import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Input } from 'react-native-magnus';
+import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Input, } from 'react-native-magnus';
 
 import MainButton from '../comps/MainButton/index';
 import BottomNav from '../comps/BottomNavBar';
@@ -35,41 +35,83 @@ const NewListing = styled.View`
   background-color: #FFFFFF;
 `
 const Container = styled.View`
-    flex:1;
+    flex:3;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     background-color: #FFFFFF;
 `
 const Navbar = styled.View`
-    flex:0.2;
+    flex:1;
     justify-content: center;
     align-items: center;
     background-color: #FFFFFF;
 `
 
-export default function Whomepage({route, navigation})
+export default function Market({route, navigation})
 {
     return (
         <ThemeProvider theme={ffTheme}>
-            <Header>
-                <Header1 headerText="Market"/>
-            </Header>
+            <ScrollView>
             <NewListing>
                 <Text fontWeight="bold" fontSize={50} pt={20}>All Listings</Text>
                 <Input placeholder="search" w={180} h={40} m={25}/>
             </NewListing>
+            
             <Container>
+            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
                 <SmallPost />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
                 <SmallPost />
+            </TouchableOpacity>
             </Container>
             <Container>
+            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
                 <SmallPost />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
                 <SmallPost />
+            </TouchableOpacity>
             </Container>
-            <Navbar>
+            <Container>
+            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
+                <SmallPost />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
+                <SmallPost />
+            </TouchableOpacity>
+            </Container>
+            <Container >
+            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
+                <SmallPost />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
+                <SmallPost />
+            </TouchableOpacity>
+            </Container>
+            <Container>
+            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
+                <SmallPost />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
+                <SmallPost />
+            </TouchableOpacity>
+            </Container>
+            <Container>
+            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
+                <SmallPost />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
+                <SmallPost />
+            </TouchableOpacity>
+            </Container>
+            </ScrollView>
+           <Div h={50}>
+           <Navbar>
                 <BottomNav />
             </Navbar>
+           </Div>
         </ThemeProvider>
     )
 }

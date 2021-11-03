@@ -14,6 +14,8 @@ import Landing from './pages';
 import Intro from './pages/intro';
 import Whomepage from './pages/workerhomepage';
 import AllListing from './pages/listings';
+import Viewlisting from './pages/viewlisting';
+import Market from './pages/listings';
 
 
 const ffTheme = {
@@ -37,7 +39,8 @@ export default function App() {
         <Stack.Screen name="Landing" component={Landing} options={{headerShown: false}}/>
         <Stack.Screen name="Intro" component={Intro} />
         <Stack.Screen name="Whomepage" component={Whomepage} />
-        <Stack.Screen name="AllListing" component={AllListing} />
+        <Stack.Screen name="Market" component={Market} />
+        <Stack.Screen name="Viewlisting" component={Viewlisting} />
       </Stack.Navigator>
     </ThemeProvider>
     </NavigationContainer>
