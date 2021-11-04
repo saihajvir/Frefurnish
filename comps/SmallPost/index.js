@@ -12,17 +12,18 @@ export default function SmallPost({
 }) 
 {
     return (
-    <Div m="xl">
+    <Div m="md">
         <Div>
-        <Image
-  h={185}
-  w={185}
-  m={-10}
-  rounded={10}
-  source={{
-    uri:imgSrc
-  }}/>
-           
+            <Div
+            rounded="xl"
+            h={115}
+            w={115}
+            bgImg={{
+                uri:
+                "http://placekitten.com/200/300",
+            }}
+            >
+            </Div>
             <Div row alignItems="center">
                 <Div flex={1} m={10}>
                     <Text fontSize="xl">

@@ -1,9 +1,10 @@
+   
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { ScrollView, View } from "react-native";
 
-import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image } from 'react-native-magnus';
+import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv } from 'react-native-magnus';
 
 import MainButton from '../comps/MainButton/index';
 import BottomNav from '../comps/BottomNavBar';
