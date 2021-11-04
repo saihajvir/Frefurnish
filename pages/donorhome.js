@@ -22,11 +22,6 @@ const ffTheme = {
     }
   }
 
-  const Header = styled.View`
-    justify-content: center;
-    align-items: center;
-    background-color: #FFFFFF;
-`
 const Requests = styled.View`
     flex:0.5;
     background-color: #FFFFFF;
@@ -55,16 +50,13 @@ export default function donorhome({route, navigation})
 {
     return (
         <ThemeProvider theme={ffTheme}>
-            <Header>
-                <Header1 />
-            </Header>
-
             <Requests>
                 <Text fontWeight="bold" fontSize={30} ml={15}>Requests</Text>
                 <RequestBox>
                     
                 </RequestBox>
             </Requests>
+            
             <Wrapper>
             <MainButton buttonText={'See All Requests'} bg="periwinkle" textColor='white'/>
             </Wrapper>
@@ -74,19 +66,19 @@ export default function donorhome({route, navigation})
             </Wrapper>
             <Container>
                 <ScrollView horizontal={true}>
-                    <TouchableOpacity onPress={() => {navigation.navigate("")}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("donorlisting")}}>
                         <SmallPost/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("")}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("donorlisting")}}>
                         <SmallPost/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("")}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("donorlisting")}}>
                         <SmallPost/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("")}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("donorlisting")}}>
                         <SmallPost/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("")}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("donorlisting")}}>
                         <SmallPost/>
                     </TouchableOpacity>
                 </ScrollView>
@@ -98,19 +90,19 @@ export default function donorhome({route, navigation})
             </Wrapper>
             <Container>
                 <ScrollView horizontal={true}>
-                    <TouchableOpacity onPress={() => {navigation.navigate("")}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("donorlisting")}}>
                         <SmallPost/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("")}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("donorlisting")}}>
                         <SmallPost/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("")}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("donorlisting")}}>
                         <SmallPost/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("")}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("donorlisting")}}>
                         <SmallPost/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("")}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("donorlisting")}}>
                         <SmallPost/>
                     </TouchableOpacity>
                 </ScrollView>
