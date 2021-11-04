@@ -13,33 +13,33 @@ export default function UserCard({
 })
 {
     
-    // return (
-    //     <Button w={396} bg='white' h={165} rounded={20} mt={15} mb={15} flexDir='column' onPress={()=>{}}>
-    //         <Div
-    //             w={396}
-    //             h={165}
-    //             bgImg={Gradient}
-    //             justifyContent='center'
-    //             alignItems='center'
-    //             p="lg"
-    //         >
-    //             <Text fontSize={16} color='white' mt="xl">
-    //                 {descriptionText}
-    //             </Text>
-    //         </Div>
+    return (
+        <Button w={396} bg='white' h={165} rounded={20} mt={15} mb={15} flexDir='column' onPress={()=>{}}>
+            <Div
+                w={396}
+                h={165}
+                bgImg={Gradient}
+                justifyContent='center'
+                alignItems='center'
+                p="lg"
+            >
+                <Text fontSize={16} color='white' mt="xl">
+                    {descriptionText}
+                </Text>
+            </Div>
 
-    //         <Div
-    //             w={396}
-    //             h={38}
-    //             bg='gray100'
-    //             alignSelf='flex-end'
-    //         >
-    //             <Text pt='sm' pl="lg" fontWeight='600' fontSize={18}>
-    //                 {userType}
-    //             </Text>
-    //         </Div>
-    //     </Button>
-    // )
+            <Div
+                w={396}
+                h={38}
+                bg='gray100'
+                alignSelf='flex-end'
+            >
+                <Text pt='sm' pl="lg" fontWeight='600' fontSize={18}>
+                    {userType}
+                </Text>
+            </Div>
+        </Button>
+    )
 
     return (
         <Button w={396} bg='white' h={165} rounded={20} mt={15} mb={15} flexDir='column' onPress={()=>{}}>
