@@ -14,6 +14,12 @@ import Landing from './pages';
 import Intro from './pages/intro';
 import donorhome from './pages/donorhome';
 import donorlisting from './pages/donorlisting';
+import Whomepage from './pages/workerhomepage';
+import AllListing from './pages/listings';
+import Viewlisting from './pages/viewlisting';
+import Market from './pages/listings';
+import Donorrequest from './pages/donorrequest';
+
 
 const ffTheme = {
   colors: {
@@ -26,6 +32,7 @@ const ffTheme = {
 
 const Stack = createNativeStackNavigator();
 
+
 export default function App() {
 
   return (
@@ -36,6 +43,10 @@ export default function App() {
         <Stack.Screen name="Intro" component={Intro} />
         <Stack.Screen name="donorhome" component={donorhome} />
         <Stack.Screen name="donorlisting" component={donorlisting}/>
+        <Stack.Screen name="Whomepage" component={Whomepage} />
+        <Stack.Screen name="Market" component={Market} />
+        <Stack.Screen name="Viewlisting" component={Viewlisting} />
+        <Stack.Screen name="Donorrequest" component={Donorrequest} />
       </Stack.Navigator>
     </ThemeProvider>
     </NavigationContainer>
