@@ -7,10 +7,14 @@ import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image } from 'react-
 
 import Gradient from '../../assets/frefurnish-gradient.png'
 
-export default function UserCard({})
+export default function UserCard({
+    descriptionText="default",
+    userType="User"
+})
 {
+    
     return (
-        <Button w={396} bg='white' h={165} rounded={20} flexDir='column'>
+        <Button w={396} bg='white' h={165} rounded={20} mt={15} mb={15} flexDir='column' onPress={()=>{}}>
             <Div
                 w={396}
                 h={165}
@@ -20,20 +24,48 @@ export default function UserCard({})
                 p="lg"
             >
                 <Text fontSize={16} color='white' mt="xl">
-                    Social workers are individuals who are looking to find listings that will help improve or sustain the quality of life at the social home they work at. Social workers are the only type of user eligible to receive donations.
+                    {descriptionText}
                 </Text>
             </Div>
 
             <Div
                 w={396}
                 h={38}
-                bg='white'
+                bg='gray100'
                 alignSelf='flex-end'
             >
                 <Text pt='sm' pl="lg" fontWeight='600' fontSize={18}>
-                    Social Worker
+                    {userType}
                 </Text>
             </Div>
         </Button>
+    )
+
+    return (
+        <Button w={396} bg='white' h={165} rounded={20} mt={15} mb={15} flexDir='column' onPress={()=>{}}>
+        <Div
+            w={396}
+            h={165}
+            bg='gray100'
+            justifyContent='center'
+            alignItems='center'
+            p="lg"
+        >
+            <Text fontSize={16} color='black' mt="xl">
+                {descriptionText}
+            </Text>
+        </Div>
+
+        <Div
+            w={396}
+            h={38}
+            bgImg={Gradient}
+            alignSelf='flex-end'
+        >
+            <Text pt='sm' pl="lg" fontWeight='600' fontSize={18} color='white'>
+                {userType}
+            </Text>
+        </Div>
+    </Button>
     )
 }

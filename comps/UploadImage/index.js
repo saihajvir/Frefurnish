@@ -5,6 +5,8 @@ import { Button, Div, Icon, Text } from 'react-native-magnus'
 import styled from 'styled-components';
 import LottieView from 'lottie-react-native';
 
+import Gradient from '../../assets/frefurnish-gradient.png'
+
 export default function UploadImage ({
     uploadText = "default",
     iconFamily = "Feather",
@@ -15,14 +17,16 @@ export default function UploadImage ({
         <Div
             justifyContent="center"
             alignItems="center"
-            bg='lightgrey'
-            rounded={20}
-            h={230}
-            w={295}
+            bg='periwinkle'
+            rounded='circle'
+            h={150}
+            w={150}
+            m={20}
         >
             <Text
-                color="black"
-                fontWeight="700"
+                color="white"
+                fontWeight="600"
+                m={10}
             >
                 {uploadText}
             </Text>
@@ -30,7 +34,7 @@ export default function UploadImage ({
              <Icon
             name={iconName}
             fontFamily={iconFamily}
-            color='black'
+            color='white'
             fontSize={34}
             />
 

@@ -13,6 +13,11 @@ import BottomNav from './comps/BottomNavBar';
 import Landing from './pages';
 import Intro from './pages/intro';
 import donorhome from './pages/donorhome';
+import Whomepage from './pages/workerhomepage';
+import AllListing from './pages/listings';
+import Viewlisting from './pages/viewlisting';
+import Market from './pages/listings';
+import Donorrequest from './pages/donorrequest';
 
 
 const ffTheme = {
@@ -26,6 +31,7 @@ const ffTheme = {
 
 const Stack = createNativeStackNavigator();
 
+
 export default function App() {
 
   return (
@@ -35,6 +41,10 @@ export default function App() {
         <Stack.Screen name="Landing" component={Landing} options={{headerShown: false}}/>
         <Stack.Screen name="Intro" component={Intro} />
         <Stack.Screen name="donorhome" component={donorhome} />
+        <Stack.Screen name="Whomepage" component={Whomepage} />
+        <Stack.Screen name="Market" component={Market} />
+        <Stack.Screen name="Viewlisting" component={Viewlisting} />
+        <Stack.Screen name="Donorrequest" component={Donorrequest} />
       </Stack.Navigator>
     </ThemeProvider>
     </NavigationContainer>
