@@ -12,6 +12,7 @@ import MainButton from './comps/MainButton/index';
 import BottomNav from './comps/BottomNavBar';
 import Landing from './pages';
 import Intro from './pages/intro';
+import donorhome from './pages/donorhome';
 
 
 const ffTheme = {
@@ -33,6 +34,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Landing" component={Landing} options={{headerShown: false}}/>
         <Stack.Screen name="Intro" component={Intro} />
+        <Stack.Screen name="donorhome" component={donorhome} />
       </Stack.Navigator>
     </ThemeProvider>
     </NavigationContainer>
