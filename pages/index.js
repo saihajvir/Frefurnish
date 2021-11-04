@@ -61,7 +61,7 @@ export default function Landing({navigation})
                 <Image source={ChairIcon} w={160} h={220}/>
             </Container>
             <BottomContainer>
-                <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {navigation.navigate("Intro")}}/>
+                <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {navigation.navigate("Profile")}}/>
             </BottomContainer>
             </Wrapper>
         </ThemeProvider>

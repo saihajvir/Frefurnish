@@ -12,6 +12,8 @@ import MainButton from './comps/MainButton/index';
 import BottomNav from './comps/BottomNavBar';
 import Landing from './pages';
 import Intro from './pages/intro';
+import Profile from './pages/profile'
+import Listing from './pages/listing';
 
 
 const ffTheme = {
@@ -32,7 +34,8 @@ export default function App() {
     <ThemeProvider theme={ffTheme}>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Landing" component={Landing} options={{headerShown: false}}/>
-        <Stack.Screen name="Intro" component={Intro} />
+        {/* <Stack.Screen name="Intro" component={Intro} /> */}
+        <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
     </ThemeProvider>
     </NavigationContainer>
