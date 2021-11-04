@@ -6,7 +6,7 @@ import { StyleSheet, View, AppRegistry } from 'react-native';
 
 import styled from 'styled-components';
 import LottieView from 'lottie-react-native';
-import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv } from 'react-native-magnus';
+import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image } from 'react-native-magnus';
 
 import MainButton from './comps/MainButton/index';
 import BottomNav from './comps/BottomNavBar';
