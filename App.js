@@ -12,6 +12,8 @@ import MainButton from './comps/MainButton/index';
 import BottomNav from './comps/BottomNavBar';
 import Landing from './pages';
 import Intro from './pages/intro';
+import WorkerProfilePage from './pages/workerprofile';
+import EditItems from './pages/edititems';
 
 
 const ffTheme = {
@@ -33,6 +35,8 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Landing" component={Landing} options={{headerShown: false}}/>
         <Stack.Screen name="Intro" component={Intro} />
+        <Stack.Screen name="WorkerProfilePage" component={WorkerProfilePage}/>
+        <Stack.Screen name="EditItems" component={EditItems}/>
       </Stack.Navigator>
     </ThemeProvider>
     </NavigationContainer>
