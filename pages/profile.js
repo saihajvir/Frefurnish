@@ -3,11 +3,14 @@ import axios from "axios";
 import styled from "styled-components";
 
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv,Avatar, Input } from 'react-native-magnus';
+import MapView from 'react-native-maps';
+
 
 import BottomNav from '../comps/BottomNavBar';
 import Header1 from "../comps/header";
 import BackButton from "../comps/backbutton";
 import SmallPost from "../comps/SmallPost";
+import { StyleSheet, ScrollView, Dimensions } from "react-native";
 
 
 const ffTheme = {
@@ -89,31 +92,29 @@ export default function Profile({ route, navigation }) {
         <Sub>
           Listings
         </Sub>
+        <ScrollView horizontal={true}>
         <Div flexDir="row">
         <SmallPost />
         <SmallPost />
         </Div>
+        </ScrollView>
       </Div>
       <Div>
         <Sub>
           Past Donations
         </Sub>
+        <ScrollView horizontal={true}>
         <Div flexDir="row">
         <SmallPost />
         <SmallPost />
         </Div>
+        </ScrollView>
       </Div>
       <Div>
         <Sub>
           Location
         </Sub>
-        <Input
-        placeholder="Map"
-        w={396}
-        h={139}
-        rounded={10}
-        m={10}
-        />
+        <MapView style={styles.map} />
       </Div>
       <Div>
         <BottomNav />
@@ -124,3 +125,11 @@ export default function Profile({ route, navigation }) {
   )
 
 }
+
+const styles = StyleSheet.create({
+  map: {
+    width: 396,
+    height: 139,
+    marginLeft: 15,
+  },
+});
