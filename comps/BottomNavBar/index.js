@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Button, Icon, Div } from 'react-native-magnus'
 
 export default function BottomNav({
@@ -59,7 +59,7 @@ export default function BottomNav({
                     color='grey'
                     mb={5}
                 />
-                    <Text>Messages</Text>
+                    <Text>Requests</Text>
             </Button>
 
             <Button

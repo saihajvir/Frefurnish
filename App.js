@@ -6,7 +6,7 @@ import { StyleSheet, View, AppRegistry } from 'react-native';
 
 import styled from 'styled-components';
 import LottieView from 'lottie-react-native';
-import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv } from 'react-native-magnus';
+import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image } from 'react-native-magnus';
 
 import MainButton from './comps/MainButton/index';
 import BottomNav from './comps/BottomNavBar';
@@ -14,6 +14,13 @@ import Landing from './pages';
 import Intro from './pages/intro';
 import Profile from './pages/profile'
 import Listing from './pages/listing';
+import donorhome from './pages/donorhome';
+import donorlisting from './pages/donorlisting';
+import Whomepage from './pages/workerhomepage';
+import AllListing from './pages/listings';
+import Viewlisting from './pages/viewlisting';
+import Market from './pages/listings';
+import Donorrequest from './pages/donorrequest';
 
 
 const ffTheme = {
@@ -27,6 +34,7 @@ const ffTheme = {
 
 const Stack = createNativeStackNavigator();
 
+
 export default function App() {
 
   return (
@@ -36,6 +44,13 @@ export default function App() {
         <Stack.Screen name="Landing" component={Landing} options={{headerShown: false}}/>
         {/* <Stack.Screen name="Intro" component={Intro} /> */}
         <Stack.Screen name="Listing" component={Listing} />
+        <Stack.Screen name="Intro" component={Intro} />
+        <Stack.Screen name="donorhome" component={donorhome} />
+        <Stack.Screen name="donorlisting" component={donorlisting}/>
+        <Stack.Screen name="Whomepage" component={Whomepage} />
+        <Stack.Screen name="Market" component={Market} />
+        <Stack.Screen name="Viewlisting" component={Viewlisting} />
+        <Stack.Screen name="Donorrequest" component={Donorrequest} />
       </Stack.Navigator>
     </ThemeProvider>
     </NavigationContainer>
