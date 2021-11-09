@@ -12,6 +12,8 @@ import MainButton from './comps/MainButton/index';
 import BottomNav from './comps/BottomNavBar';
 import Landing from './pages';
 import Intro from './pages/intro';
+import Profile from './pages/profile'
+import Listing from './pages/listing';
 import donorhome from './pages/donorhome';
 import donorlisting from './pages/donorlisting';
 import Whomepage from './pages/workerhomepage';
@@ -40,6 +42,8 @@ export default function App() {
     <ThemeProvider theme={ffTheme}>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Landing" component={Landing} options={{headerShown: false}}/>
+        {/* <Stack.Screen name="Intro" component={Intro} /> */}
+        <Stack.Screen name="Listing" component={Listing} />
         <Stack.Screen name="Intro" component={Intro} />
         <Stack.Screen name="donorhome" component={donorhome} />
         <Stack.Screen name="donorlisting" component={donorlisting}/>
