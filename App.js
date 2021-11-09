@@ -41,8 +41,8 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Landing" component={Landing} options={{headerShown: false}}/>
         <Stack.Screen name="Intro" component={Intro} />
-        <Stack.Screen name="donorhome" component={donorhome} />
-        <Stack.Screen name="donorlisting" component={donorlisting}/>
+        <Stack.Screen name="donorHome" component={donorHome} />
+        <Stack.Screen name="donorListing" component={donorListing}/>
         <Stack.Screen name="Whomepage" component={Whomepage} />
         <Stack.Screen name="Market" component={Market} />
         <Stack.Screen name="Viewlisting" component={Viewlisting} />
