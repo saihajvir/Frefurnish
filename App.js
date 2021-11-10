@@ -42,15 +42,15 @@ export default function App() {
     <ThemeProvider theme={ffTheme}>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Landing" component={Landing} options={{headerShown: false}}/>
-        {/* <Stack.Screen name="Intro" component={Intro} /> */}
-        <Stack.Screen name="Listing" component={Listing} />
+        <Stack.Screen name="Listing" component={Listing} options={{title: 'Create a Listing', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}} />
         <Stack.Screen name="Intro" component={Intro} />
-        <Stack.Screen name="donorhome" component={donorhome} />
-        <Stack.Screen name="donorlisting" component={donorlisting}/>
-        <Stack.Screen name="Whomepage" component={Whomepage} />
-        <Stack.Screen name="Market" component={Market} />
-        <Stack.Screen name="Viewlisting" component={Viewlisting} />
-        <Stack.Screen name="Donorrequest" component={Donorrequest} />
+        <Stack.Screen name="donorhome" component={donorhome} options={{title: 'Home', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}} />
+        <Stack.Screen name="donorlisting" component={donorlisting} options={{title: 'Listing'}}/>
+        <Stack.Screen name="Whomepage" component={Whomepage} options={{title: 'Home', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}} />
+        <Stack.Screen name="Market" component={Market} options={{title: 'Listings', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
+        <Stack.Screen name="Profile" component={Profile} options={{title: 'Profile', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
+        <Stack.Screen name="Viewlisting" component={Viewlisting} options={{title: 'Listing', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
+        <Stack.Screen name="Donorrequest" component={Donorrequest} options={{title: 'Requests', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
       </Stack.Navigator>
     </ThemeProvider>
     </NavigationContainer>

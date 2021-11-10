@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
-import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv,Avatar, Input } from 'react-native-magnus';
+import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv,Avatar, Input, Image } from 'react-native-magnus';
 import MapView from 'react-native-maps';
 
 
@@ -12,6 +12,7 @@ import BackButton from "../comps/backbutton";
 import SmallPost from "../comps/SmallPost";
 import { StyleSheet, ScrollView, Dimensions } from "react-native";
 
+import Chair from '../assets/aeron.jpg'
 
 const ffTheme = {
   colors: {
@@ -50,8 +51,8 @@ const LocText = styled.Text`
 export default function Profile({ route, navigation }) {
   return (
     <ThemeProvider theme={ffTheme}>
-      <ScrollDiv>
-      <Div
+      <ScrollDiv bg="#fff">
+      {/* <Div
        bg="#92A8F8"
        p={10}
        alignItems="center"
@@ -62,7 +63,7 @@ export default function Profile({ route, navigation }) {
         fontWeight="500"
         color="#fff"
         >Profile</Text>
-      </Div>
+      </Div> */}
       <Div alignItems="center" flexDir="row" m="xl">
         <Avatar 
         size={50}
@@ -94,8 +95,8 @@ export default function Profile({ route, navigation }) {
         </Sub>
         <ScrollView horizontal={true}>
         <Div flexDir="row">
-        <SmallPost />
-        <SmallPost />
+        <SmallPost imgSrc={Chair}/>
+        <SmallPost imgSrc={Chair}/>
         </Div>
         </ScrollView>
       </Div>
@@ -105,8 +106,8 @@ export default function Profile({ route, navigation }) {
         </Sub>
         <ScrollView horizontal={true}>
         <Div flexDir="row">
-        <SmallPost />
-        <SmallPost />
+        <SmallPost imgSrc={Chair} />
+        <SmallPost imgSrc={Chair} />
         </Div>
         </ScrollView>
       </Div>
@@ -117,10 +118,17 @@ export default function Profile({ route, navigation }) {
         <MapView style={styles.map} />
       </Div>
       <Div>
-        <BottomNav />
         
       </Div>
       </ScrollDiv>
+
+      <BottomNav 
+          GoHome={() => {navigation.navigate("Whomepage")}}
+          GoListings={() => {navigation.navigate("Market")}}
+          GoRequests={() => {navigation.navigate("Requests")}}
+          GoProfile={() => {navigation.navigate("Profile")}}
+      />
+      
     </ThemeProvider>
   )
 

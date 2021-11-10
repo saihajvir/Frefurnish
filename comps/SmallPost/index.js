@@ -1,31 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
-import { Div, Text, Image } from "react-native-magnus";
+import { Div, Text, Image, Button } from "react-native-magnus";
 import styled from 'styled-components';
 import LottieView from 'lottie-react-native';
 
 export default function SmallPost({
     headerText = "Office Chair",
     locationText = "Langley - 30 km",
-    imgSrc= "http://placekitten.com/200/400"
+    imgSrc= "http://placekitten.com/200/400",
+    h=115,
+    w=115,
+    onPress
 }) 
 {
     return (
-    <Div m="md">
+    <Button  bg='white' onPress={onPress}>
         <Div>
             <Div
             rounded="xl"
-            h={115}
-            w={115}
-            bgImg={{
-                uri:
-                "http://placekitten.com/200/300",
-            }}
+            h={h}
+            w={w}
+            bgImg={imgSrc}
             >
             </Div>
             <Div row alignItems="center">
-                <Div flex={1} m={10}>
+                <Div flex={1} mt={5}>
                     <Text fontSize="xl">
                     {headerText}
                     </Text>
@@ -35,6 +35,6 @@ export default function SmallPost({
                 </Div>
             </Div>
         </Div>
-    </Div>
+    </Button>
     );
 }
