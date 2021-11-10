@@ -14,6 +14,7 @@ import { StatusBar } from "expo-status-bar";
 
 import Chair from '../assets/aeron.jpg'
 import Table from '../assets/table.jpg'
+import ReqItem from "../comps/ReqItem";
 
 
 const ffTheme = {
@@ -61,6 +62,7 @@ export default function Whomepage({route, navigation, flex='1'})
         <ThemeProvider theme={ffTheme}>
             <StatusBar barStyle='dark-content'/>
             <Wrapper>
+
                 <NewListing>
                     <Text fontWeight="600" fontSize={36} pt={20}>New Listings</Text>
                 </NewListing>
@@ -70,20 +72,20 @@ export default function Whomepage({route, navigation, flex='1'})
                 </Container>
                 <MainButton buttonText={'See all Listings'} bg="periwinkle" textColor='white' onPress={() => {navigation.navigate("Market")}}/>
                 <NewListing>
-                    <Text fontWeight="600" fontSize={36} pt={20}>Requests</Text>
+                    <Text fontWeight="600" fontSize={36} pt={20}>Requested Items</Text>
+                
+
                 </NewListing>
                 <Container>
                 </Container>
                 
-                
-                <BottomNav 
+            </Wrapper>
+            <BottomNav 
                 GoHome={() => {navigation.navigate("Whomepage")}}
                 GoListings={() => {navigation.navigate("Market")}}
                 GoRequests={() => {navigation.navigate("Requests")}}
                 GoProfile={() => {navigation.navigate("Profile")}}
                 />
-                
-            </Wrapper>
         </ThemeProvider>
     )
 }

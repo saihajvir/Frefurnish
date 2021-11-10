@@ -9,7 +9,7 @@ export default function MainPost({
     headerText = "Office Chair",
     locationText = "Langley - 30 km",
     imgSrc
-}) 
+})
 {
     return (
     <Div>
