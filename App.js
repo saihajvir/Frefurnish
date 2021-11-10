@@ -11,6 +11,7 @@ import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image } from 'react-
 import MainButton from './comps/MainButton/index';
 import BottomNav from './comps/BottomNavBar';
 import Landing from './pages';
+import Requests from './pages/requests';
 import Intro from './pages/intro';
 import Profile from './pages/profile'
 import Listing from './pages/listing';
@@ -47,6 +48,7 @@ export default function App() {
         <Stack.Screen name="donorhome" component={donorhome} options={{title: 'Home', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}} />
         <Stack.Screen name="donorlisting" component={donorlisting} options={{title: 'Listing'}}/>
         <Stack.Screen name="Whomepage" component={Whomepage} options={{title: 'Home', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}} />
+        <Stack.Screen name="Requests" component={Requests} options={{title: 'Your Requests', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}} />
         <Stack.Screen name="Market" component={Market} options={{title: 'Listings', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
         <Stack.Screen name="Profile" component={Profile} options={{title: 'Profile', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
         <Stack.Screen name="Viewlisting" component={Viewlisting} options={{title: 'Listing', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
