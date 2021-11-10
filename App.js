@@ -35,7 +35,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Landing" component={Landing} options={{headerShown: false}}/>
         {/* <Stack.Screen name="Intro" component={Intro} /> */}
-        <Stack.Screen name="Listing" component={Listing} />
+        <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
     </ThemeProvider>
     </NavigationContainer>
