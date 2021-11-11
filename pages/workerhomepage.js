@@ -70,15 +70,26 @@ export default function Whomepage({route, navigation, flex='1'})
                     <BigPost imgSrc={Chair} onPress={() => {navigation.navigate("Viewlisting")}}/>
                     <BigPost imgSrc={Table} onPress={() => {navigation.navigate("Viewlisting")}}/>
                 </Container>
-                <MainButton buttonText={'See all Listings'} bg="periwinkle" textColor='white' onPress={() => {navigation.navigate("Market")}}/>
+                <MainButton buttonText={'See All Listings'} bg="periwinkle" textColor='white' onPress={() => {navigation.navigate("Market")}}/>
                 <NewListing>
                     <Text fontWeight="600" fontSize={36} pt={20}>Requested Items</Text>
                 
 
                 </NewListing>
                 <Container>
-                </Container>
+                <ScrollView horizontal={true}>
+                    <Div flexDir="row">
+                    <ReqItem
                 
+                    />
+                    
+                    
+                    </Div>
+              
+                    </ScrollView>
+                
+                </Container>
+                <MainButton buttonText={'See All Requests'} bg="periwinkle" textColor='white' onPress={() => {navigation.navigate("Requests")}}/>
             </Wrapper>
             <BottomNav 
                 GoHome={() => {navigation.navigate("Whomepage")}}
