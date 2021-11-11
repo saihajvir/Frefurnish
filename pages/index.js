@@ -11,6 +11,9 @@ import ItemIcon from "../comps/ItemIcon";
 import UserCard from "../comps/UserCard";
 
 import ChairIcon from '../assets/Frefurnish-plain.png'
+import UserInput from "../comps/userinput";
+import UploadImage from "../comps/UploadImage";
+import { StatusBar } from "expo-status-bar";
 
 const ffTheme = {
     colors: {
@@ -20,21 +23,30 @@ const ffTheme = {
       black: "#000000"
     }
   }
+
 const Wrapper = styled.View`
     flex: 1;
     padding: 0 16px 0 16px;
     justify-content: center;
     align-items: center;
-    background-color: #92A8F8;
+    background-color: ${props=>props.bg};
 `
+const TopContainer = styled.View`
+    flex: ${props=>props.flex};
+    width: 100%;
+    justify-content: flex-end;
+    align-items: ${props=>props.alignItems};
+`
+
 const Container = styled.View`
-    flex: 1;
-    justify-content: center;
+    flex: ${props=>props.flex};
+    width: 100%;
     align-items: center;
+    justify-content: center;
 `
 
 const BottomContainer = styled.View`
-    flex: 1;
+    flex: ${props=>props.flex};
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
@@ -42,28 +54,133 @@ const BottomContainer = styled.View`
 `
 
 const Heading = styled.Text`
-    font-size: 36;
-    font-weight: 600;
-    color: white;
+    font-size: 36px;
+    font-weight: 700;
+    color: ${props=>props.textcol};
 `
 
-export default function Landing({navigation})
+export default function Landing({
+    navigation,
+    bg='#92A8F8',
+    textcol='#FFF',
+    flex='1',
+    alignItems='flex-start'
+})
 {
+    const [state, nextState] = useState(0)
+    const [load, setLoad] = useState(true)
+
+    function GoWorkerHome(){
+
+            useEffect(()=>{
+                setTimeout(()=>{
+                    setLoad(false)
+                    nextState(state + 1)
+                }, 2000);
+            }, []);
+        
+        if(load === false)
+        {
+            {navigation.navigate("Whomepage")}
+        }
+    }
+
+    if(state === 0)
+    {
     return (
         <ThemeProvider theme={ffTheme}>
-            <Wrapper>
-            <Container>
-                <Heading>
-                    Welcome to Frefurnish.
+            <StatusBar/>
+            <Wrapper bg='#92A8F8'>
+            <TopContainer flex='1' alignItems='center'>
+                <Heading textcol='#FFF'>
+                    Welcome to Frefurnish
                 </Heading>
-            </Container>
-            <Container>
+            </TopContainer>
+            <Container flex='2'>
                 <Image source={ChairIcon} w={160} h={220}/>
             </Container>
-            <BottomContainer>
-                <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {navigation.navigate("Intro")}}/>
+            <BottomContainer flex='0.5'>
+                {/* <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {navigation.navigate("Intro")}}/> */}
+                <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {nextState (state + 1)}}/>
             </BottomContainer>
             </Wrapper>
         </ThemeProvider>
-    )
+    )}
+
+    if(state === 1)
+    {
+        return(
+            <ThemeProvider theme={ffTheme}>
+            <StatusBar/>
+            <Wrapper bg="#FFF">
+            <TopContainer flex='1' alignItems='flex-start'>
+                <Heading textcol='#92A8F8'>
+                    What's your purpose?
+                </Heading>
+            </TopContainer>
+            <Container flex='3'>
+                <UserCard
+                    descriptionText='Social workers are individuals who are looking to find listings that will help improve or sustain the quality of life at the social home they work at. Social workers are the only type of user eligible to receive donations.'
+                    userType='Social Worker'
+                />
+                <UserCard
+                    descriptionText='Donors are individuals and vendors that are looking to donate their personal items or lightly used returned items and excess inventory.'
+                    userType='Donor'
+                />
+            </Container>
+            <BottomContainer flex='1'>
+                <MainButton buttonText={'Next'} bg="periwinkle" textColor='white' onPress={() => {nextState (state + 1)}}/>
+            </BottomContainer>
+            </Wrapper>
+        </ThemeProvider>
+        )
+    }
+    if(state === 2)
+    {
+        return(
+            <ThemeProvider theme={ffTheme}>
+            <StatusBar/>
+            <Wrapper bg="#FFF">
+            <TopContainer flex='0.7' alignItems='flex-start'>
+                <Heading textcol='#92A8F8'>
+                    Create your account
+                </Heading>
+            </TopContainer>
+            <Container flex='2'>
+                <UploadImage uploadText='Profile Image'/>
+                <UserInput/>
+            </Container>
+            <BottomContainer flex='1'> 
+                <MainButton buttonText={'Next'} bg="periwinkle" textColor='white' onPress={() => {nextState (state + 1)}}/>
+            </BottomContainer>
+            </Wrapper>
+        </ThemeProvider>
+        )
+    }
+
+    if(state === 3)
+    {
+        return(
+            <ThemeProvider theme={ffTheme}>
+            <StatusBar/>
+            <Wrapper bg='#92A8F8'>
+            <TopContainer flex='1' alignItems='center'>
+                <Heading textcol='#FFF'>
+                    All done. Let's Begin!
+                </Heading>
+            </TopContainer>
+            <Container flex='2'>
+                <Image source={ChairIcon} w={160} h={220}/>
+            </Container>
+            <BottomContainer flex='0.5'>
+                <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {navigation.navigate("Whomepage")}}/>
+                {/* <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {nextState (state + 1)}}/> */}
+            </BottomContainer>
+            </Wrapper>
+        </ThemeProvider> 
+        )
+                    
+        // GoWorkerHome();
+    }
+
 }

@@ -1,10 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Button, Icon, Div } from 'react-native-magnus'
 
 export default function BottomNav({
-    
+    GoHome,
+    GoListings,
+    GoRequests,
+    GoProfile  
 })
 {
     return (
@@ -19,6 +22,7 @@ export default function BottomNav({
                 bg='white'
                 flexDir='column'
                 underlayColor='lightgrey'
+                onPress={GoHome}
             >
                 <Icon
                     name='ios-home'
@@ -34,7 +38,8 @@ export default function BottomNav({
                 h={70}
                 w={90}
                 bg='white'
-                flexDir='column'             
+                flexDir='column'
+                onPress={GoListings}            
             >
                 <Icon
                     name='shopping-bag'
@@ -50,7 +55,8 @@ export default function BottomNav({
                 h={70}
                 w={90}
                 bg='white'
-                flexDir='column'             
+                flexDir='column'     
+                onPress={GoRequests}        
             >
                 <Icon
                     name='md-chatbubbles'
@@ -59,14 +65,15 @@ export default function BottomNav({
                     color='grey'
                     mb={5}
                 />
-                    <Text>Messages</Text>
+                    <Text>Requests</Text>
             </Button>
 
             <Button
                 h={70}
                 w={90}
                 bg='white'
-                flexDir='column'             
+                flexDir='column'     
+                onPress={GoProfile}        
             >
                 <Icon
                     name='user-circle'

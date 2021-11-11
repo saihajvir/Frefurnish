@@ -14,9 +14,21 @@ export default class UserInput extends React.Component {
             <SafeAreaView style={{ flex: 1 }}>
             <Div pt={10}>
 
-            <Input shadow="lg"
+                <Input shadow="sm"
+                placeholder="Name"
+                focusBorderColor="#92A8F8"
+                w={396}
+                />
+
+                </Div>
+        
+            <Div pt={10}>
+
+            <Input shadow="sm"
             placeholder="Email Address"
-            focusBorderColor="blue700"
+            mt="md"
+            focusBorderColor="#92A8F8"
+            w={396}
             />
 
             </Div>
@@ -24,35 +36,47 @@ export default class UserInput extends React.Component {
             <Div pt={10}>
                 
 
-            <Input shadow="lg"
+            <Input shadow="sm"
             placeholder="Password"
             mt="md"
             secureTextEntry
-            focusBorderColor="blue700"
+            focusBorderColor="#92A8F8"
             />
 
             </Div>
 
             <Div pt={10}>
 
-            <Input shadow="lg"
+            <Input shadow="sm"
             placeholder="Verfiy your Password"
             mt="md"
             secureTextEntry
-            focusBorderColor="blue700"
+            focusBorderColor="#92A8F8"
             />
 
             </Div>
 
             <Div pt={20}>
 
-            <Input shadow="lg"
+            <Input shadow="sm"
             placeholder="Phone Number"
-            focusBorderColor="blue700"
-            w={300}
+            focusBorderColor="#92A8F8"
+            w={396}
             />
 
             </Div>
+
+            <Div pt={20}>
+
+            <Input shadow="sm"
+            placeholder="Description"
+            focusBorderColor="#92A8F8"
+            w={396}
+            h={100}
+            />
+
+            </Div>
+
 
             </SafeAreaView>
     </ThemeProvider>
