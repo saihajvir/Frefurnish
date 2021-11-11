@@ -26,17 +26,19 @@ const ffTheme = {
   }
 
 const Wrapper = styled.View`
-    padding: 5px;
+    padding: 0 10px 0 10px;
     justify-content: space-between;
     align-items: center;
     background-color: #FFFFFF;
 `
 const ListingText = styled.View`
     flex:1;
+    padding: 0 10px 0 10px;
     background-color: #FFFFFF;
 `
 const Container = styled.View`
     flex-direction: row;
+    padding: 0 10px 0 10px;
     background-color: #FFFFFF;
 `
 const Navbar = styled.View`
@@ -45,7 +47,7 @@ const Navbar = styled.View`
     background-color: #FFFFFF;
 `
 
-export default function donorlisting({route, navigation})
+export default function donorListing({route, navigation})
 {
     return (
         <ThemeProvider theme={ffTheme}>
@@ -54,11 +56,11 @@ export default function donorlisting({route, navigation})
         </Container>
 
         <ListingText>
-            <Text fontWeight="bold" fontSize={20} ml={10}>Condition</Text>
-            <Text  ml={10} mb={10}>Used</Text>
-            <Text fontWeight="bold"  fontSize={20}  ml={10}>Description</Text>
-            <Text  ml={10} mb={10}>Just an old office chair we don't use anymore.</Text>
-            <Text fontWeight="bold"  fontSize={20}  ml={10}>Feedback</Text>
+            <Text fontWeight="bold" fontSize={24}>Condition</Text>
+            <Text fontSize={14}>Used</Text>
+            <Text fontWeight="bold"  fontSize={24}>Description</Text>
+            <Text fontSize={14}>Just an old office chair we don't use anymore.</Text>
+            <Text fontWeight="bold"  fontSize={24}>Feedback</Text>
         </ListingText>
 
         <Wrapper>

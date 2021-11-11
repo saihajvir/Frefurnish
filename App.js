@@ -49,8 +49,8 @@ export default function App() {
         <Stack.Screen name="Intro" component={Intro} />
         <Stack.Screen name="WorkerProfilePage" component={WorkerProfilePage}/>
         <Stack.Screen name="EditItems" component={EditItems}/>
-        <Stack.Screen name="donorhome" component={donorhome} options={{title: 'Home', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}} />
-        <Stack.Screen name="donorlisting" component={donorlisting} options={{title: 'Listing'}}/>
+        <Stack.Screen name="donorHome" component={donorHome} options={{title: 'Home', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}} />
+        <Stack.Screen name="donorListing" component={donorListing} options={{title: 'Listing'}}/>
         <Stack.Screen name="Whomepage" component={Whomepage} options={{title: 'Home', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}} />
         <Stack.Screen name="Requests" component={Requests} options={{title: 'Your Requests', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}} />
         <Stack.Screen name="Market" component={Market} options={{title: 'Listings', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>

@@ -23,16 +23,19 @@ const ffTheme = {
   }
 
 const Requests = styled.View`
+    padding: 10px 16px 0 16px;
     flex:0.5;
     background-color: #FFFFFF;
 `
 const Wrapper = styled.View`
+    padding: 0 16px 0 16px;
     flex-direction: row;
     background-color: #FFFFFF;
 `
 const Container = styled.View`
     flex:0.5;
     flex-direction: row;
+    padding: 0 10px 0 10px;
     justify-content: center;
     align-items: center;
     background-color: #FFFFFF;
@@ -46,12 +49,12 @@ const RequestBox = styled.View`
     background-color: #92A8F8;
 `
 
-export default function donorhome({route, navigation})
+export default function donorHome({route, navigation})
 {
     return (
         <ThemeProvider theme={ffTheme}>
             <Requests>
-                <Text fontWeight="bold" fontSize={30} ml={15}>Requests</Text>
+                <Text fontWeight="bold" fontSize={36}>Requests</Text>
                 <RequestBox>
                     
                 </RequestBox>
@@ -62,23 +65,24 @@ export default function donorhome({route, navigation})
             </Wrapper>
 
             <Wrapper>
-            <Text fontWeight="bold" fontSize={30} ml={15}>Your Listings</Text>
+            <Text fontWeight="bold" fontSize={36}>Your Listings</Text>
             </Wrapper>
+            
             <Container>
                 <ScrollView horizontal={true}>
-                    <TouchableOpacity onPress={() => {navigation.navigate("donorlisting")}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("donorListing")}}>
                         <SmallPost/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("donorlisting")}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("donorListing")}}>
                         <SmallPost/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("donorlisting")}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("donorListing")}}>
                         <SmallPost/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("donorlisting")}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("donorListing")}}>
                         <SmallPost/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("donorlisting")}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("donorListing")}}>
                         <SmallPost/>
                     </TouchableOpacity>
                 </ScrollView>
@@ -86,23 +90,23 @@ export default function donorhome({route, navigation})
 
 
             <Wrapper>
-            <Text fontWeight="bold" fontSize={30} ml={15}>Past Donations</Text>
+            <Text fontWeight="bold" fontSize={36}>Past Donations</Text>
             </Wrapper>
             <Container>
                 <ScrollView horizontal={true}>
-                    <TouchableOpacity onPress={() => {navigation.navigate("donorlisting")}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("donorListing")}}>
                         <SmallPost/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("donorlisting")}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("donorListing")}}>
                         <SmallPost/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("donorlisting")}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("donorListing")}}>
                         <SmallPost/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("donorlisting")}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("donorListing")}}>
                         <SmallPost/>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("donorlisting")}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate("donorListing")}}>
                         <SmallPost/>
                     </TouchableOpacity>
                 </ScrollView>
