@@ -13,6 +13,7 @@ import UserCard from "../comps/UserCard";
 import ChairIcon from '../assets/Frefurnish-plain.png'
 import UserInput from "../comps/userinput";
 import UploadImage from "../comps/UploadImage";
+import ReqItem from "../comps/ReqItem";
 import { StatusBar } from "expo-status-bar";
 
 const ffTheme = {

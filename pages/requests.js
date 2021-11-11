@@ -45,7 +45,7 @@ export default function Requests({ route, navigation }) {
         {/* <RequestCard /> */}
         {/* <ReqCardLarge /> */}
         {/* <FilterButton /> */}
-        {/* <ReqItem  /> */}
+        <ReqItem  />
 
         {/*<Text fontWeight="bold" fontSize={30} mt={20} color="#98C791">Approved</Text>
         <ScrollView horizontal={true}>

@@ -97,6 +97,7 @@ export default function RequestCard({
                 <Text
                 fontSize = {10}
                 fontWeight = '200'
+                textAlign = 'center'
                 >
                     Milieu - Children Family Services
                 </Text>
