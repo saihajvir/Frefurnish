@@ -13,6 +13,8 @@ import BottomNav from './comps/BottomNavBar';
 import Landing from './pages';
 import Requests from './pages/requests';
 import Intro from './pages/intro';
+import WorkerProfilePage from './pages/workerprofile';
+import EditItems from './pages/edititems';
 import Profile from './pages/profile'
 import Listing from './pages/listing';
 import donorhome from './pages/donorhome';
@@ -45,6 +47,8 @@ export default function App() {
         <Stack.Screen name="Landing" component={Landing} options={{headerShown: false}}/>
         <Stack.Screen name="Listing" component={Listing} options={{title: 'Create a Listing', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}} />
         <Stack.Screen name="Intro" component={Intro} />
+        <Stack.Screen name="WorkerProfilePage" component={WorkerProfilePage}/>
+        <Stack.Screen name="EditItems" component={EditItems}/>
         <Stack.Screen name="donorhome" component={donorhome} options={{title: 'Home', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}} />
         <Stack.Screen name="donorlisting" component={donorlisting} options={{title: 'Listing'}}/>
         <Stack.Screen name="Whomepage" component={Whomepage} options={{title: 'Home', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}} />
