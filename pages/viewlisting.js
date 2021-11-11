@@ -70,7 +70,7 @@ export default function Viewlisting({route, navigation})
                     <Text fontWeight="600" fontSize={24}>Description</Text>
                     <Text>Just an old office chair we don't use anymore. Prefer pickup! Thanks!</Text>
                 </NewListing>
-                <MainButton buttonText="Contact Donor" onPress={() => {navigation.navigate("Donorrequest")}}/> 
+                <MainButton buttonText="Request Item" onPress={() => {navigation.navigate("Donorrequest")}}/> 
             </Wrapper>
             
             <BottomNav 
