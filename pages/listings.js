@@ -13,6 +13,12 @@ import SmallPost from "../comps/SmallPost";
 import BackButton from "../comps/backbutton";
 import HalfButton from "../comps/halfbutton";
 
+import KChairs from '../assets/kitchen-chairs.jpg'
+import Chair from '../assets/aeron.jpg'
+import Table from '../assets/table.jpg'
+import Sofa from '../assets/sofa.jpg'
+import Bookshelf from '../assets/bookshelf.jpg'
+import Toaster from '../assets/toaster.jpg'
 
 const ffTheme = {
     colors: {
@@ -47,71 +53,45 @@ const Navbar = styled.View`
     align-items: center;
     background-color: #FFFFFF;
 `
-
+const Wrapper = styled.View`
+    flex: 1;
+    padding: 0 16px 0 16px;
+    background-color: #FFF;
+`
 export default function Market({route, navigation})
 {
     return (
         <ThemeProvider theme={ffTheme}>
+            <Wrapper>
             <ScrollView>
             <NewListing>
-                <Text fontWeight="bold" fontSize={50} pt={20}>All Listings</Text>
-                <Input placeholder="search" w={180} h={40} m={25}/>
+                <Text fontWeight="600" fontSize={36} pt={20}>All Listings</Text>
+                <Input placeholder="Search" w={180} h={40} m={25}/>
             </NewListing>
             
             <Container>
-            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost imgSrc="http://placeimg.com/640/480/tech" />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost imgSrc="https://picsum.photos/200/300"/>
-            </TouchableOpacity>
+                <SmallPost h={185} w={185} headerText='2 Seat Couch' imgSrc={Sofa} onPress={() => {navigation.navigate("Viewlisting")}}/>
+                <SmallPost h={185} w={185} headerText='Dinner Table' imgSrc={Table} onPress={() => {navigation.navigate("Viewlisting")}}/>
             </Container>
             <Container>
-            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost imgSrc="https://picsum.photos/200/500"/>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost imgSrc="https://picsum.photos/200/400"/>
-            </TouchableOpacity>
+                <SmallPost h={185} w={185} headerText='Office Chair' imgSrc={Chair} onPress={() => {navigation.navigate("Viewlisting")}}/>
+                <SmallPost h={185} w={185} headerText='Toaster' imgSrc={Toaster} onPress={() => {navigation.navigate("Viewlisting")}}/>
             </Container>
             <Container>
-            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost imgSrc="https://picsum.photos/200/600"/>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost imgSrc="https://picsum.photos/400/300"/>
-            </TouchableOpacity>
+                <SmallPost h={185} w={185} headerText='Kitchen Chairs' imgSrc={KChairs} onPress={() => {navigation.navigate("Viewlisting")}}/>
+                <SmallPost h={185} w={185} headerText='Bookshelf' imgSrc={Bookshelf} onPress={() => {navigation.navigate("Viewlisting")}}/>
+
             </Container>
-            <Container >
-            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost imgSrc="https://picsum.photos/600/300"/>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost imgSrc="https://picsum.photos/800/300"/>
-            </TouchableOpacity>
-            </Container>
-            <Container>
-            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost imgSrc="https://picsum.photos/100/900"/>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost imgSrc="https://picsum.photos/700/300"/>
-            </TouchableOpacity>
-            </Container>
-            <Container>
-            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost imgSrc="https://picsum.photos/100/100"/>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <SmallPost imgSrc="https://picsum.photos/900/900"/>
-            </TouchableOpacity>
-            </Container>
+        
             </ScrollView>
-           <Div h={50}>
-           <Navbar>
-                <BottomNav />
-            </Navbar>
-           </Div>
+            </Wrapper>
+            
+            <BottomNav 
+            GoHome={() => {navigation.navigate("Whomepage")}}
+            GoListings={() => {navigation.navigate("Market")}}
+            GoRequests={() => {navigation.navigate("Requests")}}
+            GoProfile={() => {navigation.navigate("Profile")}}
+            />
         </ThemeProvider>
     )
 }

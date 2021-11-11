@@ -9,6 +9,8 @@ export default function ItemIcon ({
     itemText = "default",
     iconFamily = "MaterialIcons",
     iconName = "kitchen",
+    itemHeight = 100,
+    itemWidth = 100,
 })
 {
     return (
@@ -17,8 +19,8 @@ export default function ItemIcon ({
             alignItems="center"
             bg='periwinkle'
             rounded={20}
-            h={100}
-            w={100}
+            h={itemHeight}
+            w={itemWidth}
         >
           
              <Icon

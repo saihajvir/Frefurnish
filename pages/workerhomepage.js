@@ -10,7 +10,11 @@ import BottomNav from '../comps/BottomNavBar';
 import ItemIcon from "../comps/ItemIcon";
 import Header1 from "../comps/header";
 import BigPost from "../comps/BigPost";
+import { StatusBar } from "expo-status-bar";
 
+import Chair from '../assets/aeron.jpg'
+import Table from '../assets/table.jpg'
+import ReqItem from "../comps/ReqItem";
 
 
 const ffTheme = {
@@ -29,21 +33,15 @@ const ffTheme = {
   background-color: #FFFFFF;
 `
 const NewListing = styled.View`
-  flex:0.5;
+  flex:0.3;
   background-color: #FFFFFF;
 `
-const Wrapper = styled.View`
-    flex: 1.5;
-    padding: 2px;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #FFFFFF;
-`
+
 const Container = styled.View`
-    flex:2;
+    flex: ${props=>props.flex};
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items:center;
     background-color: #FFFFFF;
 `
 const Navbar = styled.View`
@@ -52,31 +50,42 @@ const Navbar = styled.View`
     align-items: center;
     background-color: #FFFFFF;
 `
+const Wrapper = styled.View`
+    flex: 1;
+    padding: 0 16px 0 16px;
+    background-color: #FFF;
+`
 
-export default function Whomepage({route, navigation})
+export default function Whomepage({route, navigation, flex='1'})
 {
     return (
         <ThemeProvider theme={ffTheme}>
-            <Header>
-                <Header1 />
-            </Header>
-            <NewListing>
-                <Text fontWeight="bold" fontSize={50} pt={20}>New Listings</Text>
-            </NewListing>
-            <Container >
-                <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <BigPost imgSrc="http://placeimg.com/640/480/tech"/>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => {navigation.navigate("Viewlisting")}}>
-                <BigPost imgSrc="http://placeimg.com/640/450/tech"/>
-                </TouchableOpacity>
-            </Container>
+            <StatusBar barStyle='dark-content'/>
             <Wrapper>
-            <MainButton buttonText={'See all Listings'} bg="periwinkle" textColor='white' onPress={() => {navigation.navigate("Market")}}/>
+
+                <NewListing>
+                    <Text fontWeight="600" fontSize={36} pt={20}>New Listings</Text>
+                </NewListing>
+                <Container flex='1.5'>
+                    <BigPost imgSrc={Chair} onPress={() => {navigation.navigate("Viewlisting")}}/>
+                    <BigPost imgSrc={Table} onPress={() => {navigation.navigate("Viewlisting")}}/>
+                </Container>
+                <MainButton buttonText={'See all Listings'} bg="periwinkle" textColor='white' onPress={() => {navigation.navigate("Market")}}/>
+                <NewListing>
+                    <Text fontWeight="600" fontSize={36} pt={20}>Requested Items</Text>
+                
+
+                </NewListing>
+                <Container>
+                </Container>
+                
             </Wrapper>
-            <Navbar>
-                <BottomNav />
-            </Navbar>
+            <BottomNav 
+                GoHome={() => {navigation.navigate("Whomepage")}}
+                GoListings={() => {navigation.navigate("Market")}}
+                GoRequests={() => {navigation.navigate("Requests")}}
+                GoProfile={() => {navigation.navigate("Profile")}}
+                />
         </ThemeProvider>
     )
 }

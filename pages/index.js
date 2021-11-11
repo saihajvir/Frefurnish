@@ -177,7 +177,7 @@ export default function Landing({
                 {/* <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {nextState (state + 1)}}/> */}
             </BottomContainer>
             </Wrapper>
-        </ThemeProvider>
+        </ThemeProvider> 
         )
                     
         // GoWorkerHome();
