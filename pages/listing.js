@@ -38,7 +38,7 @@ export default function Listing({route, navigation})
     return (
         <ThemeProvider theme={ffTheme}>
         <ScrollDiv>
-      <Div
+      {/* <Div
        bg="#92A8F8"
        p={10}
        alignItems="center"
@@ -49,7 +49,7 @@ export default function Listing({route, navigation})
         fontWeight="500"
         color="#fff"
         >New Listing</Text>
-      </Div>
+      </Div> */}
       <Div pb={10}>
         <Title>
           Create a Listing
