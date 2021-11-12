@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet } from 'react-native';
-import { Div, Text } from "react-native-magnus";
+import { StyleSheet, ScrollView } from 'react-native';
+import { Div, Text, Image } from "react-native-magnus";
 import styled from 'styled-components';
 import LottieView from 'lottie-react-native';
 
@@ -12,8 +12,7 @@ export default function MainPost({
 })
 {
     return (
-    <Div>
-        <Div>
+        <Div w='100%'>
             <Div row alignItems="center" mt={10}>
                 <Div flex={1}>
                     <Text fontSize={36} fontWeight="600">
@@ -24,39 +23,14 @@ export default function MainPost({
                     </Text>
                 </Div>
             </Div>
-                <Div 
+                <Image 
                 rounded="xl"
-                h={259}
-                w={396}
+                h={260}
+                w='100%'
                 mt={10}
                 mb={10}
-                bgImg={imgSrc}
-                >
-                </Div>
-                <Div flexDir="row">
-                    <Div
-                    rounded="xl"
-                    h={70}
-                    w={70}
-                    mr={10}
-                    bgImg={{
-                        uri:
-                        "http://placekitten.com/200/300",
-                    }}
-                    >
-                    </Div>
-                    <Div
-                    rounded="xl"
-                    h={70}
-                    w={70}
-                    bgImg={{
-                        uri:
-                        "http://placekitten.com/200/300",
-                    }}
-                    >
-                    </Div>
-                </Div>
-        </Div>
-    </Div>
+                source={imgSrc}
+                />
+            </Div>
     );
 }

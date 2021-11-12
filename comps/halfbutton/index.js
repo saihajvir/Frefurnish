@@ -7,20 +7,24 @@ import LottieView from 'lottie-react-native';
 
 export default function HalfButton({
     buttonText = "default text",
+    bg='periwinkle',
+    color='white',
+    borderWidth='1',
+    borderColor='salmon'
 }) 
 {
     return (
         <Button
-            bg='periwinkle'
+            bg={bg}
             block
-            color='white'
-            rounded={20}
+            color={color}
+            rounded={10}
             h={50}
-            w={200}
-            fontSize={19}
+            w='48%'
+            fontSize={14}
             fontWeight='500'
-            
-            
+            borderWidth={1}
+            borderColor={borderColor}
         >
             {buttonText}
         </Button>

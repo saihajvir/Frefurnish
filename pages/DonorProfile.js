@@ -10,6 +10,7 @@ import BottomNav from '../comps/BottomNavBar';
 import Header1 from "../comps/header";
 import BackButton from "../comps/backbutton";
 import SmallPost from "../comps/SmallPost";
+import DonorBottomNav from "../comps/DonorBottomNavBar";
 import { StyleSheet, ScrollView, Dimensions } from "react-native";
 
 import Chair from '../assets/aeron.jpg'
@@ -27,14 +28,12 @@ const Sub = styled.Text`
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
-  margin-left: 15px;
 `;
 
 const Bio = styled.Text`
   font-style: normal;
   font-weight: 300;
   font-size: 14px;
-  margin-left: 15px;
 `;
 
 const Name = styled.Text`
@@ -48,31 +47,27 @@ const LocText = styled.Text`
   color: #7F7F7F;
 `;
 
-export default function Profile({ route, navigation }) {
+const Wrapper = styled.View`
+flex: 1;
+padding: 20px 16px 0 16px;
+background-color: #FFF;
+`
+
+export default function DonorProfile({ route, navigation }) {
   return (
     <ThemeProvider theme={ffTheme}>
+      <Wrapper>
       <ScrollDiv bg="#fff">
-      {/* <Div
-       bg="#92A8F8"
-       p={10}
-       alignItems="center"
-       >
-        <BackButton buttonText="Back"/>
-        <Text
-        fontSize={24}
-        fontWeight="500"
-        color="#fff"
-        >Profile</Text>
-      </Div> */}
-      <Div alignItems="center" flexDir="row" m="xl">
+    
+      <Div alignItems="center" flexDir="row">
         <Avatar 
-        size={50}
+        size={100}
         source={{
           uri:
           "https://images.unsplash.com/photo-1593642532400-2682810df593?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
         }}
         />
-        <Div pl={10} >
+        <Div ml={10}>
         <Name>
           John Wick
         </Name>
@@ -121,12 +116,12 @@ export default function Profile({ route, navigation }) {
         
       </Div>
       </ScrollDiv>
-
-      <BottomNav 
-          GoHome={() => {navigation.navigate("Whomepage")}}
-          GoListings={() => {navigation.navigate("Market")}}
-          GoRequests={() => {navigation.navigate("Requests")}}
-          GoProfile={() => {navigation.navigate("Profile")}}
+      </Wrapper>
+      <DonorBottomNav 
+        GoHome={() => {navigation.navigate('donorHome')}}
+        GoListings={() => {navigation.navigate('NewListing')}}
+        GoRequests={() => {navigation.navigate('Donorrequest')}}
+        GoProfile={() => {navigation.navigate('DonorProfile')}}
       />
       
     </ThemeProvider>
@@ -138,6 +133,5 @@ const styles = StyleSheet.create({
   map: {
     width: 396,
     height: 139,
-    marginLeft: 15,
   },
 });

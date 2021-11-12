@@ -77,7 +77,7 @@ export default function Requests({ route, navigation }) {
                 GoHome={() => {navigation.navigate("Whomepage")}}
                 GoListings={() => {navigation.navigate("Market")}}
                 GoRequests={() => {navigation.navigate("Requests")}}
-                GoProfile={() => {navigation.navigate("Profile")}}
+                GoProfile={() => {navigation.navigate("WorkerProfile")}}
                 />
     </ThemeProvider>
   )

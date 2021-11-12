@@ -26,33 +26,28 @@ const ffTheme = {
     }
   }
 
-  const Header = styled.View`
-  flex:0.2;
-  justify-content: center;
-  align-items: center;
-  background-color: #FFFFFF;
-`
 
+  const Wrapper = styled.View`
+  flex: 1;
+  padding: 0 16px 0 16px;
+  background-color: #FFF;
+`
 const NewListing = styled.View`
-  flex:1.5;
+  flex:1;
   background-color: #FFFFFF;
+  margin-bottom: 10px;
+  margin-top: 10px;
 `
 const Container = styled.View`
-    flex:2.5;
+    flex:1;
     flex-direction: row;
     background-color: #FFFFFF;
     padding: 10px 0 0 0;
 `
-const Navbar = styled.View`
-    flex:0.5;
-    justify-content: center;
-    align-items: center;
-    background-color: #FFFFFF;
-`
-const Wrapper = styled.View`
-    flex: 1;
-    padding: 0 16px 0 16px;
-    background-color: #FFF;
+const BottomCont = styled.View`
+    flex: 0.2;
+    justify-content: space-between;
+    flex-direction: row;
 `
 
 export default function Viewlisting({route, navigation})
@@ -60,24 +55,27 @@ export default function Viewlisting({route, navigation})
     return (
         <ThemeProvider theme={ffTheme}>
             <Wrapper>
-                <Container>
-                    <MainPost imgSrc={Chair}/>
-                </Container>
+            <Container>
+                <MainPost imgSrc={Chair}/>
+            </Container>
 
-                <NewListing>
-                    <Text fontWeight="600" fontSize={24}>Condition</Text>
-                    <Text>Lightly Used</Text>
-                    <Text fontWeight="600" fontSize={24}>Description</Text>
-                    <Text>Just an old office chair we don't use anymore. Prefer pickup! Thanks!</Text>
-                </NewListing>
-                <MainButton buttonText="Request Item" onPress={() => {navigation.navigate("Donorrequest")}}/> 
+            <NewListing>
+                <Text fontWeight="600" fontSize={24}>Condition</Text>
+                <Text>Lightly Used</Text>
+                <Text mt={10} fontWeight="600" fontSize={24}>Description</Text>
+                <Text>Just an old office chair we don't use anymore. Prefer pickup! Thanks!</Text>
+            </NewListing>
+
+            <BottomCont>
+                <MainButton mb={10} buttonText="Request Item" onPress={() => {navigation.navigate("Requests")}}/> 
+            </BottomCont>
             </Wrapper>
             
             <BottomNav 
                 GoHome={() => {navigation.navigate("Whomepage")}}
                 GoListings={() => {navigation.navigate("Market")}}
                 GoRequests={() => {navigation.navigate("Requests")}}
-                GoProfile={() => {navigation.navigate("Profile")}}
+                GoProfile={() => {navigation.navigate("WorkerProfile")}}
             />
          
         </ThemeProvider>

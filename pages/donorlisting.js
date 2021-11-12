@@ -5,72 +5,69 @@ import { ScrollView, View } from "react-native";
 
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Input } from 'react-native-magnus';
 
-import MainButton from '../comps/MainButton/index';
-import BottomNav from '../comps/BottomNavBar';
-import ItemIcon from "../comps/ItemIcon";
-import Header1 from "../comps/header";
-import SmallPost from "../comps/SmallPost";
-import BackButton from "../comps/backbutton";
 import HalfButton from "../comps/halfbutton";
-import BigPost from "../comps/BigPost";
 import MainPost from "../comps/MainPost";
+
+import Chair from '../assets/aeron.jpg'
+import DonorBottomNav from "../comps/DonorBottomNavBar";
 
 
 const ffTheme = {
     colors: {
       periwinkle: "#92A8F8",
       lavender: "#7367F0",
+      salmon: "#EB8D8D",
       white: "#FFFFFF",
       black: "#000000"
     }
   }
 
-const Wrapper = styled.View`
-    padding: 0 10px 0 10px;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #FFFFFF;
+  const Wrapper = styled.View`
+  flex: 1;
+  padding: 0 16px 0 16px;
+  background-color: #FFF;
 `
-const ListingText = styled.View`
-    flex:1;
-    padding: 0 10px 0 10px;
-    background-color: #FFFFFF;
+const NewListing = styled.View`
+  flex:1;
+  background-color: #FFFFFF;
+  margin-bottom: 10px;
+  margin-top: 10px;
 `
 const Container = styled.View`
+    flex:1;
     flex-direction: row;
-    padding: 0 10px 0 10px;
     background-color: #FFFFFF;
+    padding: 10px 0 0 0;
 `
-const Navbar = styled.View`
-    justify-content: center;
-    align-items: center;
-    background-color: #FFFFFF;
+const BottomCont = styled.View`
+    flex: 0.2;
+    justify-content: space-between;
+    flex-direction: row;
 `
 
 export default function donorListing({route, navigation})
 {
     return (
         <ThemeProvider theme={ffTheme}>
-        <Container>
-            <MainPost />
-        </Container>
-
-        <ListingText>
-            <Text fontWeight="bold" fontSize={24}>Condition</Text>
-            <Text fontSize={14}>Used</Text>
-            <Text fontWeight="bold"  fontSize={24}>Description</Text>
-            <Text fontSize={14}>Just an old office chair we don't use anymore.</Text>
-            <Text fontWeight="bold"  fontSize={24}>Feedback</Text>
-        </ListingText>
-
         <Wrapper>
-            <MainButton buttonText="Edit Listing" onPress={() => {navigation.navigate("")}}/> 
+            <Container>
+                <MainPost imgSrc={Chair}/>
+            </Container>
+
+            <NewListing>
+                <Text fontWeight="600" fontSize={24}>Condition</Text>
+                <Text>Lightly Used</Text>
+                <Text mt={10} fontWeight="600" fontSize={24}>Description</Text>
+                <Text>Just an old office chair we don't use anymore. Prefer pickup! Thanks!</Text>
+            </NewListing>
+
+            <BottomCont>
+                <HalfButton buttonText='Edit' borderColor='#00000000'/>
+                <HalfButton buttonText='Delete' bg='salmon' borderColor='#00000000'/>
+            </BottomCont>
         </Wrapper>
 
-        <Navbar>
-            <BottomNav/>
-        </Navbar>
-         
-        </ThemeProvider>
+        <DonorBottomNav/>
+    </ThemeProvider>
     )
 }

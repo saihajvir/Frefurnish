@@ -11,7 +11,9 @@ export default function MainButton({
     iconFamily = "Ionicons",
     onPress,
     bg='periwinkle',
-    textColor='white'
+    textColor='white',
+    mt,
+    mb
 }) 
 {
     return (
@@ -21,6 +23,8 @@ export default function MainButton({
             color={textColor}
             rounded={10}
             h={50}
+            mt={mt}
+            mb={mb}
             fontSize={18}
             fontWeight='500'
             suffix={

@@ -90,7 +90,7 @@ export default function Market({route, navigation})
             GoHome={() => {navigation.navigate("Whomepage")}}
             GoListings={() => {navigation.navigate("Market")}}
             GoRequests={() => {navigation.navigate("Requests")}}
-            GoProfile={() => {navigation.navigate("Profile")}}
+            GoProfile={() => {navigation.navigate("WorkerProfile")}}
             />
         </ThemeProvider>
     )

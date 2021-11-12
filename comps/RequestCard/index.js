@@ -6,10 +6,10 @@ import styled from 'styled-components';
 import LottieView from 'lottie-react-native';
 
 const Card = styled.View`
-    height: 20%;
+    height: 126px;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0px 2px 15px grey;
+    box-shadow: 0px 4px 10px #dfdfdf ;
     display: flex;
     flex-direction: row;
 `

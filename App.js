@@ -13,10 +13,10 @@ import BottomNav from './comps/BottomNavBar';
 import Landing from './pages';
 import Requests from './pages/requests';
 import Intro from './pages/intro';
-import WorkerProfilePage from './pages/workerprofile';
+import WorkerProfile from './pages/workerprofile';
 import EditItems from './pages/edititems';
-import Profile from './pages/profile'
-import Listing from './pages/listing';
+import DonorProfile from './pages/DonorProfile'
+import NewListing from './pages/NewListing';
 import donorHome from './pages/donorhome';
 import donorListing from './pages/donorlisting';
 import Whomepage from './pages/workerhomepage';
@@ -30,6 +30,7 @@ const ffTheme = {
   colors: {
     periwinkle: "#92A8F8",
     lavender: "#7367F0",
+    salmon: "#EB8D8D",
     white: "#FFFFFF",
     black: "#000000"
   }
@@ -45,16 +46,16 @@ export default function App() {
     <ThemeProvider theme={ffTheme}>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Landing" component={Landing} options={{headerShown: false}}/>
-        <Stack.Screen name="Listing" component={Listing} options={{title: 'Create a Listing', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}} />
+        <Stack.Screen name="NewListing" component={NewListing} options={{title: 'New Listing', headerStyle: {backgroundColor: '#EB8D8D'}, headerTintColor: '#FFF'}} />
         <Stack.Screen name="Intro" component={Intro} />
-        <Stack.Screen name="WorkerProfilePage" component={WorkerProfilePage}/>
+        <Stack.Screen name="WorkerProfile" component={WorkerProfile} options={{title: 'Profile', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
         <Stack.Screen name="EditItems" component={EditItems}/>
-        <Stack.Screen name="donorHome" component={donorHome} options={{title: 'Home', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}} />
-        <Stack.Screen name="donorListing" component={donorListing} options={{title: 'Listing'}}/>
+        <Stack.Screen name="donorHome" component={donorHome} options={{title: 'Home', headerStyle: {backgroundColor: '#EB8D8D'}, headerTintColor: '#FFF'}} />
+        <Stack.Screen name="donorListing" component={donorListing} options={{title: 'Listing', headerStyle: {backgroundColor: '#EB8D8D'}, headerTintColor: '#FFF'}}/>
         <Stack.Screen name="Whomepage" component={Whomepage} options={{title: 'Home', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}} />
         <Stack.Screen name="Requests" component={Requests} options={{title: 'Your Requests', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}} />
         <Stack.Screen name="Market" component={Market} options={{title: 'Listings', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
-        <Stack.Screen name="Profile" component={Profile} options={{title: 'Profile',headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
+        <Stack.Screen name="DonorProfile" component={DonorProfile} options={{title: 'Profile',headerStyle: {backgroundColor: '#EB8D8D'}, headerTintColor: '#FFF'}}/>
         <Stack.Screen name="Viewlisting" component={Viewlisting} options={{title: 'Listing', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
         <Stack.Screen name="Donorrequest" component={Donorrequest} options={{title: 'Requests', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
       </Stack.Navigator>

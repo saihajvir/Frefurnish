@@ -20,12 +20,15 @@ const ffTheme = {
   } 
 
   const Wrapper = styled.View`
-    padding: 16px 16px 0 16px;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
   `
-
+const BigWrapper = styled.View`
+flex: 1;
+padding: 16px 16px 0 16px;
+background-color: #FFF;
+`
   const Container = styled.View`
     flex: 0.5;
     flex-direction: row;
@@ -59,7 +62,7 @@ const ffTheme = {
   `
 
   const DescriptionTitleWrapper = styled.View`
-    padding: 40px 16px 0 16px;
+    padding: 40px 0 0 0;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
@@ -72,7 +75,7 @@ const ffTheme = {
   `
 
   const DescriptionTextWrapper = styled.View`
-    padding: 16px 16px 0 16px;
+    padding: 16px 0 0 0;
   `
 
 const DescriptionText = styled.Text`
@@ -80,7 +83,7 @@ const DescriptionText = styled.Text`
 `
 
 const LookingTitleWrapper = styled.View`
-    padding: 40px 16px 0 16px;
+    padding: 40px 0 0 0;
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
@@ -93,7 +96,7 @@ const LookingTitleText = styled.Text`
   `
 
 const ItemWrapper = styled.View`
-  padding: 16px 16px 0 16px;
+  padding: 16px 0 0 0;
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -107,16 +110,18 @@ const RowCont = styled.View`
 `
 
 
-export default function WorkerProfilePage ({route, navigation}) {
+export default function WorkerProfile({route, navigation}) {
   const [visible, setVisible] = useState(false);
 
     return (
         <ThemeProvider theme={ffTheme}>
+          <BigWrapper>
           <Wrapper>
             <Container>
               <Avatar
               bg="red300"  
               color="red800"
+              size={70}
               >J</Avatar>
             </Container>
             <PersonInfoContainer>
@@ -282,6 +287,13 @@ export default function WorkerProfilePage ({route, navigation}) {
           >
           </ChangeProfile>
         </Modal> */}
+          </BigWrapper>
+            <BottomNav 
+                GoHome={() => {navigation.navigate("Whomepage")}}
+                GoListings={() => {navigation.navigate("Market")}}
+                GoRequests={() => {navigation.navigate("Requests")}}
+                GoProfile={() => {navigation.navigate("WorkerProfile")}}
+            />
         </ThemeProvider>
     )
 }

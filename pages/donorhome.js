@@ -6,115 +6,67 @@ import { ScrollView, View, TouchableOpacity, ImageBackground} from "react-native
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv } from 'react-native-magnus';
 
 import MainButton from '../comps/MainButton/index';
-import BottomNav from '../comps/BottomNavBar';
+import DonorBottomNav from '../comps/DonorBottomNavBar';
 import ItemIcon from "../comps/ItemIcon";
 import Header1 from "../comps/header";
 import SmallPost from "../comps/SmallPost";
+import RequestCard from "../comps/RequestCard";
 
-
+import Chair from '../assets/aeron.jpg'
+import { NavigationRouteContext } from "@react-navigation/core";
 
 const ffTheme = {
     colors: {
       periwinkle: "#92A8F8",
       lavender: "#7367F0",
+      salmon: "#EB8D8D",
       white: "#FFFFFF",
       black: "#000000"
     }
   }
 
-const Requests = styled.View`
-    padding: 10px 16px 0 16px;
-    flex:0.5;
-    background-color: #FFFFFF;
-`
 const Wrapper = styled.View`
+    flex: 1;
     padding: 0 16px 0 16px;
-    flex-direction: row;
-    background-color: #FFFFFF;
+    background-color: #FFF;
 `
 const Container = styled.View`
-    flex:0.5;
-    flex-direction: row;
-    padding: 0 10px 0 10px;
-    justify-content: center;
+    flex: ${props=>props.flex};
+    justify-content: ${props=>props.justify};
     align-items: center;
     background-color: #FFFFFF;
-`
-const Navbar = styled.View`
-    justify-content: center;
-    align-items: center;
-    background-color: #FFFFFF;
-`
-const RequestBox = styled.View`
-    background-color: #92A8F8;
 `
 
-export default function donorHome({route, navigation})
+export default function donorHome({route, navigation, flex='1', justify='center'})
 {
     return (
         <ThemeProvider theme={ffTheme}>
-            <Requests>
-                <Text fontWeight="bold" fontSize={36}>Requests</Text>
-                <RequestBox>
-                    
-                </RequestBox>
-            </Requests>
-            
             <Wrapper>
-            <MainButton buttonText={'See All Requests'} bg="periwinkle" textColor='white'/>
-            </Wrapper>
-
-            <Wrapper>
-            <Text fontWeight="bold" fontSize={36}>Your Listings</Text>
-            </Wrapper>
-            
-            <Container>
-                <ScrollView horizontal={true}>
-                    <TouchableOpacity onPress={() => {navigation.navigate("donorListing")}}>
-                        <SmallPost/>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("donorListing")}}>
-                        <SmallPost/>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("donorListing")}}>
-                        <SmallPost/>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("donorListing")}}>
-                        <SmallPost/>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("donorListing")}}>
-                        <SmallPost/>
-                    </TouchableOpacity>
-                </ScrollView>
+                <Text pt={20} fontWeight="600" fontSize={32}>Item Requests</Text>
+            <Container flex='0.6' justify='space-evenly'>
+                    <RequestCard/>
+                    <RequestCard/>
+            <MainButton buttonText={'See All Requests'} bg="salmon" textColor='white'/>
             </Container>
 
-
-            <Wrapper>
-            <Text fontWeight="bold" fontSize={36}>Past Donations</Text>
-            </Wrapper>
-            <Container>
-                <ScrollView horizontal={true}>
-                    <TouchableOpacity onPress={() => {navigation.navigate("donorListing")}}>
-                        <SmallPost/>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("donorListing")}}>
-                        <SmallPost/>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("donorListing")}}>
-                        <SmallPost/>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("donorListing")}}>
-                        <SmallPost/>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => {navigation.navigate("donorListing")}}>
-                        <SmallPost/>
-                    </TouchableOpacity>
+            
+            <Text fontWeight="600" fontSize={32}>Your Listings</Text>
+            <Container flex='0.4' justify='center'>
+                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                        <SmallPost imgSrc={Chair} h={185} w={185} onPress={() => {navigation.navigate("donorListing")}}/>
+                        <SmallPost imgSrc={Chair} h={185} w={185} onPress={() => {navigation.navigate("donorListing")}}/>
+                        <SmallPost imgSrc={Chair} h={185} w={185} onPress={() => {navigation.navigate("donorListing")}}/>
                 </ScrollView>
             </Container>
+            </Wrapper>
 
-            <Navbar>
-                <BottomNav />
-            </Navbar>
+            <DonorBottomNav 
+                GoHome={() => {navigation.navigate('donorHome')}}
+                GoListings={() => {navigation.navigate('NewListing')}}
+                GoRequests={() => {navigation.navigate('Donorrequest')}}
+                GoProfile={() => {navigation.navigate('DonorProfile')}}
+            />
+            
         </ThemeProvider>
     )
 }

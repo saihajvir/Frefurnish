@@ -5,17 +5,19 @@ import styled from "styled-components";
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Input } from 'react-native-magnus';
 
 
-import BottomNav from '../comps/BottomNavBar';
+import DonorBottomNav from '../comps/DonorBottomNavBar';
 import Header1 from "../comps/header";
 import BackButton from "../comps/backbutton";
 import UserInput from "../comps/userinput";
 import ItemIcon from "../comps/ItemIcon";
 import MainButton from "../comps/MainButton";
+import HalfButton from "../comps/halfbutton";
 
 const ffTheme = {
   colors: {
     periwinkle: "#92A8F8",
     lavender: "#7367F0",
+    salmon: "#EB8D8D",
     white: "#FFFFFF",
     black: "#000000"
   }
@@ -23,7 +25,8 @@ const ffTheme = {
 
 const Title = styled.Text`
   font-weight: 600;
-  font-size: 36px;
+  padding-top: 20px;
+  font-size: 24px;
   margin-bottom:10px;
 `;
 
@@ -32,65 +35,65 @@ const SubTitle = styled.Text`
   font-size: 24px;
   margin-bottom:10px;
 `;
+const Wrapper = styled.View`
+    flex: 1;
+    padding: 0 16px 0 16px;
+    background-color: #FFF;
+`
 
-export default function Listing({route, navigation})
+export default function NewListing({route, navigation})
 {
     return (
         <ThemeProvider theme={ffTheme}>
+        <Wrapper>
         <ScrollDiv>
-      <Div
-       bg="#92A8F8"
-       p={10}
-       alignItems="center"
-       >
-        <BackButton buttonText="Back"/>
-        <Text
-        fontSize={24}
-        fontWeight="500"
-        color="#fff"
-        >New Listing</Text>
-      </Div>
       <Div pb={10}>
         <Title>
           Create a Listing
         </Title>
-        <Input shadow="lg"
+        <Input shadow="sm"
             placeholder="Title"
-            focusBorderColor="blue700"
+            focusBorderColor="salmon"
+            borderColor='salmon'
             mb={10}
             />
-            <Input shadow="lg"
-            placeholder="Category"
-            focusBorderColor="blue700"
-            mb={10}
-            />
-            <Input shadow="lg"
-            placeholder="Pick-up or Drop Off?"
-            focusBorderColor="blue700"
-            mb={10}
-            />
-            <Input shadow="lg"
+            <Input shadow="sm"
             placeholder="Location"
-            focusBorderColor="blue700"
-
+            focusBorderColor="salmon"
+            borderColor='salmon'
+            mb={10}
             />
+            <Input shadow="sm"
+            placeholder="Condition"
+            focusBorderColor="salmon"
+            borderColor='salmon'
+            mb={10}
+            />
+            <Input shadow="sm"
+            placeholder="Tags"
+            focusBorderColor="salmon"
+            borderColor='salmon'
+            />
+          <Div flexDir='row' h={50} justifyContent='space-between' mt={10}>
+            <HalfButton bg='white' color='black' buttonText='Pick Up'/>
+            <HalfButton bg='white' color='black' buttonText='Drop Off'/>
+          </Div>
       </Div>
       <Div pb={10}>
         <SubTitle>
           Add a Description
         </SubTitle>
-          <Input />
+          <Input h={100} borderColor='salmon'/>
       </Div>
       <Div>
         <SubTitle>
           Add Images
         </SubTitle>
-          <ItemIcon itemText="" iconFamily="AntDesign" iconName="plus" />
       </Div>
       <Div 
       flexDir="row"
+      justifyContent='space-between'
       flex={1}
-      justifyContent="space-around"
       pt={10}
       pb={10}
       >
@@ -105,11 +108,12 @@ export default function Listing({route, navigation})
         w={100}
         h={137}/>
       </Div>
-      <MainButton buttonText="Publish" />
+        <MainButton mt={10} buttonText="Publish" bg='salmon' onPress={() => {navigation.navigate('donorListing')}}/>
       <Div>
-        <BottomNav />
       </Div>
       </ScrollDiv>
+      </Wrapper>
+        <DonorBottomNav />
         </ThemeProvider>
     )
 

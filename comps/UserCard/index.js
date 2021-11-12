@@ -9,12 +9,19 @@ import Gradient from '../../assets/frefurnish-gradient.png'
 
 export default function UserCard({
     descriptionText="default",
-    userType="User"
+    userType="User",
+    bg='gray100',
 })
 {
+    const [NewColor, setNewColor] = useState('gray100');
+
+    function Test()
+    {
+        setNewColor('black')
+    }
     
     return (
-        <Button w={396} bg='white' h={165} rounded={20} mt={15} mb={15} flexDir='column' onPress={()=>{}}>
+        <Button w='100%' bg='white' h={165} rounded={20} mt={15} mb={15} flexDir='column' onPress={() => Test()}>
             <Div
                 w={396}
                 h={165}
@@ -31,7 +38,7 @@ export default function UserCard({
             <Div
                 w={396}
                 h={38}
-                bg='gray100'
+                bg={NewColor}
                 alignSelf='flex-end'
             >
                 <Text pt='sm' pl="lg" fontWeight='600' fontSize={18}>

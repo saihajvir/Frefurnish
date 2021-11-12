@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { ScrollView, View, TouchableOpacity, ImageBackground} from "react-native";
-
+import { StyleSheet } from "react-native";
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv } from 'react-native-magnus';
 
 import MainButton from '../comps/MainButton/index';
@@ -26,12 +26,6 @@ const ffTheme = {
     }
   }
 
-  const Header = styled.View`
-  flex:0.4;
-  justify-content: center;
-  align-items: center;
-  background-color: #FFFFFF;
-`
 const NewListing = styled.View`
   flex:0.3;
   background-color: #FFFFFF;
@@ -64,7 +58,7 @@ export default function Whomepage({route, navigation, flex='1'})
             <Wrapper>
 
                 <NewListing>
-                    <Text fontWeight="600" fontSize={36} pt={20}>New Listings</Text>
+                    <Text fontWeight="600" fontSize={32} pt={20}>New Listings</Text>
                 </NewListing>
                 <Container flex='1.5'>
                     <BigPost imgSrc={Chair} onPress={() => {navigation.navigate("Viewlisting")}}/>
@@ -72,31 +66,23 @@ export default function Whomepage({route, navigation, flex='1'})
                 </Container>
                 <MainButton buttonText={'See All Listings'} bg="periwinkle" textColor='white' onPress={() => {navigation.navigate("Market")}}/>
                 <NewListing>
-                    <Text fontWeight="600" fontSize={36} pt={20}>Requested Items</Text>
-                
-
+                    <Text fontWeight="600" fontSize={32} pt={20}>Requested Items</Text>
                 </NewListing>
                 <Container>
-                <ScrollView horizontal={true}>
-                    <Div flexDir="row">
-                    <ReqItem
-                
-                    />
-                    
-                    
-                    </Div>
-              
+                    <ScrollView horizontal={true}>
+                        <Div flexDir="row">
+                            <ReqItem/>
+                        </Div>
                     </ScrollView>
-                
                 </Container>
-                <MainButton buttonText={'See All Requests'} bg="periwinkle" textColor='white' onPress={() => {navigation.navigate("Requests")}}/>
+                <MainButton mb={10} buttonText={'See All Requests'} bg="periwinkle" textColor='white' onPress={() => {navigation.navigate("Requests")}}/>
             </Wrapper>
             <BottomNav 
                 GoHome={() => {navigation.navigate("Whomepage")}}
                 GoListings={() => {navigation.navigate("Market")}}
                 GoRequests={() => {navigation.navigate("Requests")}}
-                GoProfile={() => {navigation.navigate("Profile")}}
-                />
+                GoProfile={() => {navigation.navigate("WorkerProfile")}}
+            />
         </ThemeProvider>
     )
 }
