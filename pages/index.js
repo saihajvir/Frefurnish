@@ -10,10 +10,12 @@ import BottomNav from '../comps/BottomNavBar';
 import ItemIcon from "../comps/ItemIcon";
 import UserCard from "../comps/UserCard";
 
-import ChairIcon from '../assets/Frefurnish-plain.png'
-import Logo from '../assets/Frefurnish-logo.png'
+import ChairIcon from '../assets/Frefurnish-plain.png';
+import Logo from '../assets/Frefurnish-logo.png';
 import UserInput from "../comps/userinput";
 import UploadImage from "../comps/UploadImage";
+import Background from '../assets/background.png';
+
 import ReqItem from "../comps/ReqItem";
 import { StatusBar } from "expo-status-bar";
 
@@ -71,16 +73,28 @@ export default function Landing({
 {
     const [state, nextState] = useState(0);
 
-    const [user, setUser] = useState('worker');
+    const [user, setUser] = useState('');
 
-    console.log(user)
+    function HandleTypePress()
+    {
+        if(user === 'worker')
+        {
+            {nextState (state + 1)}
+        }
+        else if(user === 'donor')
+        {
+            {nextState (state + 1)}
+        } else{
+            nextState(state)
+        }
+    }
 
     if(state === 0)
     {
     return (
         <ThemeProvider theme={ffTheme}>
             <StatusBar/>
-            <Wrapper bg='#92A8F8' bgImg="">
+            <Wrapper bg='#92A8F8' >
             <TopContainer flex='1' alignItems='center'>
                 <Heading textcol='#FFF'>
                     Welcome to Frefurnish
@@ -121,7 +135,7 @@ export default function Landing({
                 />
             </Container>
             <BottomContainer flex='1'>
-                <MainButton buttonText={'Next'} bg="periwinkle" textColor='white' onPress={() => {nextState (state + 1)}}/>
+                <MainButton buttonText={'Next'} bg="periwinkle" textColor='white' onPress={HandleTypePress}/>
             </BottomContainer>
             </Wrapper>
         </ThemeProvider>
