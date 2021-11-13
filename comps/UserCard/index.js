@@ -11,17 +11,34 @@ export default function UserCard({
     descriptionText="default",
     userType="User",
     bg='gray100',
+    setUser
 })
 {
-    const [NewColor, setNewColor] = useState('gray100');
+    const [pressed, setPressed] = useState(false);
 
     function Test()
     {
-        setNewColor('black')
+        setPressed(!pressed)
+        console.log(pressed)
     }
+
+    function handleButtonPress()
+    {
+        if(userType === 'Social Worker')
+        {
+            setUser('worker')
+            setPressed(!pressed)
+        } else if(userType === 'Donor'){
+            setUser('donor')
+            setPressed(!pressed)
+        }
+    }
+
     
-    return (
-        <Button w='100%' bg='white' h={165} rounded={20} mt={15} mb={15} flexDir='column' onPress={() => Test()}>
+    if(pressed === true)
+    {
+        return (
+        <Button w='100%' bg='white' h={165} rounded={20} mt={15} mb={15} flexDir='column' onPress={handleButtonPress}>
             <Div
                 w={396}
                 h={165}
@@ -38,7 +55,7 @@ export default function UserCard({
             <Div
                 w={396}
                 h={38}
-                bg={NewColor}
+                bg='gray100'
                 alignSelf='flex-end'
             >
                 <Text pt='sm' pl="lg" fontWeight='600' fontSize={18}>
@@ -46,10 +63,10 @@ export default function UserCard({
                 </Text>
             </Div>
         </Button>
-    )
+    )}
 
     return (
-        <Button w={396} bg='white' h={165} rounded={20} mt={15} mb={15} flexDir='column' onPress={()=>{}}>
+        <Button w={396} bg='white' h={165} rounded={20} mt={15} mb={15} flexDir='column' onPress={handleButtonPress}>
         <Div
             w={396}
             h={165}
@@ -75,4 +92,5 @@ export default function UserCard({
         </Div>
     </Button>
     )
+
 }

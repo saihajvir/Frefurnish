@@ -68,23 +68,11 @@ export default function Landing({
     alignItems='flex-start'
 })
 {
-    const [state, nextState] = useState(0)
-    const [load, setLoad] = useState(true)
+    const [state, nextState] = useState(0);
 
-    function GoWorkerHome(){
+    const [user, setUser] = useState('worker');
 
-            useEffect(()=>{
-                setTimeout(()=>{
-                    setLoad(false)
-                    nextState(state + 1)
-                }, 2000);
-            }, []);
-        
-        if(load === false)
-        {
-            {navigation.navigate("Whomepage")}
-        }
-    }
+    console.log(user)
 
     if(state === 0)
     {
@@ -123,10 +111,12 @@ export default function Landing({
                 <UserCard
                     descriptionText='Social workers are individuals who are looking to find listings that will help improve or sustain the quality of life at the social home they work at. Social workers are the only type of user eligible to receive donations.'
                     userType='Social Worker'
+                    setUser={setUser}
                 />
                 <UserCard
                     descriptionText='Donors are individuals and vendors that are looking to donate their personal items or lightly used returned items and excess inventory.'
                     userType='Donor'
+                    setUser={setUser}
                 />
             </Container>
             <BottomContainer flex='1'>
@@ -174,14 +164,13 @@ export default function Landing({
                 <Image source={ChairIcon} w={160} h={220}/>
             </Container>
             <BottomContainer flex='0.5'>
-                <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {navigation.navigate("Whomepage")}}/>
+                <MainButton buttonText={'Enter'} bg="white" textColor='periwinkle' onPress={() => {user === 'worker' ? navigation.navigate("Whomepage") : navigation.navigate("donorHome")}}/>
                 {/* <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {nextState (state + 1)}}/> */}
             </BottomContainer>
             </Wrapper>
         </ThemeProvider> 
         )
                     
-        // GoWorkerHome();
     }
 
 }
