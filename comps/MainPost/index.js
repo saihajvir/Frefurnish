@@ -8,14 +8,15 @@ import LottieView from 'lottie-react-native';
 export default function MainPost({
     headerText = "Office Chair",
     locationText = "Langley - 30 km",
-    imgSrc
+    imgSrc,
+    headerTextSize = 36,
 })
 {
     return (
         <Div w='100%'>
             <Div row alignItems="center" mt={10}>
                 <Div flex={1}>
-                    <Text fontSize={36} fontWeight="600">
+                    <Text fontSize={headerTextSize} fontWeight="600">
                     {headerText}
                     </Text>
                     <Text color="#808080" fontSize={14} fontWeight="200">

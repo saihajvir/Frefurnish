@@ -10,10 +10,12 @@ import BottomNav from '../comps/BottomNavBar';
 import ItemIcon from "../comps/ItemIcon";
 import UserCard from "../comps/UserCard";
 
-import ChairIcon from '../assets/Frefurnish-plain.png'
-import Logo from '../assets/Frefurnish-logo.png'
+import ChairIcon from '../assets/Frefurnish-plain.png';
+import Logo from '../assets/Frefurnish-logo.png';
 import UserInput from "../comps/userinput";
 import UploadImage from "../comps/UploadImage";
+import Background from '../assets/background.png';
+
 import ReqItem from "../comps/ReqItem";
 import { StatusBar } from "expo-status-bar";
 
@@ -69,21 +71,21 @@ export default function Landing({
     alignItems='flex-start'
 })
 {
-    const [state, nextState] = useState(0)
-    const [load, setLoad] = useState(true)
+    const [state, nextState] = useState(0);
 
-    function GoWorkerHome(){
+    const [user, setUser] = useState('');
 
-            useEffect(()=>{
-                setTimeout(()=>{
-                    setLoad(false)
-                    nextState(state + 1)
-                }, 2000);
-            }, []);
-        
-        if(load === false)
+    function HandleTypePress()
+    {
+        if(user === 'worker')
         {
-            {navigation.navigate("Whomepage")}
+            {nextState (state + 1)}
+        }
+        else if(user === 'donor')
+        {
+            {nextState (state + 1)}
+        } else{
+            nextState(state)
         }
     }
 
@@ -92,7 +94,7 @@ export default function Landing({
     return (
         <ThemeProvider theme={ffTheme}>
             <StatusBar/>
-            <Wrapper bg='#92A8F8' bgImg="">
+            <Wrapper bg='#92A8F8' >
             <TopContainer flex='1' alignItems='center'>
                 <Heading textcol='#FFF'>
                     Welcome to Frefurnish
@@ -124,14 +126,16 @@ export default function Landing({
                 <UserCard
                     descriptionText='Social workers are individuals who are looking to find listings that will help improve or sustain the quality of life at the social home they work at. Social workers are the only type of user eligible to receive donations.'
                     userType='Social Worker'
+                    setUser={setUser}
                 />
                 <UserCard
                     descriptionText='Donors are individuals and vendors that are looking to donate their personal items or lightly used returned items and excess inventory.'
                     userType='Donor'
+                    setUser={setUser}
                 />
             </Container>
             <BottomContainer flex='1'>
-                <MainButton buttonText={'Next'} bg="periwinkle" textColor='white' onPress={() => {nextState (state + 1)}}/>
+                <MainButton buttonText={'Next'} bg="periwinkle" textColor='white' onPress={HandleTypePress}/>
             </BottomContainer>
             </Wrapper>
         </ThemeProvider>
@@ -175,14 +179,13 @@ export default function Landing({
                 <Image source={ChairIcon} w={160} h={220}/>
             </Container>
             <BottomContainer flex='0.5'>
-                <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {navigation.navigate("donorHome")}}/>
+                <MainButton buttonText={'Enter'} bg="white" textColor='periwinkle' onPress={() => {user === 'worker' ? navigation.navigate("Whomepage") : navigation.navigate("donorHome")}}/>
                 {/* <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {nextState (state + 1)}}/> */}
             </BottomContainer>
             </Wrapper>
         </ThemeProvider> 
         )
                     
-        // GoWorkerHome();
     }
 
 }
