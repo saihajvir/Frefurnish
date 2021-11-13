@@ -11,11 +11,12 @@ import ItemIcon from "../comps/ItemIcon";
 import Header1 from "../comps/header";
 import BigPost from "../comps/BigPost";
 import { StatusBar } from "expo-status-bar";
-
-import Chair from '../assets/aeron.jpg'
-import Table from '../assets/table.jpg'
 import ReqItem from "../comps/ReqItem";
 
+import Chair from '../assets/aeron.jpg';
+import Toaster from '../assets/toaster.jpg';
+import Table from '../assets/table.jpg';
+import KitchenChairs from '../assets/kitchen-chairs.jpg';
 
 const ffTheme = {
     colors: {
@@ -71,11 +72,12 @@ export default function Whomepage({route, navigation, flex='1'})
                 <Container>
                     <ScrollView horizontal={true}>
                         <Div flexDir="row">
-                            <ReqItem/>
+                            <ReqItem itemOpacity={0.7} imgSrc={Toaster} onpress={() => {navigation.navigate("Requests")}}/>
+                            <ReqItem itemOpacity={0.7} itemTitle={"Kitchen Chairs"} imgSrc={KitchenChairs} itemStatus={"Declined"} borderColor={"#EB8D8D"}onpress={() => {navigation.navigate("Requests")}}/>
                         </Div>
                     </ScrollView>
                 </Container>
-                <MainButton mb={10} buttonText={'See All Requests'} bg="periwinkle" textColor='white' onPress={() => {navigation.navigate("Requests")}}/>
+                <MainButton mb={20} buttonText={'See All Requests'} bg="periwinkle" textColor='white' onPress={() => {navigation.navigate("Requests")}}/>
             </Wrapper>
             <BottomNav 
                 GoHome={() => {navigation.navigate("Whomepage")}}

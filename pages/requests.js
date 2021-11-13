@@ -11,12 +11,19 @@ import RequestCard from "../comps/RequestCard";
 import ReqCardLarge from "../comps/ReqCardLarge";
 import FilterButton from "../comps/FilterButton";
 import SmallPost from "../comps/SmallPost"
+import ReqItem from "../comps/ReqItem";
 
 
 import { StyleSheet, ScrollView, Dimensions } from "react-native";
 
-import Chair from '../assets/aeron.jpg'
-import ReqItem from "../comps/ReqItem";
+import Chair from '../assets/aeron.jpg';
+import Toaster from '../assets/toaster.jpg';
+import Couch from '../assets/sofa.jpg';
+import Table from '../assets/table.jpg';
+import Shelf from '../assets/bookshelf.jpg';
+import KitchenChairs from '../assets/kitchen-chairs.jpg';
+
+
 
 
 const ffTheme = {
@@ -45,32 +52,33 @@ export default function Requests({ route, navigation }) {
         {/* <RequestCard /> */}
         {/* <ReqCardLarge /> */}
         {/* <FilterButton /> */}
-        <ReqItem  />
+        {/* <ReqItem  /> */}
 
-        {/*<Text fontWeight="bold" fontSize={30} mt={20} color="#98C791">Approved</Text>
+        <Text fontWeight="bold" fontSize={30} mt={20} mb={10} color="#98C791">Approved</Text>
         <ScrollView horizontal={true}>
             <Div flexDir="row">
-                <SmallPost imgSrc={Chair}/>
+                <ReqItem itemOpacity={0} imgSrc={Toaster}/>
                 
             </Div>
         </ScrollView>
 
-        <Text fontWeight="bold" fontSize={30} color="#EB8D8D">Declined</Text>
-        <ScrollView horizontal={true}>
-            <Div flexDir="row">
-                <SmallPost imgSrc={Chair}/>
-                <SmallPost imgSrc={Chair}/>
+        <Text fontWeight="bold" fontSize={30} mb={10}color="#EB8D8D">Declined</Text>
+        <ScrollView horizontal={true} >
+            <Div flexDir="row" >
+            <ReqItem itemTitle={"Kitchen Chairs"} itemOpacity={0} borderColor={"#EB8D8D"} imgSrc={KitchenChairs} bgColor={"#EB8D8D"}/>
+            <ReqItem itemTitle={"Dinner Table"} itemOpacity={0} borderColor={"#EB8D8D"}
+            imgSrc={Table} bgColor={"#EB8D8D"}/>
             </Div>
         </ScrollView>
 
-        <Text fontWeight="bold" fontSize={30} color="#808080">Pending</Text>
-        <ScrollView horizontal={true}>
+        <Text fontWeight="bold" fontSize={30} mb={10}color="#808080">Pending</Text>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <Div flexDir="row">
-                <SmallPost imgSrc={Chair}/>
-                <SmallPost imgSrc={Chair}/>
-                <SmallPost imgSrc={Chair}/>
+            <ReqItem itemTitle={"Office Chair"} itemOpacity={0} borderColor={"#808080"} imgSrc={Chair} bgColor={"#808080"}/>
+            <ReqItem itemTitle={"2 Seat Couch"} itemOpacity={0} borderColor={"#808080"} imgSrc={Couch} bgColor={"#808080"}/>
+            <ReqItem itemTitle={"Book Shelf"} itemOpacity={0} borderColor={"#808080"} imgSrc={Shelf} bgColor={"#808080"}/>
             </Div>
-  </ScrollView>*/}
+  </ScrollView>
 
         </Wrapper>
         <BottomNav 
