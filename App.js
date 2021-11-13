@@ -24,6 +24,12 @@ import AllListing from './pages/listings';
 import Viewlisting from './pages/viewlisting';
 import Market from './pages/listings';
 import Donorrequest from './pages/donorrequest';
+import ReqCardLarge from './comps/ReqCardLarge';
+import ReqItem from './comps/ReqItem';
+import RequestCard from './comps/RequestCard';
+import MainPost from './comps/MainPost';
+import Requestdecline from './pages/requestdecline';
+import Requesterror from './pages/requesterror';
 
 
 const ffTheme = {
@@ -58,6 +64,8 @@ export default function App() {
         <Stack.Screen name="DonorProfile" component={DonorProfile} options={{title: 'Profile',headerStyle: {backgroundColor: '#EB8D8D'}, headerTintColor: '#FFF'}}/>
         <Stack.Screen name="Viewlisting" component={Viewlisting} options={{title: 'Listing', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
         <Stack.Screen name="Donorrequest" component={Donorrequest} options={{title: 'Requests', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
+        <Stack.Screen name="Requestdecline" component={Requestdecline} options={{title: 'Requested Items', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
+        <Stack.Screen name="Requesterror" component={Requesterror} options={{title: 'Requested Items', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
       </Stack.Navigator>
     </ThemeProvider>
     </NavigationContainer>
