@@ -175,7 +175,7 @@ export default function Landing({
                 <Image source={ChairIcon} w={160} h={220}/>
             </Container>
             <BottomContainer flex='0.5'>
-                <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {navigation.navigate("Whomepage")}}/>
+                <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {navigation.navigate("donorHome")}}/>
                 {/* <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {nextState (state + 1)}}/> */}
             </BottomContainer>
             </Wrapper>

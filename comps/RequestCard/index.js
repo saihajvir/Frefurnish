@@ -1,21 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Div, Text, Image } from "react-native-magnus";
+import { Div, Text, Image, Button } from "react-native-magnus";
 import styled from 'styled-components';
 import LottieView from 'lottie-react-native';
 
 const Card = styled.View`
     height: 126px;
+    width: 396px;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px #dfdfdf ;
+    border: 2px solid #EB8D8D;
     display: flex;
     flex-direction: row;
 `
 const Left = styled.View`
     height: 100%;
-    width: 30%;
+    width: 33%;
     z-index: 1;
     display: flex;
     flex-direction: column;
@@ -43,38 +44,39 @@ const Pickup = styled.Text`
 
 `
 const Date = styled.Text`
-    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: right;
-    margin-top: 30%;
+    margin-top: 25px;
     margin-right: 10px;
     font-size: 14px;
     font-weight: bold;
 `
 const Right = styled.View`
     height: 100%;
-    width: 35%;
+    width: 32%;
     z-index: 1;
-    display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 `
 export default function RequestCard({
-    profileImg = " ",
+    profileImg,
     nameText = "Julian Mayes",
     companyText = "Milieu - Children Family Services",
 
-    pickupText = " ",
-    dateText = " ",
-    itemImg = " ",
+    pickupText = "Pickup Request",
+    timeText = "1:30pm",
+    dateText = "November 1st",
+    itemImg,
+    onpress
 
 })
 
 {
     return(
+    <Button onPress={onpress} bg="#00000000"  rounded={10} >
        <Card>
            <Left>
                 <Image
@@ -82,16 +84,13 @@ export default function RequestCard({
                         w='50%'
                 
                         rounded="circle"
-                        source={{
-                            uri:
-                                    "https://images.unsplash.com/photo-1593642532400-2682810df593?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-                                }}
+                        source={profileImg}
                 />
 
                 <Text
                 mt = '5%'
                 >
-                    Julian Mayes
+                    {nameText}
                 </Text>
 
                 <Text
@@ -99,37 +98,43 @@ export default function RequestCard({
                 fontWeight = '200'
                 textAlign = 'center'
                 >
-                    Milieu - Children Family Services
+                    {companyText}
                 </Text>
+                
            </Left>
 
             <Middle>
                 <Pickup>
-                    Pickup Request
+                    {pickupText}
                 </Pickup>
 
+
                 <Date>
-                    1:30 pm
-                    November 1st
+                    {timeText}
                 </Date>
+
+                <Date>
+                    {dateText}
+                </Date>
+
+              
 
             </Middle>
 
             <Right>
                 <Image
-                    h='90%'
-                    w='90%'
-                    mr = {2}
+                    h='95%'
+                    w='95%'
+                    
+                    
             
                     rounded={10}
-                    source={{
-                        uri:
-                                "https://images.unsplash.com/photo-1593642532400-2682810df593?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-                            }}
+                    source={itemImg}
                 />
                 
             </Right>
        </Card>
+    </Button>
     
     );
 }
