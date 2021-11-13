@@ -15,7 +15,7 @@ export default function BottomNav({
         <Div
             style={styles.NavBar}
             h={80}
-            rounded={10}
+            rounded={20}
         >
             <Button
                 h={70}

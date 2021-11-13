@@ -68,16 +68,8 @@ export default function Donorrequest({navigation})
          
             <Wrapper>
             <Container >
-                <Heading>
-                <Text fontWeight="600" fontSize={32} pt={20}>New Requests</Text>
-                <ReqCont>
-                <RequestCard profileImg={Julian} itemImg={Toaster} onpress={() => {navigation.navigate('ItemRequests')}}/>
-                </ReqCont>
-                </Heading>
-                <Heading>
-                <Text fontWeight="600" fontSize={32} pt={20}>Scheduled Pickups</Text>
-                </Heading>
-            
+              
+                <ReqCardLarge itemImg={Toaster}/>
           
             </Container>
             </Wrapper>

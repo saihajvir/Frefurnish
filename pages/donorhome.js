@@ -12,7 +12,10 @@ import Header1 from "../comps/header";
 import SmallPost from "../comps/SmallPost";
 import RequestCard from "../comps/RequestCard";
 
-import Chair from '../assets/aeron.jpg'
+import Chair from '../assets/aeron.jpg';
+import Julian from '../assets/julian.png';
+import Toaster from '../assets/toaster.jpg';
+
 import { NavigationRouteContext } from "@react-navigation/core";
 
 const ffTheme = {
@@ -36,6 +39,10 @@ const Container = styled.View`
     align-items: center;
     background-color: #FFFFFF;
 `
+const TextCont = styled.View`
+  margin-bottom: 10px;
+  margin-top: 10px;
+`
 
 export default function donorHome({route, navigation, flex='1', justify='center'})
 {
@@ -44,18 +51,20 @@ export default function donorHome({route, navigation, flex='1', justify='center'
             <Wrapper>
                 <Text pt={20} fontWeight="600" fontSize={32}>Item Requests</Text>
             <Container flex='0.6' justify='space-evenly'>
-                    <RequestCard/>
-                    <RequestCard/>
-            <MainButton buttonText={'See All Requests'} bg="salmon" textColor='white'/>
+                    <RequestCard profileImg={Julian} itemImg={Toaster} onpress={() => {navigation.navigate('ItemRequests')}}/>
+                    <RequestCard profileImg={Julian} itemImg={Toaster} onpress={() => {navigation.navigate('ItemRequests')}}/>
+            <MainButton buttonText={'See All Requests'} bg="salmon" textColor='white'onPress={() => {navigation.navigate('Donorrequest')}}/>
             </Container>
 
-            
+            <TextCont>
             <Text fontWeight="600" fontSize={32}>Your Listings</Text>
+            </TextCont>
             <Container flex='0.4' justify='center'>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                        <SmallPost imgSrc={Chair} h={185} w={185} onPress={() => {navigation.navigate("donorListing")}}/>
-                        <SmallPost imgSrc={Chair} h={185} w={185} onPress={() => {navigation.navigate("donorListing")}}/>
-                        <SmallPost imgSrc={Chair} h={185} w={185} onPress={() => {navigation.navigate("donorListing")}}/>
+                        <SmallPost imgSrc={Chair} h={160} w={160} onPress={() => {navigation.navigate("donorListing")}}/>
+                        <SmallPost imgSrc={Chair} h={160} w={160} onPress={() => {navigation.navigate("donorListing")}}/>
+                        <SmallPost imgSrc={Chair} h={160} w={160} onPress={() => {navigation.navigate("donorListing")}}/>
+                        
                 </ScrollView>
             </Container>
             </Wrapper>

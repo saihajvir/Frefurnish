@@ -6,10 +6,11 @@ import styled from 'styled-components';
 import LottieView from 'lottie-react-native';
 
 const Card = styled.View`
-    height: 30%;
+    height: 175px;
     border-radius: 10px;
     display: flex;
     flex-direction: row;
+
 `
 
 const Right = styled.View`
@@ -33,7 +34,7 @@ const Left = styled.View`
 `
 const Middle = styled.View`
     height: 100%;
-    width: 5%;
+    width: 11%;
     z-index: 1;
     display: flex;
 
@@ -79,8 +80,9 @@ const Date = styled.Text`
 
 
 export default function ReqCardLarge({
-    pickupText = " ",
-    dateText = " ",
+    pickupText = "Pickup Request",
+    timeText = "1:30pm",
+    dateText = "November 1st",
     itemImg = " ",
 })
 
@@ -90,27 +92,27 @@ export default function ReqCardLarge({
             <Left>
                 <PickupCont>
                     <Pickup>
-                        Pickup Request
+                        {pickupText}
                     </Pickup>
                 </PickupCont>
                 <DateCont>
                     <Date>
-                        1:30pm
-                        November 1st
+                        {timeText}
+                    </Date>
+                
+                    <Date>
+                        {dateText}
                     </Date>
                 </DateCont>
             </Left>
             <Middle/>
             <Right>
                 <Image
-                    h='100%'
-                    w='100%'
+                    h={175}
+                    w={175}
      
                     rounded={10}
-                    source={{
-                        uri:
-                        "https://images.unsplash.com/photo-1593642532400-2682810df593?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-                    }}
+                    source={itemImg}
                 />
             </Right>
         </Card>
