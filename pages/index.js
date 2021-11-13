@@ -11,6 +11,7 @@ import ItemIcon from "../comps/ItemIcon";
 import UserCard from "../comps/UserCard";
 
 import ChairIcon from '../assets/Frefurnish-plain.png'
+import Logo from '../assets/Frefurnish-logo.png'
 import UserInput from "../comps/userinput";
 import UploadImage from "../comps/UploadImage";
 import ReqItem from "../comps/ReqItem";
@@ -79,14 +80,14 @@ export default function Landing({
     return (
         <ThemeProvider theme={ffTheme}>
             <StatusBar/>
-            <Wrapper bg='#92A8F8'>
+            <Wrapper bg='#92A8F8' bgImg="">
             <TopContainer flex='1' alignItems='center'>
                 <Heading textcol='#FFF'>
                     Welcome to Frefurnish
                 </Heading>
             </TopContainer>
             <Container flex='2'>
-                <Image source={ChairIcon} w={160} h={220}/>
+                <Image source={Logo} w={223} h={234}/>
             </Container>
             <BottomContainer flex='0.5'>
                 {/* <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {navigation.navigate("Intro")}}/> */}

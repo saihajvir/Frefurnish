@@ -79,7 +79,7 @@ export default function RequestCard({
            <Left>
                 <Image
                         h='50%'
-                        w='60%'
+                        w='50%'
                 
                         rounded="circle"
                         source={{
@@ -118,8 +118,8 @@ export default function RequestCard({
             <Right>
                 <Image
                     h='90%'
-                    w='95%'
-                    mr = '5%'
+                    w='90%'
+                    mr = {2}
             
                     rounded={10}
                     source={{
