@@ -24,7 +24,7 @@ import AllListing from './pages/listings';
 import Viewlisting from './pages/viewlisting';
 import Market from './pages/listings';
 import Donorrequest from './pages/donorrequest';
-import ItemRequests from './pages/ItemRequests'
+import ItemRequests from './pages/ItemRequests';
 
 
 const ffTheme = {

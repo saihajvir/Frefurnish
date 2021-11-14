@@ -10,7 +10,8 @@ export default function HalfButton({
     bg='periwinkle',
     color='white',
     borderWidth='1',
-    borderColor='salmon'
+    borderColor='salmon',
+    marginRight='',
 }) 
 {
     return (
@@ -19,6 +20,7 @@ export default function HalfButton({
             block
             color={color}
             rounded={10}
+            mr={marginRight}
             h={50}
             w='48%'
             fontSize={14}
