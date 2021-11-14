@@ -14,6 +14,9 @@ import Landing from './pages';
 import Intro from './pages/intro';
 import Profile from './pages/profile'
 import Listing from './pages/listing';
+import Requested from './pages/requested';
+import Approved from './pages/approved';
+import Declined from './pages/declined';
 
 
 const ffTheme = {
@@ -35,7 +38,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Landing" component={Landing} options={{headerShown: false}}/>
         {/* <Stack.Screen name="Intro" component={Intro} /> */}
-        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Profile" component={Declined} />
       </Stack.Navigator>
     </ThemeProvider>
     </NavigationContainer>
