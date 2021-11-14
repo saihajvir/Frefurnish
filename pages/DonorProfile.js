@@ -10,10 +10,14 @@ import BottomNav from '../comps/BottomNavBar';
 import Header1 from "../comps/header";
 import BackButton from "../comps/backbutton";
 import SmallPost from "../comps/SmallPost";
+import EditButton from "../comps/EditButton";
 import DonorBottomNav from "../comps/DonorBottomNavBar";
 import { StyleSheet, ScrollView, Dimensions } from "react-native";
 
-import Chair from '../assets/aeron.jpg'
+import Chair from '../assets/aeron.jpg';
+import John from '../assets/john.png';
+import WorkerProfile from "../comps/WorkerProfile";
+
 
 const ffTheme = {
   colors: {
@@ -34,6 +38,8 @@ const Bio = styled.Text`
   font-style: normal;
   font-weight: 300;
   font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 30px;
 `;
 
 const Name = styled.Text`
@@ -47,10 +53,23 @@ const LocText = styled.Text`
   color: #7F7F7F;
 `;
 
+const EditText = styled.Text`
+  font-weight: 300;
+  font-size: 11px;
+  color: white;
+`;
+
 const Wrapper = styled.View`
 flex: 1;
 padding: 20px 16px 0 16px;
 background-color: #FFF;
+`
+const EditCont = styled.View`
+
+width:361px;
+justify-content: flex-end;
+align-items: flex-end;
+
 `
 
 export default function DonorProfile({ route, navigation }) {
@@ -59,62 +78,37 @@ export default function DonorProfile({ route, navigation }) {
       <Wrapper>
       <ScrollDiv bg="#fff">
     
-      <Div alignItems="center" flexDir="row">
-        <Avatar 
-        size={100}
-        source={{
-          uri:
-          "https://images.unsplash.com/photo-1593642532400-2682810df593?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-        }}
-        />
-        <Div ml={10}>
-        <Name>
-          John Wick
-        </Name>
-        <LocText>
-          Langley, BC
-        </LocText>
-        </Div>
-      </Div>
-      <Div mb="xl">
+    <WorkerProfile name='John Wick' workPlace='Langley, BC' profileImg={John}/>
+
+      <Div>
         <Sub>
           Bio
+
         </Sub>
         <Bio>
-            I’m a cool quirky guy :- I love dogs, Mustangs, and donating items I don’t use anymore to make the lives of others better! I don’t like Russians, Common, Boban, Alfie Allen, etc...
+        I’m a cool quirky guy. I love dogs, Mustangs, and donating items I don’t use anymore to make the lives of others better! I don’t like Russians, Common, Boban, Alfie Allen, etc...
         </Bio>
-      </Div>
-      <Div>
         <Sub>
-          Listings
+          Address
+          
         </Sub>
-        <ScrollView horizontal={true}>
-        <Div flexDir="row">
-        <SmallPost imgSrc={Chair}/>
-        <SmallPost imgSrc={Chair}/>
-        </Div>
-        </ScrollView>
-      </Div>
-      <Div>
+
+        <Bio>
+        27157 Fraser Hwy 2A 
+        Aldergrove BC V4W 3R1
+        </Bio>
         <Sub>
-          Past Donations
+         Contact Number
         </Sub>
-        <ScrollView horizontal={true}>
-        <Div flexDir="row">
-        <SmallPost imgSrc={Chair} />
-        <SmallPost imgSrc={Chair} />
-        </Div>
-        </ScrollView>
+
+        <Bio>
+        (604)-607-5525
+        </Bio>
+       
       </Div>
-      <Div>
-        <Sub>
-          Location
-        </Sub>
-        <MapView style={styles.map} />
-      </Div>
-      <Div>
-        
-      </Div>
+      
+      
+      
       </ScrollDiv>
       </Wrapper>
       <DonorBottomNav 
