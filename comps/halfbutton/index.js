@@ -22,7 +22,7 @@ export default function HalfButton({
             rounded={10}
             mr={marginRight}
             h={50}
-            w='48%'
+            w={170}
             fontSize={14}
             fontWeight='500'
             borderWidth={1}
