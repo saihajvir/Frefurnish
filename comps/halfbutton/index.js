@@ -11,7 +11,7 @@ export default function HalfButton({
     color='white',
     borderWidth='1',
     borderColor='salmon',
-    marginRight='',
+    marginRight,
 }) 
 {
     return (

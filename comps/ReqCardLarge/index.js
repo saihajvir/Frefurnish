@@ -30,7 +30,7 @@ const Left = styled.View`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-	align-items: flex-start
+	align-items: flex-start;
 `
 const Middle = styled.View`
     height: 100%;
@@ -42,11 +42,11 @@ const Middle = styled.View`
 
 const PickupCont = styled.View`
     height: 50%;
-    width: 100%
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-	align-items: flex-start
+	align-items: flex-start;
 `
 
 
@@ -61,17 +61,17 @@ const Pickup = styled.Text`
 `
 const DateCont = styled.View`
     height: 50%;
-    width: 100%
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-	align-items: flex-start
+	align-items: flex-start;
 `
 const Date = styled.Text`
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-	align-items: flex-start
+	align-items: flex-start;
     text-align: left;
     font-size: 20px;
     font-weight: bold;
@@ -79,15 +79,15 @@ const Date = styled.Text`
 
 
 
-export default function ReqCardLarge({
+export default function ReqCardLarge ({
     pickupText = "Pickup Request",
     timeText = "1:30pm",
     dateText = "November 1st",
-    itemImg = " ",
+    itemImg
 })
 
 {
-    return(
+    return (
         <Card>
             <Left>
                 <PickupCont>

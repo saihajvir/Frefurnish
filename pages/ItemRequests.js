@@ -74,9 +74,7 @@ font-size: 32px;
 font-weight: bold;
 color: black;
 `
-const WorkplaceContainer = styled.View`
 
-`
 const Workplace = styled.Text`
 font-size: 14px;
 color: #7f7f7f;
