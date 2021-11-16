@@ -47,7 +47,7 @@ background-color: #FFF;
   `
 
   const Name = styled.Text`
-    font-size: 36px;
+    font-size: 32px;
     font-weight: bold;
     color: black;
   `
