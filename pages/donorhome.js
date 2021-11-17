@@ -15,6 +15,7 @@ import RequestCard from "../comps/RequestCard";
 import Chair from '../assets/aeron.jpg';
 import Julian from '../assets/julian.png';
 import Toaster from '../assets/toaster.jpg';
+import Adam from '../assets/adam.jpeg';
 
 import { NavigationRouteContext } from "@react-navigation/core";
 
@@ -51,9 +52,9 @@ export default function donorHome({route, navigation, flex='1', justify='center'
             <Wrapper>
                 <Text pt={20} fontWeight="600" fontSize={32}>Item Requests</Text>
             <Container flex='0.6' justify='space-evenly'>
-                    <RequestCard profileImg={Julian} itemImg={Toaster} onpress={() => {navigation.navigate('ItemRequests')}}/>
-                    <RequestCard profileImg={Julian} itemImg={Toaster} onpress={() => {navigation.navigate('ItemRequests')}}/>
-            <MainButton buttonText={'See All Requests'} bg="salmon" textColor='white'onPress={() => {navigation.navigate('Donorrequest')}}/>
+            <RequestCard nameText="Adam Sandler" timeText="4:30pm" dateText="November 5th"profileImg={Adam} itemImg={Chair} onpress={() => {navigation.navigate('ItemRequests')}}/>
+                    <RequestCard pickupText={"Pickup Scheduled:"} fontColor="#6CAF61" profileImg={Julian} itemImg={Toaster} onpress={() => {navigation.navigate('ItemRequests')}}/>
+            <MainButton buttonText={'See All Requests'} bg="salmon" iconName=""textColor='white'onPress={() => {navigation.navigate('Donorrequest')}}/>
             </Container>
 
             <TextCont>

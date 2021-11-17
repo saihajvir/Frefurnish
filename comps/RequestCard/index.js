@@ -65,12 +65,13 @@ export default function RequestCard({
     profileImg,
     nameText = "Julian Mayes",
     companyText = "Milieu - Children Family Services",
-
-    pickupText = "Pickup Request",
+    fontColor = "black",
+    pickupText = "Pickup Request:",
     timeText = "1:30pm",
     dateText = "November 1st",
     itemImg,
     onpress
+    
 
 })
 
@@ -105,7 +106,11 @@ export default function RequestCard({
 
             <Middle>
                 <Pickup>
+                    <Text
+                    color = {fontColor}>
                     {pickupText}
+                    </Text>
+                    
                 </Pickup>
 
 

@@ -113,7 +113,12 @@ export default function NewListing({route, navigation})
       </Div>
       </ScrollDiv>
       </Wrapper>
-        <DonorBottomNav />
+      <DonorBottomNav 
+        GoHome={() => {navigation.navigate('donorHome')}}
+        GoListings={() => {navigation.navigate('NewListing')}}
+        GoRequests={() => {navigation.navigate('Donorrequest')}}
+        GoProfile={() => {navigation.navigate('DonorProfile')}}
+      />
         </ThemeProvider>
     )
 

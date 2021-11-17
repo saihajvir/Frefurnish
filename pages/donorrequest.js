@@ -14,8 +14,10 @@ import DonorBottomNav from "../comps/DonorBottomNavBar";
 import RequestCard from "../comps/RequestCard";
 import ReqCardLarge from "../comps/ReqCardLarge";
 
+import Chair from '../assets/aeron.jpg';
 import Toaster from '../assets/toaster.jpg';
-import Julian from '../assets/julian.png'
+import Julian from '../assets/julian.png';
+import Adam from '../assets/adam.jpeg';
 
 
 const ffTheme = {
@@ -43,7 +45,7 @@ padding: 0 16px 0 16px;
 background-color: #FFF;
 `
 const Container = styled.View`
-    flex:5;
+    flex: 1;
     flex-direction: column;
    
     
@@ -68,15 +70,23 @@ export default function Donorrequest({navigation})
          
             <Wrapper>
             <Container >
+              
                 <Heading>
-                <Text fontWeight="600" fontSize={32} pt={20}>New Requests</Text>
+                    <Text fontWeight="600" fontSize={32} pt={20}>New Requests</Text>
+
+                  <ReqCont>
+                    <RequestCard nameText="Adam Sandler" timeText="4:30pm" dateText="November 5th"profileImg={Adam} itemImg={Chair} onpress={() => {navigation.navigate('ItemRequests')}}/>
+                  </ReqCont>
+
+                </Heading>
+
+                <Heading>
+                    <Text fontWeight="600" fontSize={32} pt={20}>Scheduled Pickups</Text>
                 <ReqCont>
-                <RequestCard profileImg={Julian} itemImg={Toaster} onpress={() => {navigation.navigate('ItemRequests')}}/>
+                    <RequestCard profileImg={Julian} itemImg={Toaster} pickupText={"Pickup Scheduled:"} fontColor="#6CAF61" onpress={() => {navigation.navigate('ItemRequests')}}/>
                 </ReqCont>
                 </Heading>
-                <Heading>
-                <Text fontWeight="600" fontSize={32} pt={20}>Scheduled Pickups</Text>
-                </Heading>
+
             
           
             </Container>
