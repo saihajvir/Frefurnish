@@ -20,7 +20,6 @@ import NewListing from './pages/NewListing';
 import donorHome from './pages/donorhome';
 import donorListing from './pages/donorlisting';
 import Whomepage from './pages/workerhomepage';
-import AllListing from './pages/listings';
 import Viewlisting from './pages/viewlisting';
 import Market from './pages/listings';
 import Donorrequest from './pages/donorrequest';
@@ -31,6 +30,10 @@ import RequestCard from './comps/RequestCard';
 import MainPost from './comps/MainPost';
 import Requestdecline from './pages/requestdecline';
 import Requesterror from './pages/requesterror';
+import Profile from './pages/profile'
+import Requested from './pages/requested';
+import Approved from './pages/approved';
+import Declined from './pages/declined';
 
 
 const ffTheme = {
@@ -68,6 +71,8 @@ export default function App() {
         <Stack.Screen name="ItemRequests" component={ItemRequests} options={{title: 'Item Requests', headerStyle: {backgroundColor: '#EB8D8D'}, headerTintColor: '#FFF'}}/>
         <Stack.Screen name="Requestdecline" component={Requestdecline} options={{title: 'Requested Items', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
         <Stack.Screen name="Requesterror" component={Requesterror} options={{title: 'Requested Items', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
+        {/* <Stack.Screen name="Intro" component={Intro} /> */}
+        <Stack.Screen name="Profile" component={Declined} />
       </Stack.Navigator>
     </ThemeProvider>
     </NavigationContainer>
