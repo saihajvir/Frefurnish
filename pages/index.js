@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { ScrollView, View } from "react-native";
 
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image } from 'react-native-magnus';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 import MainButton from '../comps/MainButton/index';
 import BottomNav from '../comps/BottomNavBar';
@@ -18,6 +19,7 @@ import Background from '../assets/background.png';
 
 import ReqItem from "../comps/ReqItem";
 import { StatusBar } from "expo-status-bar";
+import SignIn from "../comps/SignIn";
 
 const ffTheme = {
     colors: {
@@ -63,6 +65,7 @@ const Heading = styled.Text`
     color: ${props=>props.textcol};
 `
 
+
 export default function Landing({
     navigation,
     bg='#92A8F8',
@@ -72,9 +75,9 @@ export default function Landing({
 })
 {
     const [state, nextState] = useState(0);
-
+    
     const [user, setUser] = useState('');
-
+    
     function HandleTypePress()
     {
         if(user === 'worker')
@@ -88,6 +91,18 @@ export default function Landing({
             nextState(state)
         }
     }
+    
+    //FIREBASE CREATE ACCOUNT AND SIGN IN
+    const FBCreateUser = async(email, password)=>{
+        const auth = getAuth();
+        const result = await createUserWithEmailAndPassword(auth, email, password)
+        alert('Created!')
+      }
+      const FBSignIn = async(email, password)=>{
+        const auth = getAuth();
+        const result = await signInWithEmailAndPassword(auth, email, password)
+        alert('Signed In!')
+      }
 
     if(state === 0)
     {
@@ -104,7 +119,6 @@ export default function Landing({
                 <Image source={Logo} w={223} h={234}/>
             </Container>
             <BottomContainer flex='0.5'>
-                {/* <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {navigation.navigate("Intro")}}/> */}
                 <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {nextState (state + 1)}}/>
             </BottomContainer>
             </Wrapper>
@@ -154,7 +168,7 @@ export default function Landing({
             </TopContainer>
             <Container flex='2'>
                 <UploadImage uploadText='Profile Image'/>
-                <UserInput/>
+                <UserInput onCreate={FBCreateUser}/>
             </Container>
             <BottomContainer flex='1'> 
                 <MainButton buttonText={'Next'} bg="periwinkle" textColor='white' onPress={() => {nextState (state + 1)}}/>
@@ -163,8 +177,30 @@ export default function Landing({
         </ThemeProvider>
         )
     }
-
     if(state === 3)
+    {
+        return (
+            <ThemeProvider theme={ffTheme}>
+                <StatusBar />
+                <Wrapper bg='#92A8F8'>
+                    <TopContainer flex='0.7' alignItems='flex-start'>
+                        <Heading textcol='#FFF'>
+                            Sign In
+                        </Heading>
+                    </TopContainer>
+                    <Container flex='2'>
+                        <Image source={Logo} w={223} h={234} mt={50} mb={40}/>
+                        <SignIn onSignIn={FBSignIn}/>
+                    </Container>
+                    <BottomContainer flex='1'>
+                        <MainButton buttonText={'Next'} bg="white" textColor='periwinkle' onPress={() => {nextState (state + 1)}}/>
+                    </BottomContainer>
+                </Wrapper>
+            </ThemeProvider>
+        )
+    }
+
+    if(state === 4)
     {
         return(
             <ThemeProvider theme={ffTheme}>
@@ -176,11 +212,10 @@ export default function Landing({
                 </Heading>
             </TopContainer>
             <Container flex='2'>
-                <Image source={ChairIcon} w={160} h={220}/>
+                <Image source={Logo} w={223} h={234}/>
             </Container>
             <BottomContainer flex='0.5'>
                 <MainButton buttonText={'Enter'} bg="white" textColor='periwinkle' onPress={() => {user === 'worker' ? navigation.navigate("Whomepage") : navigation.navigate("donorHome")}}/>
-                {/* <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {nextState (state + 1)}}/> */}
             </BottomContainer>
             </Wrapper>
         </ThemeProvider> 
