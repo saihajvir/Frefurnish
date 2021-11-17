@@ -6,85 +6,33 @@ import LottieView from 'lottie-react-native';
 import {  SafeAreaView, FlatList } from 'react-native';
 import {Div, ThemeProvider, Button, Input, Icon, Image, Textarea,} from 'react-native-magnus';
 import Constants from 'expo-constants';
+import MainButton from '../MainButton';
 
-export default class UserInput extends React.Component {
-    render() {
+const TextInp = styled.TextInput`
+    height: 50px;
+    width: 100%;
+    background-color: white;
+    border: solid 1px #92A8F8;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+`
+
+export default function UserInput ({
+    onCreate=()=>{}
+})
+{
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+
     return (
     <ThemeProvider>
-            <SafeAreaView style={{ flex: 1 }}>
-            <Div pt={10}>
-
-                <Input shadow="sm"
-                placeholder="Name"
-                focusBorderColor="#92A8F8"
-                w={396}
-                />
-
-                </Div>
-        
-            <Div pt={10}>
-
-            <Input shadow="sm"
-            placeholder="Email Address"
-            mt="md"
-            focusBorderColor="#92A8F8"
-            w={396}
-            />
-
-            </Div>
-
-            <Div pt={10}>
-                
-
-            <Input shadow="sm"
-            placeholder="Password"
-            mt="md"
-            secureTextEntry
-            focusBorderColor="#92A8F8"
-            />
-
-            </Div>
-
-            <Div pt={10}>
-
-            <Input shadow="sm"
-            placeholder="Verfiy your Password"
-            mt="md"
-            secureTextEntry
-            focusBorderColor="#92A8F8"
-            />
-
-            </Div>
-
-            <Div pt={20}>
-
-            <Input shadow="sm"
-            placeholder="Phone Number"
-            focusBorderColor="#92A8F8"
-            w={396}
-            />
-
-            </Div>
-
-            <Div pt={20}>
-
-            <Input shadow="sm"
-            placeholder="Description"
-            focusBorderColor="#92A8F8"
-            w={396}
-            h={100}
-            />
-
-            </Div>
-
-
-            </SafeAreaView>
+            <TextInp type='text' placeholder='Name' />
+            <TextInp type='text' placeholder='Email' onChangeText={(val)=>setEmail(val)}/>
+            <TextInp type='text' secureTextEntry placeholder='Password' onChangeText={(val)=>setPassword(val)}/>
+            <TextInp type='number' placeholder='Phone Number'/>
+            <MainButton iconName='person-circle-outline' bg='#92A8F8' textColor='white' buttonText='Create Account' onPress={()=>onCreate(email, password)}/>
     </ThemeProvider>
-       
-       
-        
-
         
     );
  }
-}
