@@ -152,13 +152,14 @@ flex: 1;
 `
 const FlexCont2 = styled.View`
 flex: 4;
+justify-content: center;
+align-items: center;
+display:flex;
 
 `
 const AnimCont1 = styled.View`
-width: 100px;
-height: 100px;
-justify-content: center;
-align-items: center;
+width: 80%;
+height: 80%;
 
 `
 export default function Donorrequest({navigation})
@@ -196,7 +197,7 @@ export default function Donorrequest({navigation})
 
 <FlexCont2>
     <AnimCont1>
-        <LottieView style={{alignSelf:"center", marginRight: 80}}width={150} height={150} source={require('../assets/home.json')} autoPlay loop ></LottieView>
+        <LottieView style={{display: "flex", justifyContent:"center", alignItems: "center",}} source={require('../assets/home.json')} autoPlay loop ></LottieView>
     </AnimCont1>
 </FlexCont2>
       
