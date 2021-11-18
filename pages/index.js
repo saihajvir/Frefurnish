@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import styled from "styled-components";
-import { ScrollView, View } from "react-native";
+import { ScrollView, View, ImageBackground, StyleSheet} from "react-native";
 
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image } from 'react-native-magnus';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
@@ -19,6 +19,8 @@ import Background from '../assets/background.png';
 
 import ReqItem from "../comps/ReqItem";
 import { StatusBar } from "expo-status-bar";
+import Gradient from '../assets/frefurnish-gradient.png';
+import DonorGradient from '../assets/gradient-donor.png';
 import SignIn from "../comps/SignIn";
 
 const ffTheme = {
@@ -35,7 +37,14 @@ const Wrapper = styled.View`
     padding: 0 16px 0 16px;
     justify-content: center;
     align-items: center;
-    background-color: ${props=>props.bg};
+    
+`
+const WrapperImage = styled.View`
+    flex: 1;
+    padding: 0 16px 0 16px;
+    justify-content: center;
+    align-items: center;
+    background-image: url(${Background});
 `
 const TopContainer = styled.View`
     flex: ${props=>props.flex};
@@ -130,28 +139,32 @@ export default function Landing({
         return(
             <ThemeProvider theme={ffTheme}>
             <StatusBar/>
+            <ImageBackground source={Background} style={styles.container}>
             <Wrapper bg="#FFF">
             <TopContainer flex='1' alignItems='flex-start'>
-                <Heading textcol='#92A8F8'>
+                <Heading textcol='white'>
                     What's your purpose?
                 </Heading>
             </TopContainer>
             <Container flex='3'>
-                <UserCard
+                <UserCard 
+                    GradImg={Gradient}
                     descriptionText='Social workers are individuals who are looking to find listings that will help improve or sustain the quality of life at the social home they work at. Social workers are the only type of user eligible to receive donations.'
                     userType='Social Worker'
                     setUser={setUser}
                 />
                 <UserCard
+                    GradImg={DonorGradient}
                     descriptionText='Donors are individuals and vendors that are looking to donate their personal items or lightly used returned items and excess inventory.'
                     userType='Donor'
                     setUser={setUser}
                 />
             </Container>
             <BottomContainer flex='1'>
-                <MainButton buttonText={'Next'} bg="periwinkle" textColor='white' onPress={HandleTypePress}/>
+                <MainButton buttonText={'Next'} bg="white" textColor='#EAAB97' onPress={HandleTypePress}/>
             </BottomContainer>
             </Wrapper>
+            </ImageBackground>
         </ThemeProvider>
         )
     }
@@ -224,3 +237,11 @@ export default function Landing({
     }
 
 }
+
+const styles = StyleSheet.create({
+    container:{
+        flex:1,
+       
+        
+    }
+})

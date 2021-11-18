@@ -17,14 +17,14 @@ export default function UploadImage ({
         <Div
             justifyContent="center"
             alignItems="center"
-            bg='periwinkle'
+            bg='white'
             rounded='circle'
-            h={150}
-            w={150}
+            h={125}
+            w={125}
             m={20}
         >
             <Text
-                color="white"
+                color="periwinkle"
                 fontWeight="600"
                 m={10}
             >
@@ -34,7 +34,7 @@ export default function UploadImage ({
              <Icon
             name={iconName}
             fontFamily={iconFamily}
-            color='white'
+            color='periwinkle'
             fontSize={34}
             />
 

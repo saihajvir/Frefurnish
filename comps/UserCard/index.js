@@ -7,11 +7,13 @@ import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image } from 'react-
 
 import Gradient from '../../assets/frefurnish-gradient.png'
 
+
 export default function UserCard({
     descriptionText="default",
     userType="User",
     bg='gray100',
-    setUser
+    setUser,
+    GradImg={Gradient},
 })
 {
     const [pressed, setPressed] = useState(false);
@@ -42,7 +44,7 @@ export default function UserCard({
             <Div
                 w={396}
                 h={165}
-                bgImg={Gradient}
+                bgImg={GradImg}
                 justifyContent='center'
                 alignItems='center'
                 p="lg"
@@ -83,7 +85,7 @@ export default function UserCard({
         <Div
             w={396}
             h={38}
-            bgImg={Gradient}
+            bgImg={GradImg}
             alignSelf='flex-end'
         >
             <Text pt='sm' pl="lg" fontWeight='600' fontSize={18} color='white'>
