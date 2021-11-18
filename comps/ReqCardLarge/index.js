@@ -80,9 +80,10 @@ const Date = styled.Text`
 
 
 export default function ReqCardLarge ({
-    pickupText = "Pickup Request",
+    pickupText = "Pick Up Request",
     timeText = "1:30pm",
     dateText = "November 1st",
+    textColor = "#6CAF61",
     itemImg
 })
 
@@ -90,8 +91,9 @@ export default function ReqCardLarge ({
     return (
         <Card>
             <Left>
-                <PickupCont>
-                    <Pickup>
+                <PickupCont
+                color={textColor}>
+                    <Pickup>    
                         {pickupText}
                     </Pickup>
                 </PickupCont>

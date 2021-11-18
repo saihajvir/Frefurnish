@@ -81,9 +81,9 @@ export default function Donorrequest({navigation})
                 </Heading>
 
                 <Heading>
-                    <Text fontWeight="600" fontSize={32} pt={20}>Scheduled Pickups</Text>
+                    <Text fontWeight="600" fontSize={32} pt={20}>Scheduled Pick Ups</Text>
                 <ReqCont>
-                    <RequestCard profileImg={Julian} itemImg={Toaster} pickupText={"Pickup Scheduled:"} fontColor="#6CAF61" onpress={() => {navigation.navigate('ItemRequests')}}/>
+                    <RequestCard profileImg={Julian} itemImg={Toaster} pickupText={"Pickup Scheduled:"} fontColor="#6CAF61" onpress={() => {navigation.navigate('ReqSchedule')}}/>
                 </ReqCont>
                 </Heading>
 
