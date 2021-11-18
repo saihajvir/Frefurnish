@@ -19,8 +19,10 @@ color: #7f7f7f;
 
 export default function WorkerProfile({
     name='Julian Mayes',
+
     workPlace='Milieu - Children Family Services',
     profileImg = "https://images.unsplash.com/photo-1593642532400-2682810df593?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60 ",
+    onPress
 })
 
 {
@@ -29,7 +31,7 @@ export default function WorkerProfile({
         w="100%"
         flexDir="row"
         bg="#00000000"
-        mt={25}
+       
         mb={40}
         h={90}
         underlayColor="red100"

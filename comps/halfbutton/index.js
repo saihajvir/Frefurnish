@@ -12,6 +12,7 @@ export default function HalfButton({
     borderWidth='1',
     borderColor='salmon',
     marginRight,
+    onPress
 }) 
 {
     return (
@@ -27,6 +28,7 @@ export default function HalfButton({
             fontWeight='500'
             borderWidth={1}
             borderColor={borderColor}
+            onPress={onPress}
         >
             {buttonText}
         </Button>

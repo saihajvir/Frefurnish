@@ -63,7 +63,7 @@ const ReqCont = styled.View`
 
 
 
-export default function Donorrequest({navigation})
+export default function ReqSchedule({navigation})
 {
     return (
         <ThemeProvider theme={ffTheme}>
