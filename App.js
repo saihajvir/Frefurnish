@@ -36,6 +36,8 @@ import Profile from './pages/profile'
 import Requested from './pages/requested';
 import Approved from './pages/approved';
 import Declined from './pages/declined';
+import Requestapproved from './pages/requestpending';
+import Requestpending from './pages/requestpending';
 
 
 const ffTheme = {
@@ -71,7 +73,9 @@ export default function App() {
         <Stack.Screen name="Viewlisting" component={Viewlisting} options={{title: 'Listing', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
         <Stack.Screen name="Donorrequest" component={Donorrequest} options={{title: 'Requests', headerStyle: {backgroundColor: '#EB8D8D'}, headerTintColor: '#FFF'}}/>
         <Stack.Screen name="ItemRequests" component={ItemRequests} options={{title: 'Item Requests', headerStyle: {backgroundColor: '#EB8D8D'}, headerTintColor: '#FFF'}}/>
+        <Stack.Screen name="Requested" component={Requested} options={{title: 'Item Requests', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
         <Stack.Screen name="Requestdecline" component={Requestdecline} options={{title: 'Requested Items', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
+        <Stack.Screen name="Requestpending" component={Requestpending} options={{title: 'Requested Items', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
         <Stack.Screen name="Requesterror" component={Requesterror} options={{title: 'Requested Items', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
         {/* <Stack.Screen name="Intro" component={Intro} /> */}
         <Stack.Screen name="Profile" component={Declined} />

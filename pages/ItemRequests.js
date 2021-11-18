@@ -106,8 +106,9 @@ font-weight: bold;
 color: #E25C5C;
 `
 const ButtonCont = styled.View`
-flex-direction: row;
-margin-top: 140px;
+    justify-content: space-around;
+    flex-direction: row;
+    box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
 `
 
 
@@ -131,7 +132,7 @@ export default function Donorrequest({navigation})
                   </MessageTitle>
 
                   <MessageText>
-                  If this time works for you press<Approve> approve</Approve>to send your location and contact information.  
+                  If this time works for you press<Approve> approve </Approve>to send your location and contact information.  
                   </MessageText>
 
                   <MessageText>
@@ -142,12 +143,8 @@ export default function Donorrequest({navigation})
 
                 <ButtonCont>
 
-                  <HalfButton 
-                  bg="#6CAF61" borderColor="#6CAF61" buttonText="Approve" marginRight={16}>
-                  </HalfButton>
-                  <HalfButton
-                  bg="#E25C5C" borderColor="#E25C5C" buttonText="Decline">
-                  </HalfButton>
+                <HalfButton buttonText="Approve" borderColor="#6CAF61" shadow="md" bg="#6CAF61"/>
+                <HalfButton buttonText="Decline" borderColor="#EB8D8D" bg="#EB8D8D" shadow="md"/>
 
                 </ButtonCont>
           
