@@ -18,8 +18,8 @@ import WorkerProfile from "../comps/WorkerProfile";
 import HalfButton from "../comps/halfbutton";
 
 import Toaster from '../assets/toaster.jpg';
-import Julian from '../assets/julian.png'
 import Chair from '../assets/aeron.jpg';
+import Julian from '../assets/julian.png';
 import Adam from '../assets/adam.jpeg';
 
 
@@ -177,182 +177,216 @@ height: 60%;
 export default function ReqSchedule({navigation})
 {
   const [state, setState] = useState();
-  function handleApprovePress(){
-    setState("approved")
+
+  function handleYesPress(){
+    setState("yes")
     console.log(state)
   }
 
-  function handleDeclinePress(){
-    setState("decline")
+  function handleNoPress(){
+    setState("no")
+  }
+
+  function handleRenewPress(){
+    setState("renew")
+  }
+
+  function handleRemovePress(){
+    setState("remove")
   }
     
     
-    if (state === "approved"){
-
-    
-    return (
-
-      <ThemeProvider theme={ffTheme}>
-         
-      <Wrapper>
-<FlexCont>
-        <Title>
-            Thank you
-        </Title>
-</FlexCont>
-
-<FlexCont>
-        <Content>
-          You’ve helped reduce waste and provided furniture to a home in need
-        </Content>
-</FlexCont>
-
-<FlexCont2>
-    <AnimCont1>
-        <LottieView style={{display: "flex", justifyContent:"center", alignItems: "center",}} source={require('../assets/home.json')} autoPlay loop ></LottieView>
-    </AnimCont1>
-</FlexCont2>
-      
-
-
-<FlexCont>
-        <MidText>
-          Your item has been removed from the listings page
-        </MidText>
-        <MidText></MidText>
-        <MidText>
-        If you have more items you would like to list click <SalmonText>below</SalmonText>
-        </MidText>
-</FlexCont>
-
-
-        <MainButton iconName="" bg="salmon" buttonText="Create New Listing" onPress={() => {navigation.navigate('NewListing')}}/>
-
-        </Wrapper>
-     
-        <DonorBottomNav 
-            GoHome={() => {navigation.navigate('donorHome')}}
-            GoListings={() => {navigation.navigate('NewListing')}}
-            GoRequests={() => {navigation.navigate('Donorrequest')}}
-            GoProfile={() => {navigation.navigate('DonorProfile')}}
-        />
-    </ThemeProvider>
-
-    )
-  }
-  
-  if (state === "decline"){
+if (state === "yes"){
   return (
+
     <ThemeProvider theme={ffTheme}>
-            <Wrapper>
-<FlexCont>
-        <Title>
-            We're sorry
-        </Title>
-</FlexCont>
-
-<FlexCont>
-        <Content>
-          Unfortunately your item was not picked up
-        </Content>
-</FlexCont>
-
-<FlexCont2>
-    <AnimCont2>
-        <LottieView style={{display: "flex", justifyContent:"center", alignItems: "center",}} source={require('../assets/box.json')} autoPlay loop ></LottieView>
-    </AnimCont2>
-</FlexCont2>
-      
-<FlexCont>
-</FlexCont>
-
-<FlexCont>
-        <MidText>
-          To relist your item for 7 days press <GreenText>renew</GreenText>
-        </MidText>
-        <MidText></MidText>
-        <MidText>
-        To unlist your item press <SalmonText>remove</SalmonText>
-        </MidText>
-        
-</FlexCont>
-
-
-        <ButtonCont>
-
-          <HalfButton 
-          onPress={handleApprovePress} bg="#6CAF61" borderColor="#6CAF61" buttonText="Renew" marginRight={55}>
-          </HalfButton>
-          <HalfButton
-          onPress={handleDeclinePress} bg="#E25C5C" borderColor="#E25C5C" buttonText="Remove">
-          </HalfButton>
-
-        </ButtonCont>
-       
-
-        </Wrapper>
-
-
-      
-     
-        <DonorBottomNav 
-            GoHome={() => {navigation.navigate('donorHome')}}
-            GoListings={() => {navigation.navigate('NewListing')}}
-            GoRequests={() => {navigation.navigate('Donorrequest')}}
-            GoProfile={() => {navigation.navigate('DonorProfile')}}
-        />
+      <Wrapper>
+          <FlexCont>
+                <Title>
+                    Thank you
+                </Title>
+          </FlexCont>
+          <FlexCont>
+                <Content>
+                    You’ve helped reduce waste and provided furniture to a home in need
+                </Content>
+          </FlexCont>
+          <FlexCont2>
+              <AnimCont1>
+                  <LottieView style={{display: "flex", justifyContent:"center", alignItems: "center",}} source={require('../assets/home.json')} autoPlay loop ></LottieView>
+              </AnimCont1>
+          </FlexCont2>
+          <FlexCont>
+              <MidText>
+                  Your item has been removed from the listings page
+              </MidText>
+                  <MidText></MidText>
+              <MidText>
+                  If you have more items you would like to list click <SalmonText>below</SalmonText>
+              </MidText>
+          </FlexCont>
+              <MainButton iconName="" bg="salmon" buttonText="Create New Listing" onPress={() => {navigation.navigate('NewListing')}}/>
+      </Wrapper>
+                  <DonorBottomNav 
+                      GoHome={() => {navigation.navigate('donorHome')}}
+                      GoListings={() => {navigation.navigate('NewListing')}}
+                      GoRequests={() => {navigation.navigate('Donorrequest')}}
+                      GoProfile={() => {navigation.navigate('DonorProfile')}}
+                  />
     </ThemeProvider>
   )
 }
+      
+if (state === "no"){
+  return (
 
-
-    return (
-        <ThemeProvider theme={ffTheme}>
-         
-            <Wrapper>
-            <Container >
-              
-            <WorkerProfile name="Julian Mayes" profileImg={Julian}></WorkerProfile>
-        
-        <ReqCardLarge pickupText="Pick Up Scheduled:" TextColor="#6CAF61" itemImg={Toaster} timeText="1:30pm" dateText="November 1st"/>
-
-        <MessageCont>
-
-          <MessageTitle>
-            Has someone picked up this item?
-          </MessageTitle>
-
-          <MessageText>
-          Press<Approve> yes</Approve> if your item was picked up successfully
-          </MessageText>
-
-          <MessageText>
-          If your pick up missed or cancelled press <Decline> no</Decline>
-          </MessageText>
-
-        </MessageCont>
-
-        <ButtonCont>
-
-          <HalfButton 
-          onPress={handleApprovePress} bg="#6CAF61" borderColor="#6CAF61" buttonText="Yes" marginRight={55}>
-          </HalfButton>
-          <HalfButton
-          onPress={handleDeclinePress}  bg="#E25C5C" borderColor="#E25C5C" buttonText="No">
-          </HalfButton>
-
-        </ButtonCont>
-          
-            </Container>
-            </Wrapper>
-         
+    <ThemeProvider theme={ffTheme}>
+        <Wrapper>
+          <FlexCont>
+            <Title>
+              We're Sorry
+            </Title>
+          </FlexCont>
+            <FlexCont>
+              <Content>
+                Unfortunately your item was not picked up
+              </Content>
+            </FlexCont>
+            <FlexCont2>
+              <AnimCont2>
+                <LottieView style={{display: "flex", justifyContent:"center", alignItems: "center",}} source={require('../assets/box.json')} autoPlay loop ></LottieView>
+              </AnimCont2>
+            </FlexCont2>
+              <FlexCont/>
+            <FlexCont>
+                <MidText>
+                  To relist your item for 7 days press <GreenText>renew</GreenText>
+                </MidText>
+                    <MidText/>
+                <MidText>
+                  To unlist your item press <SalmonText>remove</SalmonText>
+                </MidText>
+            </FlexCont>
+            <ButtonCont>
+                <HalfButton 
+                onPress={handleRenewPress} bg="#6CAF61" borderColor="#6CAF61" buttonText="Renew" marginRight={55}>
+                </HalfButton>
+                <HalfButton
+                onPress={handleRemovePress} bg="#E25C5C" borderColor="#E25C5C" buttonText="Remove">
+                </HalfButton>
+            </ButtonCont>
+        </Wrapper>
             <DonorBottomNav 
                 GoHome={() => {navigation.navigate('donorHome')}}
                 GoListings={() => {navigation.navigate('NewListing')}}
                 GoRequests={() => {navigation.navigate('Donorrequest')}}
                 GoProfile={() => {navigation.navigate('DonorProfile')}}
             />
-            
-        </ThemeProvider>
-    )
+    </ThemeProvider>
+  )
+}
+
+if (state === "renew"){
+  return(
+    <ThemeProvider>
+      <Wrapper>
+        <FlexCont>
+          <Title>
+            Your Item Was Renewed 
+          </Title>
+        </FlexCont>
+        <FlexCont>
+          <Content>
+            Your item will be visible for another 7 days
+          </Content>
+        </FlexCont>
+        <FlexCont2>
+          <AnimCont2>
+                <LottieView style={{display: "flex", justifyContent:"center", alignItems: "center",}} source={require('../assets/check.json')} autoPlay loop ></LottieView>
+            </AnimCont2>
+        </FlexCont2>
+        <FlexCont2/>
+        
+        <MainButton iconName="" bg="salmon" buttonText="View Listing" onPress={() => {navigation.navigate('donorListing')}}/>
+      </Wrapper>
+        <DonorBottomNav 
+        GoHome={() => {navigation.navigate('donorHome')}}
+        GoListings={() => {navigation.navigate('NewListing')}}
+        GoRequests={() => {navigation.navigate('Donorrequest')}}
+        GoProfile={() => {navigation.navigate('DonorProfile')}}
+        />
+    </ThemeProvider>
+  )
+}
+
+
+if (state === "remove"){
+  return(
+    <ThemeProvider>
+      <Wrapper>
+        <FlexCont>
+          <Title>
+            Your Item Was Removed
+          </Title>
+        </FlexCont>
+        <FlexCont>
+          <Content>
+            Thank you, if you have more items you would like to donate press below
+          </Content>
+        </FlexCont>
+        <FlexCont2>
+        <AnimCont2>
+                <LottieView style={{display: "flex", justifyContent:"center", alignItems: "center",}} source={require('../assets/remove.json')} autoPlay loop ></LottieView>
+            </AnimCont2>
+        </FlexCont2>
+        <FlexCont2/>
+        <MainButton iconName="" bg="salmon" buttonText="Create Listing" onPress={() => {navigation.navigate('NewListing')}}/>
+      </Wrapper>
+        <DonorBottomNav 
+        GoHome={() => {navigation.navigate('donorHome')}}
+        GoListings={() => {navigation.navigate('NewListing')}}
+        GoRequests={() => {navigation.navigate('Donorrequest')}}
+        GoProfile={() => {navigation.navigate('DonorProfile')}}
+        />
+    </ThemeProvider>
+  )
+}
+
+
+return (
+
+    <ThemeProvider theme={ffTheme}>
+        <Wrapper>
+          <Container >
+            <WorkerProfile name="Julian Mayes" profileImg={Julian}></WorkerProfile>
+            <ReqCardLarge pickupText="Pick Up Scheduled:" TextColor="#6CAF61" itemImg={Toaster} timeText="1:30pm" dateText="November 1st"/>
+            <MessageCont>
+                <MessageTitle>
+                  Has someone picked up this item?
+                </MessageTitle>
+                <MessageText>
+                  Press<Approve> yes</Approve> if your item was picked up successfully
+                </MessageText>
+                <MessageText>
+                  If your pick up missed or cancelled press <Decline> no</Decline>
+                </MessageText>
+            </MessageCont>
+            <ButtonCont>
+                <HalfButton 
+                onPress={handleYesPress} bg="#6CAF61" borderColor="#6CAF61" buttonText="Yes" marginRight={55}>
+                </HalfButton>
+                <HalfButton
+                onPress={handleNoPress}  bg="#E25C5C" borderColor="#E25C5C" buttonText="No">
+                </HalfButton>
+            </ButtonCont>
+          </Container>
+        </Wrapper>
+            <DonorBottomNav 
+                GoHome={() => {navigation.navigate('donorHome')}}
+                GoListings={() => {navigation.navigate('NewListing')}}
+                GoRequests={() => {navigation.navigate('Donorrequest')}}
+                GoProfile={() => {navigation.navigate('DonorProfile')}}
+            />
+    </ThemeProvider>
+  )
 }
