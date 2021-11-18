@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StyleSheet, View, AppRegistry } from 'react-native';
+import axios from 'axios';
+import app from './utils/initfb';
 
 import styled from 'styled-components';
 import LottieView from 'lottie-react-native';

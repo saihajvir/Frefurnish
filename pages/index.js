@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { ScrollView, View, ImageBackground, StyleSheet} from "react-native";
 
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image } from 'react-native-magnus';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 import MainButton from '../comps/MainButton/index';
 import BottomNav from '../comps/BottomNavBar';
@@ -20,6 +21,7 @@ import ReqItem from "../comps/ReqItem";
 import { StatusBar } from "expo-status-bar";
 import Gradient from '../assets/frefurnish-gradient.png';
 import DonorGradient from '../assets/gradient-donor.png';
+import SignIn from "../comps/SignIn";
 
 const ffTheme = {
     colors: {
@@ -82,9 +84,9 @@ export default function Landing({
 })
 {
     const [state, nextState] = useState(0);
-
+    
     const [user, setUser] = useState('');
-
+    
     function HandleTypePress()
     {
         if(user === 'worker')
@@ -98,28 +100,37 @@ export default function Landing({
             nextState(state)
         }
     }
+    
+    //FIREBASE CREATE ACCOUNT AND SIGN IN
+    const FBCreateUser = async(email, password)=>{
+        const auth = getAuth();
+        const result = await createUserWithEmailAndPassword(auth, email, password)
+        alert('Created!')
+      }
+      const FBSignIn = async(email, password)=>{
+        const auth = getAuth();
+        const result = await signInWithEmailAndPassword(auth, email, password)
+        alert('Signed In!')
+      }
 
     if(state === 0)
     {
     return (
         <ThemeProvider theme={ffTheme}>
-        <StatusBar/>
-            <ImageBackground source={Background} style={styles.container}>
-                <Wrapper>
-                <TopContainer flex='1' alignItems='center'>
-                    <Heading textcol='#FFF'>
-                        Welcome to Frefurnish
-                    </Heading>
-                </TopContainer>
-                <Container flex='2'>
-                    <Image source={Logo} w={223} h={234}/>
-                </Container>
-                <BottomContainer flex='0.5'>
-                    {/* <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {navigation.navigate("Intro")}}/> */}
-                    <MainButton buttonText={'Get Started'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/>
-                </BottomContainer>
-                </Wrapper>
-            </ImageBackground>
+            <StatusBar/>
+            <Wrapper bg='#92A8F8' >
+            <TopContainer flex='1' alignItems='center'>
+                <Heading textcol='#FFF'>
+                    Welcome to Frefurnish
+                </Heading>
+            </TopContainer>
+            <Container flex='2'>
+                <Image source={Logo} w={223} h={234}/>
+            </Container>
+            <BottomContainer flex='0.5'>
+                <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {nextState (state + 1)}}/>
+            </BottomContainer>
+            </Wrapper>
         </ThemeProvider>
     )}
 
@@ -162,47 +173,64 @@ export default function Landing({
         return(
             <ThemeProvider theme={ffTheme}>
             <StatusBar/>
-            <ImageBackground source={Background} style={styles.container}>
-                <Wrapper bg="#FFF">
-                <TopContainer flex='0.7' alignItems='flex-start'>
-                    <Heading textcol='white'>
-                        Create your account
-                    </Heading>
-                </TopContainer>
-                <Container flex='2'>
-                    <UploadImage uploadText='Profile Image'/>
-                    <UserInput/>
-                </Container>
-                <BottomContainer flex='1'> 
-                    <MainButton buttonText={'Next'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/>
-                </BottomContainer>
-                </Wrapper>
-            </ImageBackground>
+            <Wrapper bg="#FFF">
+            <TopContainer flex='0.7' alignItems='flex-start'>
+                <Heading textcol='#92A8F8'>
+                    Create your account
+                </Heading>
+            </TopContainer>
+            <Container flex='2'>
+                <UploadImage uploadText='Profile Image'/>
+                <UserInput onCreate={FBCreateUser}/>
+            </Container>
+            <BottomContainer flex='1'> 
+                <MainButton buttonText={'Next'} bg="periwinkle" textColor='white' onPress={() => {nextState (state + 1)}}/>
+            </BottomContainer>
+            </Wrapper>
         </ThemeProvider>
         )
     }
-
     if(state === 3)
+    {
+        return (
+            <ThemeProvider theme={ffTheme}>
+                <StatusBar />
+                <Wrapper bg='#92A8F8'>
+                    <TopContainer flex='0.7' alignItems='flex-start'>
+                        <Heading textcol='#FFF'>
+                            Sign In
+                        </Heading>
+                    </TopContainer>
+                    <Container flex='2'>
+                        <Image source={Logo} w={223} h={234} mt={50} mb={40}/>
+                        <SignIn onSignIn={FBSignIn}/>
+                    </Container>
+                    <BottomContainer flex='1'>
+                        <MainButton buttonText={'Next'} bg="white" textColor='periwinkle' onPress={() => {nextState (state + 1)}}/>
+                    </BottomContainer>
+                </Wrapper>
+            </ThemeProvider>
+        )
+    }
+
+    if(state === 4)
     {
         return(
             <ThemeProvider theme={ffTheme}>
             <StatusBar/>
-            <ImageBackground source={Background} style={styles.container}>
-                <Wrapper bg='#92A8F8'>
-                <TopContainer flex='1' alignItems='center'>
-                    <Heading textcol='#FFF'>
-                        All done. Let's Begin!
-                    </Heading>
-                </TopContainer>
-                <Container flex='2'>
-                    <Image source={Logo} w={223} h={234}/>
-                </Container>
-                <BottomContainer flex='0.5'>
-                    <MainButton buttonText={'Enter'} bg="white" textColor='#EAAB97' onPress={() => {user === 'worker' ? navigation.navigate("Whomepage") : navigation.navigate("donorHome")}}/>
-                    {/* <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {nextState (state + 1)}}/> */}
-                </BottomContainer>
-                </Wrapper>
-            </ImageBackground>
+            <Wrapper bg='#92A8F8'>
+            <TopContainer flex='1' alignItems='center'>
+                <Heading textcol='#FFF'>
+                    All done. Let's Begin!
+                </Heading>
+            </TopContainer>
+            <Container flex='2'>
+                <Image source={Logo} w={223} h={234}/>
+            </Container>
+            <BottomContainer flex='0.5'>
+                <MainButton buttonText={'Enter'} bg="white" textColor='periwinkle' onPress={() => {user === 'worker' ? navigation.navigate("Whomepage") : navigation.navigate("donorHome")}}/>
+            </BottomContainer>
+            </Wrapper>
         </ThemeProvider> 
         )
                     
