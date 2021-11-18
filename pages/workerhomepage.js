@@ -72,8 +72,8 @@ export default function Whomepage({route, navigation, flex='1'})
                 <Container>
                     <ScrollView horizontal={true}>
                         <Div flexDir="row">
-                            <ReqItem itemOpacity={0.7} imgSrc={Toaster} onpress={() => {navigation.navigate("Requests")}}/>
-                            <ReqItem itemOpacity={0.7} itemTitle={"Kitchen Chairs"} imgSrc={KitchenChairs} itemStatus={"Declined"} borderColor={"#EB8D8D"}onpress={() => {navigation.navigate("Requests")}}/>
+                            <ReqItem itemOpacity={0.7} imgSrc={Toaster} onpress={() => {navigation.navigate('Requested')}}/>
+                            <ReqItem itemOpacity={0.7} itemTitle={"Kitchen Chairs"} imgSrc={KitchenChairs} itemStatus={"Declined"} borderColor={"#EB8D8D"} onpress={() => {navigation.navigate('Requestdecline')}}/>
                         </Div>
                     </ScrollView>
                 </Container>

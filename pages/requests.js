@@ -57,7 +57,7 @@ export default function Requests({ route, navigation }) {
         <Text fontWeight="bold" fontSize={30} mt={20} mb={10} color="#98C791">Approved</Text>
         <ScrollView horizontal={true}>
             <Div flexDir="row">
-                <ReqItem itemOpacity={0} imgSrc={Toaster}/>
+                <ReqItem itemOpacity={0} imgSrc={Toaster} onpress={() => {navigation.navigate('Requested')}}/>
                 
             </Div>
         </ScrollView>
@@ -65,18 +65,18 @@ export default function Requests({ route, navigation }) {
         <Text fontWeight="bold" fontSize={30} mb={10}color="#EB8D8D">Declined</Text>
         <ScrollView horizontal={true} >
             <Div flexDir="row" >
-            <ReqItem itemTitle={"Kitchen Chairs"} itemOpacity={0} borderColor={"#EB8D8D"} imgSrc={KitchenChairs} bgColor={"#EB8D8D"}/>
+            <ReqItem itemTitle={"Kitchen Chairs"} itemOpacity={0} borderColor={"#EB8D8D"} imgSrc={KitchenChairs} bgColor={"#EB8D8D"} onpress={() => {navigation.navigate('Requestdecline')}}/>
             <ReqItem itemTitle={"Dinner Table"} itemOpacity={0} borderColor={"#EB8D8D"}
-            imgSrc={Table} bgColor={"#EB8D8D"}/>
+            imgSrc={Table} bgColor={"#EB8D8D"} onpress={() => {navigation.navigate('Requestdecline')}}/>
             </Div>
         </ScrollView>
 
         <Text fontWeight="bold" fontSize={30} mb={10}color="#808080">Pending</Text>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <Div flexDir="row">
-            <ReqItem itemTitle={"Office Chair"} itemOpacity={0} borderColor={"#808080"} imgSrc={Chair} bgColor={"#808080"}/>
-            <ReqItem itemTitle={"2 Seat Couch"} itemOpacity={0} borderColor={"#808080"} imgSrc={Couch} bgColor={"#808080"}/>
-            <ReqItem itemTitle={"Book Shelf"} itemOpacity={0} borderColor={"#808080"} imgSrc={Shelf} bgColor={"#808080"}/>
+            <ReqItem itemTitle={"Office Chair"} itemOpacity={0} borderColor={"#808080"} imgSrc={Chair} bgColor={"#808080"} onpress={() => {navigation.navigate('Requestpending')}}/>
+            <ReqItem itemTitle={"2 Seat Couch"} itemOpacity={0} borderColor={"#808080"} imgSrc={Couch} bgColor={"#808080"} onpress={() => {navigation.navigate('Requestpending')}}/>
+            <ReqItem itemTitle={"Book Shelf"} itemOpacity={0} borderColor={"#808080"} imgSrc={Shelf} bgColor={"#808080"} onpress={() => {navigation.navigate('Requestpending')}}/>
             </Div>
   </ScrollView>
 
