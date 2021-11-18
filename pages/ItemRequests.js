@@ -167,11 +167,10 @@ export default function Donorrequest({navigation})
     setState("decline")
   }
     
-    if (state === "approved"){
+if (state === "approved"){
 
-    return (
-
-      <ThemeProvider theme={ffTheme}>         
+return (
+    <ThemeProvider theme={ffTheme}>         
       <Wrapper>
         <FlexCont>
               <Title>
@@ -199,87 +198,70 @@ export default function Donorrequest({navigation})
                 GoRequests={() => {navigation.navigate('Donorrequest')}}
                 GoProfile={() => {navigation.navigate('DonorProfile')}}
                 />
-      </ThemeProvider>
-    )
-  }
-  
-  if (state === "decline"){
-
-  return (
-    <ThemeProvider theme={ffTheme}>
-      <Wrapper>
-        <FlexCont>
-                <Title>
-                    Declined
-                </Title>
-        </FlexCont>
-          <FlexCont>
-                  <MidText>Thank you, your listing will remain posted!</MidText>
-          </FlexCont>
-          <FlexCont2/>
-          <FlexCont2/>
-      </Wrapper>
-        <DonorBottomNav 
-            GoHome={() => {navigation.navigate('donorHome')}}
-            GoListings={() => {navigation.navigate('NewListing')}}
-            GoRequests={() => {navigation.navigate('Donorrequest')}}
-            GoProfile={() => {navigation.navigate('DonorProfile')}}
-        />
     </ThemeProvider>
   )
 }
-
   
-    return ( 
-      
-      <ThemeProvider theme={ffTheme}>
-         
+if (state === "decline"){
+
+return (
+  <ThemeProvider theme={ffTheme}>
+    <Wrapper>
+      <FlexCont>
+        <Title>
+          Declined
+        </Title>
+      </FlexCont>
+      <FlexCont>
+        <MidText>Thank you, your listing will remain posted!</MidText>
+      </FlexCont>
+      <FlexCont2/>
+      <FlexCont2/>
+    </Wrapper>
+      <DonorBottomNav 
+          GoHome={() => {navigation.navigate('donorHome')}}
+          GoListings={() => {navigation.navigate('NewListing')}}
+          GoRequests={() => {navigation.navigate('Donorrequest')}}
+          GoProfile={() => {navigation.navigate('DonorProfile')}}
+      />
+  </ThemeProvider>
+  )
+}
+
+return ( 
+
+      <ThemeProvider theme={ffTheme}>         
          <Wrapper>
-
             <Container>
-              
               <WorkerProfile name="Adam Sandler" profileImg={Adam}></WorkerProfile>
-        
                 <ReqCardLarge itemImg={Chair} timeText="4:30pm" dateText="November 2nd"/>
-
                 <MessageCont>
-
                   <MessageTitle>
                     A worker is interested in your item!
                   </MessageTitle>
-
                   <MessageText>
                   Press<Approve> approve</Approve> to accept this request and provide your contact information
                   </MessageText>
-
                   <MessageText>
                   If not press<Decline> decline</Decline> and we'll keep your listing posted 
                   </MessageText>
-
                 </MessageCont>
-
                 <ButtonCont>
-
                   <HalfButton 
                   onPress={handleApprovePress} bg="#6CAF61" borderColor="#6CAF61" buttonText="Approve" marginRight={55}>
                   </HalfButton>
                   <HalfButton
                   onPress={handleDeclinePress} bg="#E25C5C" borderColor="#E25C5C" buttonText="Decline">
                   </HalfButton>
-
                 </ButtonCont>
-          
             </Container>
-
           </Wrapper>
-         
             <DonorBottomNav 
                 GoHome={() => {navigation.navigate('donorHome')}}
                 GoListings={() => {navigation.navigate('NewListing')}}
                 GoRequests={() => {navigation.navigate('Donorrequest')}}
                 GoProfile={() => {navigation.navigate('DonorProfile')}}
             />
-            
         </ThemeProvider>
     )
 

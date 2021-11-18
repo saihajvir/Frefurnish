@@ -62,7 +62,7 @@ export default function donorHome({route, navigation, flex='1', justify='center'
             </TextCont>
             <Container flex='0.4' justify='center'>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                        <SmallPost imgSrc={Chair} h={160} w={160} onPress={() => {navigation.navigate("donorListing")}}/>
+                        <SmallPost imgSrc={Toaster} headerText="Toaster"  h={160} w={160} onPress={() => {navigation.navigate("donorListing")}}/>
                         <SmallPost imgSrc={Chair} h={160} w={160} onPress={() => {navigation.navigate("donorListing")}}/>
                         <SmallPost imgSrc={Chair} h={160} w={160} onPress={() => {navigation.navigate("donorListing")}}/>
                         
