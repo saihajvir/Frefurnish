@@ -7,7 +7,7 @@ import LottieView from 'lottie-react-native';
 
 export default function SmallPost({
     headerText = "Office Chair",
-    locationText = "Langley - 30 km",
+    locationText = "Langley",
     imgSrc= "http://placekitten.com/200/400",
     h=115,
     w=115,

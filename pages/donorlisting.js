@@ -8,7 +8,8 @@ import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Input } from 'react-
 import HalfButton from "../comps/halfbutton";
 import MainPost from "../comps/MainPost";
 
-import Chair from '../assets/aeron.jpg'
+import Chair from '../assets/aeron.jpg';
+import Toaster from '../assets/toaster.jpg';
 import DonorBottomNav from "../comps/DonorBottomNavBar";
 
 
@@ -28,7 +29,7 @@ const ffTheme = {
   background-color: #FFF;
 `
 const NewListing = styled.View`
-  flex:1;
+  flex:;
   background-color: #FFFFFF;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -51,22 +52,21 @@ export default function donorListing({route, navigation})
         <ThemeProvider theme={ffTheme}>
         <Wrapper>
             <Container>
-                <MainPost imgSrc={Chair}/>
+                <MainPost imgSrc={Toaster} headerText="Toaster"/>
             </Container>
-
-            <NewListing>
-                <Text fontWeight="600" fontSize={24}>Condition</Text>
-                <Text>Lightly Used</Text>
-                <Text mt={10} fontWeight="600" fontSize={24}>Description</Text>
-                <Text>Just an old office chair we don't use anymore. Prefer pickup! Thanks!</Text>
-            </NewListing>
-
+                <NewListing>
+                    <Text fontWeight="600" fontSize={24}>Condition</Text>
+                    <Text/>
+                    <Text>Lightly Used</Text>
+                    <Text mt={10} fontWeight="600" fontSize={24}>Description</Text>
+                    <Text/>
+                    <Text>It toasts good.</Text>
+                </NewListing>
             <BottomCont>
                 <HalfButton buttonText='Edit' borderColor='#00000000'/>
                 <HalfButton buttonText='Delete' bg='salmon' borderColor='#00000000'/>
             </BottomCont>
         </Wrapper>
-
         <DonorBottomNav/>
     </ThemeProvider>
     )
