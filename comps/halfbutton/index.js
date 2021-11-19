@@ -12,7 +12,9 @@ export default function HalfButton({
     borderWidth='1',
     borderColor='salmon',
     marginRight,
-    onPress
+    onPress,
+    h=50,
+    w=170
 }) 
 {
     return (
@@ -22,8 +24,8 @@ export default function HalfButton({
             color={color}
             rounded={10}
             mr={marginRight}
-            h={50}
-            w={170}
+            h={h}
+            w={w}
             fontSize={14}
             fontWeight='500'
             borderWidth={1}

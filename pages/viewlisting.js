@@ -14,6 +14,7 @@ import BackButton from "../comps/backbutton";
 import HalfButton from "../comps/halfbutton";
 import BigPost from "../comps/BigPost";
 import MainPost from "../comps/MainPost";
+import ReqCardLarge from "../comps/ReqCardLarge";
 
 import Chair from '../assets/aeron.jpg'
 
@@ -27,9 +28,9 @@ const ffTheme = {
   }
 
 
-  const Wrapper = styled.View`
+const Wrapper = styled.View`
   flex: 1;
-  padding: 0 16px 0 16px;
+  padding: 20px 16px 0 16px;
   background-color: #FFF;
 `
 const NewListing = styled.View`
@@ -37,21 +38,76 @@ const NewListing = styled.View`
   background-color: #FFFFFF;
   margin-bottom: 10px;
   margin-top: 10px;
+  padding-top: 10px;
 `
 const Container = styled.View`
-    flex:1;
-    flex-direction: row;
-    background-color: #FFFFFF;
-    padding: 10px 0 0 0;
+  flex:1;
+  flex-direction: row;
+  background-color: #FFFFFF;
 `
 const BottomCont = styled.View`
-    flex: 0.2;
-    justify-content: space-between;
-    flex-direction: row;
+  flex: 0.2;
+  justify-content: space-between;
+  flex-direction: row;
 `
+const FlexCont = styled.View`
+  flex: 1;
+`
+const MidText = styled.Text`
+  font-weight: 500;
+  font-size: 14px;
+`
+const Title = styled.Text`
+  font-weight: 600;
+  font-size: 32px;
+`
+const Content = styled.Text`
+font-weight: 500;
+font-size: 22px;
+color: #92A8F8;
+padding: 10px 0 0 ;
+`;
+
 
 export default function Viewlisting({route, navigation})
 {
+    const [requested, setRequested] = useState(false); 
+    console.log(requested)
+
+    if(requested === true)
+    {
+        return (
+            <ThemeProvider theme={ffTheme}>         
+            <Wrapper>
+              <FlexCont>
+                    <Title>
+                       Thank you
+                    </Title>
+                  <Content>
+                      Your pick up request was sent and is now pending approval from the donor.
+                  </Content>
+              </FlexCont>
+              <FlexCont>
+                <ReqCardLarge pickupText={"Pick Up Requested"} textColor={"#6CAF61"} itemImg={Chair} timeText='Time Pending Donor Approval' dateText=''/>
+              </FlexCont>
+                <FlexCont/>
+              <FlexCont>
+                    <MidText>
+                        You can check your request’s status by tapping the request icon in the menu.
+                    </MidText>
+              </FlexCont>
+                <FlexCont/>
+            </Wrapper>
+            <BottomNav 
+                GoHome={() => {navigation.navigate("Whomepage")}}
+                GoListings={() => {navigation.navigate("Market")}}
+                GoRequests={() => {navigation.navigate("Requests")}}
+                GoProfile={() => {navigation.navigate("WorkerProfile")}}
+            />
+                  
+          </ThemeProvider>
+        )
+    }
     return (
         <ThemeProvider theme={ffTheme}>
             <Wrapper>
@@ -67,7 +123,7 @@ export default function Viewlisting({route, navigation})
             </NewListing>
 
             <BottomCont>
-                <MainButton mb={10} buttonText="Request Item" onPress={() => {navigation.navigate("Requests")}}/> 
+                <MainButton mb={10} buttonText="Request Item" onPress={() => {setRequested(true)}}/> 
             </BottomCont>
             </Wrapper>
             

@@ -14,7 +14,7 @@ export default function MainPost({
 {
     return (
         <Div w='100%'>
-            <Div row alignItems="center" mt={10}>
+            <Div row alignItems="center">
                 <Div flex={1}>
                     <Text fontSize={headerTextSize} fontWeight="600">
                     {headerText}
