@@ -18,6 +18,7 @@ import WorkerProfile from "../comps/ProfileHeader";
 import HalfButton from "../comps/halfbutton";
 import UserInput from "../comps/userinput";
 
+
 import Toaster from '../assets/toaster.jpg';
 import Julian from '../assets/julian.png'
 import Chair from '../assets/aeron.jpg';
@@ -114,6 +115,7 @@ color: #E25C5C;
 const ButtonCont = styled.View`
 flex-direction: row;
 margin-top: 140px;
+justify-content: space-between;
 `
 const Title = styled.Text`
 font-weight: 600;
@@ -235,11 +237,15 @@ return (
          <Wrapper>
             <Container>
               <WorkerProfile name="Adam Sandler" profileImg={Adam}></WorkerProfile>
+              <MessageText/>
+              
                 <ReqCardLarge itemImg={Chair} timeText="" dateText="Office Chair"/>
                 <MessageCont>
+                <MessageText/>
                   <MessageTitle>
                     A worker is interested in your item!
                   </MessageTitle>
+                  <MessageText/>
                   <MessageText>
                   Enter a time and day for pick up then press<Approve> approve</Approve> to accept this request
                   </MessageText>
@@ -248,12 +254,13 @@ return (
                  </Input>
                  <MessageText/>
                   <MessageText>
-                  If not press<Decline> decline</Decline> and we'll keep your listing posted 
+                  Or press<Decline> decline</Decline> to decline and we'll keep your listing posted 
                   </MessageText>
                 </MessageCont>
+                
                 <ButtonCont>
                   <HalfButton 
-                  onPress={handleApprovePress} bg="#6CAF61" borderColor="#6CAF61" buttonText="Approve" marginRight={55}>
+                  onPress={handleApprovePress} bg="#6CAF61" borderColor="#6CAF61" buttonText="Approve" >
                   </HalfButton>
                   <HalfButton
                   onPress={handleDeclinePress} bg="#E25C5C" borderColor="#E25C5C" buttonText="Decline">

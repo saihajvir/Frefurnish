@@ -7,16 +7,19 @@ import LottieView from 'lottie-react-native';
 
 export default function BackButton({
     buttonText = "default",
-    onPress = () =>{}
+    onPress = () =>{},
+    borderColor = "periwinkle",
+    textColor = "periwinkle",
+    
 }) 
 {
     return (
         <Button
             bg='white'
             block
-            color='periwinkle'
+            color={textColor}
             rounded={10}
-            borderColor='periwinkle'
+            borderColor={borderColor}
             borderStyle="solid"
             borderWidth={1}
             border

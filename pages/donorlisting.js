@@ -2,12 +2,13 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { ScrollView, View } from "react-native";
+import LottieView from 'lottie-react-native';
 
-import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Input } from 'react-native-magnus';
+import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Input} from 'react-native-magnus';
 
 import HalfButton from "../comps/halfbutton";
 import MainPost from "../comps/MainPost";
-
+import MainButton from "../comps/MainButton";
 import Chair from '../assets/aeron.jpg';
 import Toaster from '../assets/toaster.jpg';
 import DonorBottomNav from "../comps/DonorBottomNavBar";
@@ -25,7 +26,7 @@ const ffTheme = {
 
   const Wrapper = styled.View`
   flex: 1;
-  padding: 0 16px 0 16px;
+  padding: 20px 16px 20px 16px;
   background-color: #FFF;
 `
 const NewListing = styled.View`
@@ -45,9 +46,84 @@ const BottomCont = styled.View`
     justify-content: space-between;
     flex-direction: row;
 `
+const FlexCont = styled.View`
+flex: 1;
+
+`
+const FlexCont2 = styled.View`
+flex: 4;
+justify-content: center;
+align-items: center;
+display:flex;
+
+`
+const Title = styled.Text`
+font-weight: 600;
+font-size: 32px;
+`;
+
+const AnimCont2 = styled.View`
+width: 40%;
+height: 40%;
+
+`
+const Content = styled.Text`
+font-weight: 500;
+font-size: 22px;
+color: #EEAB93;
+`;
+
 
 export default function donorListing({route, navigation})
 {
+    const [state, setState] = useState();
+
+    function handleDeletePress(){
+        setState("delete")
+    }
+
+if (state === "delete"){
+    return(
+        <ThemeProvider theme={ffTheme}>
+            <Wrapper>
+                <FlexCont>
+                    <Title>
+                        Your Item Was Removed
+                    </Title>
+                    <Content/>
+                    <Content>
+                        Thank you, if you have more items you would like to donate press below
+                    </Content>
+                </FlexCont>
+                <FlexCont2>
+                <FlexCont2/>
+                    <AnimCont2>
+                        <LottieView style={{
+                  display: "flex", 
+                  justifyContent:"center", 
+                  alignItems: "center",}} 
+                  source={require('../assets/remove.json')} 
+                  autoPlay loop >
+                            
+                        </LottieView>
+                    </AnimCont2>
+                </FlexCont2>
+                <FlexCont2/>
+                <MainButton iconName="" bg="salmon" buttonText="Create Listing" onPress={() => {navigation.navigate('donorListing')}}/>
+               
+            </Wrapper>
+            <DonorBottomNav 
+        GoHome={() => {navigation.navigate('donorHome')}}
+        GoListings={() => {navigation.navigate('NewListing')}}
+        GoRequests={() => {navigation.navigate('Donorrequest')}}
+        GoProfile={() => {navigation.navigate('DonorProfile')}}
+        />
+            
+
+        </ThemeProvider>
+    )
+}
+
     return (
         <ThemeProvider theme={ffTheme}>
         <Wrapper>
@@ -63,8 +139,8 @@ export default function donorListing({route, navigation})
                     <Text>It toasts good.</Text>
                 </NewListing>
             <BottomCont>
-                <HalfButton buttonText='Edit' borderColor='#00000000'/>
-                <HalfButton buttonText='Delete' bg='salmon' borderColor='#00000000'/>
+                <HalfButton buttonText='Edit' borderColor='#00000000'onPress={() => {navigation.navigate('NewListing')}}/>
+                <HalfButton buttonText='Delete' bg='salmon' borderColor='#00000000' onPress={handleDeletePress}/>
             </BottomCont>
         </Wrapper>
         <DonorBottomNav/>

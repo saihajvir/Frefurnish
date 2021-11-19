@@ -38,6 +38,7 @@ import Approved from './pages/approved';
 import Declined from './pages/declined';
 import ReqSchedule from './pages/ReqScheduled';
 import EditWorkerProfile from './pages/EditWorkerProfile';
+import EditDonorProfile from './pages/EditDonorProfile';
 
 
 const ffTheme = {
@@ -77,6 +78,7 @@ export default function App() {
         <Stack.Screen name="Requesterror" component={Requesterror} options={{title: 'Requested Items', headerStyle: {backgroundColor: '#92A8F8'}, headerTintColor: '#FFF'}}/>
         <Stack.Screen name="ReqSchedule" component={ReqSchedule} options={{title: 'Requested Items', headerStyle: {backgroundColor: '#EB8D8D'}, headerTintColor: '#FFF'}}/>
         <Stack.Screen name="EditWorkerProfile" component={EditWorkerProfile} options={{title: 'Edit Profile', headerStyle: {backgroundColor:'#92A8F8'}, headerTintColor: '#FFF'}} />
+        <Stack.Screen name="EditDonorProfile" component={EditDonorProfile} options={{title: 'Edit Profile', headerStyle: {backgroundColor:'#EB8D8D'}, headerTintColor: '#FFF'}} />
         <Stack.Screen name="Requested" component={Requested} options={{title: 'Requested', headerStyle: {backgroundColor:'#92A8F8'}, headerTintColor: '#FFF'}} />
       
         {/* <Stack.Screen name="Intro" component={Intro} /> */}

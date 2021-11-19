@@ -21,6 +21,7 @@ import Toaster from '../assets/toaster.jpg';
 import Chair from '../assets/aeron.jpg';
 import Julian from '../assets/julian.png';
 import Adam from '../assets/adam.jpeg';
+import { flushSync } from "react-dom";
 
 
 
@@ -115,6 +116,7 @@ color: #E25C5C;
 const ButtonCont = styled.View`
 flex-direction: row;
 margin-top: 140px;
+justify-content: space-between;
 `
 
 const Title = styled.Text`
@@ -163,13 +165,13 @@ display:flex;
 
 `
 const AnimCont1 = styled.View`
-width: 50%;
-height: 50%;
+width: 45%;
+height: 45%;
 
 `
 const AnimCont2 = styled.View`
-width: 60%;
-height: 60%;
+width: 40%;
+height: 40%;
 
 `
 
@@ -216,6 +218,8 @@ if (state === "yes"){
                   <LottieView style={{display: "flex", justifyContent:"center", alignItems: "center",}} source={require('../assets/home.json')} autoPlay loop ></LottieView>
               </AnimCont1>
           </FlexCont2>
+          <FlexCont/>
+          <FlexCont/>
           <FlexCont>
               <MidText>
                   Your item has been removed from the listings page
@@ -252,6 +256,7 @@ if (state === "no"){
                 Unfortunately your item was not picked up
               </Content>
             </FlexCont>
+            <FlexCont/>
             <FlexCont2>
               <AnimCont2>
                 <LottieView style={{display: "flex", justifyContent:"center", alignItems: "center",}} source={require('../assets/box.json')} autoPlay loop ></LottieView>
@@ -259,9 +264,12 @@ if (state === "no"){
             </FlexCont2>
               <FlexCont/>
             <FlexCont>
+              <MidText/>
+              <MidText/>
                 <MidText>
-                  To relist your item for 7 days press <GreenText>renew</GreenText>
+                  To relist your item press <GreenText>renew</GreenText>
                 </MidText>
+                    <MidText/>
                     <MidText/>
                 <MidText>
                   To unlist your item press <SalmonText>remove</SalmonText>
@@ -269,7 +277,7 @@ if (state === "no"){
             </FlexCont>
             <ButtonCont>
                 <HalfButton 
-                onPress={handleRenewPress} bg="#6CAF61" borderColor="#6CAF61" buttonText="Renew" marginRight={55}>
+                onPress={handleRenewPress} bg="#6CAF61" borderColor="#6CAF61" buttonText="Renew" >
                 </HalfButton>
                 <HalfButton
                 onPress={handleRemovePress} bg="#E25C5C" borderColor="#E25C5C" buttonText="Remove">
@@ -302,7 +310,12 @@ if (state === "renew"){
         </FlexCont>
         <FlexCont2>
           <AnimCont2>
-                <LottieView style={{display: "flex", justifyContent:"center", alignItems: "center",}} source={require('../assets/check.json')} autoPlay loop ></LottieView>
+                <LottieView style={{
+                  display: "flex", 
+                  justifyContent:"center", 
+                  alignItems: "center",}} 
+                  source={require('../assets/check.json')} 
+                  autoPlay loop ></LottieView>
             </AnimCont2>
         </FlexCont2>
         <FlexCont2/>
@@ -334,12 +347,13 @@ if (state === "remove"){
             Thank you, if you have more items you would like to donate press below
           </Content>
         </FlexCont>
-        <FlexCont2>
-        <AnimCont2>
-                <LottieView style={{display: "flex", justifyContent:"center", alignItems: "center",}} source={require('../assets/remove.json')} autoPlay loop ></LottieView>
-            </AnimCont2>
+          <FlexCont2>
+          <FlexCont2/>
+            <AnimCont2>
+                    <LottieView style={{display: "flex", justifyContent:"center", alignItems: "center",}} source={require('../assets/remove.json')} autoPlay loop ></LottieView>
+              </AnimCont2>
         </FlexCont2>
-        <FlexCont2/>
+          <FlexCont2/>
         <MainButton iconName="" bg="salmon" buttonText="Create Listing" onPress={() => {navigation.navigate('NewListing')}}/>
       </Wrapper>
         <DonorBottomNav 
@@ -359,6 +373,7 @@ return (
         <Wrapper>
           <Container >
             <WorkerProfile name="Julian Mayes" profileImg={Julian}></WorkerProfile>
+            <MessageText/>
             <ReqCardLarge pickupText="Pick Up Scheduled:" TextColor="#6CAF61" itemImg={Toaster} timeText="1:30pm" dateText="November 1st"/>
             <MessageCont>
                 <MessageTitle>
@@ -373,7 +388,7 @@ return (
             </MessageCont>
             <ButtonCont>
                 <HalfButton 
-                onPress={handleYesPress} bg="#6CAF61" borderColor="#6CAF61" buttonText="Yes" marginRight={55}>
+                onPress={handleYesPress} bg="#6CAF61" borderColor="#6CAF61" buttonText="Yes" >
                 </HalfButton>
                 <HalfButton
                 onPress={handleNoPress}  bg="#E25C5C" borderColor="#E25C5C" buttonText="No">

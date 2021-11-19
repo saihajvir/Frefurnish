@@ -31,7 +31,7 @@ export default function UserInput ({
             <TextInp type='text' placeholder='Email' onChangeText={(val)=>setEmail(val)}/>
             <TextInp type='text' secureTextEntry placeholder='Password' onChangeText={(val)=>setPassword(val)}/>
             <TextInp type='number' placeholder='Phone Number'/>
-            <MainButton iconName='person-circle-outline' bg='#92A8F8' textColor='white' buttonText='Create Account' onPress={()=>onCreate(email, password)}/>
+            <MainButton iconColor='#92A8F8'iconName='person-circle-outline' bg='white' textColor='#92A8F8' buttonText='Create Account' onPress={()=>onCreate(email, password)}/>
     </ThemeProvider>
         
     );
