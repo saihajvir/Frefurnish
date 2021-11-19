@@ -64,7 +64,7 @@ export default function Requests({ route, navigation }) {
         <Text fontWeight="bold" fontSize={30} mb={10}color="#EB8D8D">Declined</Text>
         <ScrollView horizontal={true} >
             <Div flexDir="row" >
-            <ReqItem itemTitle={"Kitchen Chairs"} itemOpacity={0} borderColor={"#EB8D8D"} imgSrc={KitchenChairs} bgColor={"#EB8D8D"}/>
+            <ReqItem itemTitle={"Kitchen Chairs"} itemOpacity={0} borderColor={"#EB8D8D"} imgSrc={KitchenChairs} bgColor={"#EB8D8D"} onpress={() => {navigation.navigate('Declined')}}/>
             <ReqItem itemTitle={"Dinner Table"} itemOpacity={0} borderColor={"#EB8D8D"}
             imgSrc={Table} bgColor={"#EB8D8D"}/>
             </Div>

@@ -28,30 +28,34 @@ const ffTheme = {
 const Title = styled.Text`
     font-weight: 600;
     font-size: 32px;
-    margin: 4%;
 `;
 
 const Content = styled.Text`
     font-weight: 500;
     font-size: 22px;
-    margin-left: 4%;
     color: #92A8F8;
 `;
 
 const Sub = styled.Text`
   font-weight: 500;
   font-size: 14px;
-  margin-left: 4%;
 `;
+
+const Wrapper = styled.View`
+    flex: 1;
+    padding: 20px 16px 20px 16px;
+    background-color: #FFF;
+`
+
 
 export default function Declined({ route, navigation }) {
   return (
     <ThemeProvider theme={ffTheme}>
-      <ScrollDiv bg="#fff">
+      <Wrapper>
         <Div style={styles.container}>
           <Div>
             <Title>
-              Try Again
+              Your Request was Declined
             </Title>
 
             <Content>
@@ -64,15 +68,14 @@ export default function Declined({ route, navigation }) {
             </Sub>
             <ScrollDiv horizontal={true}>
               <Div style={styles.post}>
-                <BigPost />
-                <BigPost />
+                <BigPost imgSrc={Chair}/>
+                <BigPost imgSrc={Chair}/>
               </Div>
             </ScrollDiv>
-            <MainButton buttonText="See All Listing" />
+            <MainButton buttonText="See Other Listings" />
           </Div>
         </Div>
-      </ScrollDiv>
-
+      </Wrapper>
       <BottomNav
         GoHome={() => { navigation.navigate("Whomepage") }}
         GoListings={() => { navigation.navigate("Market") }}
