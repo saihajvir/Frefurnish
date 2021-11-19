@@ -57,8 +57,7 @@ export default function Requests({ route, navigation }) {
         <Text fontWeight="bold" fontSize={30} mt={20} mb={10} color="#98C791">Approved</Text>
         <ScrollView horizontal={true}>
             <Div flexDir="row">
-                <ReqItem itemOpacity={0} imgSrc={Toaster}/>
-                
+                <ReqItem itemOpacity={0} imgSrc={Toaster} onpress={()=>{navigation.navigate("Requested")}}/>
             </Div>
         </ScrollView>
 

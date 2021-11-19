@@ -11,24 +11,28 @@ import Header1 from "../comps/header";
 import BackButton from "../comps/backbutton";
 import SmallPost from "../comps/SmallPost";
 import { StyleSheet, ScrollView, Dimensions, Image } from "react-native";
+import LottieView from "lottie-react-native";
+import MainButton from "../comps/MainButton";
 
 import Chair from '../assets/aeron.jpg'
 import HalfButton from "../comps/halfbutton";
+import ConfirmOverlay from "../comps/ConfirmOverlay";
 
 const ffTheme = {
     colors: {
-        periwinkle: "#92A8F8",
-        lavender: "#7367F0",
-        white: "#FFFFFF",
-        black: "#000000"
+      periwinkle: "#92A8F8",
+      lavender: "#7367F0",
+      white: "#FFFFFF",
+      black: "#000000",
+      salmon: "#EB8D8D",
     }
-}
+  }
 
 const Title = styled.Text`
     font-weight: 600;
     font-size: 32px;
     margin-bottom: 2%;
-    margin-top: 5%;
+
 `;
 
 const Pickup = styled.Text`
@@ -45,8 +49,7 @@ const Time = styled.Text`
 const Sub = styled.Text`
   font-weight: 500;
   font-size: 32px;
-  margin: 2% 0;
-  margin-left: 2%;
+  padding: 10px 0 10px 0;
 `;
 
 const Info = styled.Text`
@@ -57,16 +60,105 @@ const Info = styled.Text`
 const Location = styled.Text`
     font-weight: 500;
     font-size: 14px;
-    margin-left: 2%;
     margin-top: 2%;
     margin-bottom: 1%;
 `;
 
-export default function Requested({ route, navigation }) {
+const Container = styled.View`
+    flex: ${props=>props.flex};
+    justify-content: center;
+`
+const Wrapper = styled.View`
+  flex: 1;
+  padding: 20px 16px 0 16px;
+  background-color: #FFF;
+`
+const AnimCont1 = styled.View`
+width: 50%;
+height: 50%;
+`
+const MidText = styled.Text`
+font-weight: 500;
+font-size: 14px;
+
+`;
+
+const FlexCont = styled.View`
+flex: 1;
+
+`
+const FlexCont2 = styled.View`
+flex: 4;
+justify-content: flex-start;
+align-items: center;
+
+`
+
+const Content = styled.Text`
+font-weight: 500;
+font-size: 22px;
+color: #EEAB93;
+`;
+const SalmonText = styled.Text`
+font-weight: 500;
+font-size: 14px;
+color: salmon;
+`;
+
+
+
+export default function Requested({
+    route,
+    navigation,
+    flex='1'
+}) {
+
+    const [yes, setYes] = useState(false);
+    const [overlayVisible, setOverlayVisible] = useState(false);
+
+    function HandleDeletePress()
+    {
+        setOverlayVisible(false)
+        if(overlayVisible===false)
+        {
+            navigation.navigate('Requests');
+        }
+    }
+    if (yes === true){
+        return (
+      
+          <ThemeProvider theme={ffTheme}>
+            <Wrapper>
+                <FlexCont>
+                      <Title>
+                          Thank you
+                      </Title>
+                </FlexCont>
+                <FlexCont>
+                      <Content>
+                          You’ve helped reduce waste and provided furniture to a home in need
+                      </Content>
+                </FlexCont>
+                <FlexCont2>
+                    <AnimCont1>
+                        <LottieView style={{display: "flex", justifyContent:"center", alignItems: "center",}} source={require('../assets/home.json')} autoPlay loop ></LottieView>
+                    </AnimCont1>
+                </FlexCont2>
+            </Wrapper>
+            <BottomNav
+                GoHome={() => { navigation.navigate("Whomepage") }}
+                GoListings={() => { navigation.navigate("Market") }}
+                GoRequests={() => { navigation.navigate("Requests") }}
+                GoProfile={() => { navigation.navigate("Profile") }}
+            />
+          </ThemeProvider>
+        )
+      }
+
     return (
         <ThemeProvider theme={ffTheme}>
-            <ScrollDiv bg="#fff">
-                <Title>Your Pick Up Was Approved</Title>
+            <Wrapper>
+                <Title>Your Pick Up was Approved</Title>
                 <Div style={styles.scheduled}>
                     <Div style={styles.scheduled_text}>
                         <Pickup>Pickup Scheduled:</Pickup>
@@ -82,6 +174,7 @@ export default function Requested({ route, navigation }) {
                         />
                     </Div>
                 </Div>
+                <Container flex={flex}>
                 <Sub>Contact Info</Sub>
                 <Div style={styles.info}>
                     <Div style={styles.info_left}>
@@ -99,23 +192,31 @@ export default function Requested({ route, navigation }) {
                     </Div>
                     <Div style={styles.number} >
                         <Info>
-                            (604)607-5525
+                            (604) 607-5525
                         </Info>
                     </Div>
                 </Div>
                 <Location>
                     27157 Fraser Hwy 2A Langley BC V4W 3R1
-                    </Location>
-                <MapView style={styles.map} />
+                </Location>
+                </Container>
+                
+                <Container flex='1.5'>
+                    <MapView style={styles.map} />
+                </Container>
+
+                <Container flex={flex}>
                 <Location>
                     Have you picked up this item?
                 </Location>
-                <Div style={styles.choice}>
-                    <HalfButton buttonText="Yes" bg="green600" />
-                    <HalfButton buttonText="No Longer Interested" bg="red600" />
+                <Div style={styles.choice} flex='1'>
+                    <HalfButton buttonText="Yes" bg="#6CAF61" borderColor='#6CAF61' onPress={() => {setYes(true)}}/>
+                    <HalfButton buttonText="No Longer Interested" bg="#E25C5C" borderColor='#E25C5C' onPress={() => {setOverlayVisible(true)}} />
                 </Div>
-            </ScrollDiv>
+                </Container>
+            </Wrapper>
 
+            <ConfirmOverlay visible={overlayVisible} removeOverlay={() => {setOverlayVisible(false)}} onDeletePress={() => {navigation.navigate("Requests")}}/>
             <BottomNav
                 GoHome={() => { navigation.navigate("Whomepage") }}
                 GoListings={() => { navigation.navigate("Market") }}
@@ -131,8 +232,7 @@ export default function Requested({ route, navigation }) {
 const styles = StyleSheet.create({
     map: {
         width: 396,
-        height: 139,
-        marginLeft: 15,
+        height: 200,
     },
 
     img:{
@@ -144,7 +244,6 @@ const styles = StyleSheet.create({
     scheduled:{
         justifyContent: "space-between",
         flexDirection: "row",
-        margin: "2%",
     },
 
     scheduled_text:{
@@ -161,17 +260,15 @@ const styles = StyleSheet.create({
     info_left:{
         alignItems: "center",
         flexDirection: "row",
-        marginLeft: "3%",
     },
     
     number:{
-        marginRight:"2%",
     },
 
     choice:{
         flexDirection: "row",
         justifyContent: "space-between",
-        marginLeft: "2%",
-        marginTop: "5%"
+        marginTop: "5%",
+        flex: 1,
     },
 });
