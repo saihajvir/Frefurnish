@@ -12,6 +12,7 @@ export default function MainButton({
     onPress,
     bg='periwinkle',
     textColor='white',
+    iconColor='white',
     mt,
     mb
 }) 
@@ -33,7 +34,7 @@ export default function MainButton({
                  fontFamily={iconFamily}
                  position='absolute' 
                  right={10} 
-                 color='white' 
+                 color={iconColor}
                  fontSize={24}
                 />
             }

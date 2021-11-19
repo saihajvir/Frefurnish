@@ -10,6 +10,8 @@ import BottomNav from "../comps/BottomNavBar";
 import ChangeProfile from "../comps/ChangeProfile";
 import BackButton from "../comps/backbutton";
 import ProfileHeader from "../comps/ProfileHeader";
+import MainButton from "../comps/MainButton";
+
 
 import Julian from '../assets/julian.png'
 
@@ -111,6 +113,9 @@ const RowCont = styled.View`
   justify-content: space-between;
   margin-bottom: 20px;
 `
+const Divider = styled.View`
+  height: 40%;
+`
 
 
 export default function WorkerProfile({
@@ -135,10 +140,7 @@ export default function WorkerProfile({
           </Wrapper>
           <DescriptionTitleWrapper>
             <DescriptionTitleText>Description</DescriptionTitleText>
-            <BackButton
-              buttonText="Edit"
-              onPress={() => {navigation.navigate("EditWorkerProfile")}}
-            />
+       
           </DescriptionTitleWrapper>
           <DescriptionTextWrapper>
             <DescriptionText>{WorkerDescriptionText}</DescriptionText>
@@ -154,6 +156,8 @@ export default function WorkerProfile({
             </DescriptionText>
           </DescriptionTextWrapper>
           <ChangeProfile visible={overlayVisible}/>
+          <Divider/>
+          <MainButton buttonText={'Edit Profile'} bg="periwinkle" iconName=""textColor='white'onPress={() => {navigation.navigate('EditWorkerProfile')}}/>
       
           </BigWrapper>
             <BottomNav 

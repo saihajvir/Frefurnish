@@ -72,6 +72,13 @@ const Heading = styled.Text`
     font-weight: 700;
     color: ${props=>props.textcol};
 `
+const ImgCont = styled.View`
+    flex: ${props=>props.flex};
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30%;
+`
 
 
 export default function Landing({
@@ -182,7 +189,9 @@ export default function Landing({
                 </Heading>
             </TopContainer>
             <Container flex='2'>
+                <Text/>
                 <UploadImage uploadText='Profile Image'/>
+                <Text/>
                 <UserInput onCreate={FBCreateUser}/>
             </Container>
             <BottomContainer flex='1'> 
@@ -200,16 +209,22 @@ export default function Landing({
                 <StatusBar />
                 <ImageBackground source={Background} style={styles.container}>
                 <Wrapper bg='#92A8F8'>
-                    <TopContainer flex='0.7' alignItems='flex-start'>
+                    <Container flex='2'>
+                        <ImgCont>
+                        <Image source={Logo} w={223} h={234}/>
+                        </ImgCont>
+                    <TopContainer flex='0.5' alignItems='flex-start'>
+      
+
                         <Heading textcol='#FFF'>
                             Sign In
                         </Heading>
+                        <Text/>
                     </TopContainer>
-                    <Container flex='2'>
-                        <Image source={Logo} w={203} h={214} mt={50} mb={40}/>
+                    
                         <SignIn onSignIn={FBSignIn}/>
                     </Container>
-                    <BottomContainer flex='1'>
+                    <BottomContainer flex='0.5'>
                         <MainButton buttonText={'Next'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/>
                     </BottomContainer>
                 </Wrapper>

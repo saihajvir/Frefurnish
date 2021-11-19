@@ -25,7 +25,7 @@ export default function SignIn({
 
         <TextInp secureTextEntry placeholder='Password' onChangeText={(val)=>setPassword(val)}/>
 
-        <MainButton bg='white' textColor='periwinkle' buttonText='Sign In' onPress={()=>onSignIn(email, password)}/>
+        <MainButton bg='white' textColor='periwinkle' buttonText='Enter' onPress={()=>onSignIn(email, password)}/>
     </>
     
 }
