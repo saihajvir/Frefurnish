@@ -118,6 +118,7 @@ export default function Landing({
     return (
         <ThemeProvider theme={ffTheme}>
             <StatusBar/>
+            <ImageBackground source={Background} style={styles.container}>
             <Wrapper bg='#92A8F8' >
             <TopContainer flex='1' alignItems='center'>
                 <Heading textcol='#FFF'>
@@ -128,9 +129,10 @@ export default function Landing({
                 <Image source={Logo} w={223} h={234}/>
             </Container>
             <BottomContainer flex='0.5'>
-                <MainButton buttonText={'Get Started'} bg="white" textColor='periwinkle' onPress={() => {nextState (state + 1)}}/>
+                <MainButton buttonText={'Get Started'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/>
             </BottomContainer>
             </Wrapper>
+            </ImageBackground>
         </ThemeProvider>
     )}
 
@@ -173,9 +175,10 @@ export default function Landing({
         return(
             <ThemeProvider theme={ffTheme}>
             <StatusBar/>
+            <ImageBackground source={Background} style={styles.container}>
             <Wrapper bg="#FFF">
             <TopContainer flex='0.7' alignItems='flex-start'>
-                <Heading textcol='#92A8F8'>
+                <Heading textcol='white'>
                     Create your account
                 </Heading>
             </TopContainer>
@@ -184,9 +187,10 @@ export default function Landing({
                 <UserInput onCreate={FBCreateUser}/>
             </Container>
             <BottomContainer flex='1'> 
-                <MainButton buttonText={'Next'} bg="periwinkle" textColor='white' onPress={() => {nextState (state + 1)}}/>
+                <MainButton buttonText={'Next'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/>
             </BottomContainer>
             </Wrapper>
+            </ImageBackground>
         </ThemeProvider>
         )
     }
@@ -195,6 +199,7 @@ export default function Landing({
         return (
             <ThemeProvider theme={ffTheme}>
                 <StatusBar />
+                <ImageBackground source={Background} style={styles.container}>
                 <Wrapper bg='#92A8F8'>
                     <TopContainer flex='0.7' alignItems='flex-start'>
                         <Heading textcol='#FFF'>
@@ -202,13 +207,14 @@ export default function Landing({
                         </Heading>
                     </TopContainer>
                     <Container flex='2'>
-                        <Image source={Logo} w={223} h={234} mt={50} mb={40}/>
+                        <Image source={Logo} w={203} h={214} mt={50} mb={40}/>
                         <SignIn onSignIn={FBSignIn}/>
                     </Container>
                     <BottomContainer flex='1'>
-                        <MainButton buttonText={'Next'} bg="white" textColor='periwinkle' onPress={() => {nextState (state + 1)}}/>
+                        <MainButton buttonText={'Next'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/>
                     </BottomContainer>
                 </Wrapper>
+                </ImageBackground>
             </ThemeProvider>
         )
     }
@@ -218,6 +224,7 @@ export default function Landing({
         return(
             <ThemeProvider theme={ffTheme}>
             <StatusBar/>
+            <ImageBackground source={Background} style={styles.container}>
             <Wrapper bg='#92A8F8'>
             <TopContainer flex='1' alignItems='center'>
                 <Heading textcol='#FFF'>
@@ -228,9 +235,10 @@ export default function Landing({
                 <Image source={Logo} w={223} h={234}/>
             </Container>
             <BottomContainer flex='0.5'>
-                <MainButton buttonText={'Enter'} bg="white" textColor='periwinkle' onPress={() => {user === 'worker' ? navigation.navigate("Whomepage") : navigation.navigate("donorHome")}}/>
+                <MainButton buttonText={'Enter'} bg="white" textColor='#EAAB97' onPress={() => {user === 'worker' ? navigation.navigate("Whomepage") : navigation.navigate("donorHome")}}/>
             </BottomContainer>
             </Wrapper>
+            </ImageBackground>
         </ThemeProvider> 
         )
                     

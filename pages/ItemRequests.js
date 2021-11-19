@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { ScrollView, View, TouchableOpacity, ImageBackground} from "react-native";
 import LottieView from 'lottie-react-native';
 
-import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image, Avatar } from 'react-native-magnus';
+import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image, Avatar, Input} from 'react-native-magnus';
 
 import MainButton from '../comps/MainButton/index';
 import BottomNav from '../comps/BottomNavBar';
@@ -16,6 +16,7 @@ import RequestCard from "../comps/RequestCard";
 import ReqCardLarge from "../comps/ReqCardLarge";
 import WorkerProfile from "../comps/WorkerProfile";
 import HalfButton from "../comps/halfbutton";
+import UserInput from "../comps/userinput";
 
 import Toaster from '../assets/toaster.jpg';
 import Julian from '../assets/julian.png'
@@ -234,14 +235,18 @@ return (
          <Wrapper>
             <Container>
               <WorkerProfile name="Adam Sandler" profileImg={Adam}></WorkerProfile>
-                <ReqCardLarge itemImg={Chair} timeText="4:30pm" dateText="November 2nd"/>
+                <ReqCardLarge itemImg={Chair} timeText="" dateText="Office Chair"/>
                 <MessageCont>
                   <MessageTitle>
                     A worker is interested in your item!
                   </MessageTitle>
                   <MessageText>
-                  Press<Approve> approve</Approve> to accept this request and provide your contact information
+                  Enter a time and day for pick up then press<Approve> approve</Approve> to accept this request
                   </MessageText>
+                  <MessageText/>
+                 <Input>
+                 </Input>
+                 <MessageText/>
                   <MessageText>
                   If not press<Decline> decline</Decline> and we'll keep your listing posted 
                   </MessageText>
