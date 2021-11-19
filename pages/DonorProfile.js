@@ -16,7 +16,7 @@ import { StyleSheet, ScrollView, Dimensions } from "react-native";
 
 import Chair from '../assets/aeron.jpg';
 import John from '../assets/john.png';
-import WorkerProfile from "../comps/WorkerProfile";
+import WorkerProfile from "../comps/ProfileHeader";
 
 
 const ffTheme = {

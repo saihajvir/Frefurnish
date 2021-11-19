@@ -37,7 +37,6 @@ const Wrapper = styled.View`
     padding: 0 16px 0 16px;
     justify-content: center;
     align-items: center;
-    
 `
 const WrapperImage = styled.View`
     flex: 1;
@@ -178,7 +177,7 @@ export default function Landing({
             <ImageBackground source={Background} style={styles.container}>
             <Wrapper bg="#FFF">
             <TopContainer flex='0.7' alignItems='flex-start'>
-                <Heading textcol='#92A8F8'>
+                <Heading textcol='white'>
                     Create your account
                 </Heading>
             </TopContainer>

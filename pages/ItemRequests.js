@@ -14,7 +14,7 @@ import BigPost from "../comps/BigPost";
 import DonorBottomNav from "../comps/DonorBottomNavBar";
 import RequestCard from "../comps/RequestCard";
 import ReqCardLarge from "../comps/ReqCardLarge";
-import WorkerProfile from "../comps/WorkerProfile";
+import WorkerProfile from "../comps/ProfileHeader";
 import HalfButton from "../comps/halfbutton";
 
 import Toaster from '../assets/toaster.jpg';

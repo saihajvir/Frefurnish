@@ -7,8 +7,11 @@ import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image, Avatar, Modal
 
 import ItemIcon from "../comps/ItemIcon";
 import BottomNav from "../comps/BottomNavBar";
-import ChangeProfile from "../comps/changeprofile";
+import ChangeProfile from "../comps/ChangeProfile";
 import BackButton from "../comps/backbutton";
+import ProfileHeader from "../comps/ProfileHeader";
+
+import Julian from '../assets/julian.png'
 
 const ffTheme = {
     colors: {
@@ -110,183 +113,48 @@ const RowCont = styled.View`
 `
 
 
-export default function WorkerProfile({route, navigation}) {
+export default function WorkerProfile({
+  route,
+  navigation,
+  WorkerDescriptionText='Social worker working for Milieu - a social home trying to provide a better life for the disadvantaged. My goal is to better the lives as many people as possible. I love the work I do and it’s by the help of awesome donors that my goals are achievable. By working together, we can all make a difference for the better :)',
+
+  WorkerCredentialsText='Yap Season',
+  TimeInIndustry='Working for 3 years',
+  ExperiencedIn='Working with disadvantaged children',
+  EducationLevel=''
+
+}) {
   const [visible, setVisible] = useState(false);
+  const [overlayVisible, setOverlayVisible] = useState(false);
 
     return (
         <ThemeProvider theme={ffTheme}>
           <BigWrapper>
           <Wrapper>
-            <Container>
-              <Avatar
-              bg="red300"  
-              color="red800"
-              size={70}
-              >J</Avatar>
-            </Container>
-            <PersonInfoContainer>
-              <NameContainer>
-                <Name>Julian Mayes</Name>
-              </NameContainer>
-              <WorkplaceContainer>
-                <Workplace>Milieu - Children Family Services</Workplace>
-              </WorkplaceContainer>
-            </PersonInfoContainer>
+            <ProfileHeader profileImg={Julian}/>
           </Wrapper>
           <DescriptionTitleWrapper>
             <DescriptionTitleText>Description</DescriptionTitleText>
-            <BackButton buttonText="Edit" onPress={() => setVisible(true)}>
-                
-              </BackButton>
+            <BackButton
+              buttonText="Edit"
+              onPress={() => {navigation.navigate("EditWorkerProfile")}}
+            />
           </DescriptionTitleWrapper>
           <DescriptionTextWrapper>
-            <DescriptionText>Social worker working for Milieu - a social home trying to provide a better life for the disadvantaged. My goal is to better the lives as many people as possible. I love the work I do and it’s by the help of awesome donors that my goals are achievable. By working together, we can all make a difference for the better :)</DescriptionText>
+            <DescriptionText>{WorkerDescriptionText}</DescriptionText>
           </DescriptionTextWrapper>
-          <LookingTitleWrapper>
-            <LookingTitleText>Looking For</LookingTitleText>
-            <BackButton
-                buttonText="Edit" onPress={() => {navigation.navigate("EditItems")}}>
-          
-              </BackButton>
-          </LookingTitleWrapper>
-          <ItemWrapper>
-            <RowCont>
-              <ItemIcon/>
-              <ItemIcon/>
-              <ItemIcon/>
-            </RowCont>
-            <RowCont>
-              <ItemIcon/>
-            </RowCont>
-          </ItemWrapper>
-
-          <Modal isVisible={visible} bg='rgba(255,255,255, 0.3)'>
-          <Button
-            zIndex={1}
-            bg="white"
-            h={35}
-            w={35}
-            position="absolute"
-            top={55}
-            right={5}
-            rounded="circle"
-            onPress={() => {
-              setVisible(false);
-            }}
-          >
-            <Icon color="black" name="close" />
-          </Button>
-          <ChangeProfile
-            onPress={() => {
-              setVisible(false);
-            }}
-          >
-          </ChangeProfile>
-        </Modal>
-
-
-
-
-            {/* <Div
-            flexDirection="row"
-            height={100}
-            alignItems="center"
-            justifyContent="flex-start"
-            
-            >
-            <Div
-            flexDirection="row"
-            justifyContent="flex-start"
-            alignItems="center"
-            ml={15}
-            >
-                <Avatar
-                bg="red300"  
-                color="red800"
-                >J</Avatar>
-            </Div>
-            <Div
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="flex-start"
-            ml={15}
-            ><Div>
-                <Text
-                fontSize={36}
-                fontWeight="bold"
-                color="black"
-                >Julian Mayes</Text>
-            </Div>
-            <Div>
-                <Text
-                fontSize={14}
-                color="#7f7f7f"
-                >Milieu - Children Family Services</Text>
-            </Div>
-            </Div>
-            </Div>
-
-
-            <Div
-            m={15}
-            >
-                <Text
-                fontSize={24}
-                fontWeight="500"
-                color="black"
-                >Description <Button buttonText="Edit" onPress={() => setVisible(true)}>
-                Edit
-              </Button>
-                </Text>
-                <Text
-                mt="lg"
-                fontSize={14}
-                >Social worker working for Milieu - a social home trying to provide a better life for the disadvantaged. My goal is to better the lives as many people as possible. I love the work I do and it’s by the help of awesome donors that my goals are achievable. By working together, we can all make a difference for the better :)
-                </Text>   
-                <Div
-                flexDirection="row"
-                justifyContent="space-between"
-                alignItems="center"
-                >
-                <Text
-                mt="2xl"
-                mb="lg"
-                fontSize={24}
-                fontWeight="500"
-                color="black"
-                >Looking For
-                </Text>
-                <BackButton
-                buttonText="Edit" onPress={() => {navigation.navigate("EditItems")}}
-                ></BackButton>
-                </Div>
-                <Div
-                flexDirection="row"
-                justifyContent="space-between"
-                flexWrap="wrap"
-                >
-                    <ItemIcon />
-                    <ItemIcon />
-                    <ItemIcon />
-                    <ItemIcon />
-                </Div>
-            </Div>
-            <Div
-            flex={1}
-            justifyContent="flex-end"
-            alignItems="center"
-            >
-                <BottomNav/>
-            </Div>
-
-        <Modal isVisible={visible}>
-          <ChangeProfile
-            onPress={() => {
-              setVisible(false);
-            }}
-          >
-          </ChangeProfile>
-        </Modal> */}
+          <DescriptionTitleWrapper>
+            <LookingTitleText>
+              Credentials
+            </LookingTitleText>
+          </DescriptionTitleWrapper>
+          <DescriptionTextWrapper>
+            <DescriptionText>
+              {WorkerCredentialsText}
+            </DescriptionText>
+          </DescriptionTextWrapper>
+          <ChangeProfile visible={overlayVisible}/>
+      
           </BigWrapper>
             <BottomNav 
                 GoHome={() => {navigation.navigate("Whomepage")}}
