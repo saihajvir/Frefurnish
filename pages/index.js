@@ -206,7 +206,7 @@ export default function Landing({
                         </Heading>
                     </TopContainer>
                     <Container flex='2'>
-                        <Image source={Logo} w={223} h={234} mt={50} mb={40}/>
+                        <Image source={Logo} w={203} h={214} mt={50} mb={40}/>
                         <SignIn onSignIn={FBSignIn}/>
                     </Container>
                     <BottomContainer flex='1'>
