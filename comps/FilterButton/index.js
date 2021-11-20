@@ -8,15 +8,18 @@ import LottieView from 'lottie-react-native';
 
 
 export default function FilterButton({
-
+    buttonWidth = "40%",
+    buttonHeight = "100%",
+    marginLeft = "0%"
 })
 
 {
     return(
         <Div row flexWrap="wrap">
             <Button
-                w = "40%"
-                h = "100%"
+                w = {buttonWidth}
+                h = {buttonHeight}
+                ml = {marginLeft}
                 px = "xl"
                 py = "lg"
                 bg = "white"
