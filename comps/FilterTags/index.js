@@ -60,6 +60,16 @@ export default function FilterTags({
     onPress = ()=>{}
     
 }) {
+
+    const [isSelected, setIsSelected] = useState(false);
+
+    const SelectTag = () => {
+        setIsSelected(false);
+    }
+
+    const DeselectTag = () => {
+        setIsSelected(true);
+    }
   return (
     <Container>
         <TopContainer>

@@ -10,7 +10,8 @@ import LottieView from 'lottie-react-native';
 export default function FilterButton({
     buttonWidth = "40%",
     buttonHeight = "100%",
-    marginLeft = "0%"
+    marginLeft = "0%",
+    onPress
 })
 
 {
@@ -30,6 +31,7 @@ export default function FilterButton({
         color = "white"
         underlayColor = "92A8F8"
         row flexWrap="wrap"
+        onPress={onPress}
     >
         <Icon 
         name = "filter" 

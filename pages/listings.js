@@ -72,9 +72,9 @@ export default function Market({route, navigation}) {
             <ScrollView>
             <NewListing>
                 <Text fontWeight="600" fontSize={36} pt={20}>All Listings</Text>
-                <Button buttonHeight="65%" buttonWidth="40%" marginLeft="10%" 
+                <FilterButton buttonHeight="65%" buttonWidth="40%" marginLeft="10%" 
                     onPress={() => setVisible(true)}>
-                </Button>
+                </FilterButton>
                     
                 <Modal isVisible={visible} bg="rgba(255,255,255, 0.3)" h="80%">
                     <FilterTags onPress={() => {
