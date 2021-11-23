@@ -20,6 +20,7 @@ import Sofa from '../assets/sofa.jpg'
 import Bookshelf from '../assets/bookshelf.jpg'
 import Toaster from '../assets/toaster.jpg'
 import FilterButton from "../comps/FilterButton";
+import FilterTags from "../comps/FilterTags";
 
 const ffTheme = {
     colors: {
@@ -40,7 +41,7 @@ const NewListing = styled.View`
   flex:0.3;
   flex-direction: row;
   background-color: #FFFFFF;
-
+  justify-content: center;
   align-items: flex-end;
 `
 const Container = styled.View`
@@ -71,25 +72,15 @@ export default function Market({route, navigation}) {
             <ScrollView>
             <NewListing>
                 <Text fontWeight="600" fontSize={36} pt={20}>All Listings</Text>
-                <Button buttonHeight="65%" buttonWidth="60%" marginLeft="10%" 
+                <Button buttonHeight="65%" buttonWidth="40%" marginLeft="10%" 
                     onPress={() => setVisible(true)}>
                 </Button>
                     
-                <Modal isVisible={visible} bg="rgba(255,255,255, 0.3)">
-                    <Button
-                        bg="gray400"
-                        h={35}
-                        w={35}
-                        position="absolute"
-                        top={50}
-                        right={15}
-                        rounded="circle"
-                        onPress={() => {
+                <Modal isVisible={visible} bg="rgba(255,255,255, 0.3)" h="80%">
+                    <FilterTags onPress={() => {
                         setVisible(false);
-                        }}
-                    >
-                        <Icon color="black" name="close" />
-                    </Button>
+                        }}>
+                    </FilterTags>
                 </Modal>
                 
             </NewListing>

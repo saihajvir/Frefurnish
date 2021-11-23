@@ -14,7 +14,7 @@ export default function MainButton({
     textColor='white',
     iconColor='white',
     mt,
-    mb
+    mb,
 }) 
 {
     return (
