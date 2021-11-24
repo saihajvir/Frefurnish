@@ -22,7 +22,7 @@ export default function ProfileHeader({
 
     workPlace='Milieu - Children Family Services',
     profileImg = "https://images.unsplash.com/photo-1593642532400-2682810df593?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60 ",
-    onPress,
+    onPress = '',
     mb
 })
 
@@ -37,6 +37,7 @@ export default function ProfileHeader({
         h={90}
         underlayColor="red100"
         rounded={10}
+        onPress={onPress}
         >
             <Div
             justifyContent="center"

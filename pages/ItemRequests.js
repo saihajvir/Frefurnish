@@ -17,6 +17,7 @@ import ReqCardLarge from "../comps/ReqCardLarge";
 import WorkerProfile from "../comps/ProfileHeader";
 import HalfButton from "../comps/halfbutton";
 import UserInput from "../comps/userinput";
+import ConfirmOverlay from "../comps/ConfirmOverlay";
 
 
 import Toaster from '../assets/toaster.jpg';
@@ -161,13 +162,16 @@ height: 70%;
 export default function Donorrequest({navigation})
 {
   const [state, setState] = useState();
+  const [overlayVisible, setOverlayVisible] = useState(false);
+  
   function handleApprovePress(){
     setState("approved")
     console.log(state)
   }
 
-  function handleDeclinePress(){
-    setState("decline")
+  function handleDeclinePress()
+  {
+          setState("decline")
   }
     
 if (state === "approved"){
@@ -236,7 +240,7 @@ return (
       <ThemeProvider theme={ffTheme}>         
          <Wrapper>
             <Container>
-              <WorkerProfile name="Adam Sandler" profileImg={Adam}></WorkerProfile>
+              <WorkerProfile onPress={() => {navigation.navigate('ViewWorkerProfile')}} name="Adam Sandler" profileImg={Adam}></WorkerProfile>
               <MessageText/>
               
                 <ReqCardLarge itemImg={Chair} timeText="" dateText="Office Chair"/>
@@ -263,11 +267,17 @@ return (
                   onPress={handleApprovePress} bg="#6CAF61" borderColor="#6CAF61" buttonText="Approve" >
                   </HalfButton>
                   <HalfButton
-                  onPress={handleDeclinePress} bg="#E25C5C" borderColor="#E25C5C" buttonText="Decline">
+                  onPress={() => {setOverlayVisible(true)}} bg="#E25C5C" borderColor="#E25C5C" buttonText="Decline">
                   </HalfButton>
                 </ButtonCont>
             </Container>
           </Wrapper>
+          <ConfirmOverlay 
+          visible={overlayVisible} 
+          buttonText={'Decline'}
+          removeOverlay={() => {setOverlayVisible(false)}} 
+          onDeletePress={handleDeclinePress}
+          messageText={"Are you sure you're not interested? This request will be declined"}/>
             <DonorBottomNav 
                 GoHome={() => {navigation.navigate('donorHome')}}
                 GoListings={() => {navigation.navigate('NewListing')}}

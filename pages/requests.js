@@ -49,10 +49,6 @@ export default function Requests({ route, navigation }) {
   return (
     <ThemeProvider theme={ffTheme}>
         <Wrapper>
-        {/* <RequestCard /> */}
-        {/* <ReqCardLarge /> */}
-        {/* <FilterButton /> */}
-        {/* <ReqItem  /> */}
 
         <Text fontWeight="bold" fontSize={30} mt={20} mb={10} color="#98C791">Approved</Text>
         <ScrollView horizontal={true}>
