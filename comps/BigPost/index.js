@@ -16,8 +16,10 @@ export default function BigPost({
         <Button bg='#FFF' onPress={onPress}>
         <Div>
         <Image
-            h={250}
-            w={185}
+            h={230}
+            w={175}
+            minH={100}
+            minW={195}
             rounded={10}
             source={imgSrc}
         />

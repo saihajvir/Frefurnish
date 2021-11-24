@@ -35,7 +35,7 @@ const NewListing = styled.View`
 const Container = styled.View`
     flex: ${props=>props.flex};
     flex-direction: row;
-    justify-content: center;
+
     align-items:center;
     background-color: #FFFFFF;
 `
@@ -62,8 +62,11 @@ export default function Whomepage({route, navigation, flex='1'})
                     <Text fontWeight="600" fontSize={32} pt={20}>New Listings</Text>
                 </NewListing>
                 <Container flex='1.5'>
+               
                     <BigPost imgSrc={Chair} onPress={() => {navigation.navigate("Viewlisting")}}/>
                     <BigPost imgSrc={Table} onPress={() => {navigation.navigate("Viewlisting")}}/>
+                  
+            
                 </Container>
                 <MainButton buttonText={'See All Listings'} bg="periwinkle" textColor='white' onPress={() => {navigation.navigate("Market")}}/>
                 <NewListing>
@@ -74,6 +77,7 @@ export default function Whomepage({route, navigation, flex='1'})
                         <Div flexDir="row">
                             <ReqItem itemOpacity={0.7} imgSrc={Toaster} onpress={() => {navigation.navigate("Requested")}}/>
                             <ReqItem itemOpacity={0.7} itemTitle={"Kitchen Chairs"} imgSrc={KitchenChairs} itemStatus={"Declined"} borderColor={"#EB8D8D"}onpress={() => {navigation.navigate("Requests")}}/>
+                            <ReqItem itemOpacity={0.7} itemTitle={"Dinner Chairs"} imgSrc={KitchenChairs} itemStatus={"Pending"} borderColor={"#808080"}onpress={() => {navigation.navigate("Requests")}}/>
                         </Div>
                     </ScrollView>
                 </Container>

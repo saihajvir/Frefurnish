@@ -11,6 +11,8 @@ export default function SmallPost({
     imgSrc= "http://placekitten.com/200/400",
     h=115,
     w=115,
+    minH=115,
+    minW=115,
     onPress
 }) 
 {
@@ -21,6 +23,8 @@ export default function SmallPost({
             rounded="xl"
             h={h}
             w={w}
+            minW={minW}
+            minH={minH}
             bgImg={imgSrc}
             >
             </Div>

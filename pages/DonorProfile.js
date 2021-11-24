@@ -31,7 +31,7 @@ const ffTheme = {
   `
 const BigWrapper = styled.View`
 flex: 1;
-padding: 16px 16px 0 16px;
+padding: 20px 16px 20px 16px;
 background-color: #FFF;
 `
   const Container = styled.View`
