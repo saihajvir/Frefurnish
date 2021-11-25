@@ -58,8 +58,39 @@ const Wrapper = styled.View`
     padding: 0 16px 0 16px;
     background-color: #FFF;
 `
+
+const fakeData = [
+    {
+      id:1,
+      title:"Test Title 1",
+      description:"Test Desc 1",
+      movie_banner:"https://placekitten.com/1000/1200"
+    },
+  
+    {
+      id:2,
+      title:"Test Title 2",
+      description:"Test Desc 2",
+      movie_banner:"https://placekitten.com/2000/1200"
+    }
+  ]
+
 export default function Market({route, navigation})
 {
+    const [listing, setListing] = useState(fakeData);
+
+    useEffect(() => {
+        const GetData = async() => {
+            const result = await axios.get('/listings.php');
+            // console.log(result.data)
+
+            setListing(result.data)
+        }
+        
+        GetData();
+        console.log(listing)
+    }, [])
+
     return (
         <ThemeProvider theme={ffTheme}>
             <Wrapper>
@@ -80,8 +111,17 @@ export default function Market({route, navigation})
             <Container>
                 <SmallPost h={185} w={185} headerText='Kitchen Chairs' imgSrc={KChairs} onPress={() => {navigation.navigate("Viewlisting")}}/>
                 <SmallPost h={185} w={185} headerText='Bookshelf' imgSrc={Bookshelf} onPress={() => {navigation.navigate("Viewlisting")}}/>
-
             </Container>
+                {
+                    listing.map((listings) => (
+
+                        <Container>
+                            <SmallPost h={185} w={185} headerText={listings.listingName} imgSrc={listings.image} />
+                        </Container>
+                        )
+                    )
+                }
+
         
             </ScrollView>
             </Wrapper>

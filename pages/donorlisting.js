@@ -30,7 +30,6 @@ const ffTheme = {
   background-color: #FFF;
 `
 const NewListing = styled.View`
-  flex:;
   background-color: #FFFFFF;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -81,6 +80,15 @@ export default function donorListing({route, navigation})
     function handleDeletePress(){
         setState("delete")
     }
+
+    useEffect(() => {
+        const GetData = async() => {
+            const result = await axios.get('/listings.php');
+            console.log(result.data)
+          }
+        
+          GetData();
+    }, [])
 
 if (state === "delete"){
     return(
@@ -143,7 +151,12 @@ if (state === "delete"){
                 <HalfButton buttonText='Delete' bg='salmon' borderColor='#00000000' onPress={handleDeletePress}/>
             </BottomCont>
         </Wrapper>
-        <DonorBottomNav/>
+        <DonorBottomNav 
+        GoHome={() => {navigation.navigate('donorHome')}}
+        GoListings={() => {navigation.navigate('NewListing')}}
+        GoRequests={() => {navigation.navigate('Donorrequest')}}
+        GoProfile={() => {navigation.navigate('DonorProfile')}}
+        />
     </ThemeProvider>
     )
 }

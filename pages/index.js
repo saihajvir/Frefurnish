@@ -94,12 +94,15 @@ export default function Landing({
     
     const [user, setUser] = useState('');
 
+    //database states
     const [fuid, setFuid] = useState('');
     const [name, setName] = useState();
     const [phone, setPhone] = useState();
     
     // const [email, setEmail] = useState();
     // const [password, setPassword] = useState();
+
+    // ---------------------------------------------------------
 
     function HandleTypePress()
     {
@@ -115,8 +118,9 @@ export default function Landing({
         }
     }
     
+    //post user data to mysql database
     
-    const PostUserData = async() => {
+    const PostUserData = async(email, password, fuid) => {
 
         var userdata = {
 
@@ -124,13 +128,13 @@ export default function Landing({
             fuid: fuid,
             name: name,
             phone: phone,
-            email: 'email',
-            password: 'password'
+            email: email,
+            password: password
         
         }
         
       const result = await axios.post('/users.php', userdata);
-      console.log(result)
+    //   console.log(result)
        
     }
 
@@ -150,7 +154,7 @@ export default function Landing({
         console.log(fuid)
         alert('Created!')
         
-        PostUserData();
+        PostUserData(email, password, fuid);
     }
     const FBSignIn = async(email, password)=>{
         const auth = getAuth();

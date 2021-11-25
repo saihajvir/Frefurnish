@@ -43,6 +43,39 @@ const Wrapper = styled.View`
 
 export default function NewListing({route, navigation})
 {
+
+  const PostListing = async() => {
+
+    var listingdata = {
+
+        id:"NULL",
+        fuid: "fuid",
+        listingName: "Desk",
+        listingDescription: "This is a test for posting a desk.",
+        listingCondition: "Used",
+        listingDate: "November 24th 2021",
+        listingLocation: "Vancouver",
+        pickup: "true",
+        image: "desk.jpg",
+        status: "unclaimed",
+        details: "details"
+    
+    }
+    
+  const result = await axios.post('/listings.php', listingdata);
+  // console.log(result)
+}
+
+function HandlePublishPress()
+{
+  PostListing();
+  setTimeout(() => {
+    navigation.navigate('donorListing');
+  }, 1000)
+}
+
+
+
     return (
         <ThemeProvider theme={ffTheme}>
         <Wrapper>
@@ -108,7 +141,7 @@ export default function NewListing({route, navigation})
         w={100}
         h={137}/>
       </Div>
-        <MainButton mt={10} buttonText="Publish" bg='salmon' onPress={() => {navigation.navigate('donorListing')}}/>
+        <MainButton mt={10} buttonText="Publish" bg='salmon' onPress={HandlePublishPress}/>
       <Div>
       </Div>
       </ScrollDiv>
