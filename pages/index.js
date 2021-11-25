@@ -241,14 +241,14 @@ export default function Landing({
             <StatusBar/>
             <ImageBackground source={Background} style={styles.container}>
             <Wrapper bg='#92A8F8'>
-            <TopContainer flex='1' alignItems='center'>
-                <Heading textcol='#FFF'>
-                    All done. Let's Begin!
-                </Heading>
-            </TopContainer>
+            <TopContainer flex='2' alignItems='center'>
             <Container flex='2'>
                 <Image source={Logo} w={223} h={234}/>
             </Container>
+            </TopContainer>
+                <Heading textcol='#FFF'>
+                    All done. Let's Begin!
+                </Heading>
             <BottomContainer flex='0.5'>
                 <MainButton buttonText={'Enter'} bg="white" textColor='#EAAB97' onPress={() => {user === 'worker' ? navigation.navigate("Whomepage") : navigation.navigate("donorHome")}}/>
             </BottomContainer>
