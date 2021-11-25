@@ -87,8 +87,8 @@ export default function EditWorkerProfile({
           </ImageContainer>
 
           <InputContainer>
-            <TextInp placeholder='First Name' height={height}/>
-            <TextInp placeholder='Last Name' height={height}/>
+            <TextInp placeholder='Name' height={height}/>
+            <TextInp placeholder='Phone Number' height={height}/>
             <TextInp placeholder='Workplace' height={height}/>
           </InputContainer>
 

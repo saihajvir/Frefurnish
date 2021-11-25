@@ -19,7 +19,11 @@ const TextInp = styled.TextInput`
 `
 
 export default function UserInput ({
-    onCreate=()=>{}
+    onCreate=()=>{},
+    onChangeName=()=>{},
+    onChangePhone=()=>{},
+    onChangeEmail=()=>{},
+    onChangePassword=()=>{}
 })
 {
     const [email, setEmail] = useState();
@@ -27,10 +31,10 @@ export default function UserInput ({
 
     return (
     <ThemeProvider>
-            <TextInp type='text' placeholder='Name' />
+            <TextInp type='text' placeholder='Name' onChangeText={onChangeName}/>
             <TextInp type='text' placeholder='Email' onChangeText={(val)=>setEmail(val)}/>
             <TextInp type='text' secureTextEntry placeholder='Password' onChangeText={(val)=>setPassword(val)}/>
-            <TextInp type='number' placeholder='Phone Number'/>
+            <TextInp type='number' placeholder='Phone Number' onChangeText={onChangePhone}/>
             <MainButton iconColor='#92A8F8'iconName='person-circle-outline' bg='white' textColor='#92A8F8' buttonText='Create Account' onPress={()=>onCreate(email, password)}/>
     </ThemeProvider>
         

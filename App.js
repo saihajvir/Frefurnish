@@ -6,6 +6,9 @@ import { StyleSheet, View, AppRegistry } from 'react-native';
 import axios from 'axios';
 import app from './utils/initfb';
 
+//if ngrok restarts, change this url
+axios.defaults.baseURL = "http://5417-142-232-219-244.ngrok.io/frefurnishdb/api/";
+
 import styled from 'styled-components';
 import LottieView from 'lottie-react-native';
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image } from 'react-native-magnus';

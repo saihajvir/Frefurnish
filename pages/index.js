@@ -93,7 +93,14 @@ export default function Landing({
     const [state, nextState] = useState(0);
     
     const [user, setUser] = useState('');
+
+    const [fuid, setFuid] = useState('');
+    const [name, setName] = useState();
+    const [phone, setPhone] = useState();
     
+    // const [email, setEmail] = useState();
+    // const [password, setPassword] = useState();
+
     function HandleTypePress()
     {
         if(user === 'worker')
@@ -108,13 +115,44 @@ export default function Landing({
         }
     }
     
+    
+    const PostUserData = async() => {
+
+        var userdata = {
+
+            id:"NULL",
+            fuid: fuid,
+            name: name,
+            phone: phone,
+            email: 'email',
+            password: 'password'
+        
+        }
+        
+      const result = await axios.post('/users.php', userdata);
+      console.log(result)
+       
+    }
+
+    const GetData = async() => {
+        const result = await axios.get('/users.php');
+        console.log(result.data)
+      }
+    
     //FIREBASE CREATE ACCOUNT AND SIGN IN
     const FBCreateUser = async(email, password)=>{
         const auth = getAuth();
-        const result = await createUserWithEmailAndPassword(auth, email, password)
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            setFuid(user.uid)
+        })
+        console.log(fuid)
         alert('Created!')
-      }
-      const FBSignIn = async(email, password)=>{
+        
+        PostUserData();
+    }
+    const FBSignIn = async(email, password)=>{
         const auth = getAuth();
         const result = await signInWithEmailAndPassword(auth, email, password)
         alert('Signed In!')
@@ -193,9 +231,10 @@ export default function Landing({
                 <Text/>
                 <UploadImage uploadText='Profile Image'/>
                 <Text/>
-                <UserInput onCreate={FBCreateUser}/>
+                <UserInput onChangeName={val=>setName(val)} onChangePhone={val=>setPhone(val)} onCreate={FBCreateUser}/>
             </Container>
             <BottomContainer flex='1'> 
+                <MainButton buttonText='Axios Post' onPress={PostUserData} />
                 <MainButton buttonText={'Next'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/>
             </BottomContainer>
             </Wrapper>

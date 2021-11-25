@@ -12,7 +12,6 @@ import BackButton from "../comps/backbutton";
 import ProfileHeader from "../comps/ProfileHeader";
 import MainButton from "../comps/MainButton";
 
-
 import Julian from '../assets/julian.png'
 
 const ffTheme = {
@@ -35,10 +34,7 @@ padding: 16px 16px 0 16px;
 background-color: #FFF;
 `
   const Container = styled.View`
-    flex: 0.5;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+    flex: 1;
   `
 
   const PersonInfoContainer = styled.View`
@@ -117,6 +113,12 @@ const Divider = styled.View`
   height: 40%;
 `
 
+const ButtonContainer = styled.View`
+  flex: 0.3;
+  align-items: center;
+  justify-content: center;
+`
+
 
 export default function WorkerProfile({
   route,
@@ -129,12 +131,18 @@ export default function WorkerProfile({
   EducationLevel=''
 
 }) {
+  const GetData = async() => {
+    const result = await axios.get('/users.php');
+    console.log(result.data)
+  }
+
   const [visible, setVisible] = useState(false);
   const [overlayVisible, setOverlayVisible] = useState(false);
 
     return (
         <ThemeProvider theme={ffTheme}>
           <BigWrapper>
+            <Container>
           <Wrapper>
             <ProfileHeader profileImg={Julian}/>
           </Wrapper>
@@ -156,9 +164,12 @@ export default function WorkerProfile({
             </DescriptionText>
           </DescriptionTextWrapper>
           <ChangeProfile visible={overlayVisible}/>
-          <Divider/>
-          <MainButton buttonText={'Edit Profile'} bg="periwinkle" iconName=""textColor='white'onPress={() => {navigation.navigate('EditWorkerProfile')}}/>
-      
+        </Container>
+      <ButtonContainer>
+          <MainButton buttonText={'axios'} bg="periwinkle" iconName=""textColor='white'onPress={GetData}/>
+
+          <MainButton mt={10} buttonText={'Edit Profile'} bg="periwinkle" iconName=""textColor='white'onPress={() => {navigation.navigate('EditWorkerProfile')}}/>
+      </ButtonContainer>
           </BigWrapper>
             <BottomNav 
                 GoHome={() => {navigation.navigate("Whomepage")}}
