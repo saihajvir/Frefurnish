@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import styled from "styled-components/native";
 import { ScrollView, TouchableOpacity, View, } from "react-native";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image, Avatar, Modal } from 'react-native-magnus';
 
@@ -65,14 +66,42 @@ export default function EditWorkerProfile({
     height='40px'
 }) {
 
+    const [user, setUser] = useState(null);
+    const [name, setName] = useState();
+    const [workplace, setWorkplace] = useState();
+    
+    useEffect(() => {
+      
+      const auth = getAuth()
+      onAuthStateChanged(auth, (u)=>{
+        if(u){
+          console.log(u)
+          setUser(u);
+        }
+      })
+    }, [])
+    
+    const PatchProfile = async() => {
+      var profiledata = {
+
+        fuid: user.uid,
+        name: name,
+        workplace: workplace
+      }
+
+      const result = await axios.patch('./users.php', profiledata)
+
+    }
     function HandleConfirmPress()
     {
-        navigation.navigate("WorkerProfile")
+        PatchProfile();
+        setTimeout(() => {
+          navigation.push("WorkerProfile")
+        }, 1000)     
     }
     return (
     <ThemeProvider theme={ffTheme}>
       <Wrapper>
-
         <TopContainer>
 
           <ImageContainer>
@@ -87,9 +116,9 @@ export default function EditWorkerProfile({
           </ImageContainer>
 
           <InputContainer>
-            <TextInp placeholder='Name' height={height}/>
+            <TextInp placeholder='Name' height={height} onChangeText={(val)=>setName(val)}/>
             <TextInp placeholder='Phone Number' height={height}/>
-            <TextInp placeholder='Workplace' height={height}/>
+            <TextInp placeholder='Workplace' height={height} onChangeText={(val)=>setWorkplace(val)}/>
           </InputContainer>
 
         </TopContainer>
@@ -105,7 +134,6 @@ export default function EditWorkerProfile({
         </ButtonContainer>
 
       </Wrapper>
-
       <BottomNav 
         GoHome={() => {navigation.navigate("Whomepage")}}
         GoListings={() => {navigation.navigate("Market")}}

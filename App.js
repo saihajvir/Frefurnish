@@ -1,4 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
+import { StatusBar } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -7,7 +7,7 @@ import axios from 'axios';
 import app from './utils/initfb';
 
 //if ngrok restarts, change this url
-axios.defaults.baseURL = "http://9c01-206-116-173-153.ngrok.io/frefurnishdb/api/";
+axios.defaults.baseURL = "http://9e00-142-232-219-244.ngrok.io/frefurnishdb/api/";
 
 import styled from 'styled-components';
 import LottieView from 'lottie-react-native';
@@ -61,6 +61,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
+      <StatusBar barStyle='light-content'/>
     <ThemeProvider theme={ffTheme}>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Landing" component={Landing} options={{headerShown: false}}/>

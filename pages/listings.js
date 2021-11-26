@@ -17,6 +17,7 @@ import KChairs from '../assets/kitchen-chairs.jpg'
 import Chair from '../assets/aeron.jpg'
 import Table from '../assets/table.jpg'
 import Sofa from '../assets/sofa.jpg'
+import Julian from '../assets/julian.png'
 import Bookshelf from '../assets/bookshelf.jpg'
 import Toaster from '../assets/toaster.jpg'
 
@@ -41,11 +42,11 @@ const NewListing = styled.View`
   background-color: #FFFFFF;
 `
 const Container = styled.View`
-    flex:3;
+    flex:1;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    background-color: #FFFFFF;
+    flex-wrap: wrap;
 `
 const Navbar = styled.View`
     flex:1;
@@ -93,38 +94,34 @@ export default function Market({route, navigation})
 
     return (
         <ThemeProvider theme={ffTheme}>
-            <Wrapper>
             <ScrollView>
+            <Wrapper>
             <NewListing>
                 <Text fontWeight="600" fontSize={36} pt={20}>All Listings</Text>
                 <Input placeholder="Search" w={180} h={40} m={25}/>
             </NewListing>
             
+            
             <Container>
-                <SmallPost h={185} w={185} headerText='2 Seat Couch' imgSrc={Sofa} onPress={() => {navigation.navigate("Viewlisting")}}/>
-                <SmallPost h={185} w={185} headerText='Dinner Table' imgSrc={Table} onPress={() => {navigation.navigate("Viewlisting")}}/>
-            </Container>
-            <Container>
-                <SmallPost h={185} w={185} headerText='Office Chair' imgSrc={Chair} onPress={() => {navigation.navigate("Viewlisting")}}/>
-                <SmallPost h={185} w={185} headerText='Toaster' imgSrc={Toaster} onPress={() => {navigation.navigate("Viewlisting")}}/>
-            </Container>
-            <Container>
-                <SmallPost h={185} w={185} headerText='Kitchen Chairs' imgSrc={KChairs} onPress={() => {navigation.navigate("Viewlisting")}}/>
-                <SmallPost h={185} w={185} headerText='Bookshelf' imgSrc={Bookshelf} onPress={() => {navigation.navigate("Viewlisting")}}/>
-            </Container>
                 {
                     listing.map((listings) => (
-
-                        <Container>
-                            <SmallPost h={185} w={185} headerText={listings.listingName} imgSrc={listings.image} />
-                        </Container>
+                        <SmallPost
+                            h={185}
+                            w={185}
+                            headerText={listings.listingName}
+                            imgSrc={Chair}
+                            locationText={listings.listingLocation}
+                            key={listings.id}
+                            onPress={()=>{navigation.navigate('Viewlisting')}}
+                        />
                         )
                     )
                 }
+            </Container>
 
         
-            </ScrollView>
             </Wrapper>
+            </ScrollView>
             
             <BottomNav 
             GoHome={() => {navigation.navigate("Whomepage")}}

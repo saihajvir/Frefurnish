@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import styled from "styled-components/native";
 import { ScrollView, View, } from "react-native";
-
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image, Avatar, Modal } from 'react-native-magnus';
 
 import ItemIcon from "../comps/ItemIcon";
@@ -131,27 +131,62 @@ export default function WorkerProfile({
   EducationLevel=''
 
 }) {
-  const GetData = async() => {
-    const result = await axios.get('/users.php');
-    console.log(result.data)
+ 
+  useEffect(() => {
+    const GetData = async() => {
+      const result = await axios.get('/users.php');
+      console.log(result.data)
+
+      setUserInfo(result.data)
+    }
+
+    const auth = getAuth()
+      onAuthStateChanged(auth, (u)=>{
+          if(u){
+              console.log(u)
+              setUser(u);
+          }
+      })
+
+      GetData();
+  },[])
+
+  const HandleSignOut = () =>
+  {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      // Sign-out successful.
+    }).catch((error) => {
+      // An error happened.
+    });
   }
 
   const [visible, setVisible] = useState(false);
   const [overlayVisible, setOverlayVisible] = useState(false);
+  const [user, setUser] = useState(null);
+  const [userInfo, setUserInfo] = useState();
 
     return (
         <ThemeProvider theme={ffTheme}>
           <BigWrapper>
             <Container>
           <Wrapper>
-            <ProfileHeader profileImg={Julian}/>
+
+          {
+            userInfo && userInfo.filter((x) => {return x.fuid === user.uid}).map((users) => (
+              <ProfileHeader profileImg={Julian} name={users.name} workPlace={users.workplace} key={users.id}/>
+              )
+            )  
+          }
           </Wrapper>
           <DescriptionTitleWrapper>
             <DescriptionTitleText>Description</DescriptionTitleText>
        
           </DescriptionTitleWrapper>
           <DescriptionTextWrapper>
-            <DescriptionText>{WorkerDescriptionText}</DescriptionText>
+            <DescriptionText>
+              {WorkerDescriptionText}
+            </DescriptionText>
           </DescriptionTextWrapper>
           <DescriptionTitleWrapper>
             <LookingTitleText>
@@ -166,16 +201,15 @@ export default function WorkerProfile({
           <ChangeProfile visible={overlayVisible}/>
         </Container>
       <ButtonContainer>
-          <MainButton buttonText={'axios'} bg="periwinkle" iconName=""textColor='white'onPress={GetData}/>
-
           <MainButton mt={10} buttonText={'Edit Profile'} bg="periwinkle" iconName=""textColor='white'onPress={() => {navigation.navigate('EditWorkerProfile')}}/>
+          <MainButton mt={10} buttonText={'Sign Out'} bg="salmon" iconName=""textColor='white'onPress={HandleSignOut}/>
       </ButtonContainer>
           </BigWrapper>
             <BottomNav 
-                GoHome={() => {navigation.navigate("Whomepage")}}
-                GoListings={() => {navigation.navigate("Market")}}
-                GoRequests={() => {navigation.navigate("Requests")}}
-                GoProfile={() => {navigation.navigate("WorkerProfile")}}
+            GoHome={() => {navigation.navigate("Whomepage")}}
+            GoListings={() => {navigation.navigate("Market")}}
+            GoRequests={() => {navigation.navigate("Requests")}}
+            GoProfile={() => {navigation.navigate("WorkerProfile")}}
             />
         </ThemeProvider>
     )

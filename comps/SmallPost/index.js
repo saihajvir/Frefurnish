@@ -11,11 +11,12 @@ export default function SmallPost({
     imgSrc= "http://placekitten.com/200/400",
     h=115,
     w=115,
+    mr,
     onPress
 }) 
 {
     return (
-    <Button  bg='white' onPress={onPress}>
+    <Button  bg='white' onPress={onPress} p={0} mb={10} mr={mr}>
         <Div>
             <Div
             rounded="xl"

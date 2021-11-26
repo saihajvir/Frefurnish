@@ -18,6 +18,7 @@ import Toaster from '../assets/toaster.jpg';
 import Adam from '../assets/adam.jpeg';
 
 import { NavigationRouteContext } from "@react-navigation/core";
+import { getAuth, useAuth, onAuthStateChanged } from "firebase/auth";
 
 const ffTheme = {
     colors: {
@@ -45,8 +46,56 @@ const TextCont = styled.View`
   margin-top: 10px;
 `
 
+const fakeData = [
+    {
+      id:1,
+      title:"Test Title 1",
+      description:"Test Desc 1",
+      movie_banner:"https://placekitten.com/1000/1200"
+    },
+  
+    {
+      id:2,
+      title:"Test Title 2",
+      description:"Test Desc 2",
+      movie_banner:"https://placekitten.com/2000/1200"
+    }
+  ]
+
+
 export default function donorHome({route, navigation, flex='1', justify='center'})
 {
+    const [user, setUser] = useState(null);
+    const [listing, setListing] = useState();
+    // const listArray = []
+    useEffect(() => {
+        const GetData = async() => {
+            const result = await axios.get('/listings.php');
+            // console.log(result.data)
+
+            setListing(result.data)
+
+            // const listData = result.data
+            // // console.log(listData)
+
+            // for (let i =0 ; i< listData.length; i++)
+            // {
+            //     listArray.push(listData[i].listingName)
+            //     // console.log(listData[i].listingName)
+                
+            // }
+            // console.log(listArray[0])
+        }
+        const auth = getAuth()
+        onAuthStateChanged(auth, (u)=>{
+            if(u){
+                console.log(u)
+                setUser(u);
+            }
+        })
+        GetData();
+        // console.log(listing)–
+    }, [])
     return (
         <ThemeProvider theme={ffTheme}>
             <Wrapper>
@@ -60,12 +109,23 @@ export default function donorHome({route, navigation, flex='1', justify='center'
             <TextCont>
             <Text fontWeight="600" fontSize={32}>Your Listings</Text>
             </TextCont>
-            <Container flex='0.4' justify='center'>
+            <Container flex='0.4' justify='space-evenly'>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                        <SmallPost imgSrc={Toaster} headerText="Toaster"  h={160} w={160} onPress={() => {navigation.navigate("donorListing")}}/>
-                        <SmallPost imgSrc={Chair} h={160} w={160} onPress={() => {navigation.navigate("donorListing")}}/>
-                        <SmallPost imgSrc={Chair} h={160} w={160} onPress={() => {navigation.navigate("donorListing")}}/>
-                        
+                {
+                    listing && listing.filter((x) => {return  x.fuid === user.uid}).map((listings) => (
+                        <SmallPost
+                            h={185}
+                            w={185}
+                            mr={10}
+                            headerText={listings.listingName}
+                            imgSrc={Chair}
+                            locationText={listings.listingLocation}
+                            key={listings.id}
+                        />
+                        )
+                    )
+                } 
+        
                 </ScrollView>
             </Container>
             </Wrapper>

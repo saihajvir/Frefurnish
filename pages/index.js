@@ -150,11 +150,12 @@ export default function Landing({
         .then((userCredential) => {
             const user = userCredential.user;
             setFuid(user.uid)
+            PostUserData(email,password, user.uid);
         })
         console.log(fuid)
         alert('Created!')
         
-        PostUserData(email, password, fuid);
+        // PostUserData(email, password, fuid);
     }
     const FBSignIn = async(email, password)=>{
         const auth = getAuth();
@@ -166,7 +167,6 @@ export default function Landing({
     {
     return (
         <ThemeProvider theme={ffTheme}>
-            <StatusBar/>
             <ImageBackground source={Background} style={styles.container}>
             <Wrapper bg='#92A8F8' >
             <TopContainer flex='1' alignItems='center'>
@@ -189,7 +189,6 @@ export default function Landing({
     {
         return(
             <ThemeProvider theme={ffTheme}>
-            <StatusBar/>
             <ImageBackground source={Background} style={styles.container}>
             <Wrapper bg="#FFF">
             <TopContainer flex='1' alignItems='flex-start'>
@@ -223,7 +222,6 @@ export default function Landing({
     {
         return(
             <ThemeProvider theme={ffTheme}>
-            <StatusBar/>
             <ImageBackground source={Background} style={styles.container}>
             <Wrapper bg="#FFF">
             <TopContainer flex='0.7' alignItems='flex-start'>
@@ -250,7 +248,6 @@ export default function Landing({
     {
         return (
             <ThemeProvider theme={ffTheme}>
-                <StatusBar />
                 <ImageBackground source={Background} style={styles.container}>
                 <Wrapper bg='#92A8F8'>
                     <Container flex='2'>
@@ -281,7 +278,6 @@ export default function Landing({
     {
         return(
             <ThemeProvider theme={ffTheme}>
-            <StatusBar/>
             <ImageBackground source={Background} style={styles.container}>
             <Wrapper bg='#92A8F8'>
             <TopContainer flex='1' alignItems='center'>
