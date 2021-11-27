@@ -68,7 +68,7 @@ export default function UserCard({
     )}
 
     return (
-        <Button w={396} bg='white' h={165} rounded={20} mt={15} mb={15} flexDir='column' onPress={handleButtonPress}>
+        <Button w='100%' bg='white' h={165} rounded={20} mt={15} mb={15} flexDir='column' onPress={handleButtonPress}>
         <Div
             w={396}
             h={165}

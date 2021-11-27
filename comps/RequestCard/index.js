@@ -7,7 +7,8 @@ import LottieView from 'lottie-react-native';
 
 const Card = styled.View`
     height: 126px;
-    width: 396px;
+    max-width: 100%;
+    min-width: 300px;
     background-color: white;
     border-radius: 10px;
     border: 2px solid #EB8D8D;
