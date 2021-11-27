@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { ScrollView, View } from "react-native";
 
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Input } from 'react-native-magnus';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 import MainButton from '../comps/MainButton/index';
 import BottomNav from '../comps/BottomNavBar';
@@ -69,10 +70,51 @@ padding: 10px 0 0 ;
 `;
 
 
-export default function Viewlisting({route, navigation})
+export default function Viewlisting({
+  route,
+  navigation,
+  conditionText='Lightly Used',
+  descriptionText="Just an old office chair we don't use anymore. Prefer pickup! Thanks!",
+  pickOrDrop='Pickup Only',
+  locationText='Location'
+})
 {
     const [requested, setRequested] = useState(false); 
+    const {id} = route.params;
+    console.log(id)
     console.log(requested)
+
+    const [listingData, setListingData] = useState(null);
+
+    const AddRequest = async() => {
+      const listing_id = id;
+      const fuid = getAuth().currentUser.uid;
+      const status = 'pending';
+
+      const result = await axios.post('/requests.php', {
+        listing_id, fuid, status
+      })
+      setRequested(true);
+      console.log('added request')
+    }
+ 
+    useEffect(() => {
+      const GetData = async(id) => {
+        const result = await axios.get('/listings.php?id='+ id);
+        console.log(result.data)
+  
+        // setUserInfo(result.data)
+        setListingData(result.data[0]);
+        console.log(listingData.listingName, "LISTING DATA")
+      }
+      
+      GetData(id);
+        
+    },[])
+    if(listingData === null){
+      return<>
+      </>
+    }
 
     if(requested === true)
     {
@@ -112,18 +154,19 @@ export default function Viewlisting({route, navigation})
         <ThemeProvider theme={ffTheme}>
             <Wrapper>
             <Container>
-                <MainPost imgSrc={Chair}/>
+                <MainPost headerText={listingData.listingName} imgSrc={Chair} locationText={listingData.listingLocation}/>
             </Container>
 
             <NewListing>
                 <Text fontWeight="600" fontSize={24}>Condition</Text>
-                <Text>Lightly Used</Text>
+                <Text>{listingData.listingCondition}</Text>
                 <Text mt={10} fontWeight="600" fontSize={24}>Description</Text>
-                <Text>Just an old office chair we don't use anymore. Prefer pickup! Thanks!</Text>
+                <Text>{listingData.listingDescription}</Text>
+                <Text mt={10} fontWeight="600" fontSize={24}>{listingData.pickup}</Text>
             </NewListing>
 
             <BottomCont>
-                <MainButton mb={10} buttonText="Request Item" onPress={() => {setRequested(true)}}/> 
+                <MainButton mb={10} buttonText="Request Item" onPress={AddRequest}/> 
             </BottomCont>
             </Wrapper>
             

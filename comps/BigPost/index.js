@@ -9,14 +9,15 @@ export default function BigPost({
     headerText = "Office Chair",
     locationText = "Langley - 30 km",
     imgSrc=imgSrc,
-    onPress
+    onPress,
+    mr
 }) 
 {
     return (
-        <Button bg='#FFF' onPress={onPress}>
+        <Button bg='#FFF' onPress={onPress} p={0} mr={mr}>
         <Div>
         <Image
-            h={250}
+            h={240}
             w={185}
             rounded={10}
             source={imgSrc}

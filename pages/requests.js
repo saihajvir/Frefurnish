@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
+import { getAuth } from "firebase/auth";
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv,  Avatar, Input, Image } from 'react-native-magnus';
 import MapView from 'react-native-maps';
 
@@ -46,14 +47,42 @@ const Wrapper = styled.View`
 
 
 export default function Requests({ route, navigation }) {
+
+  const [pendingReq, setPendingReq] = useState();
+
+  useEffect(() => {
+    const GetData = async(fuid) => {
+      const result = await axios.get('/requests.php?fuid='+fuid);
+      // console.log(result.data)
+
+      // setUserInfo(result.data)
+      setPendingReq(result.data);
+      console.log(pendingReq, "STATUS")
+    }
+
+    const auth = getAuth();
+    // console.log(auth, "AUTH");
+      /*onAuthStateChanged(auth, (u)=>{
+          if(u){
+              console.log(u)
+              setUser(u);
+          }
+      })*/
+      if(auth?.currentUser.uid){
+        GetData(auth.currentUser.uid);
+      }
+  },[])
+
+  if(pendingReq === null)
+  {
+    return <>
+    </>
+  }
+
   return (
     <ThemeProvider theme={ffTheme}>
         <Wrapper>
-        {/* <RequestCard /> */}
-        {/* <ReqCardLarge /> */}
-        {/* <FilterButton /> */}
-        {/* <ReqItem  /> */}
-
+    
         <Text fontWeight="bold" fontSize={30} mt={20} mb={10} color="#98C791">Approved</Text>
         <ScrollView horizontal={true}>
             <Div flexDir="row">
@@ -73,9 +102,15 @@ export default function Requests({ route, navigation }) {
         <Text fontWeight="bold" fontSize={30} mb={10}color="#808080">Pending</Text>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <Div flexDir="row">
-            <ReqItem itemTitle={"Office Chair"} itemOpacity={0} borderColor={"#808080"} imgSrc={Chair} bgColor={"#808080"}/>
-            <ReqItem itemTitle={"2 Seat Couch"} itemOpacity={0} borderColor={"#808080"} imgSrc={Couch} bgColor={"#808080"}/>
-            <ReqItem itemTitle={"Book Shelf"} itemOpacity={0} borderColor={"#808080"} imgSrc={Shelf} bgColor={"#808080"}/>
+            {/* <ReqItem itemTitle={"Office Chair"} itemOpacity={0} borderColor={"#808080"} imgSrc={Chair} bgColor={"#808080"}/>
+            <ReqItem itemTitle={"Book Shelf"} itemOpacity={0} borderColor={"#808080"} imgSrc={Shelf} bgColor={"#808080"}/> */}
+
+            {/* {
+              pendingReq.map((requests) => (
+                
+                <ReqItem itemTitle={requests.listingName} itemOpacity={0} borderColor={"#808080"} imgSrc={Couch} bgColor={"#808080"}/>
+              ))
+              } */}
             </Div>
   </ScrollView>
 

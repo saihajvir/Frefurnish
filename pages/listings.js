@@ -112,7 +112,7 @@ export default function Market({route, navigation})
                             imgSrc={Chair}
                             locationText={listings.listingLocation}
                             key={listings.id}
-                            onPress={()=>{navigation.navigate('Viewlisting')}}
+                            onPress={()=>navigation.navigate('Viewlisting', {id:listings.id})}
                         />
                         )
                     )

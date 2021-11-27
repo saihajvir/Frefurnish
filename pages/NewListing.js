@@ -82,7 +82,7 @@ export default function NewListing({route, navigation})
 
     if (!result.cancelled) {
       setImage(result.uri);
-      Upload(result.uri);
+      // Upload(result.uri);
     }
   };
 
@@ -121,6 +121,7 @@ export default function NewListing({route, navigation})
 function HandlePublishPress()
 {
   PostListing();
+  Upload(image);
   /*setTimeout(() => {
     navigation.navigate('donorListing');
   }, 1000)*/

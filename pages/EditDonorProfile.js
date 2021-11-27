@@ -4,6 +4,7 @@ import styled from "styled-components/native";
 import { ScrollView, TouchableOpacity, View, } from "react-native";
 
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image, Avatar, Modal } from 'react-native-magnus';
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 import ItemIcon from "../comps/ItemIcon";
 import DonorBottomNav from "../comps/DonorBottomNavBar";
@@ -65,10 +66,44 @@ export default function EditWorkerProfile({
     height='40px'
 }) {
 
-    function HandleConfirmPress()
-    {
-        navigation.navigate("DonorProfile")
+  const [user, setUser] = useState(null);
+  const [name, setName] = useState();
+  const [city, setCity] = useState();
+  const [bio, setBio] = useState();
+  const [address, setAddress] = useState();
+  const [phone, setPhone] = useState();
+  
+  useEffect(() => {
+    
+    const auth = getAuth()
+    onAuthStateChanged(auth, (u)=>{
+      if(u){
+        console.log(u)
+        setUser(u);
+      }
+    })
+  }, [])
+  
+  const PatchProfile = async() => {
+    var profiledata = {
+
+      fuid: user.uid,
+      name,
+      workplace: city,
+      description: bio,
+      address,
+      phone
     }
+
+    const result = await axios.patch('./users.php', profiledata)
+
+  }
+  async function HandleConfirmPress()
+  {
+      await PatchProfile();
+      navigation.push("DonorProfile")   
+  }
+
     return (
     <ThemeProvider theme={ffTheme}>
       <Wrapper>
@@ -87,17 +122,16 @@ export default function EditWorkerProfile({
           </ImageContainer>
 
           <InputContainer>
-            <TextInp placeholder='First Name' height={height}/>
-            <TextInp placeholder='Last Name' height={height}/>
-            <TextInp placeholder='City' height={height}/>
+            <TextInp placeholder='Name' height={height} onChangeText={(val)=>setName(val)}/>
+            <TextInp placeholder='Phone Number' height={height} onChangeText={(val)=>setPhone(val)}/>
+            <TextInp placeholder='City' height={height} onChangeText={(val)=>setCity(val)}/>
           </InputContainer>
 
         </TopContainer>
 
         <BottomContainer>
-        <TextInp placeholder='Bio' height='100px' multiline={true}/>
-          <TextInp placeholder='Address' height='100px' multiline={true}/>
-          <TextInp placeholder='Contact Number' height='100px' multiline={true}/>
+          <TextInp placeholder='Bio' height='100px' multiline={true} onChangeText={(val)=>setBio(val)}/>
+          <TextInp placeholder='Address' height='100px' multiline={true} onChangeText={(val)=>setAddress(val)}/>
         </BottomContainer>
 
         <ButtonContainer>

@@ -1,9 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView, Dimensions } from 'react-native';
 import { Div, Text, Image } from "react-native-magnus";
 import styled from 'styled-components';
 import LottieView from 'lottie-react-native';
+
+const ImageScroll = styled.ScrollView`
+    
+`
+const { width } = Dimensions.get('window')
 
 export default function MainPost({
     headerText = "Office Chair",
@@ -24,14 +29,29 @@ export default function MainPost({
                     </Text>
                 </Div>
             </Div>
+            <ImageScroll horizontal={true} decelerationRate={0} snapToInterval={width - 32} snapToAlignment={"center"} showsHorizontalScrollIndicator={false}>  
                 <Image 
-                rounded="xl"
                 h={260}
-                w='100%'
+                w={396}
                 mt={10}
                 mb={10}
                 source={imgSrc}
                 />
-            </Div>
+                      <Image 
+                h={260}
+                w={396}
+                mt={10}
+                mb={10}
+                source={imgSrc}
+                />
+                      <Image 
+                h={260}
+                w={396}
+                mt={10}
+                mb={10}
+                source={imgSrc}
+                />
+            </ImageScroll>
+        </Div>
     );
 }

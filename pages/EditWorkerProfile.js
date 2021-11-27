@@ -69,6 +69,8 @@ export default function EditWorkerProfile({
     const [user, setUser] = useState(null);
     const [name, setName] = useState();
     const [workplace, setWorkplace] = useState();
+    const [description, setDescription] = useState();
+    const [credentials, setCredentials] = useState();
     
     useEffect(() => {
       
@@ -85,8 +87,10 @@ export default function EditWorkerProfile({
       var profiledata = {
 
         fuid: user.uid,
-        name: name,
-        workplace: workplace
+        name,
+        workplace,
+        description,
+        credentials
       }
 
       const result = await axios.patch('./users.php', profiledata)
@@ -124,8 +128,8 @@ export default function EditWorkerProfile({
         </TopContainer>
 
         <BottomContainer>
-          <TextInp placeholder='Description' height='100px' multiline={true}/>
-          <TextInp placeholder='Credentials' height='200px' multiline={true}/>
+          <TextInp placeholder='Description' height='100px' multiline={true} onChangeText={(val)=>setDescription(val)}/>
+          <TextInp placeholder='Credentials' height='200px' multiline={true} onChangeText={(val)=>setCredentials(val)}/>
         </BottomContainer>
 
         <ButtonContainer>

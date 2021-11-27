@@ -4,6 +4,7 @@ import styled from "styled-components/native";
 import { ScrollView, View, } from "react-native";
 
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image, Avatar, Modal } from 'react-native-magnus';
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 import ItemIcon from "../comps/ItemIcon";
 import DonorBottomNav from "../comps/DonorBottomNavBar";
@@ -35,10 +36,7 @@ padding: 16px 16px 0 16px;
 background-color: #FFF;
 `
   const Container = styled.View`
-    flex: 0.5;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+      flex: 1;
   `
 
   const PersonInfoContainer = styled.View`
@@ -116,6 +114,13 @@ const RowCont = styled.View`
 const Divider = styled.View`
   height: 30%;
 `
+const ButtonContainer = styled.View`
+  flex: 0.3;
+  align-items: center;
+  justify-content: center;
+`
+
+
 
 
 export default function DonorProfile({
@@ -131,19 +136,59 @@ export default function DonorProfile({
 }) {
   const [visible, setVisible] = useState(false);
   const [overlayVisible, setOverlayVisible] = useState(false);
+  const [prof, setProf] = useState(null);
+
+  useEffect(() => {
+    const GetData = async(fuid) => {
+      const result = await axios.get('/users.php?fuid='+fuid);
+      console.log(result.data)
+
+      setProf(result.data[0]);
+      console.log(prof.name, "PROFILE INFO")
+    }
+
+    const auth = getAuth();
+    console.log(auth, "AUTH");
+      /*onAuthStateChanged(auth, (u)=>{
+          if(u){
+              console.log(u)
+              setUser(u);
+          }
+      })*/
+      if(auth?.currentUser.uid){
+
+        GetData(auth.currentUser.uid);
+      }
+  },[])
+
+  const HandleSignOut = () =>
+  {
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      // Sign-out successful.
+    }).catch((error) => {
+      // An error happened.
+    });
+  }
+  if(prof === null)
+  {
+    return <>
+    </>
+  }
 
     return (
         <ThemeProvider theme={ffTheme}>
           <BigWrapper>
+            <Container>
           <Wrapper>
-            <ProfileHeader workPlace={"Langley"} name={"John wick"} profileImg={John}/>
+            <ProfileHeader workPlace={prof.workplace} name={prof.name} profileImg={John}/>
           </Wrapper>
           <DescriptionTitleWrapper>
             <DescriptionTitleText>Bio</DescriptionTitleText>
           </DescriptionTitleWrapper>
           <DescriptionTextWrapper>
-            <DescriptionText>I’m a cool quirky guy. I love dogs, Mustangs, and donating items I don’t use anymore to make the lives of others better! I don’t like Russians, Common, Boban, Alfie Allen, etc...
-
+            <DescriptionText>
+                {prof.description}
             </DescriptionText>
           </DescriptionTextWrapper>
           <DescriptionTitleWrapper>
@@ -153,7 +198,7 @@ export default function DonorProfile({
           </DescriptionTitleWrapper>
           <DescriptionTextWrapper>
             <DescriptionText>
-            27157 Fraser Hwy 2A
+            {prof.address}
             </DescriptionText>
             <DescriptionText>
             Aldergrove BC V4W 3R1
@@ -166,14 +211,15 @@ export default function DonorProfile({
           </DescriptionTitleWrapper>
           <DescriptionTextWrapper>
             <DescriptionText>
-            (604)-607-5525
+                {prof.phone}
             </DescriptionText>
           </DescriptionTextWrapper>
-          <Divider/>
-          
+          </Container>
+          <ButtonContainer>
           <MainButton buttonText={'Edit Profile'} bg="#EB8D8D" iconName=""textColor='white'onPress={() => {navigation.navigate('EditDonorProfile')}}/>
-      
-       
+          <MainButton mt={10} buttonText={'Sign Out'} bg="salmon" iconName=""textColor='white'onPress={HandleSignOut}/>
+          </ButtonContainer>
+        
           <ChangeProfile visible={overlayVisible}/>
       
           </BigWrapper>

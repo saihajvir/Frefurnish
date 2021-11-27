@@ -125,30 +125,36 @@ export default function WorkerProfile({
   navigation,
   WorkerDescriptionText='Social worker working for Milieu - a social home trying to provide a better life for the disadvantaged. My goal is to better the lives as many people as possible. I love the work I do and it’s by the help of awesome donors that my goals are achievable. By working together, we can all make a difference for the better :)',
 
-  WorkerCredentialsText='Yap Season',
+  WorkerCredentialsText='Somethig about credentials here',
   TimeInIndustry='Working for 3 years',
   ExperiencedIn='Working with disadvantaged children',
   EducationLevel=''
 
 }) {
+
+  const [prof, setProf] = useState(null)
  
   useEffect(() => {
-    const GetData = async() => {
-      const result = await axios.get('/users.php');
+    const GetData = async(fuid) => {
+      const result = await axios.get('/users.php?fuid='+fuid);
       console.log(result.data)
 
       setUserInfo(result.data)
+      setProf(result.data[0]);
     }
 
-    const auth = getAuth()
-      onAuthStateChanged(auth, (u)=>{
+    const auth = getAuth();
+    console.log(auth, "AUTH");
+      /*onAuthStateChanged(auth, (u)=>{
           if(u){
               console.log(u)
               setUser(u);
           }
-      })
+      })*/
+      if(auth?.currentUser.uid){
 
-      GetData();
+        GetData(auth.currentUser.uid);
+      }
   },[])
 
   const HandleSignOut = () =>
@@ -165,19 +171,23 @@ export default function WorkerProfile({
   const [overlayVisible, setOverlayVisible] = useState(false);
   const [user, setUser] = useState(null);
   const [userInfo, setUserInfo] = useState();
-
+  if(prof === null)
+  {
+    return <>
+    </>
+  }
     return (
         <ThemeProvider theme={ffTheme}>
           <BigWrapper>
             <Container>
           <Wrapper>
 
-          {
+          {/* {
             userInfo && userInfo.filter((x) => {return x.fuid === user.uid}).map((users) => (
-              <ProfileHeader profileImg={Julian} name={users.name} workPlace={users.workplace} key={users.id}/>
               )
-            )  
-          }
+              )  
+            } */}
+            <ProfileHeader profileImg={Julian} name={prof.name} workPlace={prof.workplace} key={prof.id}/>
           </Wrapper>
           <DescriptionTitleWrapper>
             <DescriptionTitleText>Description</DescriptionTitleText>
@@ -185,7 +195,7 @@ export default function WorkerProfile({
           </DescriptionTitleWrapper>
           <DescriptionTextWrapper>
             <DescriptionText>
-              {WorkerDescriptionText}
+              {prof.description}
             </DescriptionText>
           </DescriptionTextWrapper>
           <DescriptionTitleWrapper>
@@ -195,7 +205,7 @@ export default function WorkerProfile({
           </DescriptionTitleWrapper>
           <DescriptionTextWrapper>
             <DescriptionText>
-              {WorkerCredentialsText}
+              {prof.credentials}
             </DescriptionText>
           </DescriptionTextWrapper>
           <ChangeProfile visible={overlayVisible}/>

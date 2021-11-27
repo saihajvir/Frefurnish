@@ -55,15 +55,18 @@ export default function Whomepage({route, navigation, flex='1'})
 {
     return (
         <ThemeProvider theme={ffTheme}>
-            <StatusBar barStyle='dark-content'/>
             <Wrapper>
 
                 <NewListing>
                     <Text fontWeight="600" fontSize={32} pt={20}>New Listings</Text>
                 </NewListing>
                 <Container flex='1.5'>
-                    <BigPost imgSrc={Chair} onPress={() => {navigation.navigate("Viewlisting")}}/>
-                    <BigPost imgSrc={Table} onPress={() => {navigation.navigate("Viewlisting")}}/>
+                    <ScrollView horizontal={true} centerContent={true} showsHorizontalScrollIndicator={false}>
+                        <BigPost mr={15} imgSrc={Chair} onPress={() => {navigation.navigate("Viewlisting")}}/>
+                        <BigPost mr={15} imgSrc={Table} onPress={() => {navigation.navigate("Viewlisting")}}/>
+                        <BigPost mr={15} imgSrc={Table} onPress={() => {navigation.navigate("Viewlisting")}}/>
+                        <BigPost mr={15} imgSrc={Table} onPress={() => {navigation.navigate("Viewlisting")}}/>
+                    </ScrollView>
                 </Container>
                 <MainButton buttonText={'See All Listings'} bg="periwinkle" textColor='white' onPress={() => {navigation.navigate("Market")}}/>
                 <NewListing>
