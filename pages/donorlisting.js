@@ -12,6 +12,7 @@ import MainButton from "../comps/MainButton";
 import Chair from '../assets/aeron.jpg';
 import Toaster from '../assets/toaster.jpg';
 import DonorBottomNav from "../comps/DonorBottomNavBar";
+import ConfirmOverlay from "../comps/ConfirmOverlay";
 
 
 const ffTheme = {
@@ -39,7 +40,7 @@ const Container = styled.View`
     flex:1;
     flex-direction: row;
     background-color: #FFFFFF;
-    padding: 10px 0 0 0;
+    padding: 0 0 70px 0;
 `
 const BottomCont = styled.View`
     flex: 0.2;
@@ -77,8 +78,10 @@ color: #EEAB93;
 export default function donorListing({route, navigation})
 {
     const [state, setState] = useState();
+    const [overlayVisible, setOverlayVisible] = useState(false);
 
-    function handleDeletePress(){
+    function handleDeletePress()
+    {
         setState("delete")
     }
 
@@ -139,11 +142,22 @@ if (state === "delete"){
                     <Text>It toasts good.</Text>
                 </NewListing>
             <BottomCont>
-                <HalfButton buttonText='Edit' borderColor='#00000000'onPress={() => {navigation.navigate('NewListing')}}/>
+                <HalfButton buttonText='Edit' borderColor='#00000000'onPress={() => {navigation.navigate('EditListing')}}/>
                 <HalfButton buttonText='Delete' bg='salmon' borderColor='#00000000' onPress={handleDeletePress}/>
             </BottomCont>
         </Wrapper>
-        <DonorBottomNav/>
+        <ConfirmOverlay 
+          visible={overlayVisible} 
+          buttonText={'Decline'}
+          removeOverlay={() => {setOverlayVisible(false)}} 
+          onDeletePress={handleDeletePress}
+          messageText={"Are you sure you're not interested? This request will be declined"}/>
+        <DonorBottomNav
+            GoHome={() => {navigation.navigate('donorHome')}}
+            GoListings={() => {navigation.navigate('NewListing')}}
+            GoRequests={() => {navigation.navigate('Donorrequest')}}
+            GoProfile={() => {navigation.navigate('DonorProfile')}}
+        />
     </ThemeProvider>
     )
 }

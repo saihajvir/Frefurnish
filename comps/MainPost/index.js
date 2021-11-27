@@ -9,7 +9,7 @@ export default function MainPost({
     headerText = "Office Chair",
     locationText = "Langley",
     imgSrc,
-    headerTextSize = 36,
+    headerTextSize = 34,
 })
 {
     return (
@@ -24,14 +24,19 @@ export default function MainPost({
                     </Text>
                 </Div>
             </Div>
+            <Div w='100%' h='100%'>
+            <ScrollView horizontal={true} >
                 <Image 
-                rounded="xl"
-                h={260}
-                w='100%'
-                mt={10}
-                mb={10}
+                rounded={10}
+                h={360}
+                w={395}
+                mt={20}
+                mb={50}
                 source={imgSrc}
                 />
+            </ScrollView>
+
+            </Div>
             </Div>
     );
 }
