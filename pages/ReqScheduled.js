@@ -16,12 +16,14 @@ import RequestCard from "../comps/RequestCard";
 import ReqCardLarge from "../comps/ReqCardLarge";
 import WorkerProfile from "../comps/ProfileHeader";
 import HalfButton from "../comps/halfbutton";
+import ConfirmOverlay from "../comps/ConfirmOverlay";
 
 import Toaster from '../assets/toaster.jpg';
 import Chair from '../assets/aeron.jpg';
 import Julian from '../assets/julian.png';
 import Adam from '../assets/adam.jpeg';
 import { flushSync } from "react-dom";
+
 
 
 
@@ -372,7 +374,7 @@ return (
     <ThemeProvider theme={ffTheme}>
         <Wrapper>
           <Container >
-            <WorkerProfile name="Julian Mayes" profileImg={Julian}></WorkerProfile>
+            <WorkerProfile onPress={() => {navigation.navigate('ViewWorkerProfile')}} name="Julian Mayes" profileImg={Julian}></WorkerProfile>
             <MessageText/>
             <ReqCardLarge pickupText="Pick Up Scheduled:" TextColor="#6CAF61" itemImg={Toaster} timeText="1:30pm" dateText="November 1st"/>
             <MessageCont>

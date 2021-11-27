@@ -39,6 +39,7 @@ import Declined from './pages/declined';
 import ReqSchedule from './pages/ReqScheduled';
 import EditWorkerProfile from './pages/EditWorkerProfile';
 import EditDonorProfile from './pages/EditDonorProfile';
+import ViewWorkerProfile from './pages/ViewWorkerProfile';
 
 
 const ffTheme = {
@@ -81,6 +82,7 @@ export default function App() {
         <Stack.Screen name="EditDonorProfile" component={EditDonorProfile} options={{title: 'Edit Profile', headerStyle: {backgroundColor:'#EB8D8D'}, headerTintColor: '#FFF'}} />
         <Stack.Screen name="Requested" component={Requested} options={{title: 'Requested', headerStyle: {backgroundColor:'#92A8F8'}, headerTintColor: '#FFF'}} />
         <Stack.Screen name="Declined" component={Declined} options={{title: 'Declined', headerStyle: {backgroundColor:'#92A8F8'}, headerTintColor: '#FFF'}} />
+        <Stack.Screen name="ViewWorkerProfile" component={ViewWorkerProfile} options={{title: 'Worker Profile', headerStyle: {backgroundColor:'#EB8D8D'}, headerTintColor: '#FFF'}} />
       
         {/* <Stack.Screen name="Intro" component={Intro} /> */}
         <Stack.Screen name="Profile" component={Declined} />
