@@ -65,7 +65,7 @@ const Location = styled.Text`
 `;
 
 const Container = styled.View`
-    flex: ${props=>props.flex};
+    flex: ${props=>props.mflex};
     justify-content: center;
 `
 const Wrapper = styled.View`
@@ -201,7 +201,7 @@ export default function Requested({
                 </Location>
                 </Container>
                 
-                <Container flex='1.5'>
+                <Container mflex='1.5'>
                     <MapView style={styles.map} />
                 </Container>
 
@@ -209,7 +209,7 @@ export default function Requested({
                 <Location>
                     Have you picked up this item?
                 </Location>
-                <Div style={styles.choice} flex='1'>
+                <Div style={styles.choice} mflex='1'>
                     <HalfButton buttonText="Yes" bg="#6CAF61" borderColor='#6CAF61' onPress={() => {setYes(true)}}/>
                     <HalfButton buttonText="No Longer Interested" bg="#E25C5C" borderColor='#E25C5C' onPress={() => {setOverlayVisible(true)}} />
                 </Div>

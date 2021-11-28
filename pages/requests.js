@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv,  Avatar, Input, Image } from 'react-native-magnus';
 import MapView from 'react-native-maps';
 
@@ -13,7 +13,6 @@ import ReqCardLarge from "../comps/ReqCardLarge";
 import FilterButton from "../comps/FilterButton";
 import SmallPost from "../comps/SmallPost"
 import ReqItem from "../comps/ReqItem";
-
 
 import { StyleSheet, ScrollView, Dimensions } from "react-native";
 
@@ -48,26 +47,26 @@ const Wrapper = styled.View`
 
 export default function Requests({ route, navigation }) {
 
-  const [pendingReq, setPendingReq] = useState();
+  const [pendingReq, setPendingReq] = useState(null);
+  const [user, setUser] = useState('');
 
   useEffect(() => {
     const GetData = async(fuid) => {
       const result = await axios.get('/requests.php?fuid='+fuid);
-      // console.log(result.data)
 
-      // setUserInfo(result.data)
       setPendingReq(result.data);
-      console.log(pendingReq, "STATUS")
+      // console.log(pendingReq, "STATUS")
+      console.log(getAuth().currentUser.uid, "GETAUTH()")
+      console.log(pendingReq, "PENDING REQ")
     }
-
     const auth = getAuth();
-    // console.log(auth, "AUTH");
-      /*onAuthStateChanged(auth, (u)=>{
-          if(u){
-              console.log(u)
-              setUser(u);
-          }
-      })*/
+    console.log(auth, "AUTH");
+      // onAuthStateChanged(auth, (u)=>{
+      //     if(u){
+      //         console.log(u)
+      //         setUser(u);
+      //     }
+      // })
       if(auth?.currentUser.uid){
         GetData(auth.currentUser.uid);
       }
@@ -93,6 +92,10 @@ export default function Requests({ route, navigation }) {
         <Text fontWeight="bold" fontSize={30} mb={10}color="#EB8D8D">Declined</Text>
         <ScrollView horizontal={true} >
             <Div flexDir="row" >
+
+
+
+
             <ReqItem itemTitle={"Kitchen Chairs"} itemOpacity={0} borderColor={"#EB8D8D"} imgSrc={KitchenChairs} bgColor={"#EB8D8D"} onpress={() => {navigation.navigate('Declined')}}/>
             <ReqItem itemTitle={"Dinner Table"} itemOpacity={0} borderColor={"#EB8D8D"}
             imgSrc={Table} bgColor={"#EB8D8D"}/>
@@ -104,13 +107,14 @@ export default function Requests({ route, navigation }) {
             <Div flexDir="row">
             {/* <ReqItem itemTitle={"Office Chair"} itemOpacity={0} borderColor={"#808080"} imgSrc={Chair} bgColor={"#808080"}/>
             <ReqItem itemTitle={"Book Shelf"} itemOpacity={0} borderColor={"#808080"} imgSrc={Shelf} bgColor={"#808080"}/> */}
-
-            {/* {
-              pendingReq.map((requests) => (
-                
+            
+            {
+              pendingReq && pendingReq.filter((pend) => {return pend.status === 'pending' && pend.fuid === "getAuth().currentUser.uid"}).map((requests) => (
+              
                 <ReqItem itemTitle={requests.listingName} itemOpacity={0} borderColor={"#808080"} imgSrc={Couch} bgColor={"#808080"}/>
+                
               ))
-              } */}
+              }
             </Div>
   </ScrollView>
 

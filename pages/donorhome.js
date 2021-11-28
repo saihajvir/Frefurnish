@@ -36,7 +36,7 @@ const Wrapper = styled.View`
     background-color: #FFF;
 `
 const Container = styled.View`
-    flex: ${props=>props.flex};
+    flex: ${props=>props.mflex};
     justify-content: ${props=>props.justify};
     align-items: center;
     background-color: #FFFFFF;
@@ -63,7 +63,7 @@ const fakeData = [
   ]
 
 
-export default function donorHome({route, navigation, flex='1', justify='center'})
+export default function donorHome({route, navigation, mflex='1', justify='center'})
 {
     const [user, setUser] = useState(null);
     const [listing, setListing] = useState();
@@ -100,7 +100,7 @@ export default function donorHome({route, navigation, flex='1', justify='center'
         <ThemeProvider theme={ffTheme}>
             <Wrapper>
                 <Text pt={20} fontWeight="600" fontSize={32}>Item Requests</Text>
-            <Container flex='0.6' justify='space-evenly'>
+            <Container mflex='0.6' justify='space-evenly'>
             <RequestCard  pickupText="Pick Up Request"nameText="Adam Sandler" timeText="Office Chair" dateText=""profileImg={Adam} itemImg={Chair} onpress={() => {navigation.navigate('ItemRequests')}}/>
                     <RequestCard pickupText={"Pick Up Scheduled:"} fontColor="#6CAF61" profileImg={Julian} itemImg={Toaster} onpress={() => {navigation.navigate('ReqSchedule')}}/>
             <MainButton buttonText={'See All Requests'} bg="salmon" iconName=""textColor='white'onPress={() => {navigation.navigate('Donorrequest')}}/>
@@ -109,7 +109,7 @@ export default function donorHome({route, navigation, flex='1', justify='center'
             <TextCont>
             <Text fontWeight="600" fontSize={32}>Your Listings</Text>
             </TextCont>
-            <Container flex='0.4' justify='space-evenly'>
+            <Container mflex='0.4' justify='space-evenly'>
                 <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                 {
                     listing && listing.filter((x) => {return  x.fuid === user.uid}).map((listings) => (
@@ -121,6 +121,7 @@ export default function donorHome({route, navigation, flex='1', justify='center'
                             imgSrc={Chair}
                             locationText={listings.listingLocation}
                             key={listings.id}
+                            onPress={()=>navigation.navigate('donorListing', {id:listings.id})}
                         />
                         )
                     )

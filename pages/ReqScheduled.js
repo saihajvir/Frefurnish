@@ -21,7 +21,6 @@ import Toaster from '../assets/toaster.jpg';
 import Chair from '../assets/aeron.jpg';
 import Julian from '../assets/julian.png';
 import Adam from '../assets/adam.jpeg';
-import { flushSync } from "react-dom";
 
 
 

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Button } from "react-native";
-import { ThemeProvider, Text, Div, Icon, ScrollDiv, Input } from 'react-native-magnus';
+import { ThemeProvider, Text, Div, Icon, ScrollDiv, Input, Platform, Image } from 'react-native-magnus';
 import * as ImagePicker from 'expo-image-picker';
 
 import DonorBottomNav from '../comps/DonorBottomNavBar';
@@ -109,7 +109,7 @@ export default function NewListing({route, navigation})
         listingLocation: listingLocation,
         pickup: listingPickup,
         image: "image",
-        status: "unclaimed",
+        status: "pending",
         details: "details"
     
     }
@@ -199,10 +199,13 @@ useEffect(() => {
       pt={10}
       pb={10}
       >
-        <Input 
+        <Div 
         w={100}
-        h={137}
-        />
+        h={137}>
+
+        {image && <Image source={{ uri: image }} style={{ width: 100, height: 137 }} />}
+
+        </Div>
         <Input 
         w={100}
         h={137}/>

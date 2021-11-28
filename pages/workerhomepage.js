@@ -33,7 +33,7 @@ const NewListing = styled.View`
 `
 
 const Container = styled.View`
-    flex: ${props=>props.flex};
+    flex: ${props=>props.mflex};
     flex-direction: row;
     justify-content: center;
     align-items:center;
@@ -51,8 +51,30 @@ const Wrapper = styled.View`
     background-color: #FFF;
 `
 
-export default function Whomepage({route, navigation, flex='1'})
+export default function Whomepage({route, navigation, mflex='1'})
 {
+
+    const [listing, setListing] = useState(null);
+
+    useEffect(() => {
+        const GetData = async() => {
+            const result = await axios.get('/listings.php');
+            // console.log(result.data)
+
+            setListing(result.data)
+        }
+        
+        GetData();
+        console.log(listing)
+    }, [])
+
+
+    if(listing === null)
+    {
+        return <>
+        </>
+    }
+
     return (
         <ThemeProvider theme={ffTheme}>
             <Wrapper>
@@ -60,12 +82,21 @@ export default function Whomepage({route, navigation, flex='1'})
                 <NewListing>
                     <Text fontWeight="600" fontSize={32} pt={20}>New Listings</Text>
                 </NewListing>
-                <Container flex='1.5'>
+                <Container mflex='1.5'>
                     <ScrollView horizontal={true} centerContent={true} showsHorizontalScrollIndicator={false}>
-                        <BigPost mr={15} imgSrc={Chair} onPress={() => {navigation.navigate("Viewlisting")}}/>
-                        <BigPost mr={15} imgSrc={Table} onPress={() => {navigation.navigate("Viewlisting")}}/>
-                        <BigPost mr={15} imgSrc={Table} onPress={() => {navigation.navigate("Viewlisting")}}/>
-                        <BigPost mr={15} imgSrc={Table} onPress={() => {navigation.navigate("Viewlisting")}}/>
+                    {
+                    listing.map((listings) => (
+                        <BigPost
+                            mr={15}
+                            headerText={listings.listingName}
+                            imgSrc={Chair}
+                            locationText={listings.listingLocation}
+                            key={listings.id}
+                            onPress={()=>navigation.navigate('Viewlisting', {id:listings.id})}
+                        />
+                        )
+                    )
+                }
                     </ScrollView>
                 </Container>
                 <MainButton buttonText={'See All Listings'} bg="periwinkle" textColor='white' onPress={() => {navigation.navigate("Market")}}/>

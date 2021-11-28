@@ -200,9 +200,6 @@ export default function DonorProfile({
             <DescriptionText>
             {prof.address}
             </DescriptionText>
-            <DescriptionText>
-            Aldergrove BC V4W 3R1
-            </DescriptionText>
           </DescriptionTextWrapper>
           <DescriptionTitleWrapper>
             <LookingTitleText>
@@ -217,7 +214,7 @@ export default function DonorProfile({
           </Container>
           <ButtonContainer>
           <MainButton buttonText={'Edit Profile'} bg="#EB8D8D" iconName=""textColor='white'onPress={() => {navigation.navigate('EditDonorProfile')}}/>
-          <MainButton mt={10} buttonText={'Sign Out'} bg="salmon" iconName=""textColor='white'onPress={HandleSignOut}/>
+          <MainButton mt={10} buttonText={'Sign Out'} bg="salmon" iconName=""textColor='white'onPress={HandleSignOut, console.log("Signed Out")}/>
           </ButtonContainer>
         
           <ChangeProfile visible={overlayVisible}/>

@@ -26,7 +26,7 @@ const ffTheme = {
 
   const Wrapper = styled.View`
   flex: 1;
-  padding: 20px 16px 20px 16px;
+  padding: 20px 16px 0px 16px;
   background-color: #FFF;
 `
 const NewListing = styled.View`
@@ -38,7 +38,6 @@ const Container = styled.View`
     flex:1;
     flex-direction: row;
     background-color: #FFFFFF;
-    padding: 10px 0 0 0;
 `
 const BottomCont = styled.View`
     flex: 0.2;
@@ -76,19 +75,32 @@ color: #EEAB93;
 export default function donorListing({route, navigation})
 {
     const [state, setState] = useState();
+    const [listingData, setListingData] = useState(null);
+
+    const {id} = route.params;
 
     function handleDeletePress(){
         setState("delete")
     }
 
     useEffect(() => {
-        const GetData = async() => {
-            const result = await axios.get('/listings.php');
-            console.log(result.data)
-          }
+        const GetData = async(id) => {
+          const result = await axios.get('/listings.php?id='+ id);
+          console.log(result.data)
+    
+          // setUserInfo(result.data)
+          setListingData(result.data[0]);
+          console.log(listingData.listingName, "LISTING DATA")
+        }
         
-          GetData();
-    }, [])
+        GetData(id);
+          
+      },[])
+if(listingData === null)
+{
+    return <>
+    </>
+}
 
 if (state === "delete"){
     return(
@@ -136,15 +148,13 @@ if (state === "delete"){
         <ThemeProvider theme={ffTheme}>
         <Wrapper>
             <Container>
-                <MainPost imgSrc={Toaster} headerText="Toaster"/>
+                <MainPost imgSrc={Toaster} headerText={listingData.listingName}/>
             </Container>
                 <NewListing>
                     <Text fontWeight="600" fontSize={24}>Condition</Text>
-                    <Text/>
-                    <Text>Lightly Used</Text>
+                    <Text>{listingData.listingCondition}</Text>
                     <Text mt={10} fontWeight="600" fontSize={24}>Description</Text>
-                    <Text/>
-                    <Text>It toasts good.</Text>
+                    <Text>{listingData.listingDescription}</Text>
                 </NewListing>
             <BottomCont>
                 <HalfButton buttonText='Edit' borderColor='#00000000'onPress={() => {navigation.navigate('NewListing')}}/>

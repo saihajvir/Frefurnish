@@ -47,21 +47,21 @@ const WrapperImage = styled.View`
     background-image: url(${Background});
 `
 const TopContainer = styled.View`
-    flex: ${props=>props.flex};
+    flex: ${props=>props.mflex};
     width: 100%;
     justify-content: flex-end;
     align-items: ${props=>props.alignItems};
 `
 
 const Container = styled.View`
-    flex: ${props=>props.flex};
+    flex: ${props=>props.mflex};
     width: 100%;
     align-items: center;
     justify-content: center;
 `
 
 const BottomContainer = styled.View`
-    flex: ${props=>props.flex};
+    flex: ${props=>props.mflex};
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
@@ -74,7 +74,7 @@ const Heading = styled.Text`
     color: ${props=>props.textcol};
 `
 const ImgCont = styled.View`
-    flex: ${props=>props.flex};
+    flex: ${props=>props.mflex};
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -86,7 +86,7 @@ export default function Landing({
     navigation,
     bg='#92A8F8',
     textcol='#FFF',
-    flex='1',
+    mflex='1',
     alignItems='flex-start'
 })
 {
@@ -169,15 +169,15 @@ export default function Landing({
         <ThemeProvider theme={ffTheme}>
             <ImageBackground source={Background} style={styles.container}>
             <Wrapper bg='#92A8F8' >
-            <TopContainer flex='1' alignItems='center'>
+            <TopContainer mflex='1' alignItems='center'>
                 <Heading textcol='#FFF'>
                     Welcome to Frefurnish
                 </Heading>
             </TopContainer>
-            <Container flex='2'>
+            <Container mflex='2'>
                 <Image source={Logo} w={223} h={234}/>
             </Container>
-            <BottomContainer flex='0.5'>
+            <BottomContainer mflex='0.5'>
                 <MainButton buttonText={'Get Started'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/>
             </BottomContainer>
             </Wrapper>
@@ -191,12 +191,12 @@ export default function Landing({
             <ThemeProvider theme={ffTheme}>
             <ImageBackground source={Background} style={styles.container}>
             <Wrapper bg="#FFF">
-            <TopContainer flex='1' alignItems='flex-start'>
+            <TopContainer mflex='1' alignItems='flex-start'>
                 <Heading textcol='white'>
                     What's your purpose?
                 </Heading>
             </TopContainer>
-            <Container flex='3'>
+            <Container mflex='3'>
                 <UserCard 
                     GradImg={Gradient}
                     descriptionText='Social workers are individuals who are looking to find listings that will help improve or sustain the quality of life at the social home they work at. Social workers are the only type of user eligible to receive donations.'
@@ -210,7 +210,7 @@ export default function Landing({
                     setUser={setUser}
                 />
             </Container>
-            <BottomContainer flex='1'>
+            <BottomContainer mflex='1'>
                 <MainButton buttonText={'Next'} bg="white" textColor='#EAAB97' onPress={HandleTypePress}/>
             </BottomContainer>
             </Wrapper>
@@ -224,18 +224,18 @@ export default function Landing({
             <ThemeProvider theme={ffTheme}>
             <ImageBackground source={Background} style={styles.container}>
             <Wrapper bg="#FFF">
-            <TopContainer flex='0.7' alignItems='flex-start'>
+            <TopContainer mflex='0.7' alignItems='flex-start'>
                 <Heading textcol='white'>
                     Create your account
                 </Heading>
             </TopContainer>
-            <Container flex='2'>
+            <Container mflex='2'>
                 <Text/>
                 <UploadImage uploadText='Profile Image'/>
                 <Text/>
                 <UserInput onChangeName={val=>setName(val)} onChangePhone={val=>setPhone(val)} onCreate={FBCreateUser}/>
             </Container>
-            <BottomContainer flex='1'> 
+            <BottomContainer mflex='1'> 
                 <MainButton buttonText='Axios Post' onPress={PostUserData} />
                 <MainButton buttonText={'Next'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/>
             </BottomContainer>
@@ -250,11 +250,11 @@ export default function Landing({
             <ThemeProvider theme={ffTheme}>
                 <ImageBackground source={Background} style={styles.container}>
                 <Wrapper bg='#92A8F8'>
-                    <Container flex='2'>
+                    <Container mflex='2'>
                         <ImgCont>
                         <Image source={Logo} w={223} h={234}/>
                         </ImgCont>
-                    <TopContainer flex='0.5' alignItems='flex-start'>
+                    <TopContainer mflex='0.5' alignItems='flex-start'>
       
 
                         <Heading textcol='#FFF'>
@@ -265,7 +265,7 @@ export default function Landing({
                     
                         <SignIn onSignIn={FBSignIn}/>
                     </Container>
-                    <BottomContainer flex='0.5'>
+                    <BottomContainer mflex='0.5'>
                         <MainButton buttonText={'Next'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/>
                     </BottomContainer>
                 </Wrapper>
@@ -280,15 +280,15 @@ export default function Landing({
             <ThemeProvider theme={ffTheme}>
             <ImageBackground source={Background} style={styles.container}>
             <Wrapper bg='#92A8F8'>
-            <TopContainer flex='1' alignItems='center'>
+            <TopContainer mflex='1' alignItems='center'>
                 <Heading textcol='#FFF'>
                     All done. Let's Begin!
                 </Heading>
             </TopContainer>
-            <Container flex='2'>
+            <Container mflex='2'>
                 <Image source={Logo} w={223} h={234}/>
             </Container>
-            <BottomContainer flex='0.5'>
+            <BottomContainer mflex='0.5'>
                 <MainButton buttonText={'Enter'} bg="white" textColor='#EAAB97' onPress={() => {user === 'worker' ? navigation.navigate("Whomepage") : navigation.navigate("donorHome")}}/>
             </BottomContainer>
             </Wrapper>
