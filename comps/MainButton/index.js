@@ -14,7 +14,8 @@ export default function MainButton({
     textColor='white',
     iconColor='white',
     mt,
-    mb
+    mb,
+    o
 }) 
 {
     return (
@@ -23,6 +24,7 @@ export default function MainButton({
             block
             color={textColor}
             rounded={10}
+            opacity={o}
             h={50}
             mt={mt}
             mb={mb}

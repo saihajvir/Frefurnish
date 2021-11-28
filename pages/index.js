@@ -29,7 +29,9 @@ const ffTheme = {
       periwinkle: "#92A8F8",
       lavender: "#7367F0",
       white: "#FFFFFF",
-      black: "#000000"
+      black: "#000000",
+      salmon: "#EAAB97",
+      whiteLowO: "rgba(255,255,255, 0.25)"
     }
   }
 
@@ -154,7 +156,10 @@ export default function Landing({
         })
         console.log(fuid)
         alert('Created!')
-        
+        setTimeout(() => {
+
+            {nextState (state + 1)}
+        }, 1000)
         // PostUserData(email, password, fuid);
     }
     const FBSignIn = async(email, password)=>{
@@ -178,7 +183,7 @@ export default function Landing({
                 <Image source={Logo} w={223} h={234}/>
             </Container>
             <BottomContainer mflex='0.5'>
-                <MainButton buttonText={'Get Started'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/>
+                <MainButton buttonText={'Get Started'} bg="whiteLowO" textColor='white' onPress={() => {nextState (state + 1)}}/>
             </BottomContainer>
             </Wrapper>
             </ImageBackground>
@@ -236,7 +241,7 @@ export default function Landing({
                 <UserInput onChangeName={val=>setName(val)} onChangePhone={val=>setPhone(val)} onCreate={FBCreateUser}/>
             </Container>
             <BottomContainer mflex='1'> 
-                <MainButton buttonText='Axios Post' onPress={PostUserData} />
+                {/* <MainButton buttonText='Axios Post' onPress={PostUserData} /> */}
                 <MainButton buttonText={'Next'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/>
             </BottomContainer>
             </Wrapper>
