@@ -13,6 +13,8 @@ import ItemIcon from "../comps/ItemIcon";
 import MainButton from "../comps/MainButton";
 import HalfButton from "../comps/halfbutton";
 
+import DonorGradient from '../assets/donor-gradient.png';
+
 const ffTheme = {
   colors: {
     periwinkle: "#92A8F8",
@@ -108,12 +110,12 @@ export default function NewListing({route, navigation})
         w={100}
         h={137}/>
       </Div>
-        <MainButton mt={10} buttonText="Publish" bg='salmon' onPress={() => {navigation.navigate('donorListing')}}/>
+        <MainButton iconName='' mt={10} buttonText="Publish" bg='#F2ABAB' onPress={() => {navigation.navigate('donorListing')}}/>
       <Div>
       </Div>
       </ScrollDiv>
       </Wrapper>
-      <DonorBottomNav 
+      <DonorBottomNav gradientImg={DonorGradient}
         GoHome={() => {navigation.navigate('donorHome')}}
         GoListings={() => {navigation.navigate('NewListing')}}
         GoRequests={() => {navigation.navigate('Donorrequest')}}

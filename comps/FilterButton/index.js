@@ -24,10 +24,10 @@ export default function FilterButton({
         px = "xl"
         py = "lg"
         bg = "white"
-        borderWidth = {1}
         rounded = {10}
-        bg = "#92A8F8" 
-        borderColor = "#92A8F8"
+        bg = "#B9C8FF" 
+        borderWidth = {1}
+        borderColor = "periwinkle"
         color = "white"
         underlayColor = "92A8F8"
         row flexWrap="wrap"

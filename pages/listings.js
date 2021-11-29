@@ -21,6 +21,7 @@ import Bookshelf from '../assets/bookshelf.jpg'
 import Toaster from '../assets/toaster.jpg'
 import FilterButton from "../comps/FilterButton";
 import FilterTags from "../comps/FilterTags";
+import WorkerGradient from '../assets/worker-gradient.png';
 
 const ffTheme = {
     colors: {
@@ -62,6 +63,12 @@ const Wrapper = styled.View`
     padding: 0 16px 0 16px;
     background-color: #FFF;
 `
+const FilterCont = styled.View`
+    flex: 1;
+  
+    justify-content: center;
+    align-items: center;
+`
 
 export default function Market({route, navigation}) {
     const [visible, setVisible] = useState(false);
@@ -76,11 +83,13 @@ export default function Market({route, navigation}) {
                     onPress={() => setVisible(true)}>
                 </FilterButton>
                     
-                <Modal isVisible={visible} bg="rgba(255,255,255, 0.3)" h="80%">
+                <Modal isVisible={visible} bg="rgba(255,255,255, 0.3)" h="100%">
+                    <FilterCont>
                     <FilterTags onPress={() => {
                         setVisible(false);
                         }}>
                     </FilterTags>
+                    </FilterCont>
                 </Modal>
                 
             </NewListing>
@@ -104,7 +113,7 @@ export default function Market({route, navigation}) {
             </ScrollView>
             </Wrapper>
             
-            <BottomNav 
+            <BottomNav gradientImg={WorkerGradient}
             GoHome={() => {navigation.navigate("Whomepage")}}
             GoListings={() => {navigation.navigate("Market")}}
             GoRequests={() => {navigation.navigate("Requests")}}

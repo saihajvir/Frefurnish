@@ -17,6 +17,7 @@ import MainButton from "../comps/MainButton";
 import Chair from '../assets/aeron.jpg'
 import HalfButton from "../comps/halfbutton";
 import ConfirmOverlay from "../comps/ConfirmOverlay";
+import WorkerGradient from '../assets/worker-gradient.png';
 
 const ffTheme = {
     colors: {
@@ -145,7 +146,7 @@ export default function Requested({
                     </AnimCont1>
                 </FlexCont2>
             </Wrapper>
-            <BottomNav
+            <BottomNav gradientImg={WorkerGradient}
                 GoHome={() => { navigation.navigate("Whomepage") }}
                 GoListings={() => { navigation.navigate("Market") }}
                 GoRequests={() => { navigation.navigate("Requests") }}
@@ -210,14 +211,14 @@ export default function Requested({
                     Have you picked up this item?
                 </Location>
                 <Div style={styles.choice} flex='1'>
-                    <HalfButton buttonText="Yes" bg="#6CAF61" borderColor='#6CAF61' onPress={() => {setYes(true)}}/>
-                    <HalfButton buttonText="No Longer Interested" bg="#E25C5C" borderColor='#E25C5C' onPress={() => {setOverlayVisible(true)}} />
+                    <HalfButton buttonText="Yes" bg="#98C791" borderColor='#6CAF61' onPress={() => {setYes(true)}}/>
+                    <HalfButton buttonText="No Longer Interested" bg="#EB8D8D" borderColor='#E25C5C' onPress={() => {setOverlayVisible(true)}} />
                 </Div>
                 </Container>
             </Wrapper>
 
             <ConfirmOverlay visible={overlayVisible} removeOverlay={() => {setOverlayVisible(false)}} onDeletePress={() => {navigation.navigate("Requests")}}/>
-            <BottomNav
+            <BottomNav gradientImg={WorkerGradient}
                 GoHome={() => { navigation.navigate("Whomepage") }}
                 GoListings={() => { navigation.navigate("Market") }}
                 GoRequests={() => { navigation.navigate("Requests") }}

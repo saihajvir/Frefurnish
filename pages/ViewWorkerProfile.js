@@ -13,7 +13,8 @@ import ProfileHeader from "../comps/ProfileHeader";
 import MainButton from "../comps/MainButton";
 
 
-import Julian from '../assets/julian.png'
+import Julian from '../assets/julian.png';
+import DonorGradient from '../assets/donor-gradient.png';
 
 const ffTheme = {
     colors: {
@@ -159,7 +160,7 @@ export default function ViewWorkerProfile({
          
       
           </BigWrapper>
-              <DonorBottomNav 
+              <DonorBottomNav gradientImg={DonorGradient}
               GoHome={() => {navigation.navigate('donorHome')}}
               GoListings={() => {navigation.navigate('NewListing')}}
               GoRequests={() => {navigation.navigate('Donorrequest')}}

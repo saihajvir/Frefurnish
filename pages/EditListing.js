@@ -14,6 +14,7 @@ import MainButton from "../comps/MainButton";
 import HalfButton from "../comps/halfbutton";
 
 import Toaster from "../assets/toaster.png";
+import DonorGradient from '../assets/donor-gradient.png';
 
 const ffTheme = {
   colors: {
@@ -77,7 +78,7 @@ export default function EditListing({route, navigation})
             borderColor='salmon'
             />
           <Div flexDir='row' h={50} justifyContent='space-between' mt={10}>
-            <HalfButton bg='salmon' color='white' buttonText='Pick Up'/>
+            <HalfButton bg='#F2ABAB' color='white' buttonText='Pick Up'/>
             <HalfButton bg='white' color='black' buttonText='Drop Off'/>
           </Div>
       </Div>
@@ -112,12 +113,12 @@ export default function EditListing({route, navigation})
         w={100}
         h={137}/>
       </Div>
-        <MainButton mt={10} buttonText="Save" bg='salmon' onPress={() => {navigation.navigate('donorListing')}}/>
+        <MainButton iconName='' mt={10} buttonText="Save" bg='#F2ABAB' onPress={() => {navigation.navigate('donorListing')}}/>
       <Div>
       </Div>
       </ScrollDiv>
       </Wrapper>
-      <DonorBottomNav 
+      <DonorBottomNav gradientImg={DonorGradient}
         GoHome={() => {navigation.navigate('donorHome')}}
         GoListings={() => {navigation.navigate('NewListing')}}
         GoRequests={() => {navigation.navigate('Donorrequest')}}

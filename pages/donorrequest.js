@@ -18,6 +18,7 @@ import Chair from '../assets/aeron.jpg';
 import Toaster from '../assets/toaster.jpg';
 import Julian from '../assets/julian.png';
 import Adam from '../assets/adam.jpeg';
+import DonorGradient from '../assets/donor-gradient.png';
 
 
 const ffTheme = {
@@ -92,7 +93,7 @@ export default function Donorrequest({navigation})
             </Container>
             </Wrapper>
          
-            <DonorBottomNav 
+            <DonorBottomNav gradientImg={DonorGradient}
                 GoHome={() => {navigation.navigate('donorHome')}}
                 GoListings={() => {navigation.navigate('NewListing')}}
                 GoRequests={() => {navigation.navigate('Donorrequest')}}

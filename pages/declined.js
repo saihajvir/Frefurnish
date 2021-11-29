@@ -15,6 +15,7 @@ import { StyleSheet, ScrollView, Dimensions } from "react-native";
 import Chair from '../assets/aeron.jpg'
 import BigPost from "../comps/BigPost";
 import MainButton from "../comps/MainButton";
+import WorkerGradient from '../assets/worker-gradient.png';
 
 const ffTheme = {
   colors: {
@@ -72,11 +73,11 @@ export default function Declined({ route, navigation }) {
                 <BigPost imgSrc={Chair}/>
               </Div>
             </ScrollDiv>
-            <MainButton buttonText="See Other Listings" />
+            <MainButton bg="#B9C8FF" iconName='' buttonText="See Other Listings" />
           </Div>
         </Div>
       </Wrapper>
-      <BottomNav
+      <BottomNav gradientImg={WorkerGradient}
         GoHome={() => { navigation.navigate("Whomepage") }}
         GoListings={() => { navigation.navigate("Market") }}
         GoRequests={() => { navigation.navigate("Requests") }}

@@ -14,6 +14,7 @@ import MainButton from "../comps/MainButton";
 
 import Julian from '../assets/julian.png'
 import John from '../assets/john.png'
+import DonorGradient from '../assets/donor-gradient.png';
 
 const ffTheme = {
     colors: {
@@ -171,13 +172,13 @@ export default function DonorProfile({
           </DescriptionTextWrapper>
           <Divider/>
           
-          <MainButton buttonText={'Edit Profile'} bg="#EB8D8D" iconName=""textColor='white'onPress={() => {navigation.navigate('EditDonorProfile')}}/>
+          <MainButton buttonText={'Edit Profile'} bg="#F2ABAB" iconName="" textColor='white'onPress={() => {navigation.navigate('EditDonorProfile')}}/>
       
        
           <ChangeProfile visible={overlayVisible}/>
       
           </BigWrapper>
-          <DonorBottomNav 
+          <DonorBottomNav gradientImg={DonorGradient} 
                       GoHome={() => {navigation.navigate('donorHome')}}
                       GoListings={() => {navigation.navigate('NewListing')}}
                       GoRequests={() => {navigation.navigate('Donorrequest')}}

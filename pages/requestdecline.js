@@ -12,6 +12,8 @@ import Chair from '../assets/aeron.jpg'
 import BackButton from "../comps/backbutton";
 import HalfButton from "../comps/halfbutton";
 
+import WorkerGradient from '../assets/worker-gradient.png';
+
 const ffTheme = {
     colors: {
       periwinkle: "#92A8F8",
@@ -86,7 +88,7 @@ export default function Requestdecline({route, navigation})
             </BottomCont>
             </Wrapper>
             
-            <BottomNav 
+            <BottomNav gradientImg={WorkerGradient}
                 GoHome={() => {navigation.navigate("Whomepage")}}
                 GoListings={() => {navigation.navigate("Market")}}
                 GoRequests={() => {navigation.navigate("Requests")}}

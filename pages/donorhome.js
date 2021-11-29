@@ -16,6 +16,8 @@ import Chair from '../assets/aeron.jpg';
 import Julian from '../assets/julian.png';
 import Toaster from '../assets/toaster.jpg';
 import Adam from '../assets/adam.jpeg';
+import DonorGradient from '../assets/donor-gradient.png';
+
 
 import { NavigationRouteContext } from "@react-navigation/core";
 
@@ -54,7 +56,7 @@ export default function donorHome({route, navigation, flex='1', justify='center'
             <Container flex='0.6' justify='space-evenly'>
             <RequestCard  pickupText="Pick Up Request"nameText="Adam Sandler" timeText="Office Chair" dateText=""profileImg={Adam} itemImg={Chair} onpress={() => {navigation.navigate('ItemRequests')}}/>
                     <RequestCard pickupText={"Pick Up Scheduled:"} fontColor="#6CAF61" profileImg={Julian} itemImg={Toaster} onpress={() => {navigation.navigate('ReqSchedule')}}/>
-            <MainButton buttonText={'See All Requests'} bg="salmon" iconName=""textColor='white'onPress={() => {navigation.navigate('Donorrequest')}}/>
+            <MainButton  buttonText={'See All Requests'} bg="#F2ABAB" iconName=""textColor='white'onPress={() => {navigation.navigate('Donorrequest')}}/>
             </Container>
 
             <TextCont>
@@ -70,7 +72,7 @@ export default function donorHome({route, navigation, flex='1', justify='center'
             </Container>
             </Wrapper>
 
-            <DonorBottomNav 
+            <DonorBottomNav gradientImg={DonorGradient}
                 GoHome={() => {navigation.navigate('donorHome')}}
                 GoListings={() => {navigation.navigate('NewListing')}}
                 GoRequests={() => {navigation.navigate('Donorrequest')}}

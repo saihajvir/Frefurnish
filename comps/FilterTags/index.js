@@ -93,7 +93,7 @@ export default function FilterTags({
 
         </TagContainer>
         <ButtonContainer>
-            <MainButton buttonText="Confirm Tags" 
+            <MainButton iconName='' bg="#B9C8FF" buttonText="Confirm Tags" 
                 onPress={onPress}
             />
         </ButtonContainer>

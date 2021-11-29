@@ -12,7 +12,7 @@ import BackButton from "../comps/backbutton";
 import ProfileHeader from "../comps/ProfileHeader";
 import MainButton from "../comps/MainButton";
 
-
+import WorkerGradient from '../assets/worker-gradient.png';
 import Julian from '../assets/julian.png'
 
 const ffTheme = {
@@ -157,10 +157,10 @@ export default function WorkerProfile({
           </DescriptionTextWrapper>
           <ChangeProfile visible={overlayVisible}/>
           <Divider/>
-          <MainButton buttonText={'Edit Profile'} bg="periwinkle" iconName=""textColor='white'onPress={() => {navigation.navigate('EditWorkerProfile')}}/>
+          <MainButton buttonText={'Edit Profile'} bg="#B9C8FF" iconName=""textColor='white'onPress={() => {navigation.navigate('EditWorkerProfile')}}/>
       
           </BigWrapper>
-            <BottomNav 
+            <BottomNav gradientImg={WorkerGradient}
                 GoHome={() => {navigation.navigate("Whomepage")}}
                 GoListings={() => {navigation.navigate("Market")}}
                 GoRequests={() => {navigation.navigate("Requests")}}

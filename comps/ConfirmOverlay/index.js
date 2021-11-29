@@ -36,8 +36,8 @@ export default function ConfirmOverlay({
                   {messageText}
                 </TextContainer>
                 <InnerContainer>
-                    <HalfButton w={140} bg='#6CAF61' borderColor='#6CAF61' buttonText='Go Back' onPress={removeOverlay}/>
-                    <HalfButton w={140} bg='#E25C25' borderColor='#E25C25' buttonText={buttonText} onPress={onDeletePress}/>
+                    <HalfButton w={140} bg='#98C791' borderColor='#6CAF61' buttonText='Go Back' onPress={removeOverlay}/>
+                    <HalfButton w={140} bg='#EB8D8D' borderColor='#E25C25' buttonText={buttonText} onPress={onDeletePress}/>
                 </InnerContainer>
             </Container>
         </Overlay>

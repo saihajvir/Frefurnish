@@ -12,7 +12,8 @@ import BackButton from "../comps/backbutton";
 import SmallPost from "../comps/SmallPost";
 import { StyleSheet, ScrollView, Dimensions } from "react-native";
 
-import Chair from '../assets/aeron.jpg'
+import Chair from '../assets/aeron.jpg';
+import WorkerGradient from '../assets/worker-gradient.png';
 
 const ffTheme = {
   colors: {
@@ -122,7 +123,7 @@ export default function Profile({ route, navigation }) {
       </Div>
       </ScrollDiv>
 
-      <BottomNav 
+      <BottomNav gradientImg={WorkerGradient}
           GoHome={() => {navigation.navigate("Whomepage")}}
           GoListings={() => {navigation.navigate("Market")}}
           GoRequests={() => {navigation.navigate("Requests")}}

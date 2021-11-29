@@ -24,6 +24,7 @@ import Toaster from '../assets/toaster.jpg';
 import Julian from '../assets/julian.png'
 import Chair from '../assets/aeron.jpg';
 import Adam from '../assets/adam.jpeg';
+import DonorGradient from '../assets/donor-gradient.png';
 
 
 
@@ -199,7 +200,7 @@ return (
         </FlexCont>
           <FlexCont/>
       </Wrapper>
-            <DonorBottomNav 
+            <DonorBottomNav gradientImg={DonorGradient}
                 GoHome={() => {navigation.navigate('donorHome')}}
                 GoListings={() => {navigation.navigate('NewListing')}}
                 GoRequests={() => {navigation.navigate('Donorrequest')}}
@@ -225,7 +226,7 @@ return (
       <FlexCont2/>
       <FlexCont2/>
     </Wrapper>
-      <DonorBottomNav 
+      <DonorBottomNav gradientImg={DonorGradient}
           GoHome={() => {navigation.navigate('donorHome')}}
           GoListings={() => {navigation.navigate('NewListing')}}
           GoRequests={() => {navigation.navigate('Donorrequest')}}
@@ -264,10 +265,10 @@ return (
                 
                 <ButtonCont>
                   <HalfButton 
-                  onPress={handleApprovePress} bg="#6CAF61" borderColor="#6CAF61" buttonText="Approve" >
+                  onPress={handleApprovePress} bg="#98C791" borderColor="#6CAF61" buttonText="Approve" >
                   </HalfButton>
                   <HalfButton
-                  onPress={() => {setOverlayVisible(true)}} bg="#E25C5C" borderColor="#E25C5C" buttonText="Decline">
+                  onPress={() => {setOverlayVisible(true)}} bg="#EB8D8D" borderColor="#E25C5C" buttonText="Decline">
                   </HalfButton>
                 </ButtonCont>
             </Container>
@@ -278,7 +279,7 @@ return (
           removeOverlay={() => {setOverlayVisible(false)}} 
           onDeletePress={handleDeclinePress}
           messageText={"Are you sure you're not interested? This request will be declined"}/>
-            <DonorBottomNav 
+            <DonorBottomNav gradientImg={DonorGradient}
                 GoHome={() => {navigation.navigate('donorHome')}}
                 GoListings={() => {navigation.navigate('NewListing')}}
                 GoRequests={() => {navigation.navigate('Donorrequest')}}

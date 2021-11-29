@@ -14,6 +14,8 @@ import Toaster from '../assets/toaster.jpg';
 import DonorBottomNav from "../comps/DonorBottomNavBar";
 import ConfirmOverlay from "../comps/ConfirmOverlay";
 
+import DonorGradient from '../assets/donor-gradient.png';
+
 
 const ffTheme = {
     colors: {
@@ -112,10 +114,10 @@ if (state === "delete"){
                     </AnimCont2>
                 </FlexCont2>
                 <FlexCont2/>
-                <MainButton iconName="" bg="salmon" buttonText="Create Listing" onPress={() => {navigation.navigate('donorListing')}}/>
+                <MainButton iconName="" bg="#F2ABAB" buttonText="Create Listing" onPress={() => {navigation.navigate('donorListing')}}/>
                
             </Wrapper>
-            <DonorBottomNav 
+            <DonorBottomNav gradientImg={DonorGradient}
         GoHome={() => {navigation.navigate('donorHome')}}
         GoListings={() => {navigation.navigate('NewListing')}}
         GoRequests={() => {navigation.navigate('Donorrequest')}}
@@ -142,8 +144,8 @@ if (state === "delete"){
                     <Text>It toasts good.</Text>
                 </NewListing>
             <BottomCont>
-                <HalfButton buttonText='Edit' borderColor='#00000000'onPress={() => {navigation.navigate('EditListing')}}/>
-                <HalfButton buttonText='Delete' bg='salmon' borderColor='#00000000' onPress={handleDeletePress}/>
+                <HalfButton buttonText='Edit' borderColor='periwinkle'bg='#B9C8FF'onPress={() => {navigation.navigate('EditListing')}}/>
+                <HalfButton buttonText='Delete' bg='salmon' borderColor='#E25C25' onPress={handleDeletePress}/>
             </BottomCont>
         </Wrapper>
         <ConfirmOverlay 
@@ -152,7 +154,7 @@ if (state === "delete"){
           removeOverlay={() => {setOverlayVisible(false)}} 
           onDeletePress={handleDeletePress}
           messageText={"Are you sure you're not interested? This request will be declined"}/>
-        <DonorBottomNav
+        <DonorBottomNav gradientImg={DonorGradient}
             GoHome={() => {navigation.navigate('donorHome')}}
             GoListings={() => {navigation.navigate('NewListing')}}
             GoRequests={() => {navigation.navigate('Donorrequest')}}

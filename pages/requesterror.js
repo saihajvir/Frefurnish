@@ -12,6 +12,7 @@ import Chair from '../assets/aeron.jpg'
 import BackButton from "../comps/backbutton";
 import HalfButton from "../comps/halfbutton";
 import BigPost from "../comps/BigPost";
+import WorkerGradient from '../assets/worker-gradient.png';
 
 const ffTheme = {
     colors: {
@@ -89,11 +90,11 @@ export default function Requesterror({route, navigation})
 
 
             <BottomCont>
-                <MainButton  buttonText="See All Listings" onPress={() => {navigation.navigate("Requests")}}/> 
+                <MainButton iconName=" " bg="#B9C8FF" buttonText="See All Listings" onPress={() => {navigation.navigate("Requests")}}/> 
             </BottomCont>
             </Wrapper>
             
-            <BottomNav 
+            <BottomNav gradientImg={WorkerGradient}
                 GoHome={() => {navigation.navigate("Whomepage")}}
                 GoListings={() => {navigation.navigate("Market")}}
                 GoRequests={() => {navigation.navigate("Requests")}}

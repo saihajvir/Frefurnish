@@ -17,6 +17,7 @@ import MainPost from "../comps/MainPost";
 import ReqCardLarge from "../comps/ReqCardLarge";
 
 import Chair from '../assets/aeron.jpg'
+import WorkerGradient from '../assets/worker-gradient.png';
 
 const ffTheme = {
     colors: {
@@ -98,7 +99,7 @@ export default function Viewlisting({route, navigation})
               </FlexCont>
                 <FlexCont/>
             </Wrapper>
-            <BottomNav 
+            <BottomNav gradientImg={WorkerGradient}
                 GoHome={() => {navigation.navigate("Whomepage")}}
                 GoListings={() => {navigation.navigate("Market")}}
                 GoRequests={() => {navigation.navigate("Requests")}}
@@ -123,11 +124,11 @@ export default function Viewlisting({route, navigation})
             </NewListing>
 
             <BottomCont>
-                <MainButton mb={10} buttonText="Request Item" onPress={() => {setRequested(true)}}/> 
+                <MainButton iconName='' bg="#B9C8FF" mb={10} buttonText="Request Item" onPress={() => {setRequested(true)}}/> 
             </BottomCont>
             </Wrapper>
             
-            <BottomNav 
+            <BottomNav gradientImg={WorkerGradient}
                 GoHome={() => {navigation.navigate("Whomepage")}}
                 GoListings={() => {navigation.navigate("Market")}}
                 GoRequests={() => {navigation.navigate("Requests")}}

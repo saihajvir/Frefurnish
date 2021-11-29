@@ -17,6 +17,7 @@ import Chair from '../assets/aeron.jpg';
 import Toaster from '../assets/toaster.jpg';
 import Table from '../assets/table.jpg';
 import KitchenChairs from '../assets/kitchen-chairs.jpg';
+import WorkerGradient from '../assets/worker-gradient.png';
 
 const ffTheme = {
     colors: {
@@ -68,7 +69,7 @@ export default function Whomepage({route, navigation, flex='1'})
                   
             
                 </Container>
-                <MainButton buttonText={'See All Listings'} bg="periwinkle" textColor='white' onPress={() => {navigation.navigate("Market")}}/>
+                <MainButton iconName='' buttonText={'See All Listings'} bg="#B9C8FF" textColor='white' onPress={() => {navigation.navigate("Market")}}/>
                 <NewListing>
                     <Text fontWeight="600" fontSize={32} pt={20}>Requested Items</Text>
                 </NewListing>
@@ -81,9 +82,9 @@ export default function Whomepage({route, navigation, flex='1'})
                         </Div>
                     </ScrollView>
                 </Container>
-                <MainButton mb={20} buttonText={'See All Requests'} bg="periwinkle" textColor='white' onPress={() => {navigation.navigate("Requests")}}/>
+                <MainButton mb={20} iconName='' buttonText={'See All Requests'} bg="#B9C8FF" textColor='white' onPress={() => {navigation.navigate("Requests")}}/>
             </Wrapper>
-            <BottomNav 
+            <BottomNav gradientImg={WorkerGradient}
                 GoHome={() => {navigation.navigate("Whomepage")}}
                 GoListings={() => {navigation.navigate("Market")}}
                 GoRequests={() => {navigation.navigate("Requests")}}

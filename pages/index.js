@@ -136,7 +136,7 @@ export default function Landing({
                 <Image source={Logo} w={223} h={234}/>
             </Container>
             <BottomContainer flex='0.5'>
-                <MainButton buttonText={'Get Started'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/>
+                <MainButton iconName='' buttonText={'Get Started'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/>
             </BottomContainer>
             </Wrapper>
             </ImageBackground>
@@ -170,7 +170,7 @@ export default function Landing({
                 />
             </Container>
             <BottomContainer flex='1'>
-                <MainButton buttonText={'Next'} bg="white" textColor='#EAAB97' onPress={HandleTypePress}/>
+                <MainButton iconName='' buttonText={'Next'} bg="white" textColor='#EAAB97' onPress={HandleTypePress}/>
             </BottomContainer>
             </Wrapper>
             </ImageBackground>
@@ -196,7 +196,7 @@ export default function Landing({
                 <UserInput onCreate={FBCreateUser}/>
             </Container>
             <BottomContainer flex='1'> 
-                <MainButton buttonText={'Next'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/>
+                <MainButton iconName='' buttonText={'Next'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/>
             </BottomContainer>
             </Wrapper>
             </ImageBackground>
@@ -226,7 +226,7 @@ export default function Landing({
                         <SignIn onSignIn={FBSignIn}/>
                     </Container>
                     <BottomContainer flex='0.5'>
-                        <MainButton buttonText={'Next'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/>
+                        <MainButton iconName='' buttonText={'Next'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/>
                     </BottomContainer>
                 </Wrapper>
                 </ImageBackground>
@@ -250,7 +250,7 @@ export default function Landing({
                     All done. Let's Begin!
                 </Heading>
             <BottomContainer flex='0.5'>
-                <MainButton buttonText={'Enter'} bg="white" textColor='#EAAB97' onPress={() => {user === 'worker' ? navigation.navigate("Whomepage") : navigation.navigate("donorHome")}}/>
+                <MainButton iconName='' buttonText={'Enter'} bg="white" textColor='#EAAB97' onPress={() => {user === 'worker' ? navigation.navigate("Whomepage") : navigation.navigate("donorHome")}}/>
             </BottomContainer>
             </Wrapper>
             </ImageBackground>

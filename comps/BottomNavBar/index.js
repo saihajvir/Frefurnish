@@ -1,18 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
-import { Button, Icon, Div, Text } from 'react-native-magnus'
+import { Button, Icon, Div, Text, Image } from 'react-native-magnus';
+
+
 
 export default function BottomNav({
     GoHome,
     GoListings,
     GoRequests,
-    GoProfile  
+    GoProfile,
+    gradientImg, 
 })
 {
     return (
         
         <Div
+            bgImg={gradientImg}
             style={styles.NavBar}
             h={80}
             rounded={20}
@@ -97,7 +101,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-evenly',
-        backgroundColor: '#92A8F8'
+        
     },
 
     
