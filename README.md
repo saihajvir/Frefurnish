@@ -6,15 +6,9 @@ Make sure to install the packages inside the frefurnish-app directory.
 
 After cloning, run the following commands:
 
-yarn add styled-components
+yarn
 
-yarn add lottie-react-native
-
-yarn add react-native-magnus
-
-//Please familiarize yourself with Magnus UI. https://magnus-ui.com/docs/getting-started/
-
-yarn add color react-native-animatable react-native-modal react-native-vector-icons deepmerge validate-color
+DO NOT RUN NPM INSTALL
 
 Once all the dependencies are installed, use "expo start" to run the app.
 
