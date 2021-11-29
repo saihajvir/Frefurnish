@@ -101,8 +101,8 @@ export default function donorHome({route, navigation, mflex='1', justify='center
             <Wrapper>
                 <Text pt={20} fontWeight="600" fontSize={32}>Item Requests</Text>
             <Container mflex='0.6' justify='space-evenly'>
-            <RequestCard  pickupText="Pick Up Request"nameText="Adam Sandler" timeText="Office Chair" dateText=""profileImg={Adam} itemImg={Chair} onpress={() => {navigation.navigate('ItemRequests')}}/>
-                    <RequestCard pickupText={"Pick Up Scheduled:"} fontColor="#6CAF61" profileImg={Julian} itemImg={Toaster} onpress={() => {navigation.navigate('ReqSchedule')}}/>
+                <RequestCard  pickupText="Pick Up Request"nameText="Adam Sandler" timeText="Office Chair" dateText=""profileImg={Adam} itemImg={Chair} onpress={() => {navigation.navigate('ItemRequests')}}/>
+                <RequestCard pickupText={"Pick Up Scheduled:"} fontColor="#6CAF61" profileImg={Julian} itemImg={Toaster} onpress={() => {navigation.navigate('ReqSchedule')}}/>
             <MainButton buttonText={'See All Requests'} bg="salmon" iconName=""textColor='white'onPress={() => {navigation.navigate('Donorrequest')}}/>
             </Container>
 

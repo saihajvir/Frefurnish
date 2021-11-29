@@ -200,20 +200,22 @@ useEffect(() => {
       pb={10}
       >
         <Div 
-        w={100}
-        h={137}>
-
-        {image && <Image source={{ uri: image }} style={{ width: 100, height: 137 }} />}
+        borderColor='salmon'
+        borderWidth={1}
+        rounded={10}
+        w='100%'
+        h={200}>
+        {image && <Image source={{ uri: image }} style={{ width: '100%', height: 200, borderRadius: 10 }} />}
 
         </Div>
-        <Input 
+        {/* <Input 
         w={100}
         h={137}/>
         <Input 
         w={100}
-        h={137}/>
+        h={137}/> */}
       </Div>
-        <MainButton mt={10} buttonText="Publish" bg='salmon' onPress={HandlePublishPress}/>
+        <MainButton mt={10} mb={10} buttonText="Publish" bg='salmon' onPress={HandlePublishPress}/>
       <Div>
       </Div>
       </Wrapper>

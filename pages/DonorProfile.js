@@ -4,7 +4,7 @@ import styled from "styled-components/native";
 import { ScrollView, View, } from "react-native";
 
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image, Avatar, Modal } from 'react-native-magnus';
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
 
 import ItemIcon from "../comps/ItemIcon";
 import DonorBottomNav from "../comps/DonorBottomNavBar";
@@ -166,6 +166,8 @@ export default function DonorProfile({
     const auth = getAuth();
     signOut(auth).then(() => {
       // Sign-out successful.
+      console.log("Signed Out")
+      navigation.navigate('Landing')
     }).catch((error) => {
       // An error happened.
     });
@@ -214,7 +216,7 @@ export default function DonorProfile({
           </Container>
           <ButtonContainer>
           <MainButton buttonText={'Edit Profile'} bg="#EB8D8D" iconName=""textColor='white'onPress={() => {navigation.navigate('EditDonorProfile')}}/>
-          <MainButton mt={10} buttonText={'Sign Out'} bg="salmon" iconName=""textColor='white'onPress={HandleSignOut, console.log("Signed Out")}/>
+          <MainButton mt={10} buttonText={'Sign Out'} bg="salmon" iconName=""textColor='white'onPress={HandleSignOut}/>
           </ButtonContainer>
         
           <ChangeProfile visible={overlayVisible}/>

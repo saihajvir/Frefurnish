@@ -30,6 +30,7 @@ const ffTheme = {
   background-color: #FFF;
 `
 const NewListing = styled.View`
+    flex: 1;
   background-color: #FFFFFF;
   margin-bottom: 10px;
   margin-top: 10px;
@@ -155,6 +156,7 @@ if (state === "delete"){
                     <Text>{listingData.listingCondition}</Text>
                     <Text mt={10} fontWeight="600" fontSize={24}>Description</Text>
                     <Text>{listingData.listingDescription}</Text>
+                    <Text mt={10} fontWeight="600" fontSize={24}>{listingData.pickup}</Text>
                 </NewListing>
             <BottomCont>
                 <HalfButton buttonText='Edit' borderColor='#00000000'onPress={() => {navigation.navigate('NewListing')}}/>

@@ -162,6 +162,8 @@ export default function WorkerProfile({
     const auth = getAuth();
     signOut(auth).then(() => {
       // Sign-out successful.
+      console.log("Signed Out")
+      navigation.navigate('Landing')
     }).catch((error) => {
       // An error happened.
     });

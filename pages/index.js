@@ -131,7 +131,8 @@ export default function Landing({
             name: name,
             phone: phone,
             email: email,
-            password: password
+            password: password,
+            worker: user
         
         }
         
@@ -166,8 +167,21 @@ export default function Landing({
         const auth = getAuth();
         const result = await signInWithEmailAndPassword(auth, email, password)
         alert('Signed In!')
+
+        setTimeout(() => {
+            {nextState (state + 1)}
+            GoHome();
+        }, 1000)
       }
 
+    function GoHome()
+    {
+        
+        setTimeout(() => {
+            nextState(0)
+            user === 'worker' ? navigation.navigate("Whomepage") : navigation.navigate("donorHome")
+        }, 1500)
+    }
     if(state === 0)
     {
     return (
@@ -216,7 +230,7 @@ export default function Landing({
                 />
             </Container>
             <BottomContainer mflex='1'>
-                <MainButton buttonText={'Next'} bg="white" textColor='#EAAB97' onPress={HandleTypePress}/>
+                <MainButton buttonText={'Next'} bg="whiteLowO" textColor='white' onPress={HandleTypePress}/>
             </BottomContainer>
             </Wrapper>
             </ImageBackground>
@@ -242,7 +256,7 @@ export default function Landing({
             </Container>
             <BottomContainer mflex='1'> 
                 {/* <MainButton buttonText='Axios Post' onPress={PostUserData} /> */}
-                <MainButton buttonText={'Next'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/>
+                <MainButton buttonText={'Next'} bg="whiteLowO" textColor='white' onPress={() => {nextState (state + 1)}}/>
             </BottomContainer>
             </Wrapper>
             </ImageBackground>
@@ -271,7 +285,7 @@ export default function Landing({
                         <SignIn onSignIn={FBSignIn}/>
                     </Container>
                     <BottomContainer mflex='0.5'>
-                        <MainButton buttonText={'Next'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/>
+                        {/* <MainButton buttonText={'Next'} bg="white" textColor='#EAAB97' onPress={() => {nextState (state + 1)}}/> */}
                     </BottomContainer>
                 </Wrapper>
                 </ImageBackground>
@@ -294,13 +308,12 @@ export default function Landing({
                 <Image source={Logo} w={223} h={234}/>
             </Container>
             <BottomContainer mflex='0.5'>
-                <MainButton buttonText={'Enter'} bg="white" textColor='#EAAB97' onPress={() => {user === 'worker' ? navigation.navigate("Whomepage") : navigation.navigate("donorHome")}}/>
+                {/* <MainButton buttonText={'Enter'} bg="white" textColor='#EAAB97' onPress={() => {user === 'worker' ? navigation.navigate("Whomepage") : navigation.navigate("donorHome")}}/> */}
             </BottomContainer>
             </Wrapper>
             </ImageBackground>
         </ThemeProvider> 
-        )
-                    
+        )           
     }
 
 }

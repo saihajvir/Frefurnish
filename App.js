@@ -7,7 +7,7 @@ import axios from 'axios';
 import app from './utils/initfb';
 
 //if ngrok restarts, change this url
-axios.defaults.baseURL = "http://72e2-206-116-173-153.ngrok.io/frefurnishdb/api/";
+axios.defaults.baseURL = "http://57a5-142-232-219-150.ngrok.io/frefurnishdb/api/";
 
 import styled from 'styled-components';
 import LottieView from 'lottie-react-native';
@@ -53,6 +53,11 @@ const ffTheme = {
     black: "#000000"
   }
 }
+const White = {
+  colors: {
+    background: '#FFFFFF'
+  }
+}
 
 const Stack = createNativeStackNavigator();
 
@@ -60,7 +65,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={White}>
       <StatusBar barStyle='light-content'/>
     <ThemeProvider theme={ffTheme}>
       <Stack.Navigator initialRouteName="Home">
