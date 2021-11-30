@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import styled from "styled-components";
+import { useFocusEffect } from "@react-navigation/native";
 import { ScrollView, View, TouchableOpacity, ImageBackground} from "react-native";
 import { StyleSheet } from "react-native";
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv } from 'react-native-magnus';
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import app from "../utils/initfb";
 
 import MainButton from '../comps/MainButton/index';
 import BottomNav from '../comps/BottomNavBar';
@@ -56,18 +59,30 @@ export default function Whomepage({route, navigation, mflex='1'})
 
     const [listing, setListing] = useState(null);
 
-    useEffect(() => {
+    useFocusEffect(
+        React.useCallback(() => {
         const GetData = async() => {
             const result = await axios.get('/listings.php');
             // console.log(result.data)
-
+            const storage = getStorage(app);
+            for(var i =0; i<result.data.length; i++){
+                try{
+                    console.log("try");
+                    const url = await getDownloadURL(ref(storage, `listing/item${result.data[i].id}.jpg`));
+                    result.data[i].url = url;
+                    console.log(url)
+                } catch (e){
+                    result.data[i].url = null;
+                    continue;
+                }
+            }
             setListing(result.data)
         }
         
         GetData();
         console.log(listing)
     }, [])
-
+    );
 
     if(listing === null)
     {
@@ -89,7 +104,7 @@ export default function Whomepage({route, navigation, mflex='1'})
                         <BigPost
                             mr={15}
                             headerText={listings.listingName}
-                            imgSrc={Chair}
+                            imgSrc={listings.url ? {uri:listings.url} : Chair}
                             locationText={listings.listingLocation}
                             key={listings.id}
                             onPress={()=>navigation.navigate('Viewlisting', {id:listings.id})}

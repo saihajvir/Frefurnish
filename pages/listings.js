@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { ScrollView, View, TouchableOpacity } from "react-native";
 
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Input, } from 'react-native-magnus';
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import app from "../utils/initfb";
 
 import MainButton from '../comps/MainButton/index';
 import BottomNav from '../comps/BottomNavBar';
@@ -84,6 +86,18 @@ export default function Market({route, navigation})
         const GetData = async() => {
             const result = await axios.get('/listings.php');
             // console.log(result.data)
+            const storage = getStorage(app);
+            for(var i =0; i<result.data.length; i++){
+                try{
+                    console.log("try");
+                    const url = await getDownloadURL(ref(storage, `listing/item${result.data[i].id}.jpg`));
+                    result.data[i].url = url;
+                    console.log(url)
+                } catch (e){
+                    result.data[i].url = null;
+                    continue;
+                }
+            }
 
             setListing(result.data)
         }
@@ -109,7 +123,7 @@ export default function Market({route, navigation})
                             h={185}
                             w={185}
                             headerText={listings.listingName}
-                            imgSrc={Chair}
+                            imgSrc={listings.url ? {uri:listings.url} : Chair}
                             locationText={listings.listingLocation}
                             key={listings.id}
                             onPress={()=>navigation.navigate('Viewlisting', {id:listings.id})}

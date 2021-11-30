@@ -5,6 +5,8 @@ import { ScrollView, View, TouchableOpacity, ImageBackground} from "react-native
 
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image } from 'react-native-magnus';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import app from "../utils/initfb";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 import MainButton from '../comps/MainButton/index';
 import BottomNav from '../comps/BottomNavBar';
@@ -72,11 +74,23 @@ export default function Donorrequest({navigation})
     const GetData = async(fuid) => {
       const result = await axios.get('/requests.php?fuid='+fuid);
 
-      setPendingReq(result.data);
+      const storage = getStorage(app);
+        for(var i =0; i<result.data.length; i++){
+          try{
+               console.log("try");
+                const url = await getDownloadURL(ref(storage, `listing/item${result.data[i].listing_id}.jpg`));
+                  result.data[i].url = url;
+                    console.log(url)
+          } catch (e){
+              result.data[i].url = null;
+              continue;
+          }
+        }
+        setPendingReq(result.data);
+
       console.log(result.data, "RESULTS")
       // console.log(pendingReq, "STATUS")
       // console.log(getAuth().currentUser.uid, "GETAUTH()")
-      console.log(pendingReq, "PENDING REQ")
     }
     const auth = getAuth();
     // console.log(auth, "AUTH");
@@ -91,6 +105,9 @@ export default function Donorrequest({navigation})
       return <>
       </>
     }
+
+
+    console.log(pendingReq, "PENDING REQ")
     return (
         <ThemeProvider theme={ffTheme}>
          
@@ -101,15 +118,21 @@ export default function Donorrequest({navigation})
                     <Text fontWeight="600" fontSize={32} pt={20}>New Requests</Text>
 
                   <ReqCont>
-                  <RequestCard nameText='Adam Sandler' timeText="4:30pm" dateText="November 5th" profileImg={Adam} itemImg={Chair} onpress={() => {navigation.navigate('ItemRequests')}}/>
+                  {/* <RequestCard nameText='Adam Sandler' timeText="4:30pm" dateText="November 5th" profileImg={Adam} itemImg={Chair} onpress={() => {navigation.navigate('ItemRequests')}}/> */}
 
-                    {/* {
-                      pendingReq && pendingReq.filter((pend) => {return pend.status === 'pending' && pend.fuid === getAuth().currentUser.uid}).map((requests) => (
+                    {
+                      pendingReq && pendingReq.filter((pend) => {return pend.status === 'pending'}).map((requests, index) => {
+                        console.log(requests.url, "request url")
+                        return (
+
+                          <RequestCard key={index} nameText={requests.wname} companyText={requests.workplace} timeText="4:30pm" dateText="November 5th" profileImg={Adam} itemImg={requests.url ? {uri:requests.url} : Chair} onpress={() => {navigation.navigate('ItemRequests')}}/>
+                        )
+
+                      }
                         
-                        <RequestCard nameText={requests.wname} timeText="4:30pm" dateText="November 5th" profileImg={Adam} itemImg={Chair} onpress={() => {navigation.navigate('ItemRequests')}}/>
-                
-                      ))
-                    } */}
+                        
+                      )
+                    }
                   </ReqCont>
 
                 </Heading>

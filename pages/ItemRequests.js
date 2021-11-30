@@ -5,6 +5,9 @@ import { ScrollView, View, TouchableOpacity, ImageBackground} from "react-native
 import LottieView from 'lottie-react-native';
 
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image, Avatar, Input} from 'react-native-magnus';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import app from "../utils/initfb";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 import MainButton from '../comps/MainButton/index';
 import BottomNav from '../comps/BottomNavBar';
@@ -169,6 +172,44 @@ export default function Donorrequest({navigation})
   function handleDeclinePress(){
     setState("decline")
   }
+  const [ pendingReq, setPendingReq ] = useState(null);
+
+  useEffect(() => {
+    const GetData = async(fuid) => {
+      const result = await axios.get('/requests.php?fuid='+fuid);
+
+      const storage = getStorage(app);
+        for(var i =0; i<result.data.length; i++){
+          try{
+               console.log("try");
+                const url = await getDownloadURL(ref(storage, `listing/item${result.data[i].listing_id}.jpg`));
+                  result.data[i].url = url;
+                    console.log(url)
+          } catch (e){
+              result.data[i].url = null;
+              continue;
+          }
+        }
+        setPendingReq(result.data[0]);
+
+      console.log(result.data, "RESULTS")
+      // console.log(pendingReq, "STATUS")
+      // console.log(getAuth().currentUser.uid, "GETAUTH()")
+    }
+    const auth = getAuth();
+    // console.log(auth, "AUTH");
+
+      if(auth?.currentUser.uid){
+        GetData(auth.currentUser.uid);
+      }
+  },[])
+
+    if(pendingReq === null)
+    {
+      return <>
+      </>
+    }
+
     
 if (state === "approved"){
 
@@ -181,7 +222,7 @@ return (
               </Title>
         </FlexCont>
         <FlexCont>
-          <ReqCardLarge pickupText={"Pick Up Scheduled:"} textColor={"#6CAF61"} itemImg={Chair}/>
+          <ReqCardLarge pickupText={"Pick Up Scheduled:"} textColor={"#6CAF61"} itemImg={pendingReq.url ? {uri:pendingReq.url} : Chair}/>
         </FlexCont>
           <FlexCont/>
         <FlexCont>
@@ -236,10 +277,10 @@ return (
       <ThemeProvider theme={ffTheme}>         
          <Wrapper>
             <Container>
-              <WorkerProfile name="Adam Sandler" profileImg={Adam}></WorkerProfile>
+                <WorkerProfile name={pendingReq.name} workPlace={pendingReq.workplace} profileImg={Adam}></WorkerProfile>
               <MessageText/>
               
-                <ReqCardLarge itemImg={Chair} timeText="" dateText="Office Chair"/>
+                <ReqCardLarge itemImg={pendingReq.url ? {uri:pendingReq.url} : Chair} timeText="" dateText={pendingReq.listingName}/>
                 <MessageCont>
                 <MessageText/>
                   <MessageTitle>

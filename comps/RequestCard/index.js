@@ -74,8 +74,8 @@ export default function RequestCard({
     
 
 })
-
 {
+    console.log(itemImg, "ITEM IMG")
     return(
     <Button onPress={onpress} bg="#00000000"  rounded={10} underlayColor="red100">
        <Card>

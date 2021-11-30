@@ -75,7 +75,7 @@ export default function NewListing({route, navigation})
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [4, 3],
-      quality: 1,
+      quality: 0.5,
     });
 
     console.log(result);
@@ -86,12 +86,12 @@ export default function NewListing({route, navigation})
     }
   };
 
-  const Upload = async(file_uri)=>{
-    const file = await fetch(file_uri);
+  const Upload = async(id)=>{
+    const file = await fetch(image);
     const blob = await file.blob()
 
     const storage = getStorage();
-    const storageRef = ref(storage, 'test.jpg');
+    const storageRef = ref(storage, `listing/item${id}.jpg`);
 
     const snapshot = await uploadBytes(storageRef, blob);
     console.log('uploaded image to firebase!')
@@ -99,8 +99,6 @@ export default function NewListing({route, navigation})
   const PostListing = async() => {
 
     var listingdata = {
-
-        id:"NULL",
         fuid: user.uid,
         listingName: listingName,
         listingDescription: listingDescription,
@@ -115,16 +113,17 @@ export default function NewListing({route, navigation})
     }
     
   const result = await axios.post('/listings.php', listingdata);
-  console.log(result.data)
+  console.log("post", result.data);
+
+  Upload(result.data);
 }
 
-function HandlePublishPress()
+async function HandlePublishPress()
 {
-  PostListing();
-  Upload(image);
-  /*setTimeout(() => {
+  await PostListing();
+  setTimeout(() => {
     navigation.navigate('donorListing');
-  }, 1000)*/
+  }, 1000);
 
 }
 useEffect(() => {

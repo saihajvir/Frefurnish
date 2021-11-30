@@ -2,8 +2,10 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { ScrollView, View, TouchableOpacity, ImageBackground} from "react-native";
-
+import { useFocusEffect } from "@react-navigation/native";
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv } from 'react-native-magnus';
+import app from "../utils/initfb";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 import MainButton from '../comps/MainButton/index';
 import DonorBottomNav from '../comps/DonorBottomNavBar';
@@ -68,34 +70,40 @@ export default function donorHome({route, navigation, mflex='1', justify='center
     const [user, setUser] = useState(null);
     const [listing, setListing] = useState();
     // const listArray = []
-    useEffect(() => {
-        const GetData = async() => {
-            const result = await axios.get('/listings.php');
-            // console.log(result.data)
+    useFocusEffect(
+        React.useCallback(() => {
+            const GetData = async() => {
+                const result = await axios.get('/listings.php');
+                // console.log(result.data)
 
-            setListing(result.data)
+                const storage = getStorage(app);
+                for(var i =0; i<result.data.length; i++){
+                    try{
+                        console.log("try");
+                        const url = await getDownloadURL(ref(storage, `listing/item${result.data[i].id}.jpg`));
+                        result.data[i].url = url;
+                        console.log(url)
+                    } catch (e){
+                        result.data[i].url = null;
+                        continue;
+                    }
 
-            // const listData = result.data
-            // // console.log(listData)
-
-            // for (let i =0 ; i< listData.length; i++)
-            // {
-            //     listArray.push(listData[i].listingName)
-            //     // console.log(listData[i].listingName)
-                
-            // }
-            // console.log(listArray[0])
-        }
-        const auth = getAuth()
-        onAuthStateChanged(auth, (u)=>{
-            if(u){
-                console.log(u)
-                setUser(u);
+                    
+                }
+                setListing(result.data)
+              
             }
-        })
-        GetData();
-        // console.log(listing)–
-    }, [])
+            const auth = getAuth()
+            onAuthStateChanged(auth, (u)=>{
+                if(u){
+                    console.log(u)
+                    setUser(u);
+                }
+            })
+            GetData();
+            // console.log(listing)–
+        }, [])
+    );
     return (
         <ThemeProvider theme={ffTheme}>
             <Wrapper>
@@ -118,7 +126,7 @@ export default function donorHome({route, navigation, mflex='1', justify='center
                             w={185}
                             mr={10}
                             headerText={listings.listingName}
-                            imgSrc={Chair}
+                            imgSrc={listings.url ? {uri:listings.url} : Chair}
                             locationText={listings.listingLocation}
                             key={listings.id}
                             onPress={()=>navigation.navigate('donorListing', {id:listings.id})}

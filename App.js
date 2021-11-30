@@ -7,7 +7,8 @@ import axios from 'axios';
 import app from './utils/initfb';
 
 //if ngrok restarts, change this url
-axios.defaults.baseURL = "http://57a5-142-232-219-150.ngrok.io/frefurnishdb/api/";
+axios.defaults.baseURL = "http://frefurnish.herokuapp.com/api/";
+// axios.defaults.baseURL = "http://1a53-142-232-219-150.ngrok.io/frefurnishdb/api/";
 
 import styled from 'styled-components';
 import LottieView from 'lottie-react-native';
