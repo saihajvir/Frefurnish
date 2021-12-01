@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
+import { useFocusEffect } from "@react-navigation/core";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv,  Avatar, Input, Image } from 'react-native-magnus';
 import MapView from 'react-native-maps';
-
+import app from "../utils/initfb";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 import BottomNav from '../comps/BottomNavBar';
 import RequestCard from "../comps/RequestCard";
@@ -50,11 +52,25 @@ export default function Requests({ route, navigation }) {
   const [pendingReq, setPendingReq] = useState(null);
   const [user, setUser] = useState('');
 
-  useEffect(() => {
+  useFocusEffect(
+    React.useCallback(() => {
     const GetData = async(fuid) => {
       const result = await axios.get('/requests.php?fuid='+fuid);
 
-      setPendingReq(result.data);
+      const storage = getStorage(app);
+        for(var i =0; i<result.data.length; i++){
+          try{
+               console.log("try");
+                const url = await getDownloadURL(ref(storage, `listing/item${result.data[i].listing_id}.jpg`));
+                  result.data[i].url = url;
+                    console.log(url)
+          } catch (e){
+              result.data[i].url = null;
+              continue;
+          }
+        }
+        setPendingReq(result.data)
+
       // console.log(pendingReq, "STATUS")
       console.log(getAuth().currentUser.uid, "GETAUTH()")
       console.log(pendingReq, "PENDING REQ")
@@ -70,7 +86,10 @@ export default function Requests({ route, navigation }) {
       if(auth?.currentUser.uid){
         GetData(auth.currentUser.uid);
       }
-  },[])
+
+  },  []
+    )
+      );
 
   if(pendingReq === null)
   {
@@ -105,9 +124,9 @@ export default function Requests({ route, navigation }) {
             <ReqItem itemTitle={"Book Shelf"} itemOpacity={0} borderColor={"#808080"} imgSrc={Shelf} bgColor={"#808080"}/> */}
             
             {
-              pendingReq && pendingReq.filter((pend) => {return pend.status === 'pending' && pend.fuid === getAuth().currentUser.uid}).map((requests) => (
+              pendingReq && pendingReq.filter((pend) => {return pend.status === 'pending'}).map((requests, index) => (
               
-                <ReqItem itemTitle={requests.listingName} itemOpacity={0} borderColor={"#808080"} imgSrc={Couch} bgColor={"#808080"}/>
+                <ReqItem itemTitle={requests.listingName} itemOpacity={0} borderColor={"#808080"} imgSrc={pendingReq.url ? {uri:pendingReq.url} : Chair} bgColor={"#808080"} key={index}/>
                 
               ))
               }

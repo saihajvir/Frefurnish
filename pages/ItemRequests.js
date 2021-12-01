@@ -161,18 +161,25 @@ width: 70%;
 height: 70%;
 `
 
-export default function Donorrequest({navigation})
+export default function Donorrequest({navigation, route})
 {
   const [state, setState] = useState();
-  function handleApprovePress(){
+  const [ pendingReq, setPendingReq ] = useState(null);
+  const [ meetingTime, setMeetingTime ] = useState();
+  const [ user, setUser ] = useState(null);
+  const {id} = route.params;
+  console.log(id, "ID")
+
+
+  async function handleApprovePress(){
     setState("approved")
     console.log(state)
+    await PatchTime("approved");
   }
 
   function handleDeclinePress(){
     setState("decline")
   }
-  const [ pendingReq, setPendingReq ] = useState(null);
 
   useEffect(() => {
     const GetData = async(fuid) => {
@@ -181,10 +188,10 @@ export default function Donorrequest({navigation})
       const storage = getStorage(app);
         for(var i =0; i<result.data.length; i++){
           try{
-               console.log("try");
+              //  console.log("try");
                 const url = await getDownloadURL(ref(storage, `listing/item${result.data[i].listing_id}.jpg`));
                   result.data[i].url = url;
-                    console.log(url)
+                    // console.log(url)
           } catch (e){
               result.data[i].url = null;
               continue;
@@ -192,17 +199,35 @@ export default function Donorrequest({navigation})
         }
         setPendingReq(result.data[0]);
 
-      console.log(result.data, "RESULTS")
+      // console.log(result.data, "RESULTS")
       // console.log(pendingReq, "STATUS")
       // console.log(getAuth().currentUser.uid, "GETAUTH()")
     }
-    const auth = getAuth();
-    // console.log(auth, "AUTH");
-
+  
+    const auth = getAuth()
+      onAuthStateChanged(auth, (u)=>{
+        if(u){
+          console.log(u)
+          setUser(u);
+        }
+      })
+  
       if(auth?.currentUser.uid){
         GetData(auth.currentUser.uid);
       }
   },[])
+
+  const PatchTime = async(status) => {
+    var Time = {
+      id,
+      meetingTime: meetingTime,
+      status: status
+    }
+
+    const result = await axios.patch('./requests.php', Time)
+    console.log(result)
+
+  }
 
     if(pendingReq === null)
     {
@@ -291,7 +316,7 @@ return (
                   Enter a time and day for pick up then press<Approve> approve</Approve> to accept this request
                   </MessageText>
                   <MessageText/>
-                 <Input>
+                 <Input onChangeText={(val)=>setMeetingTime(val)}>
                  </Input>
                  <MessageText/>
                   <MessageText>

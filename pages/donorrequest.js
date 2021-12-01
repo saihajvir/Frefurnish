@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { ScrollView, View, TouchableOpacity, ImageBackground} from "react-native";
-
+import { useFocusEffect } from "@react-navigation/core";
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image } from 'react-native-magnus';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import app from "../utils/initfb";
@@ -50,8 +50,6 @@ background-color: #FFF;
 const Container = styled.View`
     flex: 1;
     flex-direction: column;
-   
-    
     background-color: white;
 `
 const Heading = styled.View`
@@ -70,7 +68,8 @@ export default function Donorrequest({navigation})
 {
   const [ pendingReq, setPendingReq ] = useState(null);
 
-  useEffect(() => {
+  useFocusEffect(
+    React.useCallback(() => {
     const GetData = async(fuid) => {
       const result = await axios.get('/requests.php?fuid='+fuid);
 
@@ -98,7 +97,7 @@ export default function Donorrequest({navigation})
       if(auth?.currentUser.uid){
         GetData(auth.currentUser.uid);
       }
-  },[])
+  },[]));
 
     if(pendingReq === null)
     {
@@ -121,11 +120,11 @@ export default function Donorrequest({navigation})
                   {/* <RequestCard nameText='Adam Sandler' timeText="4:30pm" dateText="November 5th" profileImg={Adam} itemImg={Chair} onpress={() => {navigation.navigate('ItemRequests')}}/> */}
 
                     {
-                      pendingReq && pendingReq.filter((pend) => {return pend.status === 'pending'}).map((requests, index) => {
-                        console.log(requests.url, "request url")
+                      pendingReq && pendingReq.filter((pend) => {return pend.rstatus === 'pending'}).map((requests, index) => {
+                        console.log(requests.rid, "request ID")
                         return (
 
-                          <RequestCard key={index} nameText={requests.wname} companyText={requests.workplace} timeText="4:30pm" dateText="November 5th" profileImg={Adam} itemImg={requests.url ? {uri:requests.url} : Chair} onpress={() => {navigation.navigate('ItemRequests')}}/>
+                          <RequestCard key={index} nameText={requests.wname} companyText={requests.workplace} timeText="4:30pm" dateText="November 5th" profileImg={Adam} itemImg={requests.url ? {uri:requests.url} : Chair} onpress={() => navigation.navigate('ItemRequests', {id:requests.rid})}/>
                         )
 
                       }

@@ -5,6 +5,8 @@ import { ScrollView, View } from "react-native";
 
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Input } from 'react-native-magnus';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import app from "../utils/initfb";
 
 import MainButton from '../comps/MainButton/index';
 import BottomNav from '../comps/BottomNavBar';
@@ -102,7 +104,19 @@ export default function Viewlisting({
       const GetData = async(id) => {
         const result = await axios.get('/listings.php?id='+ id);
         console.log(result.data)
-  
+
+        const storage = getStorage(app);
+          for(var i =0; i<result.data.length; i++){
+            try{
+              console.log("try");
+              const url = await getDownloadURL(ref(storage, `listing/item${result.data[i].id}.jpg`));
+              result.data[i].url = url;
+              console.log(url)
+            } catch (e){
+                        result.data[i].url = null;
+                        continue;
+                       }  
+            }
         // setUserInfo(result.data)
         setListingData(result.data[0]);
         console.log(listingData.listingName, "LISTING DATA")
@@ -111,6 +125,7 @@ export default function Viewlisting({
       GetData(id);
         
     },[])
+
     if(listingData === null){
       return<>
       </>
@@ -154,7 +169,7 @@ export default function Viewlisting({
         <ThemeProvider theme={ffTheme}>
             <Wrapper>
             <Container>
-                <MainPost headerText={listingData.listingName} imgSrc={Chair} locationText={listingData.listingLocation}/>
+                <MainPost headerText={listingData.listingName} imgSrc={listingData.url ? {uri:listingData.url} : Chair} locationText={listingData.listingLocation}/>
             </Container>
 
             <NewListing>
