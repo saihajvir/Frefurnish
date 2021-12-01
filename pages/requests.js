@@ -72,11 +72,11 @@ export default function Requests({ route, navigation }) {
         setPendingReq(result.data)
 
       // console.log(pendingReq, "STATUS")
-      console.log(getAuth().currentUser.uid, "GETAUTH()")
-      console.log(pendingReq, "PENDING REQ")
+      // console.log(getAuth().currentUser.uid, "GETAUTH()")
+      // console.log(pendingReq.url, "PENDING REQ")
     }
     const auth = getAuth();
-    console.log(auth, "AUTH");
+    // console.log(auth, "AUTH");
       // onAuthStateChanged(auth, (u)=>{
       //     if(u){
       //         console.log(u)
@@ -107,7 +107,7 @@ export default function Requests({ route, navigation }) {
             {
               pendingReq && pendingReq.filter((pend) => {return pend.rstatus === 'approved'}).map((requests, index) => (
               
-                <ReqItem itemTitle={requests.listingName} itemOpacity={0} imgSrc={pendingReq.url ? {uri:pendingReq.url} : Chair}  key={index} onpress={()=> navigation.navigate('Requested')}/>
+                <ReqItem itemTitle={requests.listingName} itemOpacity={0} imgSrc={requests.url ? {uri:requests.url} : Chair}  key={index} onpress={()=> navigation.navigate('Requested', {id:requests.rid})}/>
                 
               ))
               }
@@ -120,7 +120,7 @@ export default function Requests({ route, navigation }) {
             {
               pendingReq && pendingReq.filter((pend) => {return pend.rstatus === 'declined'}).map((requests, index) => (
               
-                <ReqItem itemTitle={requests.listingName} itemOpacity={0} imgSrc={pendingReq.url ? {uri:pendingReq.url} : Chair}  borderColor={"#EB8D8D"} bgColor={"#EB8D8D"} key={index} onpress={()=> navigation.navigate('Declined')}/>
+                <ReqItem itemTitle={requests.listingName} itemOpacity={0} imgSrc={requests.url ? {uri:requests.url} : Chair}  borderColor={"#EB8D8D"} bgColor={"#EB8D8D"} key={index} onpress={()=> navigation.navigate('Declined')}/>
               
               ))
               }
@@ -136,7 +136,7 @@ export default function Requests({ route, navigation }) {
             {
               pendingReq && pendingReq.filter((pend) => {return pend.rstatus === 'pending'}).map((requests, index) => (
               
-                <ReqItem itemTitle={requests.listingName} itemOpacity={0} borderColor={"#808080"} imgSrc={pendingReq.url ? {uri:pendingReq.url} : Chair} bgColor={"#808080"} key={index}/>
+                <ReqItem itemTitle={requests.listingName} itemOpacity={0} borderColor={"#808080"} imgSrc={requests.url ? {uri:requests.url} : Chair} bgColor={"#808080"} key={index}/>
                 
               ))
               }

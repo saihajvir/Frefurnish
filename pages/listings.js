@@ -62,25 +62,9 @@ const Wrapper = styled.View`
     background-color: #FFF;
 `
 
-const fakeData = [
-    {
-      id:1,
-      title:"Test Title 1",
-      description:"Test Desc 1",
-      movie_banner:"https://placekitten.com/1000/1200"
-    },
-  
-    {
-      id:2,
-      title:"Test Title 2",
-      description:"Test Desc 2",
-      movie_banner:"https://placekitten.com/2000/1200"
-    }
-  ]
-
 export default function Market({route, navigation})
 {
-    const [listing, setListing] = useState(fakeData);
+    const [listing, setListing] = useState(null);
 
     useEffect(() => {
         const GetData = async() => {
@@ -106,6 +90,11 @@ export default function Market({route, navigation})
         console.log(listing)
     }, [])
 
+    if(listing === null) 
+    {
+        return<>
+        </>
+    }
     return (
         <ThemeProvider theme={ffTheme}>
             <ScrollView>

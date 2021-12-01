@@ -174,8 +174,8 @@ useEffect(() => {
             borderColor='salmon'
             />
           <Div flexDir='row' h={50} justifyContent='space-between' mt={10}>
-            <HalfButton bg={'white'} color={'salmon'} buttonText='Pick Up' onPress={()=>setListingPickup('Pick up only')}/>
-            <HalfButton bg={'white'} color={'salmon'} buttonText='Drop Off' onPress={()=>setListingPickup('Drop off')}/>
+            <HalfButton bg={'white'} color={'salmon'} buttonText='Pick Up' onPress={()=>setListingPickup('Pick Up')}/>
+            <HalfButton bg={'white'} color={'salmon'} buttonText='Drop Off' onPress={()=>setListingPickup('Drop Off')}/>
           </Div>
       </Div>
       <Div pb={10}>

@@ -6,6 +6,7 @@ import { ScrollView, View, TouchableOpacity, ImageBackground} from "react-native
 import { StyleSheet } from "react-native";
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv } from 'react-native-magnus';
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { getAuth } from "firebase/auth";
 import app from "../utils/initfb";
 
 import MainButton from '../comps/MainButton/index';
@@ -58,11 +59,14 @@ export default function Whomepage({route, navigation, mflex='1'})
 {
 
     const [listing, setListing] = useState(null);
+    const [allRequests, setAllRequests] = useState(null);
 
     useFocusEffect(
         React.useCallback(() => {
-        const GetData = async() => {
+        const GetData = async(fuid) => {
             const result = await axios.get('/listings.php');
+            const requestsResult = await axios.get('/requests.php?fuid='+fuid);
+
             // console.log(result.data)
             const storage = getStorage(app);
             for(var i =0; i<result.data.length; i++){
@@ -77,14 +81,19 @@ export default function Whomepage({route, navigation, mflex='1'})
                 }
             }
             setListing(result.data)
+            setAllRequests(requestsResult.data)
         }
         
-        GetData();
+        const auth = getAuth();
+        if(auth?.currentUser.uid)
+        {
+            GetData(auth.currentUser.uid);
+        }
         console.log(listing)
     }, [])
     );
 
-    if(listing === null)
+    if(listing === null && allRequests === null)
     {
         return <>
         </>
@@ -121,8 +130,29 @@ export default function Whomepage({route, navigation, mflex='1'})
                 <Container>
                     <ScrollView horizontal={true}>
                         <Div flexDir="row">
-                            <ReqItem itemOpacity={0.7} imgSrc={Toaster} onpress={() => {navigation.navigate("Requested")}}/>
-                            <ReqItem itemOpacity={0.7} itemTitle={"Kitchen Chairs"} imgSrc={KitchenChairs} itemStatus={"Declined"} borderColor={"#EB8D8D"}onpress={() => {navigation.navigate("Requests")}}/>
+                        {
+                            allRequests && allRequests.filter((reqs) => {return reqs.rstatus === "approved"}).map((requests, index) => {
+                            return (
+                                
+                                    <ReqItem itemTitle={allRequests.listingName} itemStatus='Approved' itemOpacity={0.7} imgSrc={requests.url ? {uri:requests.url} : Chair} onpress={() => {navigation.navigate("Requested")}}/>
+                        )})}
+
+                        {
+                            allRequests && allRequests.filter((reqs) => {return reqs.rstatus === "declined"}).map((requests, index) => {
+                            return (
+                                
+                                    <ReqItem itemTitle={requests.listingName} itemStatus='Declined' itemOpacity={0.7} imgSrc={requests.url ? {uri:requests.url} : Chair}  borderColor={"#EB8D8D"} bgColor={"#EB8D8D"} key={index} onpress={()=> navigation.navigate('Declined')}/>
+                                   
+                        )})}
+
+                        {
+                            allRequests && allRequests.filter((reqs) => {return reqs.rstatus === "pending"}).map((requests, index) => {
+                            return (
+                                
+                                <ReqItem itemTitle={requests.listingName} itemStatus='Pending' itemOpacity={0.7} borderColor={"#808080"} imgSrc={requests.url ? {uri:requests.url} : Chair} bgColor={"#808080"} key={index}/>
+                        )})}
+
+
                         </Div>
                     </ScrollView>
                 </Container>

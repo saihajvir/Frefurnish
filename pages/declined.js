@@ -68,11 +68,11 @@ export default function Declined({ route, navigation }) {
             </Sub>
             <ScrollDiv horizontal={true}>
               <Div style={styles.post}>
-                <BigPost imgSrc={Chair}/>
-                <BigPost imgSrc={Chair}/>
+                <BigPost imgSrc={Chair} mr={15}/>
+                <BigPost imgSrc={Chair} mr={15}/>
               </Div>
             </ScrollDiv>
-            <MainButton buttonText="See Other Listings" />
+            <MainButton buttonText="See Other Listings" onPress={() => navigation.navigate("Whomepage") }/>
           </Div>
         </Div>
       </Wrapper>

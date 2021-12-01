@@ -4,7 +4,10 @@ import styled from "styled-components";
 
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Avatar, Input } from 'react-native-magnus';
 import MapView from 'react-native-maps';
-
+import { useFocusEffect } from "@react-navigation/core";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import app from "../utils/initfb";
 
 import BottomNav from '../comps/BottomNavBar';
 import Header1 from "../comps/header";
@@ -113,9 +116,48 @@ export default function Requested({
     flex='1'
 }) {
 
+    const {id} = route.params;
     const [yes, setYes] = useState(false);
     const [overlayVisible, setOverlayVisible] = useState(false);
+    const [pendingReq, setPendingReq] = useState(null);
+    const [user, setUser] = useState();
 
+    useFocusEffect(
+        React.useCallback(() => {
+        const GetData = async(fuid) => {
+          const result = await axios.get('/requests.php?fuid='+fuid);
+    
+          const storage = getStorage(app);
+            for(var i =0; i<result.data.length; i++){
+              try{
+                  //  console.log("try");
+                    const url = await getDownloadURL(ref(storage, `listing/item${result.data[i].listing_id}.jpg`));
+                      result.data[i].url = url;
+                        // console.log(url)
+              } catch (e){
+                  result.data[i].url = null;
+                  continue;
+              }
+            }
+            setPendingReq(result.data[0]);
+    
+          // console.log(result.data, "RESULTS")
+          console.log(pendingReq, "STATUS")
+          // console.log(getAuth().currentUser.uid, "GETAUTH()")
+        }
+      
+        const auth = getAuth()
+          onAuthStateChanged(auth, (u)=>{
+            if(u){
+              console.log(u)
+              setUser(u);
+            }
+          })
+      
+          if(auth?.currentUser.uid){
+            GetData(auth.currentUser.uid);
+          }
+      },[]));
     function HandleDeletePress()
     {
         setOverlayVisible(false)
@@ -124,6 +166,28 @@ export default function Requested({
             navigation.navigate('Requests');
         }
     }
+    async function HandleYesPress()
+    {
+        await PatchYes("complete");
+        setYes(true);
+    }
+
+    const PatchYes = async(status) => {
+        var Complete = {
+          id,
+          status: status
+        }
+    
+        const result = await axios.patch('./requests.php', Complete)
+        console.log(result)
+      }
+    
+    if(pendingReq === null)
+    {
+        return<>
+        </>
+    }
+    
     if (yes === true){
         return (
       
@@ -158,18 +222,17 @@ export default function Requested({
     return (
         <ThemeProvider theme={ffTheme}>
             <Wrapper>
-                <Title>Your Pick Up was Approved</Title>
+                <Title>Your {pendingReq.pickup} was Approved</Title>
                 <Div style={styles.scheduled}>
                     <Div style={styles.scheduled_text}>
-                        <Pickup>Pickup Scheduled:</Pickup>
+                        <Pickup>{pendingReq.pickup} Scheduled:</Pickup>
                         <Div>
-                        <Time>1:30 pm</Time>
-                        <Time>November 1st</Time>
+                        <Time>{pendingReq.meetingTime}</Time>
                         </Div>
                     </Div>
                     <Div>
                         <Image 
-                        source={require("../assets/toaster.png")}
+                        source={pendingReq.url ? {uri:pendingReq.url} : Chair}
                         style={styles.img}
                         />
                     </Div>
@@ -187,22 +250,21 @@ export default function Requested({
                         }}
                     />
                         <Info>
-                            John Wick
+                            {pendingReq.dname}
                         </Info>
                     </Div>
                     <Div style={styles.number} >
                         <Info>
-                            (604) 607-5525
+                            {pendingReq.dphone}
                         </Info>
                     </Div>
                 </Div>
                 <Location>
-                    27157 Fraser Hwy 2A Langley BC V4W 3R1
+                    {pendingReq.daddress}
                 </Location>
                 </Container>
                 
                 <Container mflex='1.5'>
-                    <MapView style={styles.map} />
                 </Container>
 
                 <Container flex={flex}>
@@ -210,13 +272,13 @@ export default function Requested({
                     Have you picked up this item?
                 </Location>
                 <Div style={styles.choice} mflex='1'>
-                    <HalfButton buttonText="Yes" bg="#6CAF61" borderColor='#6CAF61' onPress={() => {setYes(true)}}/>
+                    <HalfButton buttonText="Yes" bg="#6CAF61" borderColor='#6CAF61' onPress={HandleYesPress}/>
                     <HalfButton buttonText="No Longer Interested" bg="#E25C5C" borderColor='#E25C5C' onPress={() => {setOverlayVisible(true)}} />
                 </Div>
                 </Container>
             </Wrapper>
 
-            <ConfirmOverlay visible={overlayVisible} removeOverlay={() => {setOverlayVisible(false)}} onDeletePress={() => {navigation.navigate("Requests")}}/>
+            <ConfirmOverlay visible={overlayVisible} removeOverlay={() => {setOverlayVisible(false)}} onDeletePress={HandleDeletePress}/>
             <BottomNav
                 GoHome={() => { navigation.navigate("Whomepage") }}
                 GoListings={() => { navigation.navigate("Market") }}

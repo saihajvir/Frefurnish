@@ -128,8 +128,7 @@ export default function donorHome({route, navigation, mflex='1', justify='center
             <Container mflex='0.5' justify='flex-start'>
             <ScrollView>
             {
-                allRequests && allRequests.filter((reqs) => {return reqs.rstatus === "approved"}).map((requests, index) => {
-                console.log(requests.rid, "request ID")
+                allRequests && allRequests.filter((reqs) => {return reqs.rstatus === "approved", "pending"}).map((requests, index) => {
                 return (
                     <RequestCard
                         key={index}

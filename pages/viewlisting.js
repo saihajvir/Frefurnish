@@ -7,6 +7,7 @@ import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Input } from 'react-
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import app from "../utils/initfb";
+import { useFocusEffect } from "@react-navigation/core";
 
 import MainButton from '../comps/MainButton/index';
 import BottomNav from '../comps/BottomNavBar';
@@ -100,7 +101,8 @@ export default function Viewlisting({
       console.log('added request')
     }
  
-    useEffect(() => {
+    useFocusEffect(
+      React.useCallback(() => {
       const GetData = async(id) => {
         const result = await axios.get('/listings.php?id='+ id);
         console.log(result.data)
@@ -119,12 +121,12 @@ export default function Viewlisting({
             }
         // setUserInfo(result.data)
         setListingData(result.data[0]);
-        console.log(listingData.listingName, "LISTING DATA")
+        // console.log(listingData.listingName, "LISTING DATA")
       }
       
       GetData(id);
         
-    },[])
+    },[]));
 
     if(listingData === null){
       return<>
