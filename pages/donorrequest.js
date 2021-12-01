@@ -123,13 +123,17 @@ export default function Donorrequest({navigation})
                       pendingReq && pendingReq.filter((pend) => {return pend.rstatus === 'pending'}).map((requests, index) => {
                         console.log(requests.rid, "request ID")
                         return (
-
-                          <RequestCard key={index} nameText={requests.wname} companyText={requests.workplace} timeText="4:30pm" dateText="November 5th" profileImg={Adam} itemImg={requests.url ? {uri:requests.url} : Chair} onpress={() => navigation.navigate('ItemRequests', {id:requests.rid})}/>
-                        )
-
-                      }
-                        
-                        
+                          <RequestCard
+                            key={index}
+                            nameText={requests.wname}
+                            companyText={requests.workplace}
+                            timeText={requests.meetingTime}
+                            listingName={requests.listingName}
+                            profileImg={Adam}
+                            itemImg={requests.url ? {uri:requests.url} : Chair}
+                            onpress={() => navigation.push('ItemRequests', {id:requests.rid})}
+                          />
+                        )}
                       )
                     }
                   </ReqCont>
@@ -137,9 +141,31 @@ export default function Donorrequest({navigation})
                 </Heading>
 
                 <Heading>
-                    <Text fontWeight="600" fontSize={32} pt={20}>Scheduled Pick Ups</Text>
+                    <Text
+                      fontWeight="600"
+                      fontSize={32} 
+                      pt={20}
+                    >
+                        Scheduled Pick Ups
+                    </Text>
                 <ReqCont>
-                    <RequestCard profileImg={Julian} itemImg={Toaster} pickupText={"Pickup Scheduled:"} fontColor="#6CAF61" onpress={() => {navigation.navigate('ReqSchedule')}}/>
+                {
+                   pendingReq && pendingReq.filter((pend) => {return pend.rstatus === 'approved'}).map((requests, index) => {
+                    console.log(requests.rid, "request ID")
+                    return (
+                      <RequestCard
+                        key={index}
+                        nameText={requests.wname}
+                        companyText={requests.workplace}
+                        timeText={requests.meetingTime}
+                        listingName={requests.listingName}
+                        profileImg={Adam}
+                        itemImg={requests.url ? {uri:requests.url} : Chair}
+                        onpress={() => navigation.navigate('ItemRequests', {id:requests.rid})}
+                      />
+                    )}
+                  )
+                }
                 </ReqCont>
                 </Heading>
 

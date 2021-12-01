@@ -68,7 +68,7 @@ export default function RequestCard({
     fontColor = "black",
     pickupText = "Pickup Request:",
     timeText = "1:30pm",
-    dateText = "November 1st",
+    listingName,
     itemImg,
     onpress
     
@@ -77,7 +77,7 @@ export default function RequestCard({
 {
     console.log(itemImg, "ITEM IMG")
     return(
-    <Button onPress={onpress} bg="#00000000"  rounded={10} underlayColor="red100">
+    <Button onPress={onpress} bg="#00000000"  rounded={10} underlayColor="red100" mt={10} p={0}>
        <Card>
            <Left>
                 <Image
@@ -119,7 +119,7 @@ export default function RequestCard({
                 </Date>
 
                 <Date>
-                    {dateText}
+                    {listingName}
                 </Date>
 
               

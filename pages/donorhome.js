@@ -47,6 +47,11 @@ const TextCont = styled.View`
   margin-bottom: 10px;
   margin-top: 10px;
 `
+const ButtonContainer = styled.View`
+    flex: 0.1;
+    justify-content: center;
+    align-items: center;
+`
 
 const fakeData = [
     {
@@ -68,12 +73,14 @@ const fakeData = [
 export default function donorHome({route, navigation, mflex='1', justify='center'})
 {
     const [user, setUser] = useState(null);
-    const [listing, setListing] = useState();
+    const [listing, setListing] = useState(null);
+    const [allRequests, setAllRequests] = useState(null);
     // const listArray = []
     useFocusEffect(
         React.useCallback(() => {
-            const GetData = async() => {
+            const GetData = async(fuid) => {
                 const result = await axios.get('/listings.php');
+                const requestsResult = await axios.get('/requests.php?fuid='+fuid);
                 // console.log(result.data)
 
                 const storage = getStorage(app);
@@ -91,6 +98,9 @@ export default function donorHome({route, navigation, mflex='1', justify='center
                     
                 }
                 setListing(result.data)
+                setAllRequests(requestsResult.data)
+                console.log(allRequests, "REQUEST DATA")
+                console.log(fuid, "THE FUID")
               
             }
             const auth = getAuth()
@@ -100,20 +110,45 @@ export default function donorHome({route, navigation, mflex='1', justify='center
                     setUser(u);
                 }
             })
-            GetData();
+            if(auth?.currentUser.uid){
+                GetData(auth.currentUser.uid);
+              }
             // console.log(listing)–
         }, [])
     );
+    if(listing === null && allRequests === null)
+    {
+        return <>
+        </>
+    }
     return (
         <ThemeProvider theme={ffTheme}>
             <Wrapper>
                 <Text pt={20} fontWeight="600" fontSize={32}>Item Requests</Text>
-            <Container mflex='0.6' justify='space-evenly'>
-                <RequestCard  pickupText="Pick Up Request"nameText="Adam Sandler" timeText="Office Chair" dateText=""profileImg={Adam} itemImg={Chair} onpress={() => {navigation.navigate('ItemRequests')}}/>
-                <RequestCard pickupText={"Pick Up Scheduled:"} fontColor="#6CAF61" profileImg={Julian} itemImg={Toaster} onpress={() => {navigation.navigate('ReqSchedule')}}/>
-            <MainButton buttonText={'See All Requests'} bg="salmon" iconName=""textColor='white'onPress={() => {navigation.navigate('Donorrequest')}}/>
+            <Container mflex='0.5' justify='flex-start'>
+            <ScrollView>
+            {
+                allRequests && allRequests.filter((reqs) => {return reqs.rstatus === "approved"}).map((requests, index) => {
+                console.log(requests.rid, "request ID")
+                return (
+                    <RequestCard
+                        key={index}
+                        nameText={requests.wname}
+                        companyText={requests.workplace}
+                        timeText={requests.meetingTime}
+                        listingName={requests.listingName}
+                        profileImg={Adam}
+                        itemImg={requests.url ? {uri:requests.url} : Chair}
+                        onpress={() => navigation.push('ItemRequests', {id:requests.rid})}
+                    />
+                )}
+                )
+            }
+            </ScrollView>
             </Container>
-
+            <ButtonContainer>
+                <MainButton buttonText={'See All Requests'} bg="salmon" iconName=""textColor='white'onPress={() => {navigation.navigate('Donorrequest')}}/>
+            </ButtonContainer>
             <TextCont>
             <Text fontWeight="600" fontSize={32}>Your Listings</Text>
             </TextCont>

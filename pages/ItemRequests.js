@@ -3,7 +3,6 @@ import axios from "axios";
 import styled from "styled-components";
 import { ScrollView, View, TouchableOpacity, ImageBackground} from "react-native";
 import LottieView from 'lottie-react-native';
-
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image, Avatar, Input} from 'react-native-magnus';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import app from "../utils/initfb";
@@ -26,6 +25,7 @@ import Toaster from '../assets/toaster.jpg';
 import Julian from '../assets/julian.png'
 import Chair from '../assets/aeron.jpg';
 import Adam from '../assets/adam.jpeg';
+import { useFocusEffect } from "@react-navigation/core";
 
 
 
@@ -168,6 +168,7 @@ export default function Donorrequest({navigation, route})
   const [ meetingTime, setMeetingTime ] = useState();
   const [ user, setUser ] = useState(null);
   const {id} = route.params;
+  
   console.log(id, "ID")
 
 
@@ -177,11 +178,13 @@ export default function Donorrequest({navigation, route})
     await PatchTime("approved");
   }
 
-  function handleDeclinePress(){
+  async function handleDeclinePress(){
     setState("decline")
+    await PatchTime("declined");
   }
 
-  useEffect(() => {
+  useFocusEffect(
+    React.useCallback(() => {
     const GetData = async(fuid) => {
       const result = await axios.get('/requests.php?fuid='+fuid);
 
@@ -215,7 +218,7 @@ export default function Donorrequest({navigation, route})
       if(auth?.currentUser.uid){
         GetData(auth.currentUser.uid);
       }
-  },[])
+  },[]));
 
   const PatchTime = async(status) => {
     var Time = {
@@ -229,14 +232,15 @@ export default function Donorrequest({navigation, route})
 
   }
 
-    if(pendingReq === null)
+    
+  if(pendingReq === null)
     {
       return <>
       </>
     }
 
     
-if (state === "approved"){
+if (pendingReq.rstatus === "approved"){
 
 return (
     <ThemeProvider theme={ffTheme}>         

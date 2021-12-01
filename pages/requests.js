@@ -104,16 +104,26 @@ export default function Requests({ route, navigation }) {
         <Text fontWeight="bold" fontSize={30} mt={20} mb={10} color="#98C791">Approved</Text>
         <ScrollView horizontal={true}>
             <Div flexDir="row">
-                <ReqItem itemOpacity={0} imgSrc={Toaster} onpress={()=>{navigation.navigate("Requested")}}/>
+            {
+              pendingReq && pendingReq.filter((pend) => {return pend.rstatus === 'approved'}).map((requests, index) => (
+              
+                <ReqItem itemTitle={requests.listingName} itemOpacity={0} imgSrc={pendingReq.url ? {uri:pendingReq.url} : Chair}  key={index} onpress={()=> navigation.navigate('Requested')}/>
+                
+              ))
+              }
             </Div>
         </ScrollView>
 
         <Text fontWeight="bold" fontSize={30} mb={10}color="#EB8D8D">Declined</Text>
         <ScrollView horizontal={true} >
             <Div flexDir="row" >
-            <ReqItem itemTitle={"Kitchen Chairs"} itemOpacity={0} borderColor={"#EB8D8D"} imgSrc={KitchenChairs} bgColor={"#EB8D8D"} onpress={() => {navigation.navigate('Declined')}}/>
-            <ReqItem itemTitle={"Dinner Table"} itemOpacity={0} borderColor={"#EB8D8D"}
-            imgSrc={Table} bgColor={"#EB8D8D"}/>
+            {
+              pendingReq && pendingReq.filter((pend) => {return pend.rstatus === 'declined'}).map((requests, index) => (
+              
+                <ReqItem itemTitle={requests.listingName} itemOpacity={0} imgSrc={pendingReq.url ? {uri:pendingReq.url} : Chair}  borderColor={"#EB8D8D"} bgColor={"#EB8D8D"} key={index} onpress={()=> navigation.navigate('Declined')}/>
+              
+              ))
+              }
             </Div>
         </ScrollView>
 
@@ -124,7 +134,7 @@ export default function Requests({ route, navigation }) {
             <ReqItem itemTitle={"Book Shelf"} itemOpacity={0} borderColor={"#808080"} imgSrc={Shelf} bgColor={"#808080"}/> */}
             
             {
-              pendingReq && pendingReq.filter((pend) => {return pend.status === 'pending'}).map((requests, index) => (
+              pendingReq && pendingReq.filter((pend) => {return pend.rstatus === 'pending'}).map((requests, index) => (
               
                 <ReqItem itemTitle={requests.listingName} itemOpacity={0} borderColor={"#808080"} imgSrc={pendingReq.url ? {uri:pendingReq.url} : Chair} bgColor={"#808080"} key={index}/>
                 
