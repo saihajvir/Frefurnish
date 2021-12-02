@@ -7,7 +7,6 @@ import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image, Avatar, Modal
 
 import ItemIcon from "../comps/ItemIcon";
 import BottomNav from "../comps/BottomNavBar";
-import ChangeProfile from "../comps/ChangeProfile";
 import BackButton from "../comps/backbutton";
 import ProfileHeader from "../comps/ProfileHeader";
 import MainButton from "../comps/MainButton";
@@ -210,7 +209,6 @@ export default function WorkerProfile({
               {prof.credentials}
             </DescriptionText>
           </DescriptionTextWrapper>
-          <ChangeProfile visible={overlayVisible}/>
         </Container>
       <ButtonContainer>
           <MainButton mt={10} buttonText={'Edit Profile'} bg="periwinkle" iconName=""textColor='white'onPress={() => {navigation.navigate('EditWorkerProfile')}}/>
