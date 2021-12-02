@@ -7,12 +7,14 @@ export default function DonorBottomNav({
     GoHome,
     GoListings,
     GoRequests,
-    GoProfile  
+    GoProfile,
+    gradientImg, 
 })
 {
     return (
         
         <Div
+            bgImg={gradientImg}
             style={styles.NavBar}
             h={80}
             rounded={20}
@@ -97,7 +99,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-evenly',
-        backgroundColor: '#EB8D8D'
+
     },
 
     

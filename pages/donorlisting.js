@@ -14,6 +14,8 @@ import Chair from '../assets/aeron.jpg';
 import Toaster from '../assets/toaster.jpg';
 import DonorBottomNav from "../comps/DonorBottomNavBar";
 
+import DonorGradient from '../assets/donor-gradient.png';
+
 
 const ffTheme = {
     colors: {
@@ -145,10 +147,10 @@ if (state === "delete"){
                     </AnimCont2>
                 </FlexCont2>
                 <FlexCont2/>
-                <MainButton iconName="" bg="salmon" buttonText="Create Listing" onPress={() => {navigation.navigate('donorListing')}}/>
+                <MainButton iconName="" bg="#F2ABAB" buttonText="Create Listing" onPress={() => {navigation.navigate('donorListing')}}/>
                
             </Wrapper>
-            <DonorBottomNav 
+            <DonorBottomNav gradientImg={DonorGradient}
         GoHome={() => {navigation.navigate('donorHome')}}
         GoListings={() => {navigation.navigate('NewListing')}}
         GoRequests={() => {navigation.navigate('Donorrequest')}}
@@ -174,11 +176,11 @@ if (state === "delete"){
                     <Text mt={10} fontWeight="600" fontSize={24}>{listingData.pickup}</Text>
                 </NewListing>
             <BottomCont>
-                <HalfButton buttonText='Edit' borderColor='#00000000'onPress={() => {navigation.navigate('NewListing')}}/>
-                <HalfButton buttonText='Delete' bg='salmon' borderColor='#00000000' onPress={handleDeletePress}/>
+                <HalfButton buttonText='Edit' borderColor='periwinkle'bg='#B9C8FF' onPress={() => {navigation.navigate('NewListing')}}/>
+                <HalfButton buttonText='Delete' bg='salmon' borderColor='#E25C25'onPress={handleDeletePress}/>
             </BottomCont>
         </Wrapper>
-        <DonorBottomNav 
+        <DonorBottomNav gradientImg={DonorGradient}
         GoHome={() => {navigation.navigate('donorHome')}}
         GoListings={() => {navigation.navigate('NewListing')}}
         GoRequests={() => {navigation.navigate('Donorrequest')}}

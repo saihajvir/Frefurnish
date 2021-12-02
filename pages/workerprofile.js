@@ -10,6 +10,7 @@ import BottomNav from "../comps/BottomNavBar";
 import BackButton from "../comps/backbutton";
 import ProfileHeader from "../comps/ProfileHeader";
 import MainButton from "../comps/MainButton";
+import WorkerGradient from '../assets/worker-gradient.png';
 
 import Julian from '../assets/julian.png'
 
@@ -211,11 +212,11 @@ export default function WorkerProfile({
           </DescriptionTextWrapper>
         </Container>
       <ButtonContainer>
-          <MainButton mt={10} buttonText={'Edit Profile'} bg="periwinkle" iconName=""textColor='white'onPress={() => {navigation.navigate('EditWorkerProfile')}}/>
-          <MainButton mt={10} buttonText={'Sign Out'} bg="salmon" iconName=""textColor='white'onPress={HandleSignOut}/>
+          <MainButton mt={10} buttonText={'Edit Profile'} bg="#B9C8FF"  iconName="" textColor='white' onPress={() => {navigation.navigate('EditWorkerProfile')}}/>
+          <MainButton mt={10} buttonText={'Sign Out'} bg="#F2ABAB" iconName="" textColor='white' onPress={HandleSignOut}/>
       </ButtonContainer>
           </BigWrapper>
-            <BottomNav 
+            <BottomNav gradientImg={WorkerGradient}
             GoHome={() => {navigation.navigate("Whomepage")}}
             GoListings={() => {navigation.navigate("Market")}}
             GoRequests={() => {navigation.navigate("Requests")}}

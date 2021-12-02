@@ -18,6 +18,7 @@ import Chair from '../assets/aeron.jpg';
 import Julian from '../assets/julian.png';
 import Toaster from '../assets/toaster.jpg';
 import Adam from '../assets/adam.jpeg';
+import DonorGradient from '../assets/donor-gradient.png';
 
 import { NavigationRouteContext } from "@react-navigation/core";
 import { getAuth, useAuth, onAuthStateChanged } from "firebase/auth";
@@ -160,7 +161,7 @@ export default function donorHome({route, navigation, mflex='1', justify='center
             </ScrollView>
             </Container>
             <ButtonContainer>
-                <MainButton buttonText={'See All Requests'} bg="salmon" iconName=""textColor='white'onPress={() => {navigation.navigate('Donorrequest')}}/>
+                <MainButton buttonText={'See All Requests'} bg="#F2ABAB" iconName="" textColor='white'onPress={() => {navigation.navigate('Donorrequest')}}/>
             </ButtonContainer>
             <TextCont>
             <Text fontWeight="600" fontSize={32}>Your Listings</Text>
@@ -187,7 +188,7 @@ export default function donorHome({route, navigation, mflex='1', justify='center
             </Container>
             </Wrapper>
 
-            <DonorBottomNav 
+            <DonorBottomNav gradientImg={DonorGradient}
                 GoHome={() => {navigation.navigate('donorHome')}}
                 GoListings={() => {navigation.navigate('NewListing')}}
                 GoRequests={() => {navigation.navigate('Donorrequest')}}

@@ -20,6 +20,7 @@ import MainButton from "../comps/MainButton";
 import Chair from '../assets/aeron.jpg'
 import HalfButton from "../comps/halfbutton";
 import ConfirmOverlay from "../comps/ConfirmOverlay";
+import WorkerGradient from '../assets/worker-gradient.png';
 
 const ffTheme = {
     colors: {
@@ -34,7 +35,7 @@ const ffTheme = {
 const Title = styled.Text`
     font-weight: 600;
     font-size: 32px;
-    margin-bottom: 2%;
+    margin-bottom: 5%;
 
 `;
 
@@ -71,6 +72,11 @@ const Container = styled.View`
     flex: ${props=>props.mflex};
     justify-content: center;
 `
+const InfoContainer = styled.View`
+    flex: ${props=>props.mflex};
+    justify-content: center;
+    margin-top: 30px;
+`
 const Wrapper = styled.View`
   flex: 1;
   padding: 20px 16px 0 16px;
@@ -100,7 +106,7 @@ align-items: center;
 const Content = styled.Text`
 font-weight: 500;
 font-size: 22px;
-color: #EEAB93;
+color: #92A8F8;
 `;
 const SalmonText = styled.Text`
 font-weight: 500;
@@ -197,19 +203,19 @@ export default function Requested({
                       <Title>
                           Thank you
                       </Title>
-                </FlexCont>
-                <FlexCont>
                       <Content>
                           You’ve helped reduce waste and provided furniture to a home in need
                       </Content>
                 </FlexCont>
+                <FlexCont>
+                </FlexCont>
                 <FlexCont2>
                     <AnimCont1>
-                        <LottieView style={{display: "flex", justifyContent:"center", alignItems: "center",}} source={require('../assets/home.json')} autoPlay loop ></LottieView>
+                        <LottieView style={{display: "flex", justifyContent:"center", alignItems: "center",}} source={require('../assets/worker-home.json')} autoPlay loop ></LottieView>
                     </AnimCont1>
                 </FlexCont2>
             </Wrapper>
-            <BottomNav
+            <BottomNav gradientImg={WorkerGradient}
                 GoHome={() => { navigation.navigate("Whomepage") }}
                 GoListings={() => { navigation.navigate("Market") }}
                 GoRequests={() => { navigation.navigate("Requests") }}
@@ -237,7 +243,7 @@ export default function Requested({
                         />
                     </Div>
                 </Div>
-                <Container flex={flex}>
+                <InfoContainer flex={flex}>
                 <Sub>Contact Info</Sub>
                 <Div style={styles.info}>
                     <Div style={styles.info_left}>
@@ -259,10 +265,10 @@ export default function Requested({
                         </Info>
                     </Div>
                 </Div>
-                <Location>
+                {/* <Location>
                     {pendingReq.daddress}
-                </Location>
-                </Container>
+                </Location> */}
+                </InfoContainer>
                 
                 <Container mflex='1.5'>
                 </Container>
@@ -272,14 +278,14 @@ export default function Requested({
                     Have you picked up this item?
                 </Location>
                 <Div style={styles.choice} mflex='1'>
-                    <HalfButton buttonText="Yes" bg="#6CAF61" borderColor='#6CAF61' onPress={HandleYesPress}/>
-                    <HalfButton buttonText="No Longer Interested" bg="#E25C5C" borderColor='#E25C5C' onPress={() => {setOverlayVisible(true)}} />
+                    <HalfButton buttonText="Yes" bg="#98C791" borderColor='#6CAF61' onPress={HandleYesPress}/>
+                    <HalfButton buttonText="No Longer Interested" bg="#EB8D8D" borderColor='#E25C5C' onPress={() => {setOverlayVisible(true)}} />
                 </Div>
                 </Container>
             </Wrapper>
 
-            <ConfirmOverlay visible={overlayVisible} removeOverlay={() => {setOverlayVisible(false)}} onDeletePress={HandleDeletePress}/>
-            <BottomNav
+            <ConfirmOverlay visible={overlayVisible} removeOverlay={() => {setOverlayVisible(false)}} onDeletePress={() => {navigation.navigate("Requests")}}/>
+            <BottomNav gradientImg={WorkerGradient}
                 GoHome={() => { navigation.navigate("Whomepage") }}
                 GoListings={() => { navigation.navigate("Market") }}
                 GoRequests={() => { navigation.navigate("Requests") }}
@@ -306,6 +312,7 @@ const styles = StyleSheet.create({
     scheduled:{
         justifyContent: "space-between",
         flexDirection: "row",
+        marginTop: "5%",
     },
 
     scheduled_text:{

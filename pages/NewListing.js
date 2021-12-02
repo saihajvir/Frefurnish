@@ -14,6 +14,7 @@ import UserInput from "../comps/userinput";
 import ItemIcon from "../comps/ItemIcon";
 import MainButton from "../comps/MainButton";
 import HalfButton from "../comps/halfbutton";
+import DonorGradient from '../assets/donor-gradient.png';
 
 const ffTheme = {
   colors: {
@@ -214,12 +215,12 @@ useEffect(() => {
         w={100}
         h={137}/> */}
       </Div>
-        <MainButton mt={10} mb={10} buttonText="Publish" bg='salmon' onPress={HandlePublishPress}/>
+        <MainButton mt={10} mb={10} iconName=''  buttonText="Publish" bg='#F2ABAB' onPress={HandlePublishPress}/>
       <Div>
       </Div>
       </Wrapper>
       </ScrollDiv>
-      <DonorBottomNav 
+      <DonorBottomNav gradientImg={DonorGradient}
         GoHome={() => {navigation.navigate('donorHome')}}
         GoListings={() => {navigation.navigate('NewListing')}}
         GoRequests={() => {navigation.navigate('Donorrequest')}}

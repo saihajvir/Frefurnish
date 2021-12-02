@@ -23,7 +23,9 @@ const InnerContainer = styled.View`
 export default function ConfirmOverlay({
     visible,
     removeOverlay,
-    onDeletePress
+    onDeletePress,
+    buttonText='Delete',
+    messageText=" Are you sure you're not interested? This request will be deleted",
 })
 
 {
@@ -31,11 +33,11 @@ export default function ConfirmOverlay({
         <Overlay visible={visible} justifyContent='center' alignItems='center'>
             <Container>
                 <TextContainer>
-                    Are you sure you're not interested? Your request will be deleted.
+                    {messageText}
                 </TextContainer>
                 <InnerContainer>
-                    <HalfButton w={140} bg='#6CAF61' borderColor='#6CAF61' buttonText='Go Back' onPress={removeOverlay}/>
-                    <HalfButton w={140} bg='#E25C25' borderColor='#E25C25' buttonText='Delete' onPress={onDeletePress}/>
+                    <HalfButton w={140} bg='#98C791' borderColor='#6CAF61' buttonText='Go Back' onPress={removeOverlay}/>
+                    <HalfButton w={140} bg='#EB8D8D' borderColor='#E25C25' buttonText={buttonText}  onPress={onDeletePress}/>
                 </InnerContainer>
             </Container>
         </Overlay>

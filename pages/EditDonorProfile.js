@@ -13,6 +13,7 @@ import ProfileHeader from "../comps/ProfileHeader";
 import HalfButton from "../comps/halfbutton";
 
 import ProfileImage from '../assets/john.png'
+import DonorGradient from '../assets/donor-gradient.png';
 
 const Wrapper = styled.View`
   flex: 1;
@@ -135,13 +136,13 @@ export default function EditWorkerProfile({
         </BottomContainer>
 
         <ButtonContainer>
-          <HalfButton buttonText='Confirm' bg="#6CAF61" borderColor="#6CAF61" onPress={HandleConfirmPress}/>
-          <HalfButton  buttonText='Cancel' bg="#E25C5C" borderColor="#E25C5C" onPress={() => {navigation.navigate("DonorProfile")}}/>
+          <HalfButton buttonText='Confirm' bg="#98C791" borderColor="#6CAF61" onPress={HandleConfirmPress}/>
+          <HalfButton  buttonText='Cancel' bg="#EB8D8D" borderColor="#E25C5C" onPress={() => {navigation.navigate("DonorProfile")}}/>
         </ButtonContainer>
 
       </Wrapper>
 
-      <DonorBottomNav 
+      <DonorBottomNav gradientImg={DonorGradient}
                 GoHome={() => {navigation.navigate('donorHome')}}
                 GoListings={() => {navigation.navigate('NewListing')}}
                 GoRequests={() => {navigation.navigate('Donorrequest')}}

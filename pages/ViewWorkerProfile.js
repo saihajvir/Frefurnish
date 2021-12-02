@@ -4,7 +4,6 @@ import styled from "styled-components/native";
 import { ScrollView, View, } from "react-native";
 
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image, Avatar, Modal } from 'react-native-magnus';
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
 
 import ItemIcon from "../comps/ItemIcon";
 import DonorBottomNav from "../comps/DonorBottomNavBar";
@@ -13,8 +12,8 @@ import BackButton from "../comps/backbutton";
 import ProfileHeader from "../comps/ProfileHeader";
 import MainButton from "../comps/MainButton";
 
-import Julian from '../assets/julian.png'
-import John from '../assets/john.png'
+
+import Julian from '../assets/julian.png';
 import DonorGradient from '../assets/donor-gradient.png';
 
 const ffTheme = {
@@ -37,7 +36,10 @@ padding: 16px 16px 0 16px;
 background-color: #FFF;
 `
   const Container = styled.View`
-      flex: 1;
+    flex: 0.5;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
   `
 
   const PersonInfoContainer = styled.View`
@@ -57,7 +59,6 @@ background-color: #FFF;
   `
 
   const WorkplaceContainer = styled.View`
-
   `
 
   const Workplace = styled.Text`
@@ -113,18 +114,11 @@ const RowCont = styled.View`
   margin-bottom: 20px;
 `
 const Divider = styled.View`
-  height: 30%;
-`
-const ButtonContainer = styled.View`
-  flex: 0.3;
-  align-items: center;
-  justify-content: center;
+  height: 40%;
 `
 
 
-
-
-export default function DonorProfile({
+export default function ViewWorkerProfile({
   route,
   navigation,
   WorkerDescriptionText='Social worker working for Milieu - a social home trying to provide a better life for the disadvantaged. My goal is to better the lives as many people as possible. I love the work I do and it’s by the help of awesome donors that my goals are achievable. By working together, we can all make a difference for the better :)',
@@ -135,100 +129,42 @@ export default function DonorProfile({
   EducationLevel=''
 
 }) {
-  const [visible, setVisible] = useState(false);
-  const [overlayVisible, setOverlayVisible] = useState(false);
-  const [prof, setProf] = useState(null);
-
-  useEffect(() => {
-    const GetData = async(fuid) => {
-      const result = await axios.get('/users.php?fuid='+fuid);
-      console.log(result.data)
-
-      setProf(result.data[0]);
-      // console.log(prof.name, "PROFILE INFO")
-    }
-
-    const auth = getAuth();
-    console.log(auth, "AUTH");
-      /*onAuthStateChanged(auth, (u)=>{
-          if(u){
-              console.log(u)
-              setUser(u);
-          }
-      })*/
-      if(auth?.currentUser.uid){
-
-        GetData(auth.currentUser.uid);
-      }
-  },[])
-
-  const HandleSignOut = () =>
-  {
-    const auth = getAuth();
-    signOut(auth).then(() => {
-      // Sign-out successful.
-      console.log("Signed Out")
-      navigation.navigate('Landing')
-    }).catch((error) => {
-      // An error happened.
-    });
-  }
-  if(prof === null)
-  {
-    return <>
-    </>
-  }
+  
 
     return (
         <ThemeProvider theme={ffTheme}>
           <BigWrapper>
-            <Container>
           <Wrapper>
-            <ProfileHeader workPlace={prof.workplace} name={prof.name} profileImg={John}/>
+            <ProfileHeader profileImg={Julian}/>
           </Wrapper>
           <DescriptionTitleWrapper>
-            <DescriptionTitleText>Bio</DescriptionTitleText>
+            <DescriptionTitleText>Description</DescriptionTitleText>
+       
           </DescriptionTitleWrapper>
           <DescriptionTextWrapper>
-            <DescriptionText>
-                {prof.description}
-            </DescriptionText>
+            <DescriptionText>{WorkerDescriptionText}</DescriptionText>
           </DescriptionTextWrapper>
           <DescriptionTitleWrapper>
             <LookingTitleText>
-              Address
+              Credentials
             </LookingTitleText>
           </DescriptionTitleWrapper>
           <DescriptionTextWrapper>
             <DescriptionText>
-            {prof.address}
+              {WorkerCredentialsText}
             </DescriptionText>
           </DescriptionTextWrapper>
-          <DescriptionTitleWrapper>
-            <LookingTitleText>
-              Contact Number
-            </LookingTitleText>
-          </DescriptionTitleWrapper>
-          <DescriptionTextWrapper>
-            <DescriptionText>
-                {prof.phone}
-            </DescriptionText>
-          </DescriptionTextWrapper>
-          </Container>
-          <ButtonContainer>
-          <MainButton buttonText={'Edit Profile'} bg="#F2ABAB" iconName="" textColor='white'onPress={() => {navigation.navigate('EditDonorProfile')}}/>
-          <MainButton mt={10} buttonText={'Sign Out'} bg="#F2ABAB"  iconName=""textColor='white'onPress={HandleSignOut}/>
-          </ButtonContainer>
         
-          <ChangeProfile visible={overlayVisible}/>
+          <Divider/>
+         
       
           </BigWrapper>
-          <DonorBottomNav gradientImg={DonorGradient}
-                      GoHome={() => {navigation.navigate('donorHome')}}
-                      GoListings={() => {navigation.navigate('NewListing')}}
-                      GoRequests={() => {navigation.navigate('Donorrequest')}}
-                      GoProfile={() => {navigation.navigate('DonorProfile')}}
-                  />
+              <DonorBottomNav gradientImg={DonorGradient}
+              GoHome={() => {navigation.navigate('donorHome')}}
+              GoListings={() => {navigation.navigate('NewListing')}}
+              GoRequests={() => {navigation.navigate('Donorrequest')}}
+              GoProfile={() => {navigation.navigate('DonorProfile')}}
+          />
         </ThemeProvider>
     )
 }

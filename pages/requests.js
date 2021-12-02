@@ -24,6 +24,7 @@ import Couch from '../assets/sofa.jpg';
 import Table from '../assets/table.jpg';
 import Shelf from '../assets/bookshelf.jpg';
 import KitchenChairs from '../assets/kitchen-chairs.jpg';
+import WorkerGradient from '../assets/worker-gradient.png';
 
 
 
@@ -144,7 +145,7 @@ export default function Requests({ route, navigation }) {
   </ScrollView>
 
         </Wrapper>
-        <BottomNav 
+        <BottomNav gradientImg={WorkerGradient}
                 GoHome={() => {navigation.navigate("Whomepage")}}
                 GoListings={() => {navigation.navigate("Market")}}
                 GoRequests={() => {navigation.navigate("Requests")}}
