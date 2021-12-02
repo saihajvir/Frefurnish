@@ -5,6 +5,8 @@ import { ScrollView, View, ImageBackground, StyleSheet} from "react-native";
 
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image } from 'react-native-magnus';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getStorage, ref, uploadBytes } from 'firebase/storage'
+import * as ImagePicker from 'expo-image-picker';
 
 import MainButton from '../comps/MainButton/index';
 import BottomNav from '../comps/BottomNavBar';
@@ -100,6 +102,7 @@ export default function Landing({
     const [fuid, setFuid] = useState('');
     const [name, setName] = useState();
     const [phone, setPhone] = useState();
+    const [image, setImage] = useState(null);
     
     // const [email, setEmail] = useState();
     // const [password, setPassword] = useState();
@@ -154,6 +157,7 @@ export default function Landing({
             const user = userCredential.user;
             setFuid(user.uid)
             PostUserData(email,password, user.uid);
+            Upload(user.uid)
         })
         console.log(fuid)
         alert('Created!')
@@ -182,6 +186,34 @@ export default function Landing({
             user === 'worker' ? navigation.navigate("Whomepage") : navigation.navigate("donorHome")
         }, 1500)
     }
+
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 0.5,
+        });
+    
+        // console.log(result);
+    
+        if (!result.cancelled) {
+          setImage(result.uri);
+          // Upload(result.uri);
+        }
+      };
+    
+      const Upload = async(fuid)=>{
+        const file = await fetch(image);
+        const blob = await file.blob()
+    
+        const storage = getStorage();
+        const storageRef = ref(storage, `profileimg/item${fuid}.jpg`);
+    
+        const snapshot = await uploadBytes(storageRef, blob);
+        console.log('uploaded image to firebase!')
+      }
+
     if(state === 0)
     {
     return (
@@ -250,7 +282,7 @@ export default function Landing({
             </TopContainer>
             <Container mflex='2'>
                 <Text/>
-                <UploadImage uploadText='Profile Image'/>
+                <UploadImage uploadText='Profile Image' onPress={pickImage} bgImg={image ? {uri: image} : null}/>
                 <Text/>
                 <UserInput onChangeName={val=>setName(val)} onChangePhone={val=>setPhone(val)} onCreate={FBCreateUser}/>
             </Container>

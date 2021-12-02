@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { Button, Div, Icon, Text } from 'react-native-magnus'
 import styled from 'styled-components';
 import LottieView from 'lottie-react-native';
@@ -11,17 +11,21 @@ export default function UploadImage ({
     uploadText = "default",
     iconFamily = "Feather",
     iconName = "upload",
+    onPress,
+    bgImg
 })
 {
     return (
+        <TouchableOpacity onPress={onPress}>
         <Div
             justifyContent="center"
             alignItems="center"
             bg='white'
             rounded='circle'
-            h={125}
-            w={125}
+            h={150}
+            w={150}
             m={20}
+            bgImg={bgImg}
         >
             <Text
                 color="periwinkle"
@@ -39,5 +43,6 @@ export default function UploadImage ({
             />
 
         </Div>
+        </TouchableOpacity>
     )
 }

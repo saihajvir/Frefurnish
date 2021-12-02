@@ -3,7 +3,8 @@ import axios from "axios";
 import styled from "styled-components";
 import { ScrollView, View } from "react-native";
 import LottieView from 'lottie-react-native';
-
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import app from "../utils/initfb";
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Input} from 'react-native-magnus';
 
 import HalfButton from "../comps/halfbutton";
@@ -89,9 +90,23 @@ export default function donorListing({route, navigation})
           const result = await axios.get('/listings.php?id='+ id);
           console.log(result.data)
     
+          const storage = getStorage(app);
+                for(var i =0; i<result.data.length; i++){
+                    try{
+                        console.log("try");
+                        const url = await getDownloadURL(ref(storage, `listing/item${result.data[i].id}.jpg`));
+                        result.data[i].url = url;
+                        console.log(url)
+                    } catch (e){
+                        result.data[i].url = null;
+                        continue;
+                    }
+
+                    
+                }
           // setUserInfo(result.data)
           setListingData(result.data[0]);
-          console.log(listingData.listingName, "LISTING DATA")
+        //   console.log(listingData.listingName, "LISTING DATA")
         }
         
         GetData(id);
@@ -149,7 +164,7 @@ if (state === "delete"){
         <ThemeProvider theme={ffTheme}>
         <Wrapper>
             <Container>
-                <MainPost imgSrc={Toaster} headerText={listingData.listingName}/>
+                <MainPost imgSrc={listingData.url ? {uri: listingData.url} : Chair} headerText={listingData.listingName}/>
             </Container>
                 <NewListing>
                     <Text fontWeight="600" fontSize={24}>Condition</Text>

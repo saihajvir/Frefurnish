@@ -78,7 +78,7 @@ export default function NewListing({route, navigation})
       quality: 0.5,
     });
 
-    console.log(result);
+    // console.log(result);
 
     if (!result.cancelled) {
       setImage(result.uri);
@@ -113,7 +113,7 @@ export default function NewListing({route, navigation})
     }
     
   const result = await axios.post('/listings.php', listingdata);
-  console.log("post", result.data);
+  // console.log("post", result.data);
 
   Upload(result.data);
 }

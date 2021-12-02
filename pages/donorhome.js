@@ -97,8 +97,22 @@ export default function donorHome({route, navigation, mflex='1', justify='center
 
                     
                 }
+                for(var i =0; i<requestsResult.data.length; i++){
+                    try{
+                        console.log("try");
+                        const url = await getDownloadURL(ref(storage, `listing/item${requestsResult.data[i].listing_id}.jpg`));
+                        requestsResult.data[i].url = url;
+                        console.log(url)
+                    } catch (e){
+                        requestsResult.data[i].url = null;
+                        continue;
+                    }
+
+                    
+                }
                 setListing(result.data)
                 setAllRequests(requestsResult.data)
+                console.log(result.data, "RESULT")
                 console.log(allRequests, "REQUEST DATA")
                 console.log(fuid, "THE FUID")
               
@@ -128,7 +142,7 @@ export default function donorHome({route, navigation, mflex='1', justify='center
             <Container mflex='0.5' justify='flex-start'>
             <ScrollView>
             {
-                allRequests && allRequests.filter((reqs) => {return reqs.rstatus === "approved", "pending"}).map((requests, index) => {
+                allRequests && allRequests.filter((reqs) => {return reqs.rstatus === "approved"||reqs.rstatus === "pending"  }).map((requests, index) => {
                 return (
                     <RequestCard
                         key={index}

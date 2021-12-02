@@ -189,18 +189,19 @@ export default function Donorrequest({navigation, route})
       const result = await axios.get('/requests.php?fuid='+fuid);
 
       const storage = getStorage(app);
-        for(var i =0; i<result.data.length; i++){
+      const filtered = result.data.filter((o)=>o.rid == id)
+        for(var i =0; i<filtered.length; i++){
           try{
               //  console.log("try");
-                const url = await getDownloadURL(ref(storage, `listing/item${result.data[i].listing_id}.jpg`));
-                  result.data[i].url = url;
+                const url = await getDownloadURL(ref(storage, `listing/item${filtered[i].listing_id}.jpg`));
+                filtered[i].url = url;
                     // console.log(url)
           } catch (e){
-              result.data[i].url = null;
+            filtered[i].url = null;
               continue;
           }
         }
-        setPendingReq(result.data[0]);
+        setPendingReq(filtered[0]);
 
       // console.log(result.data, "RESULTS")
       // console.log(pendingReq, "STATUS")
@@ -240,7 +241,7 @@ export default function Donorrequest({navigation, route})
     }
 
     
-if (pendingReq.rstatus === "approved"){
+if (state === "approved"){
 
 return (
     <ThemeProvider theme={ffTheme}>         

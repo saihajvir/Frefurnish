@@ -80,6 +80,20 @@ export default function Whomepage({route, navigation, mflex='1'})
                     continue;
                 }
             }
+
+            for(var i =0; i<requestsResult.data.length; i++){
+                try{
+                    console.log("try");
+                    const url = await getDownloadURL(ref(storage, `listing/item${requestsResult.data[i].listing_id}.jpg`));
+                    requestsResult.data[i].url = url;
+                    console.log(url)
+                } catch (e){
+                    requestsResult.data[i].url = null;
+                    continue;
+                }
+
+                
+            }
             setListing(result.data)
             setAllRequests(requestsResult.data)
         }
@@ -128,20 +142,35 @@ export default function Whomepage({route, navigation, mflex='1'})
                     <Text fontWeight="600" fontSize={32} pt={20}>Requested Items</Text>
                 </NewListing>
                 <Container>
-                    <ScrollView horizontal={true}>
+                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                         <Div flexDir="row">
                         {
                             allRequests && allRequests.filter((reqs) => {return reqs.rstatus === "approved"}).map((requests, index) => {
                             return (
                                 
-                                    <ReqItem itemTitle={allRequests.listingName} itemStatus='Approved' itemOpacity={0.7} imgSrc={requests.url ? {uri:requests.url} : Chair} onpress={() => {navigation.navigate("Requested")}}/>
+                                    <ReqItem
+                                        key={index}
+                                        itemTitle={requests.listingName}
+                                        itemStatus='Approved' itemOpacity={0.7}
+                                        imgSrc={requests.url ? {uri:requests.url} : Chair}
+                                        onpress={() => navigation.navigate("Requested"), {id:requests.rid}}
+                                    />
                         )})}
 
                         {
                             allRequests && allRequests.filter((reqs) => {return reqs.rstatus === "declined"}).map((requests, index) => {
                             return (
                                 
-                                    <ReqItem itemTitle={requests.listingName} itemStatus='Declined' itemOpacity={0.7} imgSrc={requests.url ? {uri:requests.url} : Chair}  borderColor={"#EB8D8D"} bgColor={"#EB8D8D"} key={index} onpress={()=> navigation.navigate('Declined')}/>
+                                    <ReqItem
+                                        key={index}
+                                        itemTitle={requests.listingName}
+                                        itemStatus='Declined'
+                                        itemOpacity={0.7}
+                                        imgSrc={requests.url ? {uri:requests.url} : Chair} 
+                                        borderColor={"#EB8D8D"}
+                                        bgColor={"#EB8D8D"}
+                                        onpress={()=> navigation.navigate('Declined')}
+                                    />
                                    
                         )})}
 
@@ -149,7 +178,15 @@ export default function Whomepage({route, navigation, mflex='1'})
                             allRequests && allRequests.filter((reqs) => {return reqs.rstatus === "pending"}).map((requests, index) => {
                             return (
                                 
-                                <ReqItem itemTitle={requests.listingName} itemStatus='Pending' itemOpacity={0.7} borderColor={"#808080"} imgSrc={requests.url ? {uri:requests.url} : Chair} bgColor={"#808080"} key={index}/>
+                                <ReqItem
+                                    key={index}
+                                    itemTitle={requests.listingName}
+                                    itemStatus='Pending'
+                                    itemOpacity={0.7}
+                                    borderColor={"#808080"}
+                                    imgSrc={requests.url ? {uri:requests.url} : Chair}
+                                    bgColor={"#808080"}
+                                />
                         )})}
 
 

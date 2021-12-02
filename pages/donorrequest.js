@@ -117,6 +117,7 @@ export default function Donorrequest({navigation})
                     <Text fontWeight="600" fontSize={32} pt={20}>New Requests</Text>
 
                   <ReqCont>
+                  <ScrollView showsVerticalScrollIndicator={false}>
                   {/* <RequestCard nameText='Adam Sandler' timeText="4:30pm" dateText="November 5th" profileImg={Adam} itemImg={Chair} onpress={() => {navigation.navigate('ItemRequests')}}/> */}
 
                     {
@@ -136,8 +137,8 @@ export default function Donorrequest({navigation})
                         )}
                       )
                     }
+                  </ScrollView>
                   </ReqCont>
-
                 </Heading>
 
                 <Heading>
@@ -149,6 +150,7 @@ export default function Donorrequest({navigation})
                         Scheduled Pick Ups
                     </Text>
                 <ReqCont>
+                  <ScrollView>
                 {
                    pendingReq && pendingReq.filter((pend) => {return pend.rstatus === 'approved'}).map((requests, index) => {
                     console.log(requests.rid, "request ID")
@@ -166,6 +168,7 @@ export default function Donorrequest({navigation})
                     )}
                   )
                 }
+                </ScrollView>
                 </ReqCont>
                 </Heading>
 

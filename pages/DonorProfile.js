@@ -144,7 +144,7 @@ export default function DonorProfile({
       console.log(result.data)
 
       setProf(result.data[0]);
-      console.log(prof.name, "PROFILE INFO")
+      // console.log(prof.name, "PROFILE INFO")
     }
 
     const auth = getAuth();
