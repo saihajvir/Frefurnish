@@ -3,7 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { ScrollView, View, TouchableOpacity, ImageBackground} from "react-native";
 import { useFocusEffect } from "@react-navigation/core";
-import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image } from 'react-native-magnus';
+import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image, Skeleton } from 'react-native-magnus';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import app from "../utils/initfb";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
@@ -58,7 +58,7 @@ const Heading = styled.View`
 `
 const ReqCont = styled.View`
   flex: 1;
-  margin-top: 25px;
+  margin-top: 5px;
   background-color: #FFFFFF;
 `
 
@@ -102,6 +102,50 @@ export default function Donorrequest({navigation})
     if(pendingReq === null)
     {
       return <>
+      <ThemeProvider theme={ffTheme}>
+         
+         <Wrapper>
+         <Container >
+             <Heading>
+                 <Text fontWeight="600" fontSize={32} pt={20}>New Requests</Text>
+
+               <ReqCont>
+               <ScrollView showsVerticalScrollIndicator={false}>
+                <Skeleton.Box h={130} w={390} mb={20} mt={10}/>
+                <Skeleton.Box h={130} w={390}/>
+               </ScrollView>
+               </ReqCont>
+             </Heading>
+
+             <Heading>
+                 <Text
+                   fontWeight="600"
+                   fontSize={32} 
+                   pt={20}
+                 >
+                     Scheduled Pick Ups
+                 </Text>
+             <ReqCont>
+              <ScrollView>
+                <Skeleton.Box h={130} w={390} mb={20} mt={10}/>
+                <Skeleton.Box h={130} w={390}/>
+             </ScrollView>
+             </ReqCont>
+             </Heading>
+
+         
+       
+         </Container>
+         </Wrapper>
+      
+         <DonorBottomNav 
+             GoHome={() => {navigation.navigate('donorHome')}}
+             GoListings={() => {navigation.navigate('NewListing')}}
+             GoRequests={() => {navigation.navigate('Donorrequest')}}
+             GoProfile={() => {navigation.navigate('DonorProfile')}}
+         />
+         
+     </ThemeProvider>
       </>
     }
 
@@ -112,7 +156,6 @@ export default function Donorrequest({navigation})
          
             <Wrapper>
             <Container >
-              
                 <Heading>
                     <Text fontWeight="600" fontSize={32} pt={20}>New Requests</Text>
 

@@ -158,6 +158,7 @@ export default function Landing({
             setFuid(user.uid)
             PostUserData(email,password, user.uid);
             Upload(user.uid)
+            console.log(user.uid)
         })
         console.log(fuid)
         alert('Created!')

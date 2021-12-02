@@ -3,7 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { ScrollView, View, TouchableOpacity } from "react-native";
 
-import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Input, } from 'react-native-magnus';
+import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Input, Skeleton, } from 'react-native-magnus';
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import app from "../utils/initfb";
 
@@ -93,6 +93,36 @@ export default function Market({route, navigation})
     if(listing === null) 
     {
         return<>
+        <ThemeProvider theme={ffTheme}>
+            <ScrollView>
+            <Wrapper>
+            <NewListing>
+                <Text fontWeight="600" fontSize={36} pt={20} mb={15}>All Listings</Text>
+            </NewListing>
+            
+            
+            <Container>
+                <Skeleton.Box w={180} h={180} mb={20}/>
+                <Skeleton.Box w={180} h={180} mb={20}/>
+                <Skeleton.Box w={180} h={180} mb={20}/>
+                <Skeleton.Box w={180} h={180} mb={20}/>
+                <Skeleton.Box w={180} h={180} mb={20}/>
+                <Skeleton.Box w={180} h={180} mb={20}/>
+                <Skeleton.Box w={180} h={180} mb={20}/>
+                <Skeleton.Box w={180} h={180} mb={20}/>
+            </Container>
+
+        
+            </Wrapper>
+            </ScrollView>
+            
+            <BottomNav 
+            GoHome={() => {navigation.navigate("Whomepage")}}
+            GoListings={() => {navigation.navigate("Market")}}
+            GoRequests={() => {navigation.navigate("Requests")}}
+            GoProfile={() => {navigation.navigate("WorkerProfile")}}
+            />
+        </ThemeProvider>
         </>
     }
     return (
@@ -100,8 +130,7 @@ export default function Market({route, navigation})
             <ScrollView>
             <Wrapper>
             <NewListing>
-                <Text fontWeight="600" fontSize={36} pt={20}>All Listings</Text>
-                <Input placeholder="Search" w={180} h={40} m={25}/>
+                <Text fontWeight="600" fontSize={36} pt={20} mb={15}>All Listings</Text>
             </NewListing>
             
             

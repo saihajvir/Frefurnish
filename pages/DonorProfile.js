@@ -21,7 +21,8 @@ const ffTheme = {
       periwinkle: "#92A8F8",
       lavender: "#7367F0",
       white: "#FFFFFF",
-      black: "#000000"
+      black: "#000000",
+      salmon: "#EAAB97"
     }
   } 
 
@@ -215,7 +216,7 @@ export default function DonorProfile({
           </DescriptionTextWrapper>
           </Container>
           <ButtonContainer>
-          <MainButton buttonText={'Edit Profile'} bg="#EB8D8D" iconName=""textColor='white'onPress={() => {navigation.navigate('EditDonorProfile')}}/>
+          <MainButton buttonText={'Edit Profile'} bg="periwinkle" iconName=""textColor='white'onPress={() => {navigation.navigate('EditDonorProfile')}}/>
           <MainButton mt={10} buttonText={'Sign Out'} bg="salmon" iconName=""textColor='white'onPress={HandleSignOut}/>
           </ButtonContainer>
         
