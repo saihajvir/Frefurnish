@@ -21,6 +21,7 @@ import Toaster from '../assets/toaster.jpg';
 import Chair from '../assets/aeron.jpg';
 import Julian from '../assets/julian.png';
 import Adam from '../assets/adam.jpeg';
+import DonorGradient from '../assets/donor-gradient.png';
 
 
 
@@ -230,7 +231,7 @@ if (state === "yes"){
           </FlexCont>
               <MainButton iconName="" bg="salmon" buttonText="Create New Listing" onPress={() => {navigation.navigate('NewListing')}}/>
       </Wrapper>
-                  <DonorBottomNav 
+                  <DonorBottomNav gradientImg={DonorGradient}
                       GoHome={() => {navigation.navigate('donorHome')}}
                       GoListings={() => {navigation.navigate('NewListing')}}
                       GoRequests={() => {navigation.navigate('Donorrequest')}}
@@ -276,14 +277,14 @@ if (state === "no"){
             </FlexCont>
             <ButtonCont>
                 <HalfButton 
-                onPress={handleRenewPress} bg="#6CAF61" borderColor="#6CAF61" buttonText="Renew" >
+                onPress={handleRenewPress} bg="#98C791" borderColor="#6CAF61" buttonText="Renew" >
                 </HalfButton>
                 <HalfButton
-                onPress={handleRemovePress} bg="#E25C5C" borderColor="#E25C5C" buttonText="Remove">
+                onPress={handleRemovePress} bg="#EB8D8D" borderColor="#E25C5C" buttonText="Remove">
                 </HalfButton>
             </ButtonCont>
         </Wrapper>
-            <DonorBottomNav 
+            <DonorBottomNav gradientImg={DonorGradient}
                 GoHome={() => {navigation.navigate('donorHome')}}
                 GoListings={() => {navigation.navigate('NewListing')}}
                 GoRequests={() => {navigation.navigate('Donorrequest')}}
@@ -319,9 +320,9 @@ if (state === "renew"){
         </FlexCont2>
         <FlexCont2/>
         
-        <MainButton iconName="" bg="salmon" buttonText="View Listing" onPress={() => {navigation.navigate('donorListing')}}/>
+        <MainButton iconName="" bg="#F2ABAB" buttonText="View Listing" onPress={() => {navigation.navigate('donorListing')}}/>
       </Wrapper>
-        <DonorBottomNav 
+        <DonorBottomNav gradientImg={DonorGradient}
         GoHome={() => {navigation.navigate('donorHome')}}
         GoListings={() => {navigation.navigate('NewListing')}}
         GoRequests={() => {navigation.navigate('Donorrequest')}}
@@ -353,7 +354,7 @@ if (state === "remove"){
               </AnimCont2>
         </FlexCont2>
           <FlexCont2/>
-        <MainButton iconName="" bg="salmon" buttonText="Create Listing" onPress={() => {navigation.navigate('NewListing')}}/>
+        <MainButton iconName="" bg="#F2ABAB" buttonText="Create Listing" onPress={() => {navigation.navigate('NewListing')}}/>
       </Wrapper>
         <DonorBottomNav 
         GoHome={() => {navigation.navigate('donorHome')}}
@@ -371,7 +372,7 @@ return (
     <ThemeProvider theme={ffTheme}>
         <Wrapper>
           <Container >
-            <WorkerProfile name="Julian Mayes" profileImg={Julian}></WorkerProfile>
+            <WorkerProfile name="Julian Mayes" profileImg={Julian} onPress={() => {navigation.navigate('ViewWorkerProfile')}}></WorkerProfile>
             <MessageText/>
             <ReqCardLarge pickupText="Pick Up Scheduled:" TextColor="#6CAF61" itemImg={Toaster} timeText="1:30pm" dateText="November 1st"/>
             <MessageCont>
@@ -387,15 +388,15 @@ return (
             </MessageCont>
             <ButtonCont>
                 <HalfButton 
-                onPress={handleYesPress} bg="#6CAF61" borderColor="#6CAF61" buttonText="Yes" >
+                onPress={handleYesPress} bg="#98C791" borderColor="#6CAF61" buttonText="Yes" >
                 </HalfButton>
                 <HalfButton
-                onPress={handleNoPress}  bg="#E25C5C" borderColor="#E25C5C" buttonText="No">
+                onPress={handleNoPress}  bg="#EB8D8D" borderColor="#E25C5C" buttonText="No">
                 </HalfButton>
             </ButtonCont>
           </Container>
         </Wrapper>
-            <DonorBottomNav 
+            <DonorBottomNav gradientImg={DonorGradient}
                 GoHome={() => {navigation.navigate('donorHome')}}
                 GoListings={() => {navigation.navigate('NewListing')}}
                 GoRequests={() => {navigation.navigate('Donorrequest')}}

@@ -25,6 +25,7 @@ import Toaster from '../assets/toaster.jpg';
 import Julian from '../assets/julian.png'
 import Chair from '../assets/aeron.jpg';
 import Adam from '../assets/adam.jpeg';
+import DonorGradient from '../assets/donor-gradient.png';
 import { useFocusEffect } from "@react-navigation/core";
 
 
@@ -266,7 +267,7 @@ return (
         </FlexCont>
           <FlexCont/>
       </Wrapper>
-            <DonorBottomNav 
+            <DonorBottomNav gradientImg={DonorGradient}
                 GoHome={() => {navigation.navigate('donorHome')}}
                 GoListings={() => {navigation.navigate('NewListing')}}
                 GoRequests={() => {navigation.navigate('Donorrequest')}}
@@ -292,7 +293,7 @@ return (
       <FlexCont2/>
       <FlexCont2/>
     </Wrapper>
-      <DonorBottomNav 
+      <DonorBottomNav gradientImg={DonorGradient}
           GoHome={() => {navigation.navigate('donorHome')}}
           GoListings={() => {navigation.navigate('NewListing')}}
           GoRequests={() => {navigation.navigate('Donorrequest')}}
@@ -307,7 +308,7 @@ return (
       <ThemeProvider theme={ffTheme}>         
          <Wrapper>
             <Container>
-                <WorkerProfile name={pendingReq.name} workPlace={pendingReq.workplace} profileImg={Adam}></WorkerProfile>
+                <WorkerProfile onPress={() => {navigation.navigate('ViewWorkerProfile')}} name={pendingReq.name} workPlace={pendingReq.workplace} profileImg={Adam} ></WorkerProfile>
               <MessageText/>
               
                 <ReqCardLarge itemImg={pendingReq.url ? {uri:pendingReq.url} : Chair} timeText="" dateText={pendingReq.listingName}/>
@@ -331,15 +332,15 @@ return (
                 
                 <ButtonCont>
                   <HalfButton 
-                  onPress={handleApprovePress} bg="#6CAF61" borderColor="#6CAF61" buttonText="Approve" >
+                  onPress={handleApprovePress} bg="#98C791" borderColor="#6CAF61" buttonText="Approve" >
                   </HalfButton>
                   <HalfButton
-                  onPress={handleDeclinePress} bg="#E25C5C" borderColor="#E25C5C" buttonText="Decline">
+                  onPress={handleDeclinePress} bg="#EB8D8D"borderColor="#E25C5C" buttonText="Decline">
                   </HalfButton>
                 </ButtonCont>
             </Container>
           </Wrapper>
-            <DonorBottomNav 
+            <DonorBottomNav gradientImg={DonorGradient}
                 GoHome={() => {navigation.navigate('donorHome')}}
                 GoListings={() => {navigation.navigate('NewListing')}}
                 GoRequests={() => {navigation.navigate('Donorrequest')}}

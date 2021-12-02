@@ -7,12 +7,23 @@ export default function BottomNav({
     GoHome,
     GoListings,
     GoRequests,
-    GoProfile  
+    GoProfile,
+    gradientImg,
+    iconColor = 'white',
+    homeColor = 'white',
+    listingColor = 'white',
+    requestColor = 'white',
+    profileColor = 'white',
+    homeText = 'white',
+    listingText = 'white',
+    requestText = 'white',
+    profileText = 'white',
 })
 {
     return (
         
         <Div
+            bgImg={gradientImg}
             style={styles.NavBar}
             h={80}
             rounded={20}
@@ -29,10 +40,10 @@ export default function BottomNav({
                     name='ios-home'
                     fontFamily='Ionicons'
                     fontSize={24}
-                    color='white'
+                    color={homeColor}
                     mb={5}
                 />
-                    <Text color='white' fontWeight='600' fontSize={10}>Home</Text>
+                    <Text color={homeText} fontWeight='600' fontSize={10}>Home</Text>
             </Button>
       
             <Button
@@ -46,10 +57,10 @@ export default function BottomNav({
                     name='shopping-bag'
                     fontFamily='FontAwesome5'
                     fontSize={24}
-                    color='white'
+                    color={listingColor}
                     mb={5}
                 />
-                    <Text color='white' fontWeight='600' fontSize={10}>Listings</Text>
+                    <Text color={listingText} fontWeight='600' fontSize={10}>Listings</Text>
             </Button>
 
             <Button
@@ -63,10 +74,10 @@ export default function BottomNav({
                     name='md-chatbubbles'
                     fontFamily='Ionicons'
                     fontSize={24}
-                    color='white'
+                    color={requestColor}
                     mb={5}
                 />
-                    <Text color='white' fontWeight='600' fontSize={10}>Requests</Text>
+                    <Text color={requestText} fontWeight='600' fontSize={10}>Requests</Text>
             </Button>
 
             <Button
@@ -80,10 +91,10 @@ export default function BottomNav({
                     name='user-circle'
                     fontFamily='FontAwesome5'
                     fontSize={24}
-                    color='white'
+                    color={profileColor}
                     mb={5}
                 />
-                    <Text color='white' fontWeight='600' fontSize={10}>Profile</Text>
+                    <Text color={profileText} fontWeight='600' fontSize={10}>Profile</Text>
             </Button>
 
         </Div>
@@ -97,7 +108,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-evenly',
-        backgroundColor: '#92A8F8'
     },
 
     

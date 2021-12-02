@@ -15,13 +15,14 @@ import SmallPost from "../comps/SmallPost";
 import BackButton from "../comps/backbutton";
 import HalfButton from "../comps/halfbutton";
 
-import KChairs from '../assets/kitchen-chairs.jpg'
-import Chair from '../assets/aeron.jpg'
-import Table from '../assets/table.jpg'
-import Sofa from '../assets/sofa.jpg'
-import Julian from '../assets/julian.png'
-import Bookshelf from '../assets/bookshelf.jpg'
-import Toaster from '../assets/toaster.jpg'
+import KChairs from '../assets/kitchen-chairs.jpg';
+import Chair from '../assets/aeron.jpg';
+import Table from '../assets/table.jpg';
+import Sofa from '../assets/sofa.jpg';
+import Julian from '../assets/julian.png';
+import Bookshelf from '../assets/bookshelf.jpg';
+import Toaster from '../assets/toaster.jpg';
+import WorkerGradient from '../assets/worker-gradient.png';
 
 const ffTheme = {
     colors: {
@@ -130,7 +131,9 @@ export default function Market({route, navigation})
             <ScrollView>
             <Wrapper>
             <NewListing>
+
                 <Text fontWeight="600" fontSize={36} pt={20} mb={15}>All Listings</Text>
+
             </NewListing>
             
             
@@ -155,7 +158,7 @@ export default function Market({route, navigation})
             </Wrapper>
             </ScrollView>
             
-            <BottomNav 
+            <BottomNav gradientImg={WorkerGradient}
             GoHome={() => {navigation.navigate("Whomepage")}}
             GoListings={() => {navigation.navigate("Market")}}
             GoRequests={() => {navigation.navigate("Requests")}}

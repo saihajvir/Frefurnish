@@ -230,7 +230,7 @@ export default function Landing({
                 <Image source={Logo} w={223} h={234}/>
             </Container>
             <BottomContainer mflex='0.5'>
-                <MainButton buttonText={'Get Started'} bg="whiteLowO" textColor='white' onPress={() => {nextState (state + 1)}}/>
+                <MainButton iconName='' buttonText={'Get Started'} bg="whiteLowO" textColor='white' onPress={() => {nextState (state + 1)}}/>
             </BottomContainer>
             </Wrapper>
             </ImageBackground>
@@ -263,7 +263,7 @@ export default function Landing({
                 />
             </Container>
             <BottomContainer mflex='1'>
-                <MainButton buttonText={'Next'} bg="whiteLowO" textColor='white' onPress={HandleTypePress}/>
+                <MainButton iconName='' buttonText={'Next'} bg="whiteLowO" textColor='white' onPress={HandleTypePress}/>
             </BottomContainer>
             </Wrapper>
             </ImageBackground>
@@ -289,7 +289,7 @@ export default function Landing({
             </Container>
             <BottomContainer mflex='1'> 
                 {/* <MainButton buttonText='Axios Post' onPress={PostUserData} /> */}
-                <MainButton buttonText={'Next'} bg="whiteLowO" textColor='white' onPress={() => {nextState (state + 1)}}/>
+                <MainButton iconName='' buttonText={'Next'} bg="whiteLowO" textColor='white' onPress={() => {nextState (state + 1)}}/>
             </BottomContainer>
             </Wrapper>
             </ImageBackground>
