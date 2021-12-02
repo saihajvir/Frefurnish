@@ -4,6 +4,9 @@ import styled from "styled-components/native";
 import { ScrollView, View, } from "react-native";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image, Avatar, Modal } from 'react-native-magnus';
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import app from "../utils/initfb";
+import { useFocusEffect } from "@react-navigation/core";
 
 import ItemIcon from "../comps/ItemIcon";
 import BottomNav from "../comps/BottomNavBar";
@@ -134,10 +137,24 @@ export default function WorkerProfile({
 
   const [prof, setProf] = useState(null)
  
-  useEffect(() => {
+  useFocusEffect(
+    React.useCallback (() => {
     const GetData = async(fuid) => {
       const result = await axios.get('/users.php?fuid='+fuid);
       console.log(result.data)
+
+      const storage = getStorage(app);
+        for(var i =0; i<result.data.length; i++){
+          try{
+               console.log("try");
+                const url = await getDownloadURL(ref(storage, `profileimg/item${result.data[i].fuid}.jpg`));
+                  result.data[i].url = url;
+                    console.log(url)
+          } catch (e){
+              result.data[i].url = null;
+              continue;
+          }
+        }
 
       setUserInfo(result.data)
       setProf(result.data[0]);
@@ -155,7 +172,7 @@ export default function WorkerProfile({
 
         GetData(auth.currentUser.uid);
       }
-  },[])
+  },[]))
 
   const HandleSignOut = () =>
   {
@@ -189,7 +206,7 @@ export default function WorkerProfile({
               )
               )  
             } */}
-            <ProfileHeader profileImg={Julian} name={prof.name} workPlace={prof.workplace} key={prof.id}/>
+            <ProfileHeader profileImg={prof.url ? {uri: prof.url} : Julian} name={prof.name} workPlace={prof.workplace} key={prof.id}/>
           </Wrapper>
           <DescriptionTitleWrapper>
             <DescriptionTitleText>Description</DescriptionTitleText>
@@ -210,6 +227,16 @@ export default function WorkerProfile({
               {prof.credentials}
             </DescriptionText>
           </DescriptionTextWrapper>
+            <DescriptionTitleWrapper>
+            <LookingTitleText>
+              Phone Number
+            </LookingTitleText>
+          </DescriptionTitleWrapper>
+            <DescriptionTextWrapper>
+            <DescriptionText>
+              {prof.phone}
+            </DescriptionText>
+            </DescriptionTextWrapper>
         </Container>
       <ButtonContainer>
           <MainButton mt={10} buttonText={'Edit Profile'} bg="#B9C8FF"  iconName="" textColor='white' onPress={() => {navigation.navigate('EditWorkerProfile')}}/>

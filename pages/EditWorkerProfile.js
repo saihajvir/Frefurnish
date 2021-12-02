@@ -3,7 +3,10 @@ import axios from "axios";
 import styled from "styled-components/native";
 import { ScrollView, TouchableOpacity, View, } from "react-native";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-
+import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
+import { useFocusEffect } from "@react-navigation/core";
+import app from "../utils/initfb";
+import * as ImagePicker from 'expo-image-picker';
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image, Avatar, Modal } from 'react-native-magnus';
 
 import ItemIcon from "../comps/ItemIcon";
@@ -68,23 +71,70 @@ export default function EditWorkerProfile({
     height='40px'
 }) {
 
+    const [prof, setProf] = useState(null);
     const [user, setUser] = useState(null);
     const [name, setName] = useState();
     const [workplace, setWorkplace] = useState();
     const [description, setDescription] = useState();
     const [credentials, setCredentials] = useState();
-    
-    useEffect(() => {
+    const [image, setImage] = useState();
+    useFocusEffect(
+      React.useCallback(() => {
+
+      const GetData = async(fuid) => {
+        const result = await axios.get('/users.php?fuid='+fuid);
+        console.log(result.data)
+
+      const storage = getStorage(app);
+        for(var i =0; i<result.data.length; i++){
+          try{
+               console.log("try");
+                const url = await getDownloadURL(ref(storage, `profileimg/item${result.data[i].fuid}.jpg`));
+                  result.data[i].url = url;
+                    console.log(url)
+          } catch (e){
+              result.data[i].url = null;
+              continue;
+          }
+        }
+        setProf(result.data[0])
+      }
       
       const auth = getAuth()
-      onAuthStateChanged(auth, (u)=>{
-        if(u){
-          console.log(u)
-          setUser(u);
-        }
-      })
-    }, [])
+      
+      if(auth?.currentUser.uid){
+        GetData(auth.currentUser.uid);
+      }
+    }, []));
     
+    const pickImage = async () => {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 0.5,
+      });
+  
+      // console.log(result);
+  
+      if (!result.cancelled) {
+        setImage(result.uri);
+        // Upload(result.uri);
+      }
+    };
+  
+    const Upload = async(fuid)=>{
+      const file = await fetch(image);
+      const blob = await file.blob()
+  
+      const storage = getStorage();
+      const storageRef = ref(storage, `profileimg/item${fuid}.jpg`);
+  
+      const snapshot = await uploadBytes(storageRef, blob);
+      console.log('uploaded image to firebase!')
+    }
+
+
     const PatchProfile = async() => {
       var profiledata = {
 
@@ -96,14 +146,18 @@ export default function EditWorkerProfile({
       }
 
       const result = await axios.patch('./users.php', profiledata)
-
     }
-    function HandleConfirmPress()
+    async function HandleConfirmPress()
     {
-        PatchProfile();
+        await PatchProfile();
         setTimeout(() => {
           navigation.push("WorkerProfile")
         }, 1000)     
+    }
+    if(prof === null)
+    {
+      return<>
+      </>
     }
     return (
     <ThemeProvider theme={ffTheme}>
@@ -111,12 +165,12 @@ export default function EditWorkerProfile({
         <TopContainer>
 
           <ImageContainer>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={pickImage}>
             <Image
                 h={150}
                 w={150}
                 rounded="circle"
-                source={ProfileImage}
+                source={image ? {uri: image} : prof.url ? {uri:prof.url} : ProfileImage}
             />
             </TouchableOpacity>
           </ImageContainer>

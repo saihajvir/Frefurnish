@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useFocusEffect } from "@react-navigation/native";
 import { ScrollView, View, TouchableOpacity, ImageBackground} from "react-native";
 import { StyleSheet } from "react-native";
-import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv } from 'react-native-magnus';
+import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Skeleton } from 'react-native-magnus';
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 import app from "../utils/initfb";
@@ -111,6 +111,43 @@ export default function Whomepage({route, navigation, mflex='1'})
     if(listing === null && allRequests === null)
     {
         return <>
+        <ThemeProvider theme={ffTheme}>
+            <Wrapper>
+
+                <NewListing>
+                    <Text fontWeight="600" fontSize={32} pt={20}>New Listings</Text>
+                </NewListing>
+                <Container mflex='1.5'>
+                    <ScrollView horizontal={true} centerContent={true} showsHorizontalScrollIndicator={false}>
+                        <Skeleton.Box w={165} h={230} mr={20}/>
+                        <Skeleton.Box w={165} h={230} mr={20}/>
+                        <Skeleton.Box w={165} h={230} mr={20}/>
+                    </ScrollView>
+                </Container>
+                <MainButton buttonText={'See All Listings'} bg="periwinkle" textColor='white' onPress={() => {navigation.navigate("Market")}}/>
+                <NewListing>
+                    <Text fontWeight="600" fontSize={32} pt={20}>Requested Items</Text>
+                </NewListing>
+                <Container>
+                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                        <Div flexDir="row">
+                            <Skeleton w={120} h={120} mr={20} />
+                            <Skeleton w={120} h={120} mr={20} />
+                            <Skeleton w={120} h={120} mr={20} />
+                        </Div>
+                    </ScrollView>
+                </Container>
+                <MainButton mb={20} buttonText={'See All Requests'} bg="periwinkle" textColor='white' onPress={() => {navigation.navigate("Requests")}}/>
+            </Wrapper>
+
+                <BottomNav 
+                GoHome={() => {navigation.navigate("Whomepage")}}
+                GoListings={() => {navigation.navigate("Market")}}
+                GoRequests={() => {navigation.navigate("Requests")}}
+                GoProfile={() => {navigation.navigate("WorkerProfile")}}
+                />
+
+            </ThemeProvider>
         </>
     }
 
@@ -154,7 +191,7 @@ export default function Whomepage({route, navigation, mflex='1'})
                                         itemTitle={requests.listingName}
                                         itemStatus='Approved' itemOpacity={0.7}
                                         imgSrc={requests.url ? {uri:requests.url} : Chair}
-                                        onpress={() => navigation.navigate("Requested"), {id:requests.rid}}
+                                        onpress={() => navigation.navigate('Requested'), {id:requests.rid}}
                                     />
                         )})}
 
@@ -189,8 +226,8 @@ export default function Whomepage({route, navigation, mflex='1'})
                                     bgColor={"#808080"}
                                 />
                         )})}
-
-
+                      
+                        
                         </Div>
                     </ScrollView>
                 </Container>

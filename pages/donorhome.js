@@ -3,7 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { ScrollView, View, TouchableOpacity, ImageBackground} from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
-import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv } from 'react-native-magnus';
+import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Skeleton } from 'react-native-magnus';
 import app from "../utils/initfb";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
@@ -134,6 +134,37 @@ export default function donorHome({route, navigation, mflex='1', justify='center
     if(listing === null && allRequests === null)
     {
         return <>
+        <ThemeProvider theme={ffTheme}>
+            <Wrapper>
+                <Text pt={20} fontWeight="600" fontSize={32}>Item Requests</Text>
+            <Container mflex='0.5' justify='flex-start'>
+            <ScrollView>
+                <Skeleton.Box h={130} w={390} mb={20} mt={10}/>
+                <Skeleton.Box h={130} w={390}/>
+            </ScrollView>
+            </Container>
+            <ButtonContainer>
+                <MainButton buttonText={'See All Requests'} bg="salmon" iconName=""textColor='white'onPress={() => {navigation.navigate('Donorrequest')}}/>
+            </ButtonContainer>
+            <TextCont>
+            <Text fontWeight="600" fontSize={32}>Your Listings</Text>
+            </TextCont>
+            <Container mflex='0.4' justify='space-evenly'>
+                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                    <Skeleton.Box h={185} w={185} mr={20} />
+                    <Skeleton.Box h={185} w={185} mr={20} />
+                </ScrollView>
+            </Container>
+            </Wrapper>
+
+            <DonorBottomNav 
+                GoHome={() => {navigation.navigate('donorHome')}}
+                GoListings={() => {navigation.navigate('NewListing')}}
+                GoRequests={() => {navigation.navigate('Donorrequest')}}
+                GoProfile={() => {navigation.navigate('DonorProfile')}}
+            />
+            
+        </ThemeProvider>
         </>
     }
     return (
