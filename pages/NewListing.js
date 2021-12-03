@@ -123,7 +123,7 @@ async function HandlePublishPress()
 {
   await PostListing();
   setTimeout(() => {
-    navigation.navigate('donorListing');
+    navigation.navigate('donorHome');
   }, 1000);
 
 }

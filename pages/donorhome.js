@@ -175,7 +175,7 @@ export default function donorHome({route, navigation, mflex='1', justify='center
             <Wrapper>
                 <Text pt={20} fontWeight="600" fontSize={32}>Item Requests</Text>
             <Container mflex='0.5' justify='flex-start'>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
             {
                 allRequests && allRequests.filter((reqs) => {return reqs.rstatus === "approved"||reqs.rstatus === "pending"  }).map((requests, index) => {
                 return (

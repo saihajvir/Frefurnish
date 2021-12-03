@@ -16,6 +16,8 @@ import SmallPost from "../comps/SmallPost";
 import { StyleSheet, ScrollView, Dimensions, Image } from "react-native";
 import LottieView from "lottie-react-native";
 import MainButton from "../comps/MainButton";
+import Michelle from '../assets/Michelle.jpg'
+import Adam from '../assets/Adam.jpg'
 
 import Chair from '../assets/aeron.jpg'
 import HalfButton from "../comps/halfbutton";
@@ -250,10 +252,7 @@ export default function Requested({
                     <Avatar
                         mr={10}
                         size={50}
-                        source={{
-                            uri:
-                                "https://images.unsplash.com/photo-1593642532400-2682810df593?ixid=MXwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
-                        }}
+                        source={Adam}
                     />
                         <Info>
                             {pendingReq.dname}

@@ -32,7 +32,7 @@ export default function ProfileHeader({
         w="100%"
         flexDir="row"
         bg="#00000000"
-       
+        onPress={onPress}
         mb={mb}
         h={90}
         underlayColor="red100"

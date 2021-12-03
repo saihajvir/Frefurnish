@@ -81,7 +81,7 @@ const Date = styled.Text`
 
 export default function ReqCardLarge ({
     pickupText = "Pick Up Request",
-    timeText = "1:30pm",
+    timeText,
     dateText = "November 1st",
     textColor = "#6CAF61",
     itemImg
