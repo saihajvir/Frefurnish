@@ -63,6 +63,7 @@ const White = {
 }
 
 const Stack = createNativeStackNavigator();
+console.disableYellowBox = true;
 
 
 export default function App() {
