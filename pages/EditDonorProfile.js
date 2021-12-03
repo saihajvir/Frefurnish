@@ -5,6 +5,9 @@ import { ScrollView, TouchableOpacity, View, } from "react-native";
 
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image, Avatar, Modal } from 'react-native-magnus';
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import app from "../utils/initfb";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { useFocusEffect } from "@react-navigation/core";
 
 import ItemIcon from "../comps/ItemIcon";
 import DonorBottomNav from "../comps/DonorBottomNavBar";
@@ -73,8 +76,29 @@ export default function EditWorkerProfile({
   const [bio, setBio] = useState();
   const [address, setAddress] = useState();
   const [phone, setPhone] = useState();
-  
-  useEffect(() => {
+  const [prof, setProf] = useState();
+
+  useFocusEffect(
+    React.useCallback(() => {
+
+      const GetData = async(fuid) => {
+        const result = await axios.get('/users.php?fuid='+fuid);
+        console.log(result.data)
+
+      const storage = getStorage(app);
+        for(var i =0; i<result.data.length; i++){
+          try{
+               console.log("try");
+                const url = await getDownloadURL(ref(storage, `profileimg/item${result.data[i].fuid}.jpg`));
+                  result.data[i].url = url;
+                    console.log(url)
+          } catch (e){
+              result.data[i].url = null;
+              continue;
+          }
+        }
+        setProf(result.data[0])
+      }
     
     const auth = getAuth()
     onAuthStateChanged(auth, (u)=>{
@@ -83,8 +107,12 @@ export default function EditWorkerProfile({
         setUser(u);
       }
     })
-  }, [])
-  
+    if(auth?.currentUser.uid){
+      GetData(auth.currentUser.uid);
+    }
+  }, []));
+
+
   const PatchProfile = async() => {
     var profiledata = {
 
@@ -117,7 +145,7 @@ export default function EditWorkerProfile({
                 h={150}
                 w={150}
                 rounded="circle"
-                source={ProfileImage}
+                source={prof.url ? {uri: prof.url} : ProfileImage}
             />
             </TouchableOpacity>
           </ImageContainer>

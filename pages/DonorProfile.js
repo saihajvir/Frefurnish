@@ -5,6 +5,8 @@ import { ScrollView, View, } from "react-native";
 
 import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv, Image, Avatar, Modal } from 'react-native-magnus';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
+import app from "../utils/initfb";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 import ItemIcon from "../comps/ItemIcon";
 import DonorBottomNav from "../comps/DonorBottomNavBar";
@@ -145,9 +147,23 @@ export default function DonorProfile({
       const result = await axios.get('/users.php?fuid='+fuid);
       console.log(result.data)
 
-      setProf(result.data[0]);
       // console.log(prof.name, "PROFILE INFO")
+      const storage = getStorage(app);
+      for(var i =0; i<result.data.length; i++){
+        try{
+          console.log("try");
+          const url = await getDownloadURL(ref(storage, `profileimg/item${result.data[i].fuid}.jpg`));
+          result.data[i].url = url;
+          console.log(url)
+        } catch (e){
+          result.data[i].url = null;
+          continue;
+        }
+      }
+      
+      setProf(result.data[0]);
     }
+
 
     const auth = getAuth();
     console.log(auth, "AUTH");
@@ -185,7 +201,7 @@ export default function DonorProfile({
           <BigWrapper>
             <Container>
           <Wrapper>
-            <ProfileHeader workPlace={prof.workplace} name={prof.name} profileImg={John}/>
+            <ProfileHeader workPlace={prof.workplace} name={prof.name} profileImg={prof.url ? {uri: prof.url} : John}/>
           </Wrapper>
           <DescriptionTitleWrapper>
             <DescriptionTitleText>Bio</DescriptionTitleText>

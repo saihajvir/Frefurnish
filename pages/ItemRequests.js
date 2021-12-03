@@ -20,7 +20,7 @@ import WorkerProfile from "../comps/ProfileHeader";
 import HalfButton from "../comps/halfbutton";
 import UserInput from "../comps/userinput";
 
-
+import Michelle from '../assets/Michelle.jpg';
 import Toaster from '../assets/toaster.jpg';
 import Julian from '../assets/julian.png'
 import Chair from '../assets/aeron.jpg';
@@ -253,7 +253,7 @@ return (
               </Title>
         </FlexCont>
         <FlexCont>
-          <ReqCardLarge pickupText={"Pick Up Scheduled:"} textColor={"#6CAF61"} itemImg={pendingReq.url ? {uri:pendingReq.url} : Chair}/>
+          <ReqCardLarge pickupText={"Pick Up Scheduled:"} textColor={"#6CAF61"} itemImg={pendingReq.url ? {uri:pendingReq.url} : Chair} dateText={pendingReq.meetingTime}/>
         </FlexCont>
           <FlexCont/>
         <FlexCont>
@@ -308,7 +308,7 @@ return (
       <ThemeProvider theme={ffTheme}>         
          <Wrapper>
             <Container>
-                <WorkerProfile onPress={() => {navigation.navigate('ViewWorkerProfile')}} name={pendingReq.name} workPlace={pendingReq.workplace} profileImg={Adam} ></WorkerProfile>
+                <WorkerProfile onPress={() => {navigation.navigate('ViewWorkerProfile')}} name={pendingReq.name} workPlace={pendingReq.workplace} profileImg={Michelle} ></WorkerProfile>
               <MessageText/>
               
                 <ReqCardLarge itemImg={pendingReq.url ? {uri:pendingReq.url} : Chair} timeText="" dateText={pendingReq.listingName}/>

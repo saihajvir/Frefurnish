@@ -19,6 +19,7 @@ import Julian from '../assets/julian.png';
 import Toaster from '../assets/toaster.jpg';
 import Adam from '../assets/adam.jpeg';
 import DonorGradient from '../assets/donor-gradient.png';
+import Michelle from '../assets/Michelle.jpg'
 
 import { NavigationRouteContext } from "@react-navigation/core";
 import { getAuth, useAuth, onAuthStateChanged } from "firebase/auth";
@@ -76,6 +77,7 @@ export default function donorHome({route, navigation, mflex='1', justify='center
     const [user, setUser] = useState(null);
     const [listing, setListing] = useState(null);
     const [allRequests, setAllRequests] = useState(null);
+    const [prof, setProf] = useState(null);
     // const listArray = []
     useFocusEffect(
         React.useCallback(() => {
@@ -98,6 +100,7 @@ export default function donorHome({route, navigation, mflex='1', justify='center
 
                     
                 }
+            
                 for(var i =0; i<requestsResult.data.length; i++){
                     try{
                         console.log("try");
@@ -157,7 +160,7 @@ export default function donorHome({route, navigation, mflex='1', justify='center
             </Container>
             </Wrapper>
 
-            <DonorBottomNav 
+            <DonorBottomNav gradientImg={DonorGradient}
                 GoHome={() => {navigation.navigate('donorHome')}}
                 GoListings={() => {navigation.navigate('NewListing')}}
                 GoRequests={() => {navigation.navigate('Donorrequest')}}
@@ -182,7 +185,7 @@ export default function donorHome({route, navigation, mflex='1', justify='center
                         companyText={requests.workplace}
                         timeText={requests.meetingTime}
                         listingName={requests.listingName}
-                        profileImg={Adam}
+                        profileImg={Michelle}
                         itemImg={requests.url ? {uri:requests.url} : Chair}
                         onpress={() => navigation.push('ItemRequests', {id:requests.rid})}
                     />

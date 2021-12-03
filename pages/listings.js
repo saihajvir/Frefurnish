@@ -117,7 +117,7 @@ export default function Market({route, navigation})
             </Wrapper>
             </ScrollView>
             
-            <BottomNav 
+            <BottomNav gradientImg={WorkerGradient}
             GoHome={() => {navigation.navigate("Whomepage")}}
             GoListings={() => {navigation.navigate("Market")}}
             GoRequests={() => {navigation.navigate("Requests")}}

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useFocusEffect } from "@react-navigation/core";
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv,  Avatar, Input, Image } from 'react-native-magnus';
+import { ThemeProvider, Text, Div, Button, Icon, ScrollDiv,  Avatar, Input, Image, Skeleton } from 'react-native-magnus';
 import MapView from 'react-native-maps';
 import app from "../utils/initfb";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
@@ -95,6 +95,44 @@ export default function Requests({ route, navigation }) {
   if(pendingReq === null)
   {
     return <>
+    <ThemeProvider theme={ffTheme}>
+        <Wrapper>
+    
+        <Text fontWeight="bold" fontSize={30} mt={20} mb={10} color="#98C791">Approved</Text>
+        <ScrollView horizontal={true}>
+            <Div flexDir="row">
+            <Skeleton w={120} h={120} mr={20} />
+            <Skeleton w={120} h={120} mr={20} />
+
+            </Div>
+        </ScrollView>
+
+        <Text fontWeight="bold" fontSize={30} mb={10}color="#EB8D8D">Declined</Text>
+        <ScrollView horizontal={true} >
+            <Div flexDir="row" >
+            <Skeleton w={120} h={120} mr={20} />
+            <Skeleton w={120} h={120} mr={20} />
+            
+            </Div>
+        </ScrollView>
+
+        <Text fontWeight="bold" fontSize={30} mb={10}color="#808080">Pending</Text>
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            <Div flexDir="row">
+            <Skeleton w={120} h={120} mr={20} />
+            <Skeleton w={120} h={120} mr={20} />
+          
+            </Div>
+  </ScrollView>
+
+        </Wrapper>
+        <BottomNav gradientImg={WorkerGradient}
+                GoHome={() => {navigation.navigate("Whomepage")}}
+                GoListings={() => {navigation.navigate("Market")}}
+                GoRequests={() => {navigation.navigate("Requests")}}
+                GoProfile={() => {navigation.navigate("WorkerProfile")}}
+                />
+    </ThemeProvider>
     </>
   }
 

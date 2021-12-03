@@ -140,7 +140,7 @@ export default function Whomepage({route, navigation, mflex='1'})
                 <MainButton mb={20} buttonText={'See All Requests'} bg="periwinkle" textColor='white' onPress={() => {navigation.navigate("Requests")}}/>
             </Wrapper>
 
-                <BottomNav 
+                <BottomNav  gradientImg={WorkerGradient} 
                 GoHome={() => {navigation.navigate("Whomepage")}}
                 GoListings={() => {navigation.navigate("Market")}}
                 GoRequests={() => {navigation.navigate("Requests")}}

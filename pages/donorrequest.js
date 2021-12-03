@@ -22,6 +22,7 @@ import Toaster from '../assets/toaster.jpg';
 import Julian from '../assets/julian.png';
 import Adam from '../assets/adam.jpeg';
 import DonorGradient from '../assets/donor-gradient.png';
+import Michelle from '../assets/Michelle.jpg'
 
 
 const ffTheme = {
@@ -139,7 +140,7 @@ export default function Donorrequest({navigation})
          </Container>
          </Wrapper>
       
-         <DonorBottomNav 
+         <DonorBottomNav gradientImg={DonorGradient}
              GoHome={() => {navigation.navigate('donorHome')}}
              GoListings={() => {navigation.navigate('NewListing')}}
              GoRequests={() => {navigation.navigate('Donorrequest')}}
@@ -174,7 +175,7 @@ export default function Donorrequest({navigation})
                             companyText={requests.workplace}
                             timeText={requests.meetingTime}
                             listingName={requests.listingName}
-                            profileImg={Adam}
+                            profileImg={Michelle}
                             itemImg={requests.url ? {uri:requests.url} : Chair}
                             onpress={() => navigation.push('ItemRequests', {id:requests.rid})}
                           />
@@ -205,7 +206,7 @@ export default function Donorrequest({navigation})
                         companyText={requests.workplace}
                         timeText={requests.meetingTime}
                         listingName={requests.listingName}
-                        profileImg={Adam}
+                        profileImg={Michelle}
                         itemImg={requests.url ? {uri:requests.url} : Chair}
                         onpress={() => navigation.navigate('ItemRequests', {id:requests.rid})}
                       />

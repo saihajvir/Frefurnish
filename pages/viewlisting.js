@@ -148,7 +148,7 @@ export default function Viewlisting({
                   </Content>
               </FlexCont>
               <FlexCont>
-                <ReqCardLarge pickupText={"Pick Up Requested"} textColor={"#6CAF61"} itemImg={Chair} timeText='Time Pending Donor Approval' dateText=''/>
+                <ReqCardLarge pickupText={"Pick Up Requested"} textColor={"#6CAF61"} itemImg={listingData.url ? {uri:listingData.url} : Chair} timeText='Time Pending Donor Approval' dateText=''/>
               </FlexCont>
                 <FlexCont/>
               <FlexCont>

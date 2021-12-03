@@ -3,8 +3,8 @@ import axios from "axios";
 import styled from "styled-components";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { Button } from "react-native";
-import { ThemeProvider, Text, Div, Icon, ScrollDiv, Input, Platform, Image } from 'react-native-magnus';
+import { Button, Text, View } from "react-native";
+import { ThemeProvider, Div, Icon, ScrollDiv, Input, Platform, Image } from 'react-native-magnus';
 import * as ImagePicker from 'expo-image-picker';
 
 import DonorBottomNav from '../comps/DonorBottomNavBar';
@@ -60,16 +60,16 @@ export default function NewListing({route, navigation})
  
   const [image, setImage] = useState(null);
 
-  useEffect(() => {
-    (async () => {
-      if (Platform.OS !== 'web') {
-        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (status !== 'granted') {
-          alert('Sorry, we need camera roll permissions to make this work!');
-        }
-      }
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     if (Platform.OS !== 'web') {
+  //       const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+  //       if (status !== 'granted') {
+  //         alert('Sorry, we need camera roll permissions to make this work!');
+  //       }
+  //     }
+  //   })();
+  // }, []);
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -188,7 +188,7 @@ useEffect(() => {
       </Div>
       <Div>
         <SubTitle>
-          Add Images
+          Add Image
         </SubTitle>
       </Div>
       <Button title='Add From Library' onPress={pickImage} />

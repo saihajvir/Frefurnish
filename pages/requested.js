@@ -219,7 +219,7 @@ export default function Requested({
                 GoHome={() => { navigation.navigate("Whomepage") }}
                 GoListings={() => { navigation.navigate("Market") }}
                 GoRequests={() => { navigation.navigate("Requests") }}
-                GoProfile={() => { navigation.navigate("Profile") }}
+                GoProfile={() => { navigation.navigate("WorkerProfile") }}
             />
           </ThemeProvider>
         )
@@ -289,7 +289,7 @@ export default function Requested({
                 GoHome={() => { navigation.navigate("Whomepage") }}
                 GoListings={() => { navigation.navigate("Market") }}
                 GoRequests={() => { navigation.navigate("Requests") }}
-                GoProfile={() => { navigation.navigate("Profile") }}
+                GoProfile={() => { navigation.navigate("WorkerProfile") }}
             />
 
         </ThemeProvider>

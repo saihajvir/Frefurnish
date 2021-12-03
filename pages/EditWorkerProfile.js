@@ -77,6 +77,7 @@ export default function EditWorkerProfile({
     const [workplace, setWorkplace] = useState();
     const [description, setDescription] = useState();
     const [credentials, setCredentials] = useState();
+    const [phone, setPhone] = useState();
     const [image, setImage] = useState();
     useFocusEffect(
       React.useCallback(() => {
@@ -138,11 +139,12 @@ export default function EditWorkerProfile({
     const PatchProfile = async() => {
       var profiledata = {
 
-        fuid: user.uid,
+        fuid: getAuth().currentUser.uid,
         name,
-        workplace,
+        workplace, 
         description,
-        credentials
+        credentials,
+        phone
       }
 
       const result = await axios.patch('./users.php', profiledata)
@@ -177,7 +179,7 @@ export default function EditWorkerProfile({
 
           <InputContainer>
             <TextInp placeholder='Name' height={height} onChangeText={(val)=>setName(val)}/>
-            <TextInp placeholder='Phone Number' height={height}/>
+            <TextInp placeholder='Phone Number' height={height} onChangeText={(val)=>setPhone(val)}/>
             <TextInp placeholder='Workplace' height={height} onChangeText={(val)=>setWorkplace(val)}/>
           </InputContainer>
 
